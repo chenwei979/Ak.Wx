@@ -1,0 +1,54 @@
+<include file="Public:head"/>
+<include file="Medical:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+<div class="cLineB">
+  <h4>科室信息管理>{pigcms:$officename}><if condition="$set.id eq ''">添加专家<else />修改专家</if></h4><a href="{pigcms::U('Medical/doctorlist',array('token'=>$token,'tid'=>$tid,'officename'=>$officename))}" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+  <div class="msgWrap bgfc">   <!--id="formID"-->
+  <form action="{pigcms::U('Medical/addtype')}" method="post"  class="form-horizontal form-validate" novalidate="novalidate">
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<if condition="$set.id neq ''">
+ <input type="hidden" name="tid" value="{pigcms:$set.tid}">
+ <else />
+ <input type="hidden" name="tid" value="{pigcms:$tid}">
+ </if>
+<tr>
+  <th valign="top">所属科室：</th>
+  <td>{pigcms:$officename}</td> 	
+</tr>
+<tr>
+  <th valign="top">专家名称：</th>
+  <td><input type="input" class="px" id="typename" value="{pigcms:$set.typename}" name="typename" style="width:150px"></td>	
+</tr>
+<tr>
+<th valign="top">所属职称：</th>
+<td> 
+	<pigcmsif where="$level">
+	<select name="level" style="width:120px;">
+	<volist name='level' id='voo'>
+		<option value="{pigcms:$voo.lid}" <if condition="$voo['lid'] eq $set['level']">selected="selected"</if>>{pigcms:$voo.level}</option>
+	</volist>
+	</select>
+	<else />
+	<a style="color:#4a98e0" href="{pigcms::U('Medical/LevelAdd',array('token'=>$token))}">添加职称</a>
+	</pigcmsif>
+</td> 	
+</tr>
+<tr>
+<th>&nbsp;</th>
+<if condition="$set.id neq ''">
+<input type="hidden" name="id" value="{pigcms:$set.id}" />
+</if>
+<input type="hidden" name="token" value="{pigcms:$token}" />
+<td><button type="submit" name="button" class="btnGreen sub"><if condition="$set.id eq ''">添加<else />修改</if></button>
+<a href="" class="btnGray vm">取消</a>
+</td>
+</tr>
+  </tbody>
+  </table>
+</form>
+  </div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,216 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="微销CMS--微信分销代销系统">
+    <meta name="keywords" content="微商分销系统案例,微信分销CMS系统案例,微信三级分销系统案例" />
+    <meta name="description" content="{pigcms:$f_siteName}微信分销CMS系统，为厂家与微商搭建一个高性价比的微信三级分销系统，让厂家与微商之间成为生意合作的好伙伴。" />
+    <title>{pigcms:$f_siteName}｜微商分销系统，微信分销CMS系统，微信三级分销系统成功案例</title>
+    <link rel="shortcut icon" type="images/ico" href="/favicon.ico">
+    <link rel="stylesheet" href="/tpl/Home/wfccms/common/css/fxcms_base.css">
+    <link rel="stylesheet" href="/tpl/Home/wfccms/common/css/fxcms_case.css">
+    <!--[if lte IE 6]>
+    <script type="text/javascript" src="http://www.ichina.cn/js/all.js"></script>
+    <script type="text/javascript" src="http://www.ichina.cn/js/png.js"></script>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('div, ul, img, li, input , a,span');
+    </script>
+    <![endif]-->
+</head>
+<body>
+<include file="Public:header03"/>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.2/jquery.js"></script>
+<script src="/tpl/Home/wfccms/common/js/jquery.jqzoom.js"></script>
+<script src="/tpl/Home/wfccms/common/js/swiper.jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        var options_heng =
+        {
+            zoomWidth:200,
+            zoomHeight:200,
+            title:false,
+            xOffset:0,
+            zoomType:"reverse",
+            imageOpacity:0.6
+        };
+        $("#func-1").jqzoom(options_heng);
+        $("#func-2").jqzoom(options_heng);
+        $("#func-3").jqzoom(options_heng);
+        $("#func-4").jqzoom(options_heng);
+        $("#func-5").jqzoom(options_heng);
+        $("#func-6").jqzoom(options_heng);
+        $("#func-7").jqzoom(options_heng);
+        $("#func-8").jqzoom(options_heng);
+        /*图片轮播初始化*/
+        var swiper = new Swiper('.swiper-container', {
+            onInit: function(swiper){
+                $('.swiper-index .active-num i').html(swiper.activeIndex+1);
+                $('.swiper-index .all-num').html('/0' + swiper.slides.length);
+            },
+            pagination: '.swiper-pagination',
+            paginationClickable: '.swiper-pagination',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            spaceBetween: 0,
+            onSlideChangeEnd: function(swiper){
+                $('.swiper-index .active-num i').html(swiper.activeIndex+1);
+            }
+        });
+    });
+</script>
+
+<div class="pro-ban-bd" style="height:52px;background:url(/tpl/Home/wfccms/common/images/ban-bd-2.jpg) repeat;"></div>
+<!-- pro-banner -->
+	<div class="pro-banner">
+        <div class="ban-cnt">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="{pigcms::U('Index/register')}" class="a1"><img src="/tpl/Home/wfccms/common/images/fxcms_banner_02.jpg" alt="立即体验" /></a></div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="swiper-arrows"></div>
+        </div>
+    </div>
+<div class="content">
+    <div class="tabs">
+        <ul class="tab-title clearfix">
+            <li ><a href="{pigcms::U('Index/fxcms')}">产品介绍</a></li>
+            <li><a href="{pigcms::U('Index/fxcms_price')}">产品价格</a></li>
+            <li class="active">产品案例</li>
+        </ul><!-- tab-title -->
+<!-- line_box-->
+<div class="line_box m_top20">
+    <div class="line_box">
+        <div class="line line_h1"></div>
+        <div class="magin_imgbox"><img src="/tpl/Home/wfccms/common/images/newcase/chuanker.png" alt="微销CMS-案例创客" title=""/></div>
+    </div>
+</div>
+<!--line_box-->
+
+<!-- center_box-->
+<div class="center center_box">
+    <p class="p_16 w_70">创客，尚品会俱乐部(Sup.life club)旗下代销分销平台，为厂家与微商搭建平台成为合作好伙伴，势将打造全新的移动电商分销生态体系。</p>
+    <div class="center_main"><img src="/tpl/Home/wfccms/common/images/newcase/customer_reviews.png" lt="微销CMS-案例客户点评" title=""/></div>
+</div>
+<!--center_box -->
+
+
+<!-- line_box-->
+<div class="line_box">
+    <div class="line_box">
+        <div class="line line_h2"></div>
+        <div class="circle_imgbox"><img src="/tpl/Home/wfccms/common/images/newcase/circle.png" alt="微销CMS-案例圆" title=""/></div>
+    </div>
+</div>
+<!--line_box-->
+
+<!-- center_box-->
+<div class="center center_box">
+    <div class="center_main"><img src="/tpl/Home/wfccms/common/images/newcase/process1.png" lt="微销CMS-案例流程图1" title=""/></div>
+</div>
+<!--center_box -->
+
+<!-- line_box-->
+<div class="line_box">
+    <div class="line_box">
+        <div class="line line_h2"></div>
+        <div class="circle_imgbox"><img src="/tpl/Home/wfccms/common/images/newcase/circle.png" alt="微销CMS-案例圆" title=""/></div>
+    </div>
+</div>
+<!--line_box-->
+
+<!-- center_box-->
+<div class="center center_box">
+    <ul class="process_ul">
+        <li>
+            <img src="/tpl/Home/wfccms/common/images/newcase/sales_process1.png" title="" alt="微销CMS-流程1轻松代销"/>
+            <p class="p_16 text_left">分销商选择要代销的产品，点击我要代销，即可把该产品添加到自己的店铺进行售卖。</p>
+        </li>
+        <li>
+            <img src="/tpl/Home/wfccms/common/images/newcase/sales_process2.png" title="" alt="微销CMS-流程2佣金体系"/>
+            <p class="p_16 text_left">添加商品自由选择佣金范围：1%-50%，平台自动计算佣金值。</p>
+        </li>
+        <li>
+            <img src="/tpl/Home/wfccms/common/images/newcase/sales_process3.png" title="" alt="微销CMS-流程3推广宣传"/>
+            <p class="p_16 text_left">一键链接给朋友、分享到朋友圈、QQ，微博，带动朋友圈消费赚取佣金。</p>
+        </li>
+    </ul>
+    <div class="clear"></div>
+</div>
+<!--center_box -->
+<!-- line_box-->
+<div class="line_box m_top60">
+    <div class="line_box">
+        <div class="line line_h1"></div>
+        <div class="magin_imgbox"><img src="/tpl/Home/wfccms/common/images/newcase/jumee.png" alt="微销CMS-案例聚美天下" title=""/></div>
+    </div>
+</div>
+<!--line_box-->
+<!-- center_box-->
+<div class="center center_box">
+    <p class="p_16 w_70">嘉悦国际旗下聚美天下创业平台，聚天下之美，创美丽事业！面向广大代理商提供产品下单、业绩查询、授权查询、微商培训等服务！</p>
+    <div class="center_main"><img src="/tpl/Home/wfccms/common/images/newcase/jm_reviews.png" lt="微销CMS-聚美客户点评" title=""/></div>
+</div>
+<!--center_box -->
+
+<!-- line_box-->
+<div class="line_box">
+    <div class="line_box">
+        <div class="line line_h2"></div>
+        <div class="circle_imgbox"><img src="/tpl/Home/wfccms/common/images/newcase/circle.png" alt="微销CMS-案例圆" title=""/></div>
+    </div>
+</div>
+<!--line_box-->
+
+<!-- center_box-->
+<div class="center center_box">
+    <div class="center_main"><img src="/tpl/Home/wfccms/common/images/newcase/process2.png" lt="微销CMS-案例流程图2" title=""/></div>
+</div>
+<!--center_box -->
+
+<!-- line_box-->
+<div class="line_box">
+    <div class="line_box">
+        <div class="line line_h2"></div>
+        <div class="circle_imgbox"><img src="/tpl/Home/wfccms/common/images/newcase/circle.png" alt="微销CMS-案例圆" title=""/></div>
+    </div>
+</div>
+<!--line_box-->
+
+<!-- center_box-->
+<div class="center center_box">
+    <ul class="process_ul">
+        <li>
+            <img src="/tpl/Home/wfccms/common/images/newcase/account_process1.png" title="" alt="微销CMS-流程账户明细"/>
+            <p class="p_16 text_left">详细的补货详细记录，交易支出信息、帐户收入信息一目了然。</p>
+        </li>
+        <li>
+            <img src="/tpl/Home/wfccms/common/images/newcase/account_process2.png" title="" alt="微销CMS-流程2上下级关系"/>
+            <p class="p_16 text_left">清晰的上下级关系，方便代理商更好的掌握每个下级的最新交易动态。</p>
+        </li>
+        <li>
+            <img src="/tpl/Home/wfccms/common/images/newcase/account_process3.png" title="" alt="微销CMS-流程3订单数据统计"/>
+            <p class="p_16 text_left">订单状态分类，方便操作；精确的订单报表数据。</p>
+        </li>
+    </ul>
+    <div class="clear"></div>
+</div>
+<include file="Public:footer03"/>
+</body>
+</html>
+<script type="text/javascript" src="http://static.b.qq.com/account/bizqq/js/wpa.js?wty=1&type=13&kfuin=4006801888&ws=http%3A%2F%2Fwww.iChina.cn&title=%E5%9C%A8%E7%BA%BFQQ&cot1=%E5%B7%A5%E4%BD%9C%E6%97%A5%208%3A30-20%3A00%20&btn1=%E4%BC%81%E4%B8%9AQQ%E4%BA%A4%E8%B0%88&fsty=0&fposX=2&fposY=1&tx=1&aty=0&a=1002&key=X1%032Ta%074QmR4%001X9%00hThWnW9%021S%3DU3%0An%5B7%003Wd%064"></script><!--marketing qq-->
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/base.js"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0ec04c7e0b84667fecad4c2ac38541a7";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>

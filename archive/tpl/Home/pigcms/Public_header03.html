@@ -1,0 +1,93 @@
+<?php
+ //if($isMobile == 1){ 
+ //header("location: http://s.wooyx.com/v-U609014M8549");
+
+ //}else{
+?>
+
+<link rel="stylesheet" href="{pigcms:$staticPath}/tpl/Home/pigcms/common/css/base.css" />
+<link rel="stylesheet" href="{pigcms:$staticPath}/tpl/Home/pigcms/common/css/swiper.min.css" />
+<link rel="stylesheet" href="{pigcms:$staticPath}/tpl/Home/pigcms/common/css/khb.css?v2.1" />
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/js/jquery-1.11.1.min.js" ></script>
+<script src="{pigcms:$staticPath}/tpl/Home/pigcms/common/js/swiper.jquery.min.js"></script>
+<script src="{pigcms:$staticPath}/tpl/Home/pigcms/common/js/unslider.js"></script>
+<script src="{pigcms:$staticPath}/tpl/Home/pigcms/common/js/main.js"></script>
+<link rel="stylesheet" href="/tpl/Home/pigcms/common/js/slick/slick.css" />
+<link rel="stylesheet" href="/tpl/Home/pigcms/common/js/slick/slick-theme.css" />
+<div class="webSiteTools">
+    <!-- header start -->
+    <div id="khb-navbar">
+        <div class="khn-navbar-inner clearfix">
+            <div class="khb-logo left">
+                <a class="logo" href="/"><img src="{pigcms:$f_logo}" alt="{pigcms:$f_siteTitle}" /></a>
+                <p>微信公众号自助营销平台</p>
+            </div>
+
+            <div class="khb-nav right">
+                <div class="site-tools text-right">
+                    <div class="login-reg right">
+                        <if condition="$_SESSION[uid]==false">
+                                <div class="login-reg-before">
+                                    <a class="login" href="{pigcms::U('Index/login')}">登录</a>
+                                    <a class="reg text-left" href="{pigcms::U('Index/register')}">注册</a>
+                                </div>
+                        <else/>
+                            <div class="login-reg-after">
+                                你好,<span style="color:red">{pigcms:$Think.session.uname}</span>
+                                <a class="nav-menu-a" href="{pigcms::U('User/Index/index')}" style="color:red;">管理中心</a>
+                                <a href="{pigcms::U('System/Admin/logout')}" >退出</a>
+                            </div>
+                        </if>
+
+                    </div>
+                    <div class="contact-us"><i class="i-phone-green"></i>咨询热线：<b>{pigcms::C('site_tel')}</b></div>
+                </div>
+                <ul class="list-float-lt khb-nav-menu">
+                    <li><a class="nav-menu-a" href="/">首 页</a></li>
+                    <li class="drop-sub-menu">
+
+                        <a class="nav-menu-a" href="{pigcms::U('Index/weixinyingxiaoxitong')}">产品中心</a>
+
+                        <!-- 弹层 -->
+                        <div class="nav-menu-mask">
+                            <i class="caret"></i>
+                            <div class="nav-menu-inner">
+                                <div class="hd">
+                                    <h2><em>产品中心</em>Product center</h2>
+                                </div>
+                                <div class="bd">
+                                    <ul>
+                                        <li><a href="{pigcms::U('Index/weixinyingxiaoxitong')}">微信营销系统</a></li>
+                                        <li><a href="{pigcms::U('Index/weixinfenxiaoxitong')}">微信分销系统</a></li>
+                                        <li><a href="http://s.wooyx.com/" target="_blank">微信场景系统</a></li>
+                                        <li><a href="{pigcms::U('Index/weixinoaxitong')}">微信OA系统</a></li>
+                                        <!--<li><a href="/">营销硬件</a></li>-->
+                                    </ul>
+                                    <div class="animation-area">
+                                        <i class="anim animation-1"></i>
+                                        <i class="anim animation-2"></i>
+                                        <i class="anim animation-3"></i>
+                                        <i class="anim animation-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <if condition="$_SESSION[uid]==false">
+                        <li><a class="nav-menu-a" href="{pigcms::U('Index/register')}">体验中心</a></li>
+                    </if>
+
+                    <li><a class="nav-menu-a" href="{pigcms::U('Index/weiyingxiaoanli')}">客户案例</a></li>
+                    <li><a class="nav-menu-a" href="{pigcms::U('Index/weiyingxiaodaili')}">招商合作</a></li>
+                    <li><a class="nav-menu-a" href="{pigcms::U('Index/about')}" target="_blank">关于我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- header end -->
+</div>
+
+<?php 
+//}
+ ?>

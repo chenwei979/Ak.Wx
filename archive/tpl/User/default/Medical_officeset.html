@@ -1,0 +1,30 @@
+<include file="Public:head"/>
+<include file="Medical:menu"/>
+<div class="content">
+<div class="cLineB">
+  <h4>科室信息管理>添加科室</h4>
+ </div>
+  <div class="msgWrap bgfc">   <!--id="formID"-->
+  <form action="{pigcms::U('Medical/officeset')}" method="post"  class="form-horizontal form-validate">
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<tr>
+  <th valign="top">科室名称：</th>
+  <td><input type="input" class="px" id="typename" value="{pigcms:$set.typename}" name="typename" style="width:150px"></td>	
+</tr>
+<tr>
+<th>&nbsp;</th>
+<if condition="$set.id neq ''">
+<input type="hidden" name="id" value="{pigcms:$set.id}" />
+</if>
+<input type="hidden" name="token" value="{pigcms:$token}" />
+<td><button type="submit" name="button" class="btnGreen sub"><if condition="$set.id eq ''">添加<else />修改</if></button>
+<a href="" class="btnGray vm">取消</a>
+</td>
+</tr>
+  </tbody>
+  </table>
+</form>
+  </div>
+        </div>
+<include file="Public:footer"/>

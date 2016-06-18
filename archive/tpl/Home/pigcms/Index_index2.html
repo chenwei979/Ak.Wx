@@ -1,0 +1,489 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>{pigcms:$f_siteTitle}</title>
+<meta name="keywords" content="{pigcms:$f_metaKeyword}"/>
+<meta name="description" content="{pigcms:$f_metaDes}"/>
+
+<!-- 头部信息start -->
+<include file="Public:header22"/>
+<!-- 头部信息end -->
+
+<div class="banner">
+    <div class="flashBox">
+        <ul>
+        <if condition="$banner eq ''">
+            <li><a class="pic" href="javascript:void(0)" target="_blank" style="background-image: url({pigcms:$staticPath}/tpl/Home/pigcms/common/images/bann.jpg)"></a></li>
+            <li><a class="pic" href="javascript:void(0)" target="_blank" style="background-image: url({pigcms:$staticPath}/tpl/Home/pigcms/common/images/ban.jpg)"></a></li>
+        <else />
+            <volist name="banner" id="vo">
+            <li><a class="pic" href="<if condition="$vo.url eq ''">javascript:void(0)<else/>{pigcms:$vo.url}</if>" target="_blank" style="background-image: url({pigcms:$vo.img})"></a></li>
+            </volist>
+        </if>
+        </ul>
+        <div class="bannerBtn">
+            <div class="w1000">
+                <a href="javascript:;" class="prev"></a>
+                <a href="javascript:;" class="next"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="row upgrade pt40">
+        <div class="w1000">
+            <div class="headerInfo">
+                <h2>最新升级</h2>
+                <p>无与伦比的更新进度 让您的微信营销领先一步</p>
+            </div>
+        </div>
+        <div class="upgradePart">
+            <hr class="lineHr" />
+            <div class="w1000 clearfix">
+                <ul class="play1">
+                <if condition="$renew eq ''">
+                    <li>
+                        <p class="timer">2013年8月12日</p>
+                        <i class="dot"></i>
+                        <div class="imgThis">
+                            <img src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/f0.png" alt="f0">
+                        </div>
+                        <h3>{pigcms:$f_siteName}新分享</h3>
+                    </li>
+
+                     <li>
+                        <p class="timer">2013年11月11日</p>
+                        <i class="dot"></i>
+                        <div class="imgThis">
+                            <img src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/f1.png" alt="f0">
+                        </div>
+                        <h3>{pigcms:$f_siteName}微助力</h3>
+                    </li>
+
+                    <li>
+                        <p class="timer">2014年3月24日</p>
+                        <i class="dot"></i>
+                        <div class="imgThis">
+                            <img src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/f2.png" alt="f0">
+                        </div>
+                        <h3>{pigcms:$f_siteName}人气冲榜</h3>
+                    </li>
+
+                    <li>
+                        <p class="timer">2014年6月9日</p>
+                        <i class="dot"></i>
+                        <div class="imgThis">
+                            <img src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/f3.png" alt="f0">
+                        </div>
+                        <h3>{pigcms:$f_siteName}九宫格</h3>
+                    </li>
+
+                    <li>
+                        <p class="timer">2014年9月19日</p>
+                        <i class="dot"></i>
+                        <div class="imgThis">
+                            <img src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/f4.png" alt="f0">
+                        </div>
+                        <h3>{pigcms:$f_siteName}授权登录</h3>
+                    </li>
+                <else/>
+                    <volist name="renew" id="vo">
+                        <li>
+                        <a href="<if condition="$vo.url eq ''">javascript:void(0)<else/>{pigcms:$vo.url}</if>" target="_blank">
+                            <p class="timer">{pigcms:$vo.time}</p>
+                            <i class="dot"></i>
+                            <div class="imgThis">
+                                <img src="{pigcms:$vo.img_w}" alt="f0">
+                                <?php
+                                if(!empty($vo['img_x'])){
+                                ?>
+                                    <div class="erw">
+                                        <img src="{pigcms:$vo.img_x}" alt="erw">
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                            <h3>{pigcms:$vo.name}</h3>
+                        </a>
+                        </li>
+                    </volist>
+                </if>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row mt40">
+        <div class="w1000">
+            <div class="headerInfo">
+                <h2>功能介绍</h2>
+                <p>{pigcms:$f_siteName}多用户微信营销系统系统内置100多项应用，涵盖近30个行业的垂直领域应用</p>
+            </div>
+        </div>
+        <div class="functionNav mt40" id="funNav">
+            <div class="clearfix">
+                <ul>
+                    <if condition="$top_arr eq ''">
+                        <li><a href="javascript:;">最新功能类</a></li>
+                        <li><a href="javascript:;">宣传展示类</a></li>
+                        <li><a href="javascript:;">推广吸粉类</a></li>
+                        <li><a href="javascript:;">营销活动类</a></li>
+                        <li><a href="javascript:;">节日营销类</a></li>
+                        <li><a href="javascript:;">电商交易类</a></li>
+                        <li><a href="javascript:;">行业功能类</a></li>
+                        <li><a href="javascript:;">行业功能类</a></li>
+                        <li><a href="javascript:;">会员管理类</a></li>
+                        <li><a href="javascript:;">其他功能类</a></li>
+                    <else/>
+                        <li zhu_id="is_new"><a href="javascript:;">最新功能</a></li>
+                        <volist name="top_arr" id="vo" offset="0" length="9">
+                            <li zhu_id="{pigcms:$vo.id}">
+                                <a href="javascript:;">{pigcms:$vo.name}</a>
+                            </li>
+                        </volist>
+                    </if>
+                </ul>
+            </div>
+        </div>
+        <div class="functionDesc">
+            <div class="w1000">
+                <div class="imgHolder fl">
+                <!-- 手机图片轮播 -->
+                    <div class="imgScroll">
+                        <div class="bd">
+                            <ul class="img_style">
+                            </ul>
+                        </div>
+                    </div>
+                    <img src="/tpl/Home/pigcms/common/images/newIndex/wutu3.png" class="img_none" style="display: none;" />
+                </div>
+                <div class="rightDesc">
+                    <div class="qrCode">
+                    <!-- 填充二维码 -->
+                    </div>
+                    <h3 class="title_zw">
+                        <!-- 填充标题名称 -->
+                    </h3>
+                    <div class="textDesc">
+                        <p> <strong>功能介绍：</strong><span class="desc">
+                            <!-- 填充功能介绍 -->
+                        </span></p>
+                        <p class="app_sight">
+                            <!-- 填充应用场景 -->
+                        </p>
+                    </div>
+                    <div class="minNav clearfix">
+                        <div class="scrollBtn">
+                            <a href="javascript:;" class="prev"></a>
+                            <a href="javascript:;" class="next"></a>
+                        </div>
+                        <div class="scrollBox">
+                            <ul class="clearfix" id="tianchong">
+                            <!-- 填充功能菜单 -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row why mt40">
+        <div class="w1000">
+            <div class="headerInfo">
+                <h2>为什么选择{pigcms:$f_siteName}？</h2>
+            </div>
+        </div>
+        <div class="whyPig mt40">
+            <div class="w1000">
+                <div class="whyScroll">
+                <if condition="$reasonIist eq ''">
+                    <div class="whyWidth">
+                        <ul class="whyScrollUl">
+                            <li>
+                                <img src="./tpl/Home/pigcms/common/images/newIndex/why_bg.png" alt="why">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="whyText">
+                        <ul>
+                            <li>
+                                <div class="hd">
+                                    <h3>为什么选择小猪CMS</h3>
+                                </div>
+                                <div class="bd">合肥彼岸互联信息技术有限公司成立于2013年，注册资本200万元，位于合肥市高新技术开发区高新企业孵化基地，2014年获得双软认证企业资质。
+公司成立以来一直致力于微信营销系统的开发，公司旗下的pigcms是中国最早的微信营销CMS，自系统面世以来一直保持着微信营销软件市场第一的地位目前依靠丰富齐全的产品功能和优质的售后服务，商业平台客户已达到800多家……
+                                    <div class="readMore tr">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                <else/>
+                    <div class="whyWidth">
+                        <ul class="whyScrollUl">
+                        <volist name="reasonIist" id="vo">
+                            <li>
+                                <img src="{pigcms:$vo.phos_one}" alt="why">
+                            </li>
+                        </volist>
+                        </ul>
+                    </div>
+                    <div class="whyText">
+                        <ul>
+                        <volist name="reasonIist" id="vo">
+                            <li>
+                                <div class="hd">
+                                    <h3>{pigcms:$vo.title}</h3>
+                                </div>
+                                <div class="bd">
+                                    {pigcms:$vo.desc|mb_substr=0,167,'utf-8'}
+                                    <div class="readMore tr">
+                                    </div>
+                                </div>
+                            </li>
+                        </volist>
+                        </ul>
+                    </div>
+                </if>
+
+                </div>
+                <div class="whyBtn">
+                        <a href="javascript:;" class="prev"></a>
+                        <a href="javascript:;" class="next"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row news mt40">
+        <div class="w1000">
+
+
+        <if condition="$info eq ''">
+            <div class="fr column">
+                <div class="hd clearfix">
+                    <h2 class="fl">微信百科</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                        <li>
+                            <div class="newsImg fl">
+                                <img src="./tpl/Home/pigcms/common/images/newIndex/news.jpeg" alt="news">
+                            </div>
+                            <span class="fr"><i></i>2015-08-21</span>
+                            <h3><a href="##">如何做好粉丝互动营销?</a></h3>
+                            <div class="readMore clearfix">
+                                <a href="##" class="fr"></a>
+                            </div>
+                            <p class="gist">如何做好粉丝互动营销……</p>
+                        </li>
+                        <li>
+                            <div class="newsImg fl">
+                                <img src="./tpl/Home/pigcms/common/images/newIndex/news.jpeg" alt="news">
+                            </div>
+                            <span class="fr"><i></i>2015-08-21</span>
+                            <h3><a href="##">朋友圈营销如何用内容去打动用户</a></h3>
+                            <div class="readMore clearfix">
+                                <a href="##" class="fr"></a>
+                            </div>
+                            <p class="gist">朋友圈营销如何用内容去打动用户……</p>
+                        </li>
+                        <li>
+                            <div class="newsImg fl">
+                                <img src="./tpl/Home/pigcms/common/images/newIndex/news.jpeg" alt="news">
+                            </div>
+                            <span class="fr"><i></i>2015-08-21</span>
+                            <h3><a href="##">营销者看过来：微信营销全新解读</a></h3>
+                            <div class="readMore clearfix">
+                                <a href="##" class="fr"></a>
+                            </div>
+                            <p class="gist">营销者看过来：微信营销全新解读……</p>
+                        </li>
+                        <li>
+                            <div class="newsImg fl">
+                                <img src="./tpl/Home/pigcms/common/images/newIndex/news.jpeg" alt="news">
+                            </div>
+                            <span class="fr"><i></i>2015-08-21</span>
+                            <h3><a href="##">微信公众号搜素排名优化方法分享</a></h3>
+                            <div class="readMore clearfix">
+                                <a href="##" class="fr"></a>
+                            </div>
+                            <p class="gist">微信公众号搜素排名优化方法分享……</p>
+                        </li>
+                        <li>
+                            <div class="newsImg fl">
+                                <img src="./tpl/Home/pigcms/common/images/newIndex/news.jpeg" alt="news">
+                            </div>
+                            <span class="fr"><i></i>2015-08-21</span>
+                            <h3><a href="##">细分行业行业微信运营方法谈之餐饮</a></h3>
+                            <div class="readMore clearfix">
+                                <a href="##" class="fr"></a>
+                            </div>
+                            <p class="gist">细分行业行业微信运营方法谈之餐饮……</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fl column">
+                <div class="hd clearfix">
+                    <h2 class="fl">产品动态</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                        <li>
+                            <div class="newsImg fl">
+                                <img src="./tpl/Home/pigcms/common/images/newIndex/news.jpeg" alt="news">
+                            </div>
+                            <span class="fr"><i></i>2015-08-21</span>
+                            <h3><a href="##">双应用助兴圣诞元旦双节 节日气氛嗨起</a></h3>
+                            <div class="readMore clearfix">
+                                <a href="##" class="fr"></a>
+                            </div>
+                            <p class="gist">双应用助兴圣诞元旦双节 节日气氛嗨起……</p>
+                        </li>
+                        <li>
+                            <div class="newsImg fl">
+                                <img src="./tpl/Home/pigcms/common/images/newIndex/news.jpeg" alt="news">
+                            </div>
+                            <span class="fr"><i></i>2015-08-21</span>
+                            <h3><a href="##">一周新功能回顾之12月22日篇</a></h3>
+                            <div class="readMore clearfix">
+                                <a href="##" class="fr"></a>
+                            </div>
+                            <p class="gist">一周新功能回顾之12月22日篇……</p>
+                        </li>
+                        <li>
+                            <div class="newsImg fl">
+                                <img src="./tpl/Home/pigcms/common/images/newIndex/news.jpeg" alt="news">
+                            </div>
+                            <span class="fr"><i></i>2015-08-21</span>
+                            <h3><a href="##">微助力活动上线了</a></h3>
+                            <div class="readMore clearfix">
+                                <a href="##" class="fr"></a>
+                            </div>
+                            <p class="gist">微助力活动上线了……</p>
+                        </li>
+                        <li>
+                            <div class="newsImg fl">
+                                <img src="./tpl/Home/pigcms/common/images/newIndex/news.jpeg" alt="news">
+                            </div>
+                            <span class="fr"><i></i>2015-08-21</span>
+                            <h3><a href="##">人气冲榜活动上线了</a></h3>
+                            <div class="readMore clearfix">
+                                <a href="##" class="fr"></a>
+                            </div>
+                            <p class="gist">人气冲榜活动上线了……</p>
+                        </li>
+                        <li>
+                            <div class="newsImg fl">
+                                <img src="./tpl/Home/pigcms/common/images/newIndex/news.jpeg" alt="news">
+                            </div>
+                            <span class="fr"><i></i>2015-08-21</span>
+                            <h3><a href="##">人气冲榜活动上线了</a></h3>
+                            <div class="readMore clearfix">
+                                <a href="##" class="fr"></a>
+                            </div>
+                            <p class="gist">人气冲榜活动上线了……</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    <else />
+        <div class="fr column">
+                <div class="hd clearfix">
+                    <!-- <a href="##" class="more fr">更多>></a> -->
+                    <h2 class="fl">{pigcms:$info['name2']}</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                    <volist name="title2" id="vo">
+                        <li>
+                            <div class="newsImg fl">
+                                <img src='{pigcms:$vo.pic|default="$staticPath/tpl/Home/pigcms/common/images/newIndex/news.jpeg"}' alt="news">
+                            </div>
+                            <span class="fr"><i></i>{pigcms:$vo.uptatetime|date='Y-m-d',###}</span>
+                            <h3 style="width: 312px;overflow: hidden;"><a href="<?php if ($vo['url']){?>{pigcms:$vo.url}<?php }else{ ?>index.php?g=Home&m=Index&a=about&iid={pigcms:$vo.id}<?php }?>">{pigcms:$vo.title|mb_substr=###,0,18,'utf-8'}</a></h3>
+                            <div class="readMore clearfix">
+                                <a href="<?php if ($vo['url']){?>{pigcms:$vo.url}<?php }else{ ?>index.php?g=Home&m=Index&a=about&iid={pigcms:$vo.id}<?php }?>" class="fr"></a>
+                            </div>
+                            <p class="gist">{pigcms:$vo.text}</p>
+                        </li>
+                    </volist>
+                    </ul>
+                </div>
+            </div>
+            <div class="fl column">
+                <div class="hd clearfix">
+                    <!-- <a href="##" class="more fr">更多>></a> -->
+                    <h2 class="fl">{pigcms:$info['name1']}</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                        <volist name="title1" id="vo">
+                        <li>
+                            <div class="newsImg fl">
+                                <img src='{pigcms:$vo.pic|default="$staticPath/tpl/Home/pigcms/common/images/newIndex/news.jpeg"}' alt="news">
+                            </div>
+                            <span class="fr"><i></i>{pigcms:$vo.uptatetime|date='Y-m-d',###}</span>
+                            <h3 style="width: 312px;overflow: hidden;"><a href="<?php if ($vo['url']){?>{pigcms:$vo.url}<?php }else{ ?>index.php?g=Home&m=Index&a=about&iid={pigcms:$vo.id}<?php }?>">{pigcms:$vo.title|mb_substr=###,0,18,'utf-8'}</a></h3>
+                            <div class="readMore clearfix">
+                                <a href="<?php if ($vo['url']){?>{pigcms:$vo.url}<?php }else{ ?>index.php?g=Home&m=Index&a=about&iid={pigcms:$vo.id}<?php }?>" class="fr"></a>
+                            </div>
+                            <p class="gist">{pigcms:$vo.text}</p>
+                        </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+        </if>
+
+        </div>
+    </div>
+</div>
+
+    <!--ad start-->
+    <pigcmsif where="$thisAD">
+    <div id="ad1" style="width: 100%; height: 100%; position: fixed; z-index: 1997; top: 0px; left: 0px; overflow: hidden;"><div style="height: 100%; background: none repeat scroll 0% 0% rgb(0, 0, 0); opacity: 0.65;filter:alpha(opacity=65);">
+    </div></div>
+    <div id="ad2" style="position:fixed; text-align:center; width:100%; top:140px; z-index:30001">
+    <a href="<?php if ($thisAD['url']){?>{pigcms:$thisAD.url}<?php }else{?>###<?php };?>" target="_blank"><img src="{pigcms:$thisAD.imgs}" /></a>
+    </div>
+    <div id="ad3" style="position:fixed; text-align:center; width:100%; top:140px;z-index:30012; background:#f80; opacity:0;filter:alpha(opacity=0);">
+    <div style="height:40px;width:700px;margin:0 auto;z-index:30012;">
+    <div onclick="closeAD()" style="height:45px;width:45px;margin:0 0 0 655px;cursor:pointer;"></div>
+    </div>
+    </div>
+    <script>
+    function closeAD(){
+      $('#ad1').animate({opacity: "hide"}, "slow");
+      $('#ad2').animate({opacity: "hide"}, "slow");
+      $('#ad3').animate({opacity: "hide"}, "slow");
+      $.ajax({url: "/index.php?g=Home&m=Index&a=closeAD",dataType: "json"});
+    }
+    </script>
+    </pigcmsif>
+
+
+<script type="text/javascript">
+function animate(sum){
+    var t = $(window).scrollTop();
+    var h = $(window).height();
+
+    for(var i = 1; i < sum + 1; i ++){
+        var off = $('.play' + i).offset().top + 100;
+
+        if(t + h > off){
+            $('.play' + i).addClass('animate');
+            };
+        };
+    }
+window.onload = function(){
+        animate(1);
+    };
+    $(window).scroll(function(){
+        animate(1);
+    });
+</script>
+<!-- foorter信息start -->
+<include file="Public:footer22"/>
+<!-- foorter信息end -->

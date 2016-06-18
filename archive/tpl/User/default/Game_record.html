@@ -1,0 +1,114 @@
+<include file="Public:head"/>  
+<style>
+  .game_page li,.up,.down{
+height: 20px;
+    padding: 0 5px;
+    float: left;
+    margin-right: 15px;
+    line-height: 20px;
+    font-size: 10px;
+    border: #1abd6c 1px solid;
+    color: #1abd6c;
+}
+.game_page li:hover{background:#1abd6c;color: #fff !important;}
+.feature_list .paging ul li.active,.feature_list .paging ul li:hover{background:#44b549;}
+</style>
+        <div class="content">
+          <div class="cLineB">
+              <h4 class="left">游戏记录</h4>
+                 
+              <div class="clr"></div>
+          </div>
+          
+          <div class="msgWrap">
+          <form method="post"  action="" id="info" >
+          <input name="delall"  type="hidden" value="" />
+           <input name="wxid"  type="hidden" value="" />
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+				<TH>参与用户</TH>
+				<TH>手机号码</TH>
+				<TH>记录时间</TH>
+				<TH>记录内容</TH>
+				<TH class="norightborder">操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+                  <volist id="list" name="games">
+                <TR>
+              
+                  <TD>{pigcms:$list.username}</TD>
+                  <TD><if condition="$list['phone']">{pigcms:$list.phone}<else/>无</if></TD>
+                  <TD>{pigcms:$list.time|date="Y-m-d H:i:s",###}</TD> 
+                  <TD>{pigcms:$list.fraction}</TD>
+                   <TD class="norightborder">
+				   <a href="index.php?g=User&m=Game&a=record_del&rid={pigcms:$list.ugameid}&wecha={pigcms:$list.wecha_id}&uid={pigcms:$list.uid}">删除</a></TD>
+                </TR>
+				</volist>
+              </TBODY>
+            </TABLE>
+           </form> 
+        <div class="paging clearfix">
+            <div style="float:right;">
+            <div style="<if condition="$ps eq 0">display:none;<else/>display:block;</if>float:left;">
+            <a href="{pigcms::U('Game/record',array('token'=>$token,'id'=>$id,'p'=>($ps-1)))}"><li class="up">上一页</li></a>
+            </div>
+            <div style="width:auto;float:left;">
+            <ul class="active_list clearfix game_page">
+                <?php
+                    for ($i=$pagestar; $i <= $pageend; $i++) {
+                        echo '<a href="/index.php?g=User&m=Game&a=record&id='.$id.'&token='.$token.'&p='.$i.'"><li class="page_'.$i.'">'.$i.'</li></a>';
+                    }
+                ?>
+            </ul>
+            </div>
+            <div style="float:left;">
+            <a href="{pigcms::U('Game/record',array('token'=>$token,'id'=>$id,'p'=>($ps+1)))}"><li class="down">下一页</li></a>
+            </div>
+            </div>
+        </div>
+          </div>
+
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{pigcms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+function checkAll(form, name) {
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.name.match(name)) {
+e.checked = form.elements['chkall'].checked;
+}
+}
+}</script>
+  <!--底部-->
+
+<script>
+$(function(){
+  var ps = {pigcms:$ps} ;
+  if(ps < 1){
+    var ps =1;
+  }
+  $(".page_"+ps).css({"background":"#44b549","color":"#FFF"});
+  if (ps <= 1) {
+        $('.up').css('display','none');
+    };
+    if (ps >= {pigcms:$gamepage}) {
+        $('.down').css('display','none');
+    };
+});
+</script>
+  	</div>
+<include file="Public:footer"/>

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>{pigcms:$info.title}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/base.css">
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/style.css">
+<link href="{pigcms::STATICS}/scene/css/index.css" type="text/css" rel="stylesheet" />
+</head>
+<body style="background-image:url('<?php if($bg){echo $bg;}else{?>{pigcms::STATICS}/scene/images/background.jpg<?php }?>')">
+<div class="wrapbg content">
+    <div class="whole">        
+		<include file="Scene:header"/>
+        <div class="mian mt50 clearfix">
+            <div class="mian_con con-inner  pr">
+                <div class="hd pa">
+                    <ul>
+                        <li class="on">现场互动</li>
+                        <li>获奖名单</li>
+                    </ul>
+					<div class="timeCount"><em>倒计时</em>：<i></i>s</div>
+                </div>
+
+                <div class="bd">
+                    <div class="row userList  mt40">
+                        <ul>
+                        	<volist id="data" name="data">
+                        	<?php if(empty($flag)) $flag = $data['id'];  ?>
+                            <li>
+                                <div class="avatar">
+                                    <img src="{pigcms:$data.portrait}" alt="avatar"/>
+                                </div>
+                                <div class="name">
+                                    <h2>{pigcms:$data.nickname}</h2>
+                                </div>
+                            </li>                            
+                            </volist>
+                        </ul>
+                    </div>
+                    <div class="row scrollBox  mt20">
+                        <ul class="user-list" id="priceLsit">
+                        	
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+		<include file="Scene:toolbar"/>
+    </div>
+</div>
+<include file="Scene:footer"/>
+<param class="param"
+	user-id="{pigcms:$flag}"
+	prize-id="0"
+	countdown-time="{pigcms:$countdown|intval}"
+	url-user="{pigcms::U('Scene/hudong', array('token'=>$token, 'id'=>$info['id'], 'type'=>$_GET['type']))}"
+	url-prize="{pigcms::U('Scene/prize_ajax', array('token'=>$token, 'id'=>$info['id'], 'type'=>$_GET['type']))}"
+/>
+<script src="{pigcms::STATICS}/scene/js/jquery-1.7.2.min.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/scroll-marquee.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/jquery.soChange.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/jquery.tooltipster.min.js"></script>
+<script src="{pigcms::STATICS}/scene/js/common.js"></script>
+<script src="{pigcms::STATICS}/scene/js/nameList.js"></script>
+</body>
+</html>

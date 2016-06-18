@@ -1,0 +1,65 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content">
+  <div class="cLineB">
+    <h4>认证服务号渠道二维码生成与统计</h4>
+  </div>
+  <div class="ftip" style="margin:25px auto 5px auto;">只有认证服务号才能使用（向微信官方交过300元认证费的服务号）</div>
+  <div class="cLine">
+    <form method="post"  action="" id="info" >
+      渠道编号：<input type="text" class="px" name="empid" value="{pigcms:$empid}" style="height:25px;" placeholder="请输入渠道编号">
+      渠道名称：<input type="text" class="px" name="empname" value="{pigcms:$empname}" style="height:25px;" placeholder="请输入渠道名称">
+      <input type="submit" class="btnGrayS" value="搜索">
+      <a href="{pigcms::U('QRCode/add')}" style="line-height:28px;width:50px;text-align:center;" class="btnGreen">添加</a>
+    </form>
+    <div class="clr"></div>
+  </div>
+  <div class="msgWrap bgfc" style=" padding:5px 10px; margin:0"> 
+    <table class="ListProduct" border="" cellspacing="0" cellpadding="0" width="100%">
+      <thead>
+        <tr>
+          <th style="width:50px;text-align:center;">序号</th>
+          <th style="width:50px;text-align:center;">渠道编号</th>
+          <th style="width:50px;text-align:center;">渠道名称</th>
+          <th style="width:80px;text-align:center;">渠道关注量</th>
+          <th style="width:80px;text-align:center;">渠道取关量</th>
+          <th style="width:80px;text-align:center;">渠道净增量</th>
+          <th style="width:80px;text-align:center;">渠道二维码</th>
+          <th style="width:50px;text-align:center;">状态</th>
+          <th style="width:150px;text-align:center;" class="norightborder">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <pigcmslist array="list" foreach="list">
+          <tr>
+            <td style="width:50px;text-align:center;">{pigcms:$list.id}</td>
+            <td style="width:50px;text-align:center;"><a href="{pigcms::U('QRCode/singleday',array('id'=>$list['id'],'rpttype'=>'日'))}" style="color:blue;"> {pigcms:$list.empid} </a></td>
+            <td style="width:50px;text-align:center;">{pigcms:$list.empname}</td>
+            <td style="width:80px;text-align:center;">{pigcms:$list.subscribe}</td>
+            <td style="width:80px;text-align:center;">{pigcms:$list.unsubscribe}</td>
+            <td style="width:80px;text-align:center;">{pigcms:$list['subscribe']-$list['unsubscribe']}</td>
+            <td style="width:80px;text-align:center;"><pigcmsif where="$list['ticket'] neq ''"><a href="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket={pigcms:$list.ticket}" target="_blank">点击查看</a>
+                <else/>
+                <a href="{pigcms::U('QRCode/get_code',array('id'=>$list['id']))}">获取二维码</a> </pigcmsif></td>
+            <td style="width:50px;text-align:center;"><pigcmsif where="$list['status'] eq 1">启用
+                <else/>
+                暂停</pigcmsif></td>
+            <td style="width:150px;text-align:center;" class="norightborder"><pigcmsif where="$list['status'] eq 1"><a href="{pigcms::U('QRCode/status',array('type'=>0,'id'=>$list['id']))}">停用</a>
+                <else/>
+                <a href="{pigcms::U('QRCode/status',array('type'=>1,'id'=>$list['id']))}">启用</a></pigcmsif>
+              | <a href="{pigcms::U('QRCode/detail',array('id'=>$list['id']))}")>明细</a> | <a href="{pigcms::U('QRCode/del',array('id'=>$list['id']))}" onclick="return confirm('确定删除该数据吗?')">删除</a></td>
+          </tr>
+        </pigcmslist>
+        <tr> </tr>
+      </tbody>
+    </table>
+    <div class="cLine">
+      <div class="pageNavigator right">
+        <div class="pages">{pigcms:$page}</div>
+      </div>
+      <div class="clr"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<include file="Public:footer"/>

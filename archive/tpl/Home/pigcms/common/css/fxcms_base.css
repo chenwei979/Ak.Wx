@@ -1,0 +1,251 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+*html {
+    background-image: url(about:blank);
+    background-attachment: fixed;
+}
+a {
+    color: #666;
+}
+body {
+    font: 14px "Microsoft YaHei";
+}
+img {
+    border: 0;
+}
+a, img{ outline: none;}
+.clearfix:after{
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+
+}
+.clearfix{*zoom:1}
+/**
+*head
+*/
+.head{
+    width: 100%;
+    height: 118px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    background: url(../images/head_bg.png);
+}
+.head1{
+    width: 100%;
+    height: 118px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid #c9c9c9;
+    z-index: 1001;
+    background: white;
+}
+.header{
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.header_logo{
+    width: 255px;
+    height: 118px;
+    float: left;
+}
+.header_nav{
+    float: right;
+    width: 745px;
+}
+.header_nav ul{
+    width: 100%;
+    height: 118px;
+
+}
+.header_nav ul li{
+    float: left;
+    width: 85px;
+    height: 118px;
+    line-height: 118px;
+    margin-left: 35px;
+    font-size: 18px;
+    text-align: center;
+}
+.header_nav ul li a{ color: #333;}
+.header_nav ul li a:hover{ color: #ff2a00;}
+.header_nav .current{
+    width: 80px;
+    background: url(../images/li_bottom_bg.png) no-repeat bottom;
+}
+
+/**
+*foot
+*/
+.foot{
+    width: 100%;
+    height: 281px;
+    font-family: "Microsoft YaHei";
+    background: white;
+}
+/**
+*foot top
+*/
+.foot .wrapp{
+    width: 100%;
+    height: 206px;
+    margin-top: 20px;
+    background: #fff;
+}
+.wrapp .wrapper{
+    width: 1000px;
+    margin: 0 auto;
+    height: 206px;
+    clear: both;
+}
+.wrapp .wrapper .img_hzd, .img_36yi{
+    float: left;
+    height: 104px;
+    margin-top: 51px;
+}
+.img_hzd{
+    width: 493px;
+    margin-right: 13px;
+}
+.img_36yi{
+    width: 493px;
+}
+/**
+*foot main
+*/
+.foot .foot_content{
+    width: 100%;
+    height: 176px;
+    background: #f3f3f3;
+}
+.foot_content .foot_content_box{
+    width: 1000px;
+    height: 176px;
+    margin: 0 auto;
+    clear: both;
+}
+.foot_content_box .left_box, .right_box{
+    float: left;
+    height: 176px;
+}
+.foot_content_box .left_box{
+    width: 493px;
+}
+.foot_content_box .left_box p{
+    margin: 20px 0 0 21px;
+    line-height: 28px;
+    text-indent: 2em;
+    font-size: 14px;
+    color: #606060;
+    word-wrap:break-word;
+    word-break:normal;
+    letter-spacing: 1px;
+    text-align:left;
+}
+.foot_content_box .right_box{
+    width: 507px;
+}
+.right_box .small_box1, .small_box2, .small_box3{
+    float: left;
+    height: 122px;
+}
+.small_box1{
+    width: 94px;
+    border-right: 1px solid #b9b9b9;
+}
+.small_box2{
+    width: 129px;
+    border-right: 1px solid #b9b9b9;
+}
+.small_box2 ul{
+    width: 100%;
+    overflow: hidden;
+}
+.small_box2 ul li{
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+}
+.small_box2 ul li a{ color: #606060;font-size:14px;}
+.small_box2 ul li a:hover{ color: #ff2a00;}
+.small_box3{
+    width: 145px;
+    text-align: right;
+}
+.small_box1, .small_box2, .small_box3{
+    margin-top: 28px;
+}
+.mb15{ margin-bottom: 15px;}
+/**
+*footer
+*/
+.footer{
+    width: 100%;
+    /*height: 79px;*/
+    height: 105px;
+    background: #e9e9e9;
+    overflow: hidden;
+}
+.footer .footer_box{
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+.footer p{
+    margin: 0 auto;
+    font-size: 12px;
+    line-height: 18px;
+    color: #858585;
+}
+.footer .footer_box p a{ color: #858585;font-size:10px;}
+.footer .footer_box p a:hover{ color:#666;}
+.in_pt10{ padding-top:10px;}
+/*
+ 返回顶部
+ */
+.backTop {
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    background-color: #333;
+    padding: 5px;
+    border: 1px solid #fff;
+    _position: absolute;
+    _top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||30)-(parseInt(this.currentStyle.marginBottom,10)||30)));
+    display: none;
+    z-index: 999;
+    cursor: pointer;
+}
+.backTop:hover {
+    background: #FF0000;
+}
+#backTop {
+    -webkit-animation: bounce 1s .2s ease both;
+    -moz-animation: bounce 1s .2s ease both;
+}
+@-webkit-keyframes bounce{
+    0%,20%,50%,80%,100%{-webkit-transform:translateY(0)}
+    40%{-webkit-transform:translateY(-30px)}
+    60%{-webkit-transform:translateY(-15px)}
+}
+@-moz-keyframes bounce{
+    0%,20%,50%,80%,100%{-moz-transform:translateY(0)}
+    40%{-moz-transform:translateY(-30px)}
+    60%{-moz-transform:translateY(-15px)}
+}
+.wrapper-title{line-height: 100px;font-weight: bold;font-size: 35px;}

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>{pigcms:$info.title}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <link rel="stylesheet" href="{pigcms::STATICS}/scene/css/base.css">
+    <link rel="stylesheet" href="{pigcms::STATICS}/scene/css/style.css">
+</head>
+<body style="background-image:url(<?php echo $info['luckyfruit_background'] ? $info['luckyfruit_background'] : STATICS.'/scene/images/luckyfruit_background.png' ?>);">
+<div class="wrapbg">
+    <div class="whole">
+		<include file="Scene:header"/>
+        <div class="mian clearfix">
+            <div class="shuiGuoJi">
+                <div class="topText">
+                    <img class="sgjtext" src="{pigcms::STATICS}/scene/images/sgjtext.png" alt="sgjtext">
+                </div>
+                <div class="starBtn">
+                    <a href="javascript:;">开始倒计时</a>
+                </div>
+            </div>
+        </div>		
+		<include file="Scene:toolbar"/>
+    </div>
+</div>
+
+
+<div class="huaFixed leftOne"></div>
+<div class="huaFixed rightOne"></div>
+<include file="Scene:footer"/>
+<param class="param"
+url-location="{pigcms::U('Scene/hudong', array('token'=>$token, 'id'=>$id, 'type'=>'shuiguoji'))}"
+url-start="{pigcms::U('Scene/active_start', array('token'=>$token, 'id'=>$id, 'type'=>'shuiguoji'))}"
+/>
+<script src="{pigcms::STATICS}/scene/js/jquery-1.7.2.min.js"></script>
+<script src="{pigcms::STATICS}/scene/js/scroll-marquee.js"></script>
+<script src="{pigcms::STATICS}/scene/js/jquery.soChange.js"></script>
+<script src="{pigcms::STATICS}/scene/js/jquery.tooltipster.min.js"></script>
+<script src="{pigcms::STATICS}/scene/js/common.js"></script>
+</body>
+</html>

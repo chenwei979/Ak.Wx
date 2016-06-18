@@ -1,0 +1,22 @@
+.price-center{
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 80px;
+}
+.table {
+	width: 1000px;
+	height: 1600px;
+	margin: 0 auto;
+	border-style: solid;
+	box-shadow: none;
+	text-align: center;
+}
+table, th, td {
+	border: 1px solid #cccccc;
+}
+table {
+border-collapse: collapse;
+}
+.color-red{
+	color:red;
+}

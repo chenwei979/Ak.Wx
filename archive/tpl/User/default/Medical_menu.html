@@ -1,0 +1,15 @@
+<script src="{pigcms:$staticPath}/tpl/static/new/js/inspinia.js"></script>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="tab">
+<ul>
+<li class="<if condition="ACTION_NAME EQ 'index'">current</if> tabli" id="tab0"><a href="{pigcms::U('Medical/index',array('token'=>$token,'addtype'=>'medical'))}">挂号设置</a></li>
+<li class="<if condition="ACTION_NAME EQ 'reser_manage'">current</if> tabli" id="tab2"><a href="{pigcms::U('Medical/reser_manage',array('token'=>$token))}">预约管理</a></li>
+<!-- <li class="<if condition="ACTION_NAME EQ 'housetype'">current</if> tabli" id="tab2"><a href="{pigcms::U('Medical/searchMedical',array('token'=>$token))}">预约查询</a></li>
+<li class="<if condition="ACTION_NAME EQ 'album'">current</if> tabli" id="tab5"><a href="{pigcms::U('Medical/totalMedical',array('token'=>$token))}">预约统计</a></li> -->
+<li class="<if condition="ACTION_NAME EQ 'aboutus'">current</if> tabli" id="tab5"><a href="{pigcms::U('Medical/aboutus',array('token'=>$token))}">医院简介</a></li>
+<li class="<if condition="ACTION_NAME EQ 'setIndex'">current</if> tabli" id="tab5"><a href="{pigcms::U('Medical/setIndex',array('token'=>$token))}">首页配置</a></li>
+<li class="<if condition="ACTION_NAME EQ 'officeindex' or ACTION_NAME eq 'officeset' or ACTION_NAME eq 'doctorlist' or ACTION_NAME eq 'addtype' or ACTION_NAME eq 'detail'">current</if> tabli" id="tab5"><a href="{pigcms::U('Medical/officeindex',array('token'=>$token))}">科室信息管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'dutyShow' or ACTION_NAME eq 'dutyAdd'">current</if> tabli" id="tab5"><a href="{pigcms::U('Medical/dutyShow',array('token'=>$token))}">专家预约信息管理</a></li>
+<li class="<if condition="ACTION_NAME EQ 'Level' or ACTION_NAME eq 'LevelAdd'">current</if> tabli" id="tab5"><a href="{pigcms::U('Medical/Level',array('token'=>$token))}">医生职称管理</a></li>
+</ul>
+</div>

@@ -1,0 +1,1 @@
+<?php	return '%D5%E3%BD%AD%3D%CC%A8%D6%DD'; ?>

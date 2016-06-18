@@ -1,0 +1,57 @@
+<include file="Public:head"/>
+<script src="{pigcms:$staticPath}/tpl/static/jquery.min.js" type="text/javascript"></script>
+<script src="{pigcms:$staticPath}/tpl/static/vote/common.js" type="text/javascript"></script>
+<script src="{pigcms:$staticPath}/tpl/static/upyun.js" type="text/javascript"></script>
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default" type="text/javascript"></script>
+<script src="{pigcms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="msgWrap form">
+<div class="content">
+<div class="cLineC" style="line-height: 25px;">   
+<a href="{pigcms::U('Voteimg/fansPayLog',array('token'=>$token,'vote_id'=>$vote_id))}" class="btnGrayS vm" style=" background-color: #e6e7ec !important;">粉丝充值记录</a>  <a href="{pigcms::U('Voteimg/refundlog',array('token'=>$token,'vote_id'=>$vote_id))}" class="btnGrayS vm">粉丝退款记录</a>  
+<a href="{pigcms::U('Voteimg/index',array('token'=>$token))}" class="right btnGrayS vm" style="margin-top:-2px">返回投票列表</a>
+<div class="searchbar right">
+<form method="POST" action="">
+<input type="text" style="height:25px;" id="msgSearchInput" class="txt left" placeholder="请输入微信昵称" name="key_word" value="{pigcms:$key_word}">
+<input type="hidden" name="vote_id" value="{pigcms:$vote_id}" />
+<input type="hidden" name="token" value="{pigcms:$token}" />
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+</div>
+ <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;"></if>温馨提示：<span style="color:red;">报名者向您的微信商户平台共支付￥{pigcms:$all_money},活动结束后的第三天，粉丝可随时申请退款。将从您的微信商户平台里以发红包的方式发给报名人
+</span>
+</div>
+    <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+	<thead>
+	<tr>
+	<th style="width:20%;">微信昵称</th>
+	<th style="width:20%;">手机号码</th>
+	<th style="width:15%;">充值总金额</th>
+	<th style="width:15%;">剩余总金额</th>
+	<th style="width:10%;">是否退款</th>
+	<th>操作</th>
+	</tr>
+	</thead>
+	<pigcmsif where="$booklist">
+	<volist name="booklist" id="vo">
+	  <tbody><tr>
+	   <td><if condition="$vo['nick_name'] neq 'no'">{pigcms:$vo.nick_name}<else />匿名用户</if></td>
+	   <td><if condition="$vo.phone neq 'no'">{pigcms:$vo.phone}</if></td>
+	   <td>￥{pigcms:$vo.total_money}</td>
+		  <td>￥<?php if($vo['isrefund'] ==1){ echo 0.00;}else{ echo sprintf("%.2f", ($hbinfo['total_money'] - $hbinfo['lost_money']));}?></td>
+		  <td><if condition="$vo.isrefund eq 1"><span style="color:green;">已退款</span><else /><span style="color:red;">未退款</span></if></td>
+		   <td><a href="javascript:;" onclick="art.dialog.open('{pigcms::U('Voteimg/pay_details',array('vote_id'=>$vote_id,'token'=>$token,'wecha_id'=>$vo['wecha_id']))}',{lock:false,title:'查看<?php if($vo['nick_name'] == 'no'){ echo '匿名用户';}else{ echo $vo['nick_name'];}?>的充值记录',width:800,height:600,yesText:'关闭',background: '#000',opacity: 0.87});">查看详细充值记录</a></td>
+		</tr>
+	  </tbody>
+	</volist> 
+	<else />
+	<tbody><tr><td colspan="7" align="center">暂无充值记录</td></tr>
+	  </tbody>
+	</pigcmsif>
+	</table>
+	<div class="footactions" style="padding-left:10px">
+	  <div class="pages" style="text-align:right;"> {pigcms:$page}</div>
+	</div>
+    </div>
+  </div>
+<include file="Public:footer"/>

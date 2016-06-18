@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link href="{pigcms:$staticPath}/tpl/static/donation/css/base.css?v=1" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>募捐完成</title>
+<link href="{pigcms:$staticPath}/tpl/static/donation/css/geren.css" type="text/css" rel="stylesheet">
+<script src="{pigcms:$staticPath}/tpl/static/donation/js/jquery-1.7.2.js"></script>
+<script src="{pigcms:$staticPath}/tpl/static/donation/js/index.js"></script>
+</head>
+<body>
+<div class="payment confirm">
+    <div class="banner">
+        <div class="banner_content">
+            <div class="banner_img"><img src="<if condition="$pic">{pigcms:$pic}<else />/tpl/static/donation/images/gift.png</if>" /></div>
+            <div class="banner_txt"><span style="color:yellow">“{pigcms:$fans['wechaname']}”</span>{pigcms:$note}</div>
+        </div>
+    </div>
+     <div class="long_but"><a href="{pigcms::U('Donation/index', array('id' => $id, 'token' => $token, 'wecha_id' => $wecha_id))}">再捐一次</a></div>
+    <div class="long_but"><a href="{pigcms::U('Donation/invitation', array('id' => $id, 'token' => $token, 'wecha_id' => $wecha_id))}">邀请{pigcms:$set['circle_name']}一起捐</a></div>
+    <div class="t_logo"><img src="{pigcms:$donation['logo']}" /></div>
+</div>
+<script type="text/javascript">
+window.shareData = {  
+	"moduleName":"Donation",
+	"moduleID":"{pigcms:$donation['id']}",
+	"imgUrl": "{pigcms:$donation['share_pic']}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"tTitle": "{pigcms:$donation['name']|shareFilter}",
+	"tContent": "{pigcms:$donation['note']|shareFilter}",
+	"fTitle": "{pigcms:$donation['name']|shareFilter}",
+	"isShareNum":1,
+	"ShareNumData":"donation,id,{pigcms:$id},share_num"
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

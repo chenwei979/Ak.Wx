@@ -1,0 +1,90 @@
+
+		<div class="footer mt40 pb50">
+			<div class="floor0">
+		        <div class="btns">
+					<a href="{pigcms::U('Scene/wall', array('token'=>$token, 'id'=>$id))}" class="tooltip btn-icon btn3" title="微信墙"></a>
+					
+					<?php
+					if($info['open_lottery']):
+					?>
+					<a href="{pigcms::U('Scene/lottery', array('token'=>$token, 'id'=>$id))}" class="tooltip btn-icon btn5" title="抽奖"></a>
+					<?php
+					endif;
+					?>
+					<?php
+					if($info['open_zzle']):
+					?>
+					<a href="{pigcms::U('Scene/supperzzle', array('token'=>$token, 'id'=>$id))}" class="tooltip btn-icon btn1" title="对对碰"></a>
+					<?php
+					endif;
+					?>
+					<?php
+					if($info['open_vote']):
+					?>
+					<a href="{pigcms::U('Scene/vote_countdown', array('token'=>$token, 'id'=>$id))}" class="tooltip btn-icon btn7" title="投票"></a>
+					<?php
+					endif;
+					?>
+					<a href="{pigcms::U('Scene/signin', array('token'=>$token, 'id'=>$id))}" class="tooltip btn-icon btn2" title="签到"></a>
+					<?php
+					if($info['shake_id']):
+					?>
+					<a href="{pigcms::U('Scene/shake', array('token'=>$token, 'id'=>$id))}" class="tooltip btn-icon btn6" title="摇一摇"></a>
+					<?php
+					endif;
+					?>
+					<?php
+					if($info['red_packet_id']):
+					?>
+					<a href="{pigcms::U('Scene/red_packet', array('token'=>$token, 'id'=>$id))}" class="tooltip btn-icon btn4" title="红包"></a>
+					<?php
+					endif;
+					?>
+					<?php
+					if($info['jiugongge_id']):
+					?>
+					<a href="{pigcms::U('Scene/jiugongge', array('token'=>$token, 'id'=>$id))}" class="tooltip btn-icon btn8" title="九宫格"></a>
+					<?php
+					endif;
+					?>
+					<?php
+					if($info['zajindan_id']):
+					?>
+					<a href="{pigcms::U('Scene/zajindan', array('token'=>$token, 'id'=>$id))}" class="tooltip btn-icon btn9" title="砸金蛋"></a>
+					<?php
+					endif;
+					?>
+					<?php
+					if($info['shuiguoji_id']):
+					?>
+					<a href="{pigcms::U('Scene/shuiguoji', array('token'=>$token, 'id'=>$id))}" class="tooltip btn-icon btn10" title="水果机"></a>
+					<?php
+					endif;
+					?>
+					<?php
+					if($info['guaguaka_id']):
+					?>
+					<a href="{pigcms::U('Scene/guaguaka', array('token'=>$token, 'id'=>$id))}" class="tooltip btn-icon btn11" title="刮刮卡"></a><?php
+					endif;
+					?>
+					<?php
+					if($info['dazhuanpan_id']):
+					?>
+					<a href="{pigcms::U('Scene/dazhuanpan', array('token'=>$token, 'id'=>$id))}" class="tooltip btn-icon btn0" title="大转盘"></a><?php
+					endif;
+					?>
+					<a href="javascript:;" id="view-fullscreen" class="tooltip btn-icon fullscreen" title="全屏显示"></a>
+				</div>
+			</div>
+			<if condition="$info['notice'] neq ''">
+				<div class="floor1 mt20">
+			        <div class="words-bottom">
+						<div class="wordScroll word-scroll2">
+							<ul class="wb-list clearfix" style="width: 10000px;">
+								<li>{pigcms:$info.notice}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</if>
+		</div>	

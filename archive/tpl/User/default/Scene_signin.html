@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>{pigcms:$info.title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/base.css">
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/style.css">
+<link href="{pigcms::STATICS}/scene/css/index.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/v6_common.css" type="text/css">
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/animate.css" type="text/css">
+</head>
+<body style=" background:#000 url(<?php echo $info['signin_background'] ? $info['signin_background'] : STATICS.'/scene/images/signin_background.png' ?>);background-size: cover;" >
+<div class="wrapbg content">
+    <div class="whole">    	
+		<include file="Scene:header"/>
+        <div class="mian mt40 toupiao clearfix"> 
+            <!----中间部分------>
+                <div class="row">
+                    <ul class="heads-list clearfix qiandao_show" id="checkinBox">
+                    	<volist name="models" id="model" >	
+                        <li style="display:block;">
+                            <div class="user-block rotate in" style="display:block;">
+								<a href="javascript:void(0);">
+	                            	<img class="checkin-avatar checkinAvatar" src="{pigcms:$model.portrait}">
+	                            </a>
+								<span class="checkin-name checkinName">{pigcms:$model.nickname}</span>
+							</div>
+                        </li>
+                        </volist>
+                    </ul>
+                </div>
+            <!----中间部分------>
+        </div>
+        <include file="Scene:toolbar"/>
+    </div>
+</div>
+<include file="Scene:footer"/>
+
+<param class="signin"
+url-ajax="{pigcms::U('Scene/signin_ajax', array('token'=>$token, 'id'=>$id))}"
+path="{pigcms::STATICS}"
+last_id="{pigcms:$models[0]['id']}"
+pid="{pigcms:$info.id}"
+/>
+
+<script src="{pigcms::STATICS}/scene/js/jquery-1.7.2.min.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/scroll-marquee.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/jquery.soChange.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/jquery.tooltipster.min.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/common.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/index.js"></script> 
+<script>
+$(function () {
+	signin_ajax();
+});
+
+
+</script>
+</body>
+</html>

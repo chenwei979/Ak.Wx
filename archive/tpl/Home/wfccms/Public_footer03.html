@@ -1,0 +1,97 @@
+<!--返回顶部-->
+<div><a href="javascript:void(0);" id="goto-top" class="to_top"></a></div>
+<!-- footer start -->
+<div id="footer">
+    <div class="container clearfix">
+        <div class="left company-info">
+            <div class="follow-us dib-wrap">
+                <span class="dib">关注我们：</span>
+                <a class="dib i-tb-ico i-snia-weibo" href="http://weibo.com/wooyxcom" target="_blank"></a>
+                <a class="dib i-tb-ico i-weixin" href="javascript:void(0);"></a>
+                <a class="dib i-tb-ico i-tx-weibo" href="http://t.qq.com/ccav-x" target="_blank"></a>
+            </div>
+<div id="jiathis_weixin_modal" style="background-clip: padding-box;background-color: #FFFFFF;border: 1px solid rgba(0, 0, 0, 0.3);  border-radius: 6px 6px 6px 6px;  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); left: 50%; margin: -200px 0 0 -200px;overflow: hidden; position: fixed; top: 50%; width:360px;height:360px; overflow:hidden;display:none;" class="jiathis_weixin_modal">
+<div class="jiathis_modal_header" id="jiathis_modal_header" style="border-bottom: 1px solid #EEEEEE; padding: 9px 15px;"><a style="text-decoration:none;  margin-top: 2px; color: #000000; float: right;  font-size: 20px;  font-weight: bold; cursor:pointer;line-height: 20px; opacity: 0.2; text-shadow: 0 1px 0 #FFFFFF;" class="jiathis_weixin_close" id="jiathis_weixin_close" onclick="jiathis_cancel()" target="_self">×</a><h3 id="jiathis_weixin_h3" style=" line-height: 30px; margin: 0; font-weight:normal; font-family:" 微软雅黑";"="">分享到微信朋友圈</h3>
+</div>
+<div class="jiathis_modal_body" id="jiathis_modal_body" style="text-align:center;height:251px;"><p id="jiathis_webchat"><img src="{pigcms::C('site_twm')}" width="220" height="220" alt="二维码加载失败..." style="margin-top: 15px;"></p></div><div class="jiathis_modal_footer" id="jiathis_modal_footer" style="border-radius: 0 0 6px 6px; border-top: 1px solid #DDDDDD; box-shadow: 0 1px 0 #FFFFFF inset; height:100%;padding:0 10px;padding-top:11px;text-align: right; font-size:12px;"><div id="jiathis_weixin_tip" style="text-align:left;margin:0; padding:0;font-size:12px;">打开微信，点击底部的“发现”，使用 “扫一扫” 即可将网页分享到我的朋友圈。 <a href="http://www.wooyx.com" target="_blank">如何使用？</a></div>  </div>
+</div>
+<!-- </div> -->
+            <div class="copyright-info">
+                <p class="nav-link"><a href="/#pro-center">产品中心</a>|<a href="{pigcms::U('Index/register')}">体验中心</a>|<a href="{pigcms::U('Index/case')}">经典案例</a>|<a href="{pigcms::U('Index/agent_step')}">招商合作</a>|<a href="{pigcms::U('Index/about')}" target="_blank">关于我们</a></p>
+                <p class="txt">Copyright © 2002-2015  All Rights Reserved by <a href="http://www.wooyx.com" target="_blank">WooYx</a><br/>
+                    中文域名:<a href="/">{pigcms:$f_siteName}</a>.com  通用网址:{pigcms:$f_siteName} <a href="http://www.miitbeian.gov.cn/" target="_blank">{pigcms::C('ipc')}</a> {pigcms::C('server_topdomain')}</p>
+            </div>
+
+        </div>
+        <div class="right contact">
+            <p><i class="i-phone-gray"></i><b>{pigcms::C('site_tel')}</b></p>
+        </div>
+    </div>
+</div>
+
+<!-- footer end -->
+
+<script>
+
+
+$(function() {
+
+    $('.drop-sub-menu').hover(function () {
+        $(this).addClass('on');
+    }, function () {
+        $(this).removeClass('on');
+
+    })
+
+     $("ul.menu li a").click(function(){
+        var hr = $(this).attr("href");
+        var anh = $(hr).offset().top;
+        $("html,body").stop().animate({scrollTop:anh},1000);
+    })
+    $('.to_top').click(function() {
+        $('body,html').animate({
+            "scrollTop": "0"
+        }, 500);
+    });
+//    var swiper = new Swiper('.banner_swiper', {
+//        // nextButton: '.banner_next',
+//        // prevButton: '.banner_prev',
+//        slidesPerView: 1,
+//        pagination: ".banner_pagination",
+//        paginationClickable: true,
+//        loop: true,
+//        autoplay: 5000,
+//        autoplayDisableOnInteraction: false
+//    });
+});
+function M_over(){
+    var div = document.getElementById('wximg');
+    div.setAttribute("class", "wxewm2");
+}
+function M_leave(){
+    var div = document.getElementById('wximg');
+    div.setAttribute("class", "wxewm");
+}
+function to_top() {
+    var win_height = $(window).scrollTop();
+    if (win_height > 100) {
+        $('.to_top').fadeIn(500);
+    } else {
+        $('.to_top').fadeOut(500);
+    }
+}
+$(window).scroll(function() {
+    to_top();
+});
+ // $("#jiathis_weixin_modal").hide();
+$(document).ready(function(){
+  $(".jiathis_weixin_close").click(function(){
+  $("#jiathis_weixin_modal").hide();
+  });
+  $(".i-weixin").click(function(){
+  $("#jiathis_weixin_modal").show();
+  });
+});
+</script>
+<!--统计代码 @author sunles-->
+{pigcms::html_entity_decode(base64_decode(C('countsz')))}

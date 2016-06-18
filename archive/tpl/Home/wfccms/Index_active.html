@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>{pigcms:$f_siteTitle}</title>
+<meta name="keywords" content="{pigcms:$f_metaKeyword}"/>
+<meta name="description" content="{pigcms:$f_metaDes}"/><!--activity-->
+<script src="{pigcms:$staticPath}/tpl/Home/wfccms/common/js/ac_Jquery.js"></script>
+	<link href="{pigcms:$staticPath}/tpl/Home/wfccms/common/css/select2.css" rel="stylesheet"/>
+	<!-- <script type="text/javascript" src="{pigcms:$staticPath}/tpl/Home/wfccms/common/js/active/area.js"></script>
+	<script type="text/javascript" src="{pigcms:$staticPath}/tpl/Home/wfccms/common/js/active/location.js"></script> -->
+<style>
+#ajax_Loading {
+    background-color: silver;
+    display: none;
+    height: 340px;
+    margin: 0 auto;
+    position: absolute;
+    width: 526px;
+}
+</style>
+
+</head>
+<body>
+<include file="Public:header03"/>
+	<script src="{pigcms:$staticPath}/tpl/Home/wfccms/common/js/active/select2.js"></script>
+	<script src="{pigcms:$staticPath}/tpl/Home/wfccms/common/js/active/select2_locale_zh-CN.js"></script>
+<!-- bsc -->
+		<div class="bsc_banner">
+			<img src="{pigcms:$staticPath}/tpl/Home/wfccms/common/images/active/bsc_banner.jpg"alt="沃赢微信营销，携手合作伙伴，共享资本市场！"/>
+		</div>
+		<!-- bsc_con -->
+		<div class="bsc_con">
+		   <div class="container">
+		   	    <div class="top_bg">&nbsp;</div>
+		   	    <div class="bsc_con_center clearfix">
+					<ul class="bsc_list left">
+						<li class="first_li"><br/>我们将优秀代理商发展为办事处<br/>共享发展红利，<br/>分享上市硕果！</li>
+						<li><br/>我们提供推广资源、<br/>营销团队，<br/>助您代言企业！</li>
+						<li><br/>我们联合专业的会销公司，<br/>通过会议营销，<br/>助力办事处现场销售！</li>
+						<li><br/>我们表彰年优秀代理商，<br/>将授予“互联在线地区产品销售<br/>分公司”的荣誉！</li>
+						<li><br/>我们以股权、现金加资源的<br/>形式入股优质的代理商公司，<br/>并承诺股权可转为<br/>上市主体公司的股份！</li>
+					</ul><!-- bsc_list -->
+					<div class="bsc_right_img right"><img src="{pigcms:$staticPath}/tpl/Home/wfccms/common/images/active/bsc_right_img.jpg"/></div>
+		   	    </div><!-- bsc_con_center -->
+				<div class="botom_bg">
+					<a href="http://www.hlzx.com/html/news/" class="bsc_more" target="_blank">查看更多</a>
+				</div>
+		   </div><!-- bsc_con_center -->
+		</div><!-- bsc_con -->
+
+		<!-- bsc_form -->
+		<div class="bsc_form_bg">
+		  <div class="form_title_wrap clearfix">
+			 <span class="left">&nbsp;</span>
+			 <div class="form_title left">合作申请</div>
+			 <span class="right">&nbsp;</span>
+		  </div>
+		  <div class="bsc_form">
+            <!--apply_frommain -->
+            <div style="position:relative;z-index:999;">
+                <div id="ajax_Loading" class="ajax_Loading">
+                    <div id="ajax_text" class="succes">正在提交中...</div>
+                </div>
+            </div>
+            <!--apply_formmain -->
+			<form class="clearfix" method="post">
+				<div class="input_box">
+					<label for="cname">企业名称：</label>
+					<input type="text" id="cname" name="cname"/>
+				</div>
+				<div class="input_box fr mr0">
+					<label for="contact">申请人：</label>
+					<input type="text" id="contact" name="contact"/>
+				</div>
+				<div class="input_box">
+					<label for="phone">手机号码：</label>
+					<input type="text" id="phone" name="phone"/>
+				</div>
+				<div class="input_list fr mr0">
+					<div class="input_box">
+					   <select name="province" id="province"></select>
+					   <!-- <input name="province_input" id="province_input"/> -->
+					</div>
+					<div class="input_box">
+					   <select name="city" id="city"></select>
+					   <!-- <input name="city_input" id="city_input"/> -->
+					</div>
+					<div class="input_box">
+					   <select name="area" id="area"></select>
+					   <!-- <input name="area_input" id="area_input"/> -->
+					</div>
+
+				</div><!-- input_list -->
+				<div class="input_box input_address">
+					<label for="address ">详细街道地址：</label>
+					<textarea id="address"></textarea>
+				</div>
+				<div class="sub_btn"><input type="button" id="sub_btn" value="提交" /></div>
+			</form>
+		  </div>
+		</div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$('#sub_btn').click(function(){
+		validate();
+	})
+
+    //get address by ip start
+    $.get("/loading/?a=province&time="+Math.random(), { id: 0, isip : 1},function(data){
+        $("#province").html(data);
+        viewcity(1);
+    });
+    $("#province").change(function(){
+        viewcity(0);
+    });
+    $("#city").change(function(){
+        viewarea();
+    });
+
+    function viewcity(isip){
+        var provinceid = $("#province").children('option:selected').val();//这就是selected的值
+        $.get("/loading/?a=city&time="+Math.random(), { id: provinceid, isip : isip},function(data){$("#city").html(data);});
+        $("#area").html('<option>请先选择市区</option>')
+        $("#province").css("background-color","");
+        if(isip==1){
+            setTimeout(viewarea,1000);
+        }
+    }
+
+    function viewarea(){
+        var cityid = $("#city").children('option:selected').val();//这就是selected的值
+        $.get("/loading/?a=area&time="+Math.random(), { id: cityid},function(data){$("#area").html(data);});
+        $("#city").css("background-color","");
+    }
+
+	function validate(){
+		
+		var cname = $('#cname').val();
+		var contact = $('#contact').val();
+		var phone = $('#phone').val();
+		
+		var province = $('#province').children('option:selected').val();
+		var city = $('#city').children('option:selected').val();
+		var area = $('#area').children('option:selected').val();
+		
+		
+		if(cname ==0 && cname.length==0){
+			alert('企业名称不能为空');
+			$("#cname").focus();
+			return false;
+		}
+		if(contact ==0 && contact.length==0){
+			$("#contact").focus();
+			alert('请填写申请人姓名');
+			return false;
+		}
+		if(phone.length==0){
+			$("#phone").focus();
+			alert('请填写联系方式【手机号码】');
+			return false;
+		}
+		
+		if(province.length==0 || province==0){
+			$("#province").css("background-color","#FFFFCC");
+			alert('请选择省市');
+			return false;
+		}
+		if(city.length==0 || city==0){
+			$("#city").css("background-color","#FFFFCC");
+			alert('请选择市区');
+			return false;
+		}		
+		//$('#ajax_Loading').css("display","block");
+		//$("#ajax_text").html('正在提交中...');
+		$.getJSON("/loading/?a=form&time="+Math.random(), { cname: cname,contact: contact, phone: phone, province: province, city: city, area: area, },function(rsdata){
+			if(rsdata.msg==1){
+				$('#ajax_Loading').show();
+				$("#ajax_text").show();
+				$("#ajax_text").html('<p style="font-size:25px;">您的代理申请已经提交成功！</p><br /><p style="color:black;margin-top:20px;">非常感谢您对互联在线的支持！<br />我们在最快的时间内回复您！<br/></p><a class="tip_c">×</a><div class="btnconfirm"><a class="fdc_span"><span>确定</span></a></div>');
+				$(".fdc_span").click(function()
+				{
+					$('#ajax_Loading').fadeOut(300);
+					$("#ajax_text").fadeOut(300);
+				});
+				$(".tip_c").click(function()
+				{
+					$('#ajax_Loading').fadeOut(200);
+					$("#ajax_text").fadeOut(200);
+				})
+			} else {
+				$('#ajax_Loading').css("display","none");
+				alert(rsdata.data);
+			}
+		});
+	}
+	
+	$("input:text").focus(function(){
+    	$(this).css("background-color","#FFFFCC");
+  	});
+	$("input:text").blur(function(){
+    	$(this).css("background-color","");
+  	});
+	
+	
+	
+	
+/* 	$.get("/loading/?a=province&time="+Math.random(), { id: 0},function(data){$("#province").html(data);});
+	$("#province").change(function(){
+		var provinceid = $(this).children('option:selected').val();//这就是selected的值 
+		$.get("/loading/?a=city&time="+Math.random(), { id: provinceid},function(data){$("#city").html(data);});
+		$("#area").html('<option></option>')
+		$("#province").css("background-color","");
+	});
+	$("#city").change(function(){
+		var cityid = $(this).children('option:selected').val();//这就是selected的值 
+		$.get("/loading/?a=area&time="+Math.random(), { id: cityid},function(data){$("#area").html(data);});
+		$("#city").css("background-color","");
+	}); */
+});
+</script>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/Home/wfccms/common/js/jquery-1.8.3.min.js"></script>
+<!-- <script type="text/javascript" src="{pigcms:$staticPath}/tpl/Home/wfccms/common/js/jquery.easing.min.js"></script> -->
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/Home/wfccms/common/js/base.js"></script>
+
+<script type="text/javascript" src="http://www.ichina.cn/js/index.js?2013"></script>
+<include file="Public:footer03"/>
+
+</body>
+
+</html>

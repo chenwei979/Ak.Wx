@@ -1,0 +1,67 @@
+  
+
+/*--签到--*/
+.checkin-pop{ position:absolute;}
+.inner-checkin{/* height:555px; overflow:hidden;*/}
+.heads-list{ width:910px;position:relative; }
+.heads-list li{ float:left; position:relative; }
+.user-block{ width:100px; height:100px; position:absolute;}
+.user-block.out{ background:#CCC; z-index:9; display:none}
+.heads_bg{ background:url(../images/12.jpg); background-size:100px; width:100px; height:100px; position:absolute; left:5px; top:5px;   }
+.heads-list li img.checkin-avatar{ width:100px; height:100px;  }
+.heads-list li.hover img.checkin-avatar{ border:3px solid rgba(255,255,255,.9); border-radius:3px;}
+.checkin-name{
+ position: absolute;
+ bottom: 0px;
+ left: 0px;
+ z-index: 11;
+ background: rgba(0,0,0,.6);
+ text-align: center;
+ font-size: 16px;
+ width: 100%;
+ height: 28px;
+ line-height: 28px;
+ overflow: hidden;}
+.checkin-pop .checkin-name-default { bottom: 0; left: 0; display: block; font-size: 18px; width: 102px; height: 24px; line-height: 24px; padding: 0 4px;}
+.heads-list li.hover .checkin-name{ display:block;}
+.cross .cki-default{ opacity:.25;}
+.cki-default{  }
+.checkin-words{ display:block;}
+.checkin-words div{ position:relative; background:rgba(255,255,255,.9); width:auto; max-width:492px; color:#272723; font-size:60px; border:3px solid rgba(11,22,57,.3); border-radius:10px;/* box-shadow:0 2px 6px rgba(0,0,0,.3);*/}
+/*.checkin-words i,.checkin-words em{ position:absolute; top:40px; display:inline-block; width:0; height:0; font-size:0; border:20px dotted transparent;}
+.checkin-words i{ border-right:20px solid rgba(11,22,57,.3); left:-40px;}
+.checkin-words em{ border-right:20px solid rgba(255,255,255,.9); left:-36px;}*/
+.checkin-words i{ position:absolute; display:inline-block; background:url(../images/common/arrow_word.png) no-repeat;}
+.checkin-words i.leftside,.checkin-words i.rightside,.checkin-words i.leftside2,.checkin-words i.rightside2{width:19px; height:30px;}
+.checkin-words i.topside,.checkin-words i.bottomside{ width:30px; height:19px;}
+.checkin-words i.leftside{ background-position:-43px -18px; top:40px; left:-18px;}
+.checkin-words i.rightside{ background-position:0 -18px; top:40px; right:-18px;}
+.checkin-words i.leftside2{ background-position:-43px -18px; bottom:40px; left:-18px;}
+.checkin-words i.rightside2{ background-position:0 -18px; bottom:40px; right:-18px;}
+.checkin-words i.topside{ background-position:-17px -43px; top:-18px; left:210px;}
+.checkin-words i.bottomside{ background-position:-17px 0; bottom:-18px; left:210px;}
+.checkin-words span{ display:block; padding:15px 20px; max-height:230px; overflow:hidden;}
+.checkin-words pre{ word-break: break-word; }
+.checkin-words p{ word-break: break-word; }
+.checkin-words .emoji{ padding:0; display:inline-block;}
+.checkin-tips{ background:#fff; height:430px; width:800px; padding:55px;}
+.code-checkin{ display:block; width:430px; height:430px; background:#f0f0f0;}
+.checkin-right{ width:310px; padding-top:70px;}
+.cki-tipsimg{ display:block; width:100%; text-align:center;}
+.cki-tips1{ color:#8e8e8e; font-size:18px; text-align:center; padding-top:15px;}
+.cki-tips2{ color:#2b2b2b; font-size:30px; text-align:center; line-height:50px; padding-top:60px;}
+.qiandao_show li .user-block.in{ display:none}
+.qiandao_show li .user-block i{ background:url(../images/ioncs3.png); background-position:-6px -406px; width:100px; color:#1a1a1a; font-size:24px;
+ height:58px; display:inline-block; line-height:58px; text-align:center;  top: 19px;
+  left: 110px; position:absolute}
+.delay1{ animation-delay:0s;}
+.delay2{ animation-delay:2s;}
+.delay1{ animation-delay:4s;}
+.delay1{ animation-delay:6s;}
+.delay1{ animation-delay:7s;}
+.delay1{ animation-delay:8s;}
+.delay1{ animation-delay:1s;}
+.delay1{ animation-delay:1s;}
+.delay1{ animation-delay:1s;}
+.delay1{ animation-delay:1s;}
+.delay1{ animation-delay:1s;}

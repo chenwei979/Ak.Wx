@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数据填充</title>
+<include file="common:public" />
+<script>
+	$('#artlist .mod a').css('display','none');
+	$('#artlist .mod').html('<center><p><font size="3" color="red"><b>点击下面的更新，您将可以获得我们为您提供的功能默认内容数据，包含带有“小猪CMS”类似字样的文字和图片，这些字样和图片您都可以手动修改替换。（注意：您的原有内容数据会被删除，替换成我们提供给您的新内容数据）</b></font></p></center>');
+</script>
+<div class="cr"></div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="alist">
+      <tr>
+        <td style="width: 48%;">标题</td>
+        <td>管理操作（是否更新）</td>
+      </tr>
+            <tr>
+                <td >功能介绍</td>
+                <td align='center'>
+                    <a href="./index.php?g=System&m=Ifupdate&a=update&update=2" onclick="return confirm('您的原有【功能介绍】内容数据会被删除，确定要更新数据吗?');">更新</a>
+                </td>
+            </tr>
+            <tr>
+                <td >选择理由</td>
+                <td align='center'>
+                    <a href="./index.php?g=System&m=Ifupdate&a=update&update=3" onclick="return confirm('确定要更新【选择理由】内容数据吗?');">更新</a>
+                </td>
+            </tr>
+        <style>
+            .current{border: 0;padding: 1px 9px;color: #fff;background: #3F8EF3 url(main/pageh.png) no-repeat;}
+        </style>
+     <tr bgcolor="#FFFFFF">
+    </tr>
+
+</table>
+
+
+
+</body>
+</html>

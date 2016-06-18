@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>权限管理</title>
+<style>
+	.pageNavigator .pages a {margin-left:4px;margin-right:4px;}
+	.pageNavigator .pages span {margin-left:4px;margin-right:4px;}
+</style>
+<include file="common:public" />
+<div class="cr"></div>
+<volist name="info" id="vo">
+<div id="btl" style="width:32%;height:285px;margin:18px 0.5% 0 0.5%;float:left;">
+	<div id="b1t">
+		<b>{pigcms:$vo.name}</b>
+	</div>
+	<hr style="background-color:#DDD;border:none;height:1px">
+	<div id="b2t">
+		<div id="mgpx">
+			<img src="{pigcms:$vo.img}"/>
+		</div>
+		<div id="mgpx">
+			<img src="{pigcms:$vo.timg}" />
+		</div>
+	</div>
+	<div style="height:40px">
+		<p style="border-bottom: 1px solid #E7E7E7;height:20px">所属分类：{pigcms:$vo.classid} <span style="margin-left:100px">状    态：<eq name="vo.status" value="1"><font color="red">显示</font><else/><font color="blue">不显示</font></eq></span></p>
+		<p style="border-bottom: 1px solid #E7E7E7;height:15px;overflow: hidden;margin-top:5px">链接地址：{pigcms:$vo.url}<p>
+	</div>
+	<div style="height:30px;">
+		<div id="b3t" style="margin-top: 10px;margin-left: 1px;">
+			<a href="{pigcms::U('Case/edit/',array('id'=>$vo['id'],'pid'=>$pid))}" style="color:#FFF;line-height:20px;overflow:hidden;">修    改</a>
+		</div>
+		<div id="b3t" style="margin-top: 10px;margin-left: 1px;">
+			<a href="javascript:void(0)" onclick="return confirmurl('{pigcms::U('Case/del/',array('id'=>$vo['id'],'pid'=>$pid))}','确定删除该案例吗?')" style="color:#FFF;line-height:20px;overflow:hidden;">删除</a>
+		</div>
+	</div>
+</div>
+</volist>
+<div class="cLine" style="margin-top:15px;flaot:right">
+    <div class="pageNavigator right" style="float: right;">
+         <div class="pages">{pigcms:$page}</div>
+      </div>
+    <div class="clr"></div>
+ </div>
+</body>
+</html>

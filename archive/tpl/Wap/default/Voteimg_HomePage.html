@@ -1,0 +1,797 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><if condition="$action_info['action_name']">{pigcms:$action_info['action_name']}-</if>个人中心</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="applicable-device" content="mobile">
+<link href="{pigcms:$staticPath}/tpl/static/voteimg/css/base.css" rel="stylesheet">
+<link href="{pigcms:$staticPath}/tpl/static/voteimg/css/index.css" rel="stylesheet">
+<link  rel="stylesheet" type="text/css" href="{pigcms:$staticPath}/tpl/static/voteimg/newvoteimg/css/layer.css">
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/voteimg/js/jquery-1.7.2.min.js"></script>
+<script src="{pigcms:$staticPath}/tpl/static/voteimg/newvoteimg/js/layer.min.js" type="text/javascript"></script>
+<script src="{pigcms:$staticPath}/tpl/static/voteimg/js/index.js"></script>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/alert/alert.js"></script>
+<style>.sharenotice {display: none;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.7);z-index: 9696969;}</style>
+</head>
+<body style="overflow-x:hidden">
+<div class="layer"></div>
+<article class="sign layer_content record">
+    <div  class="close">×</div>
+    <div class="record_title" id="record">充值记录</div>
+    <ul></ul>
+</article>
+<article class="sign layer_content receive">
+    <div  class="close">×</div>
+    <div class="record_title" id="receive">提现记录</div>
+    <ul></ul>
+</article>
+<article class="sign layer_content recharge">
+<form class="hb_form" name="hb_form" method="POST" action="">
+    <div  class="close">×</div>
+    <div class="sign_title">充值红包</div>
+	 <div  class="div_p" >充值后，好友帮你拉票（分享），且产生投票后，您即对该分享人和投票人红包奖励!</div>
+    <ul class="sign_list">
+        <li class=" clearfix">
+            <div class="sign_txt">佣金分成:</div>
+            <div class="sign_input">
+                <input type="number" name="shareer_scale" id="echarge_shareer_scale" value="<?php if($hbinfo['shareer_scale']){ echo $hbinfo['shareer_scale']*10;}?>" placeholder="分享人" />
+                :
+                <input type="number" name="voter_scale" id="echarge_voter_scale" value="<?php if($hbinfo['voter_scale']){ echo $hbinfo['voter_scale']*10;}?>" placeholder="投票人"/>
+            </div>
+			<div style="clear:both"></div>
+            <div  class="div_p" >*分别设置分享人和投票人的佣金分成，输入0-10数字，且两者相加需等于10</div>
+        </li>
+        <li class="clearfix">
+            <div class="sign_txt">佣金发放:</div>
+            <div class="sign_input">
+                <input type="number" name="min_money" value="{pigcms:$hbinfo['min_money']}" placeholder="最小金额" />
+                -
+                <input type="number" name="max_money" value="{pigcms:$hbinfo['max_money']}" placeholder="最大金额" />
+				 <span style="font-size:10px; margin:0 5px; display:inline-block">/元</span> 
+            </div>
+			<div  class="div_p" >*随机取最小和最大金额之间的数,结果保留2位小数,<span>每人实际收到的佣金=随机佣金*分成</span></div>
+		</li>
+        
+        <!--li class=" clearfix">
+            <div class="sign_txt">红包留言:</div>
+            <div class="sign_input">
+                <textarea name="wishing" id="textarea" cols="45" rows="5"  class="baotext" placeholder="输入红包留言!">{pigcms:$hbinfo['wishing']}</textarea>
+            </div>
+        </li-->
+        <li class=" clearfix">
+            <div class="sign_txt">红包充值:</div>
+            <div class="sign_input">
+                ￥<input type="number" name="total_money" id="price" value="" style="width:66px;" />
+                </div>	<div class="div_p" ><span>*活动结束后的第三天可申请退款</span></div>
+        </li>
+		<li>
+		<if condition="$hbinfo neq ''">
+		<input type="hidden" name="hb_id" value="{pigcms:$hbinfo['hb_id']}" />
+		</if>
+		<input type="hidden" name="token" value="{pigcms:$token}" />
+		<input type="hidden" name="vote_id" value="{pigcms:$vote_id}" />
+		<input type="hidden" name="vote_title" value="{pigcms:$my_vote['vote_title']}" />
+		<input type="hidden" name="item_id" value="{pigcms:$my_vote['id']}" />
+		<input type="hidden" name="user_id" value="{pigcms:$user_id}" />
+		<input type="hidden" name="actiontype" value="continue_echarge" />
+        <button onclick="return continue_echarge();">充值</button>
+        </li>
+    </ul>
+</form>
+</article>
+<form class="hb_form_edit" name="hb_form_edit" method="POST" action="">
+<article class="sign layer_content editor">
+    <div  class="close">×</div>
+    <div class="sign_title">编辑红包</div>
+    <ul class="sign_list">
+        <li class=" clearfix">
+            <div class="sign_txt">佣金分成:</div>
+            <div class="sign_input">
+                <input type="number" name="shareer_scale" id="edit_shareer_scale" value="<?php echo $hbinfo['shareer_scale']*10;?>" placeholder="分享人"/>
+                :
+                <input type="number" name="voter_scale" id="edit_voter_scale" value="<?php echo $hbinfo['voter_scale']*10;?>" placeholder="投票人" />
+            </div>
+			  <div  class="div_p" >*分别设置分享人和投票人的佣金分成，输入0-10数字，且两者相加需等于10</div>
+        </li>
+        <li class=" clearfix">
+            <div class="sign_txt">发放金额:</div>
+            <div class="sign_input">
+               <input type="number" name="min_money" value="{pigcms:$hbinfo['min_money']}"/>
+                -
+                <input type="number" name="max_money" value="{pigcms:$hbinfo['max_money']}" />
+				  <span style="font-size:10px; margin:0 5px; display:inline-block">/元</span>
+            </div>
+			<div  class="div_p" >*随机取最小和最大金额之间的数,结果保留2位小数,<span>每人实际收到的佣金=随机佣金*分成</span></div>
+        </li>
+        <!--li class=" clearfix">
+            <div class="sign_txt">红包留言:</div>
+            <div class="sign_input">
+                <textarea name="wishing" id="textarea" cols="45" rows="5"  class="baotext" placeholder="输入红包留言!">{pigcms:$hbinfo['wishing']}</textarea>
+            </div>
+        </li-->
+        <li>
+			<input type="hidden" name="hb_id" value="{pigcms:$hbinfo['hb_id']}" />
+			<input type="hidden" name="token" value="{pigcms:$token}" />
+			<input type="hidden" name="user_id" value="{pigcms:$user_id}" />
+			<input type="hidden" name="vote_id" value="{pigcms:$vote_id}" />
+			<input type="hidden" name="item_id" value="{pigcms:$my_vote['id']}" />
+			<input type="hidden" name="actiontype" value="edithb" />
+            <button onclick="return edithb();">确定</button>
+        </li>
+    </ul>
+</article>
+</form>
+<header class="clearfix">
+    <if condition="$lottery_name neq '' && $lottery_link neq ''">
+		<if condition="$userinfo['votenum'] gt 0">
+		<div class="header_but" onclick="window.location.href='{pigcms:$lottery_link}'">{pigcms:$html_tag}{pigcms:$lottery_name}</div>
+		<else />
+		<div class="header_but" onclick="alert('投过一票后即可参加','#fff','#A68CB2','#CCC570','#fff');">{pigcms:$html_tag}{pigcms:$lottery_name}</div>
+		</if>
+	<else />
+	<div></div><!-- 适应header .wealth:nth-child(5)  给个空div-->
+	</if>
+    <div class="header clearfix">
+	 <if condition="$my_vote neq '' && $my_vote['check_pass'] == 1">
+        <div class="header_info"><i></i>{pigcms:$my_vote.vote_count}</div><else /><div class="header_info">&nbsp;</div></if>
+      <div class="header_head" ><div class="header_img"><if condition="$userinfo['wecha_pic'] neq '' && $userinfo['wecha_pic'] neq 'no'"><img  src="{pigcms:$userinfo['wecha_pic']}" /><else /><img  src="{pigcms:$staticPath}/tpl/static/voteimg/img/nobady.jpg" /></if></div>
+	  </div>
+	  <if condition="$my_vote neq '' && $my_vote['check_pass'] == 1">
+        <div class="header_info"><i></i>{pigcms:$my_vote['ranking']}</div><else /><div class="header_info">&nbsp;</div></if>
+    </div>
+    <h1 class="name"><if condition="$userinfo['nick_name'] neq '' && $userinfo['nick_name'] neq 'no'">{pigcms:$userinfo.nick_name}<else />匿名</if></h1>
+    <pigcmsif where="$hbinfo"><div class="wealth"><i></i>￥<span><?php if($userinfo['isrefund'] ==1){ echo 0.00;}else{ echo sprintf("%.2f", ($hbinfo['total_money'] - $hbinfo['lost_money']));}?></span></div>
+    <div class="wealth"><b>/</b><i></i>￥<span>{pigcms:$hbinfo['total_money']}</span></div></pigcmsif>
+	<if condition="$my_vote eq ''"><div class="operation"><button class="baoming" style="margin-top:20px;" onclick="apply();">我要报名</button></div>
+	<else />
+		<if condition="$action_info['onoff_hongbao'] eq 1">
+			<?php if(!empty($hbinfo)){?>
+			<div class="operation">
+				<?php if($action_info['end_time'] < $_SERVER['REQUEST_TIME']){?>
+					<button onclick="window.location.href='/index.php?g=Wap&m=Voteimg&a=applyRefund&vote_id={pigcms:$vote_id}&item_id={pigcms:$my_vote['id']}&user_id={pigcms:$user_id}&token={pigcms:$token}'">申请退款</button>
+				<?php }else{ ?>
+					<button onclick="recharge()">继续充值</button>
+				<?php } ?>
+				<button onclick="editor()">编辑红包</button>
+				<button onclick="record()">充值记录</button>
+			</div>
+			<?php }else{?>
+			<div class="operation">
+				<?php if(!empty($my_vote) && $my_vote['check_pass'] == 0){?>
+					<!--button class="baoming" style="margin-top:20px;" onclick="alert('通过报名审核后,您才能充值红包,找人帮您拉票')">红包拉票</button-->
+					<span style="margin-top:20px;display:block;">您的报名资料正在审核中...</span>
+					<?php }elseif(!empty($my_vote) && $my_vote['check_pass'] == 2){?>
+					<span style="margin-top:20px;display:block;">您的报名资料未审核通过</span>
+					<div class="operation"><button class="baoming" style="margin-top:20px;" onclick="apply();">重新报名</button></div>
+				<?php }else{ ?>
+					<button class="baoming" style="margin-top:20px;" onclick="recharge()">红包拉票</button>
+				<?php } ?>
+			</div>
+			<?php } ?>
+			<else />
+			<div class="operation">
+				<?php if(!empty($my_vote) && $my_vote['check_pass'] == 0){?>
+					<!--button class="baoming" style="margin-top:20px;" onclick="alert('通过报名审核后,您才能充值红包,找人帮您拉票')">红包拉票</button-->
+					<span style="margin-top:20px;display:block;">您的报名资料正在审核中...</span>
+					<?php }elseif(!empty($my_vote) && $my_vote['check_pass'] == 2){?>
+					<span style="margin-top:20px;display:block;">您的报名资料未审核通过</span>
+					<div class="operation"><button class="baoming" style="margin-top:20px;" onclick="apply();">重新报名</button></div>
+				<?php }?>
+			</div>
+		</if>
+	</if>
+	<span class="goto" onclick ="window.location.href='/index.php?g=Wap&m=Voteimg&a=index&id={pigcms:$vote_id}&token={pigcms:$token}'"> <i></i> </span>
+	<span class="goto1" onclick ="window.location.reload();"> <i></i> </span>
+</header>
+<menu>
+    <ul class="clearfix" id="c_foot">
+        <li class="active" id="foot_bu">
+            <h2>谁给我投票</h2>
+            <p><if condition="$my_vote neq '' and $my_vote['vote_count'] gt 0">{pigcms:$my_vote['vote_count']}<else />0</if>票</p>
+        </li>
+        <li id="foot_bu">
+            <h2>我给谁投票
+                <p>{pigcms:$userinfo['votenum']}票 
+            </h2>
+        </li>
+		<if condition="$action_info['onoff_hongbao'] eq 1">
+        <li id="foot_bu">
+            <h2>收到的红包
+               	<p>￥<if condition="$my_totalhb_count neq ''">{pigcms:$my_totalhb_count}<else />0.00</if>
+            </h2>
+		</li>
+        <li id="foot_bu">
+            <h2>发出的红包
+                <p>￥<if condition="$hbinfo['lost_money'] neq ''">{pigcms:$hbinfo['lost_money']}<else />0.00</if>
+            </h2>
+        </li>
+		</if>
+    </ul>
+</menu>
+<article>
+    <ul class="menu_list">
+        <li style="display:none">
+            <section>
+			<?php if(empty($my_vote)){?>
+			<div class="blank give_blank"><a href="javascript:;" onclick="apply();"></a></div>
+			<?php }elseif(!empty($my_vote) && $my_vote['check_pass'] == 0){?>
+			<div class="blank checking"></div>
+			<?php }elseif(!empty($my_vote) && $my_vote['check_pass'] == 2){?>
+			<div class="blank checking_refused"></div>
+			<?php }elseif(!empty($my_vote) && !empty($get_voterecord)){ ?>
+			 <ul class="individual_list give list_box_a">
+				<volist name="get_voterecord" id="get">
+                    <li class="clearfix">
+                        <div class="indi_list_info clearfix" onclick="details('{pigcms:$get.item_id}','{pigcms:$get.user_id}',this,1,0)"> <i class="arrow"></i>
+                            <div class="head_img"><if condition="$get.wecha_pic eq 'no' || $get.wecha_pic eq ''"><img src="{pigcms:$staticPath}/tpl/User/default/common/images/portrait.jpg" /><else /><img src="{pigcms:$get.wecha_pic}" /></if></div>
+                            <div class="indi_info">
+                                <div class="indi_info_top">
+                                    <h2>{pigcms:$get.nick_name}</h2>
+                                   </div>
+                                <p><span>给我贡献<b>{pigcms:$get.my_vote_count}</b>票</span></p>
+                            </div>
+                        </div>
+                        <ul class="indi_list" id="for_vote_{pigcms:$get.user_id}"></ul>
+                    </li>
+				</volist>
+                </ul>
+				<li class="clearfix loading_more" style="position: absolute;width:98%;display:none;text-align:center;left:0;margin-top:10px;"><span style="color:#767C9D;padding:0;">加载中……</span></li>
+				<li class="clearfix loading_over_a" style="position: absolute;width:98%;display:none;text-align:center;left:0;margin-top:10px;"><span style="color:#767C9D;padding:0;">没有更多选项</span></li>
+			<?php }else{?>
+			<div class="blank for_blank" onclick="share();"></div>
+			<?php } ?>
+            </section>
+        
+        <li>
+            <section>
+				<pigcmsif where="$my_voterecord">
+                <ul class="individual_list list_box_b">
+				<volist name="my_voterecord" id="my">
+                    <li class="clearfix">
+                        <div class="indi_list_info clearfix" onclick="details('{pigcms:$my.item_id}','{pigcms:$user_id}',this,2,0)"> <i class="arrow"></i>
+                            <div class="head_img"><img src="{pigcms:$my.img}" /></div>
+                            <div class="indi_info">
+                                <div class="indi_info_top">
+                                    <h2>[{pigcms:$my.baby_id}号]{pigcms:$my.vote_title}</h2>
+                                    <i></i><span>{pigcms:$my.vote_count}</span></div>
+                                <p><span>给Ta贡献<b>{pigcms:$my.my_vote_count}</b>票</span></p>
+                            </div>
+                        </div>
+						<ul class="indi_list" id="my_vote_{pigcms:$my.item_id}">
+                        </ul>
+                    </li>
+					</volist>
+                </ul>
+				<li class="clearfix loading_more" style="position: absolute;width:98%;display:none;text-align:center;left:0;margin-top:10px;"><span style="color:#767C9D;padding:0;">加载中……</span></li>
+				<li class="clearfix loading_over_b" style="position: absolute;width:98%;display:none;text-align:center;left:0;margin-top:10px;"><span style="color:#767C9D;padding:0;">没有更多选项</span></li>
+				<else />
+				<div class="blank vote_blank"><a href="/index.php?g=Wap&m=Voteimg&a=index&id={pigcms:$vote_id}&token={pigcms:$token}"></a></div>
+				</pigcmsif>
+            </section>
+        
+        <li >
+            <section>
+			<pigcmsif where="$hb_list">
+				<?php if($action_info['end_time'] + 3*24*3600 < $_SERVER['REQUEST_TIME'] || (int)$my_not_received == 0){?>
+				<button class="ticket active">
+					<p><span>剩</span>￥<span><if condition="$my_not_received gt 0">{pigcms:$my_not_received}<else />0.00</if></span> <i>最迟活动结束三天内提现，逾期作废</i> </p>
+                </button><p style="text-align:center;"><i onclick="receivelog();">查看提现记录</i></p>
+				<?php }else{?>
+				<button class="ticket">
+					<p><span>剩</span>￥<span><if condition="$my_not_received gt 0">{pigcms:$my_not_received}<else />0.00</if></span> <i>最迟活动结束三天内提现，逾期作废</i> </p>
+                </button><p style="text-align:center;"><i onclick="receivelog();">查看提现记录</i></p>
+				<?php } ?>
+                <ul class="individual_list paper list_box_c">
+				<volist name="hb_list" id="hb">
+                    <li class="clearfix">
+                        <div class="indi_list_info clearfix" onclick="hbdetails({pigcms:$hb.item_id},{pigcms:$user_id},this,2,0);"> <i class="arrow"></i>
+                            <div class="head_img"><img src="{pigcms:$hb.voteimg}" /></div>
+                            <div class="indi_info">
+                                <div class="indi_info_top">
+                                    <h2>来自<span>[{pigcms:$hb.baby_id}号]{pigcms:$hb.vote_title}</span>的红包</h2>
+                                </div>
+                                <p><span>￥{pigcms:$hb.total_money}</span></p>
+                            </div>
+                        </div>
+                        <ul class="indi_list" id="my_hb_{pigcms:$hb.item_id}"></ul>
+                    </li>
+				</volist>
+                </ul>
+				<li class="clearfix loading_more" style="position: absolute;width:98%;display:none;text-align:center;left:0;margin-top:10px;"><span style="color:#767C9D;padding:0;">加载中……</span></li>
+				<li class="clearfix loading_over_c" style="position: absolute;width:98%;display:none;text-align:center;left:0;margin-top:10px;"><span style="color:#767C9D;padding:0;">没有更多选项</span></li>
+				<else />
+				<div class="blank ticket_blank"><a href="##"></a></div>
+				</pigcmsif>
+            </section>
+        
+        <li  >
+            <section>
+			<?php if(!empty($my_vote) && !empty($hbinfo) && $my_vote['check_pass'] == 1 && $hbinfo['lost_money'] != ""){?>
+            <div class="my_paper">共发出￥<span><if condition="$hbinfo['lost_money'] neq ''">{pigcms:$hbinfo['lost_money']}<else />0.00</if></span>红包,已领<span><if condition="$send_received gt 0">￥{pigcms:$send_received}<else />0.00</if></span>,未领<span>￥<?php echo sprintf("%.2f", ($hbinfo['lost_money'] - $send_received));?></span></div>
+			<?php } ?>
+			<?php if(empty($my_vote)){?>
+				<div class="blank paper_blank"><a href="javascript:;" onclick="apply();"></a></div>
+			<?php }elseif(empty($hbinfo) && !empty($my_vote) && $my_vote['check_pass'] == 1){?>
+				<div class="blank paper_blank"><a href="javascript:;" onclick="recharge()"></a></div>
+			<?php }elseif(empty($hbinfo) && !empty($my_vote) && $my_vote['check_pass'] != 1){?>
+			<div class="blank paper_blank"><a href="javascript:;" onclick="alert('通过报名审核后,您才能充值红包','#fff','#A68CB2','#CCC570','#fff')"></a></div>
+			<?php }elseif(!empty($send_hb_list)){?>
+                <ul class="individual_list paper list_box_d">
+				<volist name="send_hb_list" id="send">
+                    <li class="clearfix">
+                        <div class="indi_list_info clearfix" onclick="hbdetails({pigcms:$send.item_id},{pigcms:$send.user_id},this,1,0);"> <i class="arrow"></i>
+                            <div class="head_img"><img src="{pigcms:$send.wecha_pic}" /></div>
+                            <div class="indi_info">
+                                <div class="indi_info_top">
+                                  <h2>{pigcms:$send.nick_name}</h2>
+                                </div>
+                                <p><span>￥{pigcms:$send.total_money}</span></p>
+                            </div>
+                        </div>
+                        <ul class="indi_list" id="for_hb_{pigcms:$send.user_id}"></ul>
+                    </li>
+					</volist>
+                </ul>
+				<li class="clearfix loading_more" style="position: absolute;width:98%;display:none;text-align:center;left:0;margin-top:10px;"><span style="color:#767C9D;padding:0;">加载中……</span></li>
+				<li class="clearfix loading_over_d" style="position: absolute;width:98%;display:none;text-align:center;left:0;margin-top:10px;"><span style="color:#767C9D;padding:0;">没有更多选项</span></li>
+			<?php }else{ ?>
+				<div class="blank receive_blank"></div>
+			<?php } ?>
+            </section>
+        
+    </ul>
+</article>
+<div class="sharenotice">
+	<img src="{pigcms:$staticPath}/tpl/static/voteimg/img/fx1.png" style="width: 100%;">
+</div>
+</body>
+</html>
+<input type="hidden" name="tabname" id="tabname" value="" />
+<script type="text/javascript">
+<!--自动加载-->
+var flag_a = true;
+var flag_b = true;
+var flag_c = true;
+var flag_d = true;
+$(function(){
+	var width=$(window).width();				
+	//滚动条滚动到离底部距离50的时候触发
+	$(window).scroll(function(){
+		$(".indi_info").css("width",width-90);	
+		// 当滚动到最底部以上100像素时， 加载新内容
+		if ($(document).height() - $(this).scrollTop() - $(this).height()<20){
+			$(".loading_more").show();
+			var $boxes = [];
+			var name = $("#tabname").val();
+			var $container = $('.list_box_'+name);   
+			var func = 'getList_'+name;
+			var flag;
+			switch(name){
+				case 'a':
+					flag = flag_a;
+					break;
+				case 'b':
+					flag = flag_b;
+					break;
+				case 'c':
+					flag = flag_c;
+					break;
+				case 'd':
+					flag = flag_d;
+					break;
+				default:
+					break;
+			}
+			if (flag){
+				$boxes = $(window[func]());	
+				$container.append($boxes);
+				$(".loading_more").hide();
+			}else{
+				$(".loading_more").hide();
+			}
+		}
+	});
+});	
+//获取列表
+var num_a = 0;
+function getList_a() {
+	var my_item_id = '{pigcms:$my_vote.id}';
+	var token = '{pigcms:$token}';
+	var action_id = '{pigcms:$vote_id}';
+	var boxes = [];
+	var str;
+	$.ajax({
+		type: 'GET',
+		async: false,
+		url: '/index.php?g=Wap&m=Voteimg&a=homepagegefall&my_item_id='+my_item_id+'&action_id='+action_id+'&token='+token+'&num_a='+num_a+'&votetype=for_vote',
+		success: function(json){
+			var obj = eval("(" + json + ")");
+			if(obj.status == 'SUCCESS'){
+				$.each(obj.data , function(i,t){
+					str += '<li class="clearfix"><div class="indi_list_info clearfix" onclick="details('+t.item_id+','+t.user_id+',this,\'for_vote\')"><i class="arrow"></i><div class="head_img"><img src="'+t.wecha_pic+'" /></div><div class="indi_info"><div class="indi_info_top"><h2>'+t.nick_name+'</h2></div><p><span>给我贡献<b>'+t.my_vote_count+'</b>票</span></p></div></div><ul class="indi_list" id="for_vote_'+t.user_id+'"></ul></li>';
+				});
+				boxes.push(str);
+				num_a++;
+			}else{
+				//取完后停止
+				flag_a =  false;
+				$(".loading_over_a").show();
+			}
+		}
+	});
+	return boxes.join("");
+}
+var num_b = 0;
+function getList_b() {
+	var token = '{pigcms:$token}';
+	var action_id = '{pigcms:$vote_id}';
+	var user_id = '{pigcms:$user_id}';
+	var boxes = [];
+	var str = '';
+	$.ajax({
+		type: 'GET',
+		async: false,
+		url: '/index.php?g=Wap&m=Voteimg&a=homepagegefall&user_id='+user_id+'&action_id='+action_id+'&token='+token+'&num_b='+num_b+'&votetype=my_vote',
+		success: function(json){
+			var obj = eval("(" + json + ")");
+			if(obj.status == 'SUCCESS'){
+					$.each(obj.data , function(i,t){
+						str += '<li class="clearfix"><div class="indi_list_info clearfix" onclick="details('+t.item_id+','+user_id+',this,\'my_vote\')"><i class="arrow"></i><div class="head_img"><img src="'+t.img+'" /></div><div class="indi_info"><div class="indi_info_top"><h2>['+t.baby_id+'号]'+t.vote_title+'</h2><i></i><span>'+t.vote_count+'</span></div><p><span>给Ta贡献<b>'+t.my_vote_count+'</b>票</span></p></div></div><ul class="indi_list" id="my_vote_'+t.item_id+'"></ul></li>';
+					});
+					boxes.push(str);
+					num_b++;
+			}else{
+				//取完后停止
+				flag_b =  false;
+				$(".loading_over_b").show();
+			}
+		}
+	});
+	return boxes.join("");
+}
+var num_c = 0;
+function getList_c() {
+	var token = '{pigcms:$token}';
+	var user_id = '{pigcms:$user_id}';
+	var boxes = [];
+	var str = '';
+	$.ajax({
+		type: 'GET',
+		async: false,
+		url: '/index.php?g=Wap&m=Voteimg&a=hblistfall&user_id='+user_id+'&token='+token+'&num_c='+num_c+'&hbtype=my_hb',
+		success: function(json){
+			var obj = eval("(" + json + ")");
+			if(obj.status == 'SUCCESS'){
+				$.each(obj.data , function(i,t){
+					str += '<li class="clearfix"><div class="indi_list_info clearfix" onclick="hbdetails('+t.item_id+','+user_id+',this,2,0);"> <i class="arrow"></i><div class="head_img"><img src="'+t.voteimg+'" /></div><div class="indi_info"><div class="indi_info_top"><h2>来自<span>['+t.baby_id+'号]'+t.vote_title+'</span>的红包</h2></div><p><span>￥'+t.total_money+'</span></p></div></div><ul class="indi_list" id="my_hb_'+t.item_id+'"></ul></li>';
+				});
+				boxes.push(str);
+				num_c++;
+			}else{
+				//取完后停止
+				flag_c =  false;
+				$(".loading_over_c").show();
+			}
+		}
+	});
+	return boxes.join("");
+}
+var num_d = 0;
+function getList_d(){
+	var token = '{pigcms:$token}';
+	var my_item_id = '{pigcms:$my_vote.id}';
+	var boxes = [];
+	var str = '';
+	$.ajax({
+		type: 'GET',
+		async: false,
+		url: '/index.php?g=Wap&m=Voteimg&a=hblistfall&my_item_id='+my_item_id+'&token='+token+'&num_d='+num_d+'&hbtype=for_hb',
+		success: function(json){
+			var obj = eval("(" + json + ")");
+			if(obj.status == 'SUCCESS'){
+				$.each(obj.data , function(i,t){
+					str += '<li class="clearfix"><div class="indi_list_info clearfix" onclick="hbdetails('+my_item_id+','+t.user_id+',this,1,0);"> <i class="arrow"></i><div class="head_img"><img src="'+t.wecha_pic+'" /></div><div class="indi_info"><div class="indi_info_top"><h2>'+t.nick_name+'</h2></div><p><span>￥'+t.total_money+'</span></p></div></div><ul class="indi_list" id="for_hb_'+t.user_id+'"></ul></li>';
+				});
+				boxes.push(str);
+				num_d++;
+			}else{
+				//取完后停止
+				flag_d =  false;
+				$(".loading_over_d").show();
+			}
+		}
+	});
+	return boxes.join("");
+}
+function details(item_id,user_id,obj,type,num){
+	if($(obj).hasClass("arrow_down")){
+		$(obj).removeClass("arrow_down");
+		$(obj).next().slideUp();
+	}else{
+		var id;
+		var nodename;
+		if(type == 1){
+			id = user_id;
+			node = 'for_vote';
+			
+		}else if(type == 2){
+			id = item_id;
+			node = 'my_vote';
+		}
+		var vote_id = '{pigcms:$vote_id}';
+		$.ajax({
+			type : 'GET',
+			url  : "/index.php?g=Wap&m=Voteimg&a=MyVotedetails&user_id="+user_id+"&item_id="+item_id+"&vote_id="+vote_id+"&votetype="+type+"&num="+num,
+			success:function(data){
+				$("#"+node+'_'+id).html(data);
+			},
+			complete:function(){	
+				$(obj).addClass("arrow_down").siblings().removeClass("arrow_down");
+				$(obj).next().slideDown();
+			}
+		});
+	}
+}
+function hbdetails(item_id,user_id,obj,type,num){
+	if($(obj).hasClass("arrow_down")){
+		$(obj).removeClass("arrow_down");
+		$(obj).next().slideUp();
+	}else{
+		var id;
+		var nodename;
+		if(type == 1){
+			id = user_id;
+			nodename = 'for_hb';
+		}else if(type == 2){
+			id = item_id;
+			nodename = 'my_hb';
+		}
+		$.ajax({
+			type : 'GET',
+			url  : "/index.php?g=Wap&m=Voteimg&a=hbdetails&user_id="+user_id+"&item_id="+item_id+"&votetype="+type+"&num="+num,
+			success:function(data){
+				$("#"+nodename+'_'+id).html(data);
+			},
+			complete:function(){	
+				$(obj).addClass("arrow_down").siblings().removeClass("arrow_down");
+				$(obj).next().slideDown();
+			}
+		});
+	}
+}
+//继续充值
+function continue_echarge(){
+	var postdata = $(".hb_form").serialize();
+	var order_name = "{pigcms:$my_vote['vote_title']}";
+	var price = $("#price").val();
+	$.ajax({
+		type: 'POST',
+		url: '/index.php?g=Wap&m=Voteimg&a=ajaxEdithb',
+		data : postdata,
+		success:function(data){
+			obj = eval('('+data+')');
+			if(obj.status == 'done'){
+				var orderid = obj.data.orderid;
+				var platform = obj.data.platform;
+				var url = "/index.php?g=Wap&m=Alipay&a=to_pay&price="+price+"&orderName="+order_name+"&orderid="+orderid+"&from=Voteimg&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&pay_type=Weixin&platform="+platform;
+				window.location.href = url;
+			}else{
+				alert(obj.data,'#fff','#A68CB2','#CCC570','#fff');
+				return false;
+			}
+		}
+	});
+	return false;
+}
+//编辑红包
+function edithb(){
+	var postdata = $(".hb_form_edit").serialize();
+	$.ajax({
+		type: 'POST',
+		url: '/index.php?g=Wap&m=Voteimg&a=ajaxEdithb',
+		data : postdata,
+		success:function(data){
+			obj = eval('('+data+')');
+			if(obj.status == 'done'){
+				alert('红包编辑成功','#fff','#A68CB2','#CCC570','#fff');
+				$(".layer").fadeToggle(500);
+				$(".layer_content").fadeOut(300);
+				$("body").css({"height":"auto","overflow":"auto","overflow-x":"hidden"}); 
+			}else{
+				alert(obj.data,'#fff','#A68CB2','#CCC570','#fff');
+				return false;
+			}
+		}
+	});
+	return false;
+}
+
+function record(){
+	var vote_id = '{pigcms:$vote_id}';
+	var token = '{pigcms:$token}';
+	$.ajax({
+		type: 'POST',
+		url: '/index.php?g=Wap&m=Voteimg&a=payLog',
+		data : "vote_id="+vote_id+"&token="+token,
+		success:function(data){
+			obj = eval('('+data+')');
+			var str = '';
+			if(obj.status == 'SUCCESS'){
+				$.each(obj.data , function(i,t){
+					str += '<li><span>￥'+t.price+'</span><span>'+t.book_time+'</span></li>';
+				});
+			}else{
+				str = '<li><span style="width:35%;">暂无充值记录</span></li>';
+			}
+			$("#record").next().html('');
+			$("#record").next().append(str);;
+		},
+		complete:function(){
+			$(".layer").fadeToggle(500);
+			$(".record").fadeToggle(300);
+			$("body").css({"height":height,"overflow":"hidden"}); 
+		}
+	});
+}
+
+function receivelog(){
+	var user_id = '{pigcms:$user_id}';
+	$.ajax({
+		type: 'POST',
+		url: '/index.php?g=Wap&m=Voteimg&a=receiveLog',
+		data : "user_id="+user_id,
+		success:function(data){
+			obj = eval('('+data+')');
+			console.info(obj);
+			var str = '';
+			if(obj.status == 'SUCCESS'){
+				$.each(obj.data , function(i,t){
+					str += '<li><span>￥'+t.money+'</span><span>'+t.receive_time+'</span></li>';
+				});
+			}else{
+				str = '<li><span style="width:35%;">暂无提现记录</span></li>';
+			}
+			$("#receive").next().html('');
+			$("#receive").next().append(str);
+		},
+		complete:function(){
+			$(".layer").fadeToggle(500);
+			$(".receive").fadeToggle(300);
+			$("body").css({"height":height,"overflow":"hidden"}); 
+		}
+	});
+}
+function share(){
+	$(".sharenotice").show();
+}
+//报名判断
+function apply(){
+	var allow_apply = '{pigcms:$allow_apply}';
+	if(allow_apply == ""){
+		window.location.href='/index.php?g=Wap&m=Voteimg&a=apply&id={pigcms:$vote_id}&token={pigcms:$token}';
+	}else{
+		msg = "";
+		if(allow_apply == 'over'){
+			msg = '报名已截止';
+		}else if(allow_apply == 'wait'){
+			msg = '报名未开始';
+		}else if(allow_apply == 'exists'){
+			msg = '您已经报过名';
+		}
+		if(msg != ""){
+			alert(msg,'#fff','#A68CB2','#CCC570','#fff');
+		}
+	}
+}
+$(function(){
+//领取红包
+	$(".ticket").click(function(){
+		$(this).attr("disabled","disabled");
+		var money = '{pigcms:$my_not_received}';
+		if(money < 1.00){
+			alert('红包金额超过1.00元才可领取','#fff','#A68CB2','#CCC570','#fff');
+			return false;
+		}
+		var user_id = '{pigcms:$user_id}';
+		var end_time = '{pigcms:$action_info.end_time}';
+		$.ajax({
+			type: 'POST',
+			url: '/index.php?g=Wap&m=Voteimg&a=receive_hb',
+			data : "money="+money+"&user_id="+user_id+"&end_time="+end_time,
+			success:function(data){
+				obj = eval('('+data+')');
+				if(obj.status == 'done'){
+					$(".ticket span:eq(1)").html('0.00');
+					alert('领取成功,请到微信中查看','#fff','#A68CB2','#CCC570','#fff');
+				}else{
+					alert(obj.data,'#fff','#A68CB2','#CCC570','#fff');
+				}
+			}
+		});
+		$(this).removeAttr("disabled");
+	});
+	
+	//自动填充
+	var reg = /^([0-9]{1}|10)$/;
+	$("#echarge_shareer_scale").blur(function(){
+		var echarge_shareer_scale = $(this).val();
+		if(!reg.test(echarge_shareer_scale)){
+			alert('分享人分成请输入0-10之间的整数','#fff','#A68CB2','#CCC570','#fff');
+			return false;
+		}
+		$(this).next().val(parseInt(10-echarge_shareer_scale));
+	});
+	$("#edit_shareer_scale").blur(function(){
+		var edit_shareer_scale = $(this).val();
+		if(!reg.test(edit_shareer_scale)){
+			alert('分享人分成请输入0-10之间的整数','#fff','#A68CB2','#CCC570','#fff');
+			return false;
+		}
+		$(this).next().val(parseInt(10-edit_shareer_scale));
+	});
+		$("#echarge_voter_scale").blur(function(){
+		var echarge_voter_scale = $(this).val();
+		if(!reg.test(echarge_voter_scale)){
+			alert('投票人分成请输入0-10之间的整数','#fff','#A68CB2','#CCC570','#fff');
+			return false;
+		}
+		$(this).next().val(parseInt(10-echarge_voter_scale));
+	});
+	$("#edit_voter_scale").blur(function(){
+		var edit_voter_scale = $(this).val();
+		if(!reg.test(edit_voter_scale)){
+			alert('投票人分成请输入0-10之间的整数','#fff','#A68CB2','#CCC570','#fff');
+			return false;
+		}
+		$(this).next().val(parseInt(10-edit_voter_scale));
+	});
+	//喊人拉票
+	$(".sharenotice").click(function() {
+		$(this).hide() ;
+	}) ;
+	//选项自适应
+	var foot_bu = $('#c_foot').children('#foot_bu');
+	var len   = foot_bu.length;
+	if(len == 2){
+		foot_bu.each(function(){
+			$(this).css("width","47.5%");
+		});
+	}
+})
+</script>
+<?php if(!empty($my_vote)){?>
+<script>
+window.shareData = {  
+	"moduleName":"Voteimg",
+	"moduleID":"{pigcms:$vote_id}",
+	"imgUrl": "{pigcms:$imgUrl}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/popup_view',array('token'=>$token,'id'=>$vote_id,'item_id'=>$my_vote['id'],'is_share'=>1,'share_code'=>$userinfo['share_code']))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/popup_view',array('token'=>$token,'id'=>$vote_id,'item_id'=>$my_vote['id'],'is_share'=>1,'share_code'=>$userinfo['share_code']))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/popup_view',array('token'=>$token,'id'=>$vote_id,'item_id'=>$my_vote['id'],'is_share'=>1,'share_code'=>$userinfo['share_code']))}",
+	"tTitle": "{pigcms:$action_info['custom_sharetitle_lp']|shareFilter}",
+	"tContent": "{pigcms:$action_info['custom_sharedsc_lp']|shareFilter}",
+	"fTitle": "{pigcms:$action_info['custom_sharetitle_lp']|shareFilter}",
+};
+</script>
+<?php }else{ ?>
+<script>
+window.shareData = {  
+	"moduleName":"Voteimg",
+	"moduleID":"{pigcms:$vote_id}",
+	"imgUrl": "{pigcms:$action_info['reply_pic']}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/index',array('token'=>$token,'id'=>$vote_id))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/index',array('token'=>$token,'id'=>$vote_id))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/index',array('token'=>$token,'id'=>$vote_id))}",
+	"tTitle": "{pigcms:$action_info['custom_sharetitle']|shareFilter}",
+	"tContent": "{pigcms:$action_info['custom_sharedsc']|shareFilter}",
+	"fTitle": "{pigcms:$action_info['custom_sharetitle']|shareFilter}",
+};
+</script>
+<?php } ?>
+{pigcms:$shareScript}

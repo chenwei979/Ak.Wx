@@ -1,0 +1,96 @@
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="{pigcms:$staticPath}/tpl/Home/pigcms/common/css/newIndex/base.css">
+    <link rel="stylesheet" href="{pigcms:$staticPath}/tpl/Home/pigcms/common/css/newIndex/style.css">
+    <script src="{pigcms:$staticPath}/tpl/Home/pigcms/common/js/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<div class="headerWrap">
+    <div class="header">
+        <div class="top">
+            <div class="w1000 clearfix">
+                <div class="loginRegister fr">
+                <if condition="$_SESSION[uid]==false">
+                    <a href="{pigcms::U('Index/reg')}">注册</a>
+                    <a href="{pigcms::U('Index/login')}">登录</a>
+                <else/>
+                你好,<if condition="$Think.session.role_name eq 'staff'"><a href="index.php?g=User&m=Index&a=index">{pigcms:$Think.session.staff_username}</a><else /><a href="index.php?g=User&m=Index&a=index">{pigcms:$Think.session.uname}</a></if>（uid:{pigcms:$_SESSION['uid']}）
+                                <a href="/#" onclick="Javascript:window.open('{pigcms::U('System/Admin/logout')}','_blank')">退出</a>        
+                </if>     
+                </div>
+                <div class="loginRegister fl">
+                <if condition="C('site_mp') eq ''">
+                    <span><i></i>咨询热线：xxxxxxxxxxx</span>
+                <else/>
+                    <volist name="sitemp" id="vo">
+                    <span><i></i>咨询热线：{pigcms:$vo}</span>
+                    </volist>
+                </if>
+                </div>
+            </div>
+        </div>
+        <div class="subTop mb20">
+            <div class="w1000 clearfix">
+                <div class="nav fr">
+                    <ul>
+                        <li <if condition="(ACTION_NAME eq 'index') and (GROUP_NAME eq 'Home')">class="menuon"</if> ><a href="/" >首页</a></li>
+                        <if condition="$type['fc'] eq 1">
+                            <volist name="zdydh" id="vo">
+                            <if condition="$vo['type'] eq 1">
+                            <li <eq name="ACTION_NAME" value="fc">class="menuon"</eq> <if condition="$vo['dspl'] eq 1">style="display:none;"</if>>
+                                <a <if condition="$vo['open'] eq '1'">target="_blank"</if> href="<if condition="$vo['url'] eq ''">{pigcms::U('Home/Index/fc')}<else/>{pigcms:$vo['url']}</if>"><if condition="$vo['name'] eq ''">功能介绍<else/>{pigcms:$vo['name']}</if></a></li>
+                            </if>
+                            </volist>
+                        <else/>
+                        <li <eq name="ACTION_NAME" value="fc">class="menuon"</eq>><a href="{pigcms::U('Home/Index/fc')}">功能介绍</a></li>
+                        </if>
+                        <if condition="$type['about'] eq 1">
+                            <volist name="zdydh" id="vo">
+                            <if condition="$vo['type'] eq 2">
+                            <li <eq name="ACTION_NAME" value="about">class="menuon"</eq> <if condition="$vo['dspl'] eq 1">style="display:none;"</if>><a <if condition="$vo['open'] eq '1'">target="_blank"</if> href="<if condition="$vo['url'] eq ''">{pigcms::U('Home/Index/about')}<else/>{pigcms:$vo['url']}</if>"><if condition="$vo['name'] eq ''">关于我们<else/>{pigcms:$vo['name']}</if></a></li>
+                            </if>
+                            </volist>
+                        <else/>
+                            <li <eq name="ACTION_NAME" value="about">class="menuon"</eq>><a href="{pigcms::U('Home/Index/about')}">关于我们</a></li>
+                        </if>
+                        <if condition="$type['prize'] eq 1">
+                            <volist name="zdydh" id="vo">
+                            <if condition="$vo['type'] eq 3">
+                            <li <eq name="ACTION_NAME" value="price">class="menuon"</eq> <if condition="$vo['dspl'] eq 1">style="display:none;"</if>><a <if condition="$vo['open'] eq '1'">target="_blank"</if> href="<if condition="$vo['url'] eq ''">{pigcms::U('Home/Index/price')}<else/>{pigcms:$vo['url']}</if>"><if condition="$vo['name'] eq ''">资费说明<else/>{pigcms:$vo['name']}</if></a></li>
+                            </if>
+                            </volist>
+                        <else/>
+                            <li <eq name="ACTION_NAME" value="price">class="menuon"</eq>><a href="{pigcms::U('Home/Index/price')}">资费说明</a></li>
+                        </if>
+                        <if condition="$type['common'] eq 1">
+                            <volist name="zdydh" id="vo">
+                            <if condition="$vo['type'] eq 4">
+                            <li <eq name="ACTION_NAME" value="common">class="menuon"</eq> <if condition="$vo['dspl'] eq 1">style="display:none;"</if>>
+                            <a <if condition="$vo['open'] eq '1'">target="_blank"</if> href="<if condition="$vo['url'] eq ''">{pigcms::U('Home/Index/common')}<else/>{pigcms:$vo['url']}</if>"><if condition="$vo['name'] eq ''">产品案例<else/>{pigcms:$vo['name']}</if></a></li>
+                            </if>                
+                            </volist>
+                        <else/>
+                            <li <eq name="ACTION_NAME" value="common">class="menuon"</eq>><a href="{pigcms::U('Home/Index/common')}">产品案例</a></li>
+                        </if>
+                        <if condition="$type['login'] eq 1">
+                            <volist name="zdydh" id="vo">
+                            <if condition="$vo['type'] eq 5">
+                            <li <eq name="GROUP_NAME" value="User">class="menuon"</eq> <if condition="$vo['dspl'] eq 1">style="display:none;"</if>>
+                            <a <if condition="$vo['open'] eq '1'">target="_blank"</if> href="<if condition="$vo['url'] eq ''">{pigcms::U('User/Index/index')}<else/>{pigcms:$vo['url']}</if>"><if condition="$vo['name'] eq ''">管理中心<else/>{pigcms:$vo['name']}</if></a></li>
+                            </if>
+                            </volist>
+                        <else/>
+                            <li <eq name="GROUP_NAME" value="User">class="menuon"</eq>><a href="{pigcms::U('User/Index/index')}">管理中心</a></li>
+                        </if> 
+                    </ul>
+                </div>
+                <div class="logo fl">
+                    <a href="/">
+                        <img src="{pigcms:$f_logo}" alt="logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

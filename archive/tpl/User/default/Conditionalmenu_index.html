@@ -1,0 +1,117 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/diymen/css/menu.css">
+<script src="{pigcms:$staticPath}/tpl/static/conditionalmenu/js/jquery.min.js"></script>
+<script src="{pigcms:$staticPath}/tpl/static/conditionalmenu/layer/layer.js"></script>
+<script type="text/javascript">
+
+</script>
+<style>
+.hui{color:#aaa}
+</style>
+<div class="content">
+	<div class="cLineB">
+		<h4><span class=""><h1>个性化自定义菜单</h1></span></h4>
+	</div>
+	<a name="main"></a>
+	<if condition="$usertplid eq 2">
+	<div class="alert alert-success alert-dismissable">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+    <else />
+    <div class="ftip" style="margin:10px auto;height:172px;">
+    </if>
+		1.必须在微信公众平台<strong>申请</strong>自定义菜单使用的<strong>AppId</strong>和<strong>AppSecret</strong>，在【<a href="{pigcms::U('User/Index/edit', array('id'=>$id))}" >授权设置</a>】中设置。<br/>
+		2.最多创建<span class="red bold">3 个一级菜单</span>，每个一级菜单下最多可以创建 <span class="red bold">5 个二级菜单</span>，菜单<span class="red bold">最多支持两层</span>。（多出部分会生成前3个一级菜单）<br />
+		3.本功能不支持支付宝服务窗。<br />
+		4.该功能开放给已认证订阅号和已认证服务号。<br />
+		5.当公众号创建多个个性化菜单时，将按照生成菜单时间顺序，由新到旧逐一匹配，如果全部个性化菜单都没有匹配成功，则显示默认菜单<br />
+		6.必须要有一个<span class="red bold">默认菜单</span>才可以添加个性化自定义菜单，点击进入【<a href="{pigcms::U('User/Diymen/index', array('token'=>$token))}" >自定义菜单</a>】来设置默认菜单。<br />
+		7.个性化菜单要求用户的微信客户端版本在iPhone6.2.2，Android 6.2.4以上。<br />
+		8.最多只能设置为跳转到3个域名下的链接。
+ 	</div>
+	<div class="cLineB">
+		<h4><span class="">个性化自定义菜单列表</span></h4>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator" style="float:left;">
+			<a href="{pigcms::U('User/Conditionalmenu/matchrule_set',array('token'=>$token))}" title="添加个性化规则" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{pigcms::RES}/images/product/add.png" class="vm"></if> 添加个性化规则</a>
+		</div>
+		<div class="pageNavigator" style="float:right;">
+			<input type="text" id="search" class="px search" placeholder="输入个性化名称"  name="search" value="{pigcms:$_GET['search']}" style="margin-top:6px">
+			<a href="javascript:search()" id="dosearch" href="" class="btnGrayS" title="搜索">搜索</a>
+		</div>
+		<script>
+			
+		</script>
+		<div class="clr"></div>
+	</div>
+	<div class="msgWrap">
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="100px">名称</th>
+					<th width="80px">用户分组</th>
+					<th width="40px">性别</th>
+					<th width="60px">手机系统</th>
+					<th width="80px" >地区</th>
+					<th width="120px">生成菜单时间</th>
+					<th width="80px">状态</th>
+					<th class="norightborder">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="menu_list" id="list">
+				<tr>
+					
+					<td>{pigcms:$list.name}</td>
+					<td><?php echo $group[$list['group_id']]?$group[$list['group_id']]:'<span class="hui">未设置</span>';?></td>
+					<td><?php if($list['sex'] == 1){echo "男";}elseif($list['sex'] == 2){echo "女";}else{echo "<span class='hui'>未设置</span>";}?></td>
+					<td><?php if($list['client_platform_type'] == 1){echo "IOS";}elseif($list['client_platform_type'] == 2){echo "Android";}elseif($list['client_platform_type'] == 3){echo "其他";}else{echo "<span class='hui'>未设置</span>";}?></td>
+					<td><?php if($list['province'] != ''){echo $list['province']."&nbsp;".$list['city'];}else{echo "<span class='hui'>未设置</span>";}?></td>
+					<td><?php if($list['time'] != ''){echo date('Y-m-d H:i:s',$list['time']);}else{echo "<span class='hui'>未生成</span>";}?></td>
+					<td><?php if($list['state'] == 0){echo "<span class='hui'>未生成</span>";}elseif($list['state'] == 1){echo "已生成";}elseif($list['state'] == 2){echo "修改后未生成";}?></td>
+					<td class="norightborder">
+						<a href="{pigcms::U('User/Conditionalmenu/matchrule_set',array('token'=>$token,'id'=>$list['id']))}">修改规则</a>
+						<a href="{pigcms::U('User/Conditionalmenu/menu_set',array('token'=>$token,'cid'=>$list['id']))}">设置菜单</a>
+						<a href="javascript:fwy_confirm('确定删除菜单【{pigcms:$list.name}】吗？','{pigcms::U('User/Conditionalmenu/menu_del',array('token'=>$token,'cid'=>$list['id']))}');">删除</a>
+						<a href="javascript:fwy_confirm('自定义菜单最多勾选3个，每个菜单的子菜单最多5个，请确认!<br/>（注意：自定义菜单需要第二天，或重新关注才能生效！！！！）','{pigcms::U('User/Conditionalmenu/class_send',array('token'=>$token,'cid'=>$list['id']))}');">生成菜单</a>
+					</td>
+					
+				</tr>
+				</volist>
+			</tbody>
+		</table>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator" style="float: right;">
+			<div class="pages">{pigcms:$page}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+	layer.config({
+		extend:'extend/layer.ext.js'
+	});
+	layer.ready(function(){});
+});
+function search(){
+	var search = $("#search").val();
+	if(search != ""){
+		window.location.href="{pigcms::U('User/Conditionalmenu/index',array('token'=>$token))}&search="+search;
+	}else{
+		window.location.href="{pigcms::U('User/Conditionalmenu/index',array('token'=>$token))}";
+	}
+}
+function fwy_confirm(msg,url){
+	layer.confirm(msg, {
+		btn: ['确定','取消']
+	}, function(){
+		location.href=url;
+	}, function(){
+	
+	});
+}
+</script>
+<include file="Public:footer"/>

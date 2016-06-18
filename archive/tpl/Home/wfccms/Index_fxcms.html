@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>微信分销系统</title>
+</head>
+<body>
+
+<link rel="stylesheet" type="text/css" href="/tpl/Home/wfccms/common/css/jquery.jqzoom.css"/>
+<include file="Public:header03"/>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.2/jquery.js"></script>
+<script src="/tpl/Home/wfccms/common/js/jquery.jqzoom.js"></script>
+<script src="/tpl/Home/wfccms/common/js/swiper.jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        var options_heng =
+        {
+            zoomWidth:200,
+            zoomHeight:200,
+            title:false,
+            xOffset:0,
+            zoomType:"reverse",
+            imageOpacity:0.6
+        };
+        $("#func-1").jqzoom(options_heng);
+        $("#func-2").jqzoom(options_heng);
+        $("#func-3").jqzoom(options_heng);
+        $("#func-4").jqzoom(options_heng);
+        $("#func-5").jqzoom(options_heng);
+        $("#func-6").jqzoom(options_heng);
+        $("#func-7").jqzoom(options_heng);
+        $("#func-8").jqzoom(options_heng);
+        /*图片轮播初始化*/
+        var swiper = new Swiper('.swiper-container', {
+            onInit: function(swiper){
+                $('.swiper-index .active-num i').html(swiper.activeIndex+1);
+                $('.swiper-index .all-num').html('/0' + swiper.slides.length);
+            },
+            pagination: '.swiper-pagination',
+            paginationClickable: '.swiper-pagination',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            spaceBetween: 0,
+            onSlideChangeEnd: function(swiper){
+                $('.swiper-index .active-num i').html(swiper.activeIndex+1);
+            }
+        });
+    });
+</script>
+
+<div class="pro-ban-bd" style="height:52px;background:url(/tpl/Home/wfccms/common/images/ban-bd-2.jpg) repeat;"></div>
+<!-- pro-banner -->
+<div class="pro-banner">
+        <div class="ban-cnt">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="{pigcms::U('Index/register')}" class="a1"><img src="/tpl/Home/wfccms/common/images/fxcms_banner_02.jpg" alt="立即体验" /></a></div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="swiper-arrows"></div>
+        </div>
+    </div>
+<div class="content">
+    <div class="tabs">
+        <ul class="tab-title clearfix">
+            <li class="active">产品介绍</li>
+            <li><a href="{pigcms::U('Index/fxcms_price')}">产品价格</a></li>
+            <li><a href="{pigcms::U('Index/fxcms_case')}">产品案例</a></li>
+        </ul><!-- tab-title -->
+        <div class="tab-con">
+            <div class="tab-con-1">
+                <div class="part-title">
+                    <h1><strong>微信</strong>分销系统</h1>
+                    <h2 style="font-size: 20px;margin-top: 8px;">微信版+APP版</h2>
+                    <p>微销CMS是一款超强大功能的微信分销代销运营系统，适合产品型企业，用于微商分销，结算，二级分销等运营平台。<br />只要有好的货源，只要有营销团队，就可以应用微销CMS平台；“厂家不愁销路，微商不愁货源”全新的移动电商分销生态体系。</p>
+                    <div class="line">&nbsp;</div>
+                </div><!-- part-title -->
+                <div class="card clearfix">
+                    <div class="col">
+                        <div class="card_01">
+                            <div class="txt">
+                                <h2>分销代销, 轻松管理</h2>
+                                <p>厂家轻松管理代销商、商品、订单、财务等。微商无需进货，无需资金，只需上架产品，推荐分享即可获取交易收益</p>
+                            </div>
+                        </div>
+                    </div><!-- col -->
+                    <div class="col">
+                        <div class="card_02">
+                            <div class="txt black">
+                                <h2>免费入驻，免费提现</h2>
+                                <p>厂家与微商免费入驻，轻松开店，而且所有交易中不收取任何手续费，提现后1-2个工作日即可到账。</p>
+                            </div>
+                        </div>
+                        <div class="card_03">
+                            <div class="txt">
+                                <h2>时尚热卖, 特色分销</h2>
+                                <p>定位时尚热卖分销，所有商品会经过层层筛选与考核...
+                                </p>
+                            </div>
+                        </div>
+                    </div><!-- col -->
+                    <div class="col">
+                        <div class="card_04">
+                            <div class="txt black">
+                                <h2>千万投入, 扶持发展</h2>
+                                <p>蓄势十年，有丰富的资源，有投资商的支持，因此微销CMS一开始就立足于打造服务平台，全方面的广告宣传投入，开通微商学院免费培训等，扶持商家与微商的发展。</p>
+                            </div>
+                        </div>
+                        <div class="card_05">
+                            <div class="txt black">
+                                <h2>千万投入, 扶持发展</h2>
+                                <p>蓄势十年，有丰富的资源，有投资商的支持，因此微销CMS一开始就立足于打造服务平台，全方面的广告宣传投入，开通微商学院免费培训等，扶持商家与微商的发展。</p>
+                            </div>
+                        </div>
+                    </div><!-- col -->
+                </div><!-- card -->
+            </div>
+        </div><!-- tab-con -->
+    </div><!-- tabs -->
+    <div class="value">
+        <h3>微销CMS的平台价值</h3>
+        <ul class="ico-list CMS-ico-list clearfix">
+            <li>
+                <div class="CMS-ico-box">
+                    <a href="##" class="CMS-ico-1">
+                        &nbsp;
+                    </a>
+                    <h5>分销直营<br>一体化</h5>
+                </div>
+            </li>
+            <li><span class="ico-short-line">&nbsp;</span></li>
+            <li>
+                <div class="CMS-ico-box">
+                    <a href="##" class="CMS-ico-2">
+                        &nbsp;
+                    </a>
+                    <h5>大数据<br>引爆销量</h5>
+                </div>
+            </li>
+            <li><span class="ico-short-line">&nbsp;</span></li>
+            <li>
+                <div class="CMS-ico-box">
+                    <a href="##" class="CMS-ico-3">
+                        &nbsp;
+                    </a>
+                    <h5>产品不限<br>区域分销</h5>
+                </div>
+            </li>
+            <li><span class="ico-short-line">&nbsp;</span></li>
+            <li>
+                <div class="CMS-ico-box">
+                    <a href="##" class="CMS-ico-4">
+                        &nbsp;
+                    </a>
+                    <h5>财务流<br>可控制范围</h5>
+                </div>
+            </li>
+            <li><span class="ico-short-line">&nbsp;</span></li>
+            <li>
+                <div class="CMS-ico-box">
+                    <a href="##" class="CMS-ico-5">
+                        &nbsp;
+                    </a>
+                    <h5>助商家营销<br>实现共赢</h5>
+                </div>
+            </li>
+            <li><span class="ico-short-line">&nbsp;</span></li>
+            <li>
+                <div class="CMS-ico-box marR0">
+                    <a href="##" class="CMS-ico-6">
+                        &nbsp;
+                    </a>
+                    <h5>集中掌控<br>多商家订单</h5>
+                </div>
+            </li>
+        </ul><!-- ico-list -->
+    </div><!-- value -->
+    <div class="func_bg">
+        <div class="part-title">
+            <h1><strong>微销CMS系统</strong>主要功能</h1>
+            <div class="line">&nbsp;</div>
+        </div><!-- part-title -->
+        <div class="func clearfix">
+            <div class="func-L left">
+                <div class="func-box">
+                    <div class="title"><h4>多级会员管理体系</h4></div>
+                    <p>让您轻松便捷的了解会员信息。</p>
+                    <a id="func-1" href="/tpl/Home/wfccms/common/images/func-1-lg.jpg" title="多级会员管理体系">
+                        <img src="/tpl/Home/wfccms/common/images/func-1.jpg" title="多级会员管理体系"/>
+                    </a>
+                </div><!-- func-box -->
+                <div class="func-box blue">
+                    <div class="title"><h4>商品管理</h4></div>
+                    <p>按商家店铺的商品分类发布商品,可设置多种商品属性。</p>
+                    <a id="func-2" href="/tpl/Home/wfccms/common/images/func-2-lg.jpg" title="商品管理">
+                        <img src="/tpl/Home/wfccms/common/images/func-2.jpg" title="商品管理"/>
+                    </a>
+                </div><!-- func-box -->
+                <div class="func-box orange">
+                    <div class="title"><h4>客户管理</h4></div>
+                    <p>商家管理我的客户、对我的客户进行分类管理、减少筛选时间。</p>
+                    <a id="func-3" href="/tpl/Home/wfccms/common/images/func-3-lg.jpg" title="商品管理">
+                        <img src="/tpl/Home/wfccms/common/images/func-3.jpg" title="商品管理"/>
+                    </a>
+                </div><!-- func-box -->
+                <div class="func-box green">
+                    <div class="title"><h4>财务管理</h4></div>
+                    <p>买家、商家的财务数据一目了然， 自由提现，充值。</p>
+                    <a id="func-4" href="/tpl/Home/wfccms/common/images/func-4-lg.jpg" title="商品管理">
+                        <img src="/tpl/Home/wfccms/common/images/func-4.jpg" title="商品管理"/>
+                    </a>
+                </div><!-- func-box -->
+            </div><!-- func-L -->
+
+            <div class="func-R left">
+                <div class="func-box">
+                    <div class="title"><h4>多级佣金结算体系</h4></div>
+                    <p>商家代销的产品，经交易成功后， 系统自动把佣金返利到分销商的帐户。</p>
+                    <a id="func-5" href="/tpl/Home/wfccms/common/images/func-5-lg.jpg" title="商品管理">
+                        <img src="/tpl/Home/wfccms/common/images/func-5.jpg" title="商品管理"/>
+                    </a>
+                </div><!-- func-box -->
+                <div class="func-box blue">
+                    <div class="title"><h4>分销商管理</h4></div>
+                    <p>可以管理平台上注册的所有的商家，设置店铺状态，店铺类型，查看商家的商品列表及订单。</p>
+                    <a id="func-6" href="/tpl/Home/wfccms/common/images/func-6-lg.jpg" title="商品管理">
+                        <img src="/tpl/Home/wfccms/common/images/func-6.jpg" title="商品管理"/>
+                    </a>
+                </div><!-- func-box -->
+                <div class="func-box orange">
+                    <div class="title"><h4>订单管理</h4></div>
+                    <p>商家可以及时查看下达的订单，快速安排销售出库和物流配送，极大的提高工作效率。 </p>
+                    <a id="func-7" href="/tpl/Home/wfccms/common/images/func-7-lg.jpg" title="商品管理">
+                        <img src="/tpl/Home/wfccms/common/images/func-7.jpg" title="商品管理"/>
+                    </a>
+                </div><!-- func-box -->
+                <div class="func-box green">
+                    <div class="title"><h4>数据统计</h4></div>
+                    <p>实时更新店铺的成单数量、收入总数、访客总数、浏览总数，根据店铺动态来调整店铺商品。</p>
+                    <a id="func-8" href="/tpl/Home/wfccms/common/images/func-8-lg.jpg" title="商品管理">
+                        <img src="/tpl/Home/wfccms/common/images/func-8.jpg" title="商品管理"/>
+                    </a>
+                </div><!-- func-box -->
+            </div><!-- func-R -->
+            
+            <div class="left apply_fx" style="margin-left:42%;">
+                    <a class="flip-card-content" href="/agent_step.html?#apply_main">
+                        <span class="ty-btn-a  ">立即申请</span>
+                        <span class="ty-btn-b applybtn" style="background: #69AE17;color:#F9F9FB;">立即申请</span>
+                    </a>
+
+             </div>
+            
+        </div>
+        
+    </div><!-- func_bg -->
+</div><!-- content -->
+<include file="Public:footer03"/>
+</body>
+</html>

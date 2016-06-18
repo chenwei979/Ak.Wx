@@ -1,0 +1,368 @@
+<?php
+    $count = count($list);
+    if (is_int($count/$num)) {
+        $gamepage = $count/$num;
+    }else{
+        $gamepage = floor($count/$num+1);
+    }
+    if ($gamepage > 6) {
+        if ($game_p < 4) {
+            $pagestar = 1;
+            $pageend  = 7; 
+        }else{
+            $pagestar = $game_p-3;
+            $pageend  = $game_p+3; 
+        }
+        if ($pageend >$gamepage) {
+            $pageend  = $gamepage;
+            $pagestar = $pageend-6;
+        }
+    }else{
+        $pagestar = 1;
+        $pageend  = $gamepage;
+    }
+
+    if ($game_p > 0) {
+        $star = ($game_p-1)*$num;
+        $funclist = array_slice($list,$star,$num);
+    }else{
+        $funclist = array_slice($list,0,$num);
+    }
+    if ($game == 1) {
+        $games = $funclist;
+    }else{
+        $function = $funclist;
+    }
+    
+?>
+<style>
+.feature_list .feature_title >li{width:{pigcms:$classwidth}}
+.animated{min-height: 750px;}
+em{font-style: oblique;}
+section{    min-height: 500px;}
+</style>
+<script>
+    if ({pigcms:$gamepage} > 7) {
+        $('.and_p').css('display','');
+        if ({pigcms:$game_p} < ({pigcms:$gamepage}-3)) {
+            $('.aiya').css('display','');
+        }
+    }
+    <if condition="$what eq '1'">
+        $('.h_key').css('display','');
+    </if>
+    var h=$(window).height();
+    $('.popup_bud').css('height',h-180+"px");
+    if (h < 700) {$('.h_key').css('margin-top','-450px');$('.animated').css('min-height','500px');$('section').css('height','300px')};
+    if ($('.feature_list').width() > 1250) {
+        $('.feature_list .feature_table .feat_txt').css('width','63%');
+        $('.feature_list .feature_table li').css('width','31%');
+        $('.feature_list .feature_table li').css('margin-right','1%');
+    }
+    $('.page_{pigcms:$game_p}').addClass('active');
+    if ({pigcms:$game_p} <= 1) {
+        $('.up').css('display','none');
+    };
+    if ({pigcms:$game_p} >= {pigcms:$gamepage}) {
+        $('.down').css('display','none');
+    };
+</script>
+<div class="content">
+    <article class="feature_list">
+            <div class="layer"></div>
+        <div class="search clearfix">
+            <div class="search_input clearfix">
+            <form action="" method="post">
+                <input type="text" name="search" id="textfield" value="请输入功能、游戏名称"   onFocus="if (value =='请输入功能、游戏名称'){value =''}" onBlur="if (value ==''){value='请输入功能、游戏名称'}" style="color:#fff;font-size: 13px;"  />
+                <button type="{pigcms::U('Function/show_ajax',array('token'=>$token,'class'=>$class))}" class="search_what"><span><i></i></span></button>
+            </form>
+            </div>
+        </div>
+        <menu style="margin-bottom: 30px;">
+            <ul class="feature_title clearfix ">
+                <li class=" <if condition="$class eq '0'"> active </if> "><a href="{pigcms::U('Function/show_ajax',array('token'=>$token,'class'=>'0'))}" class="quanbu">全部</a> </li>
+            <volist name="classlist" id="vo">
+                <li <if condition="$class eq $vo['name']">class="active" </if>><a href="{pigcms::U('Function/show_ajax',array('token'=>$token,'class'=>$vo['name']))}">{pigcms:$vo.name}</a>
+                    <ul class="feat_child_title">
+                    <volist name="functions" id="co">
+                        <if condition="$co['classid'] eq $vo['id']">
+                        <a href="{pigcms::U('Function/show_ajax',array('id'=>$id,'token'=>$token,'class'=>$vo['name'],'holi_id'=>$co['id']))}"><li>{pigcms:$co.name}</li></a>
+                        </if>
+                    </volist>
+                    </ul>
+                </li>
+            </volist>
+                <li class="class_game" >
+                    <a href="{pigcms::U('Function/show_ajax',array('id'=>$id,'token'=>$token,'class'=>'game'))}">游戏</a>
+                    <ul class="feat_child_title">
+                        <volist name="cats" id="uo">
+                            <a href="{pigcms::U('Function/show_ajax',array('id'=>$id,'token'=>$token,'class'=>'game','catid'=>$i))}"><li>{pigcms:$uo.name}</li></a>
+                        </volist>
+                    </ul>
+                </li>
+            </ul>
+        </menu>
+        <script>
+        $('.class_{pigcms:$class}').addClass('active');
+        </script>
+        <section>
+        <script src="./tpl/static/welcome/js/fakeLoader.min.js"></script>
+        <link rel="stylesheet" href="{pigcms:$staticPath}/tpl/static/welcome/css/fakeLoader.css">
+    <script>
+        $(document).ready(function(){
+            $(".fakeloader").fakeLoader({
+                timeToHide:1200,
+                bgColor:"#fff",
+                spinner:"spinner1",
+       
+            });
+        });
+    </script>
+        <div class="container">
+    <div class="fakeloader"></div>
+</div> 
+            <ul class="feature_table clearfix">
+            <volist name="function" id="co">
+            <if condition="$co[game] eq '1'">
+            <li class="clearfix " >
+            <div class="feat_img feat_imgs_{pigcms:$co.id}">
+                <img src="{pigcms:$co.logo}" />
+                <div class="erweimas_{pigcms:$co.id}" style="display:none; position:absolute; width:100%; height:100%; top:0; left:0; background:rgba(0,0,0,0.5); text-align: center; z-index:9">
+                    <div id="qrcodes_{pigcms:$co.id}_hover"></div>
+                    <img src="{pigcms:$co.logo}" style="width:30px;height:30px;margin-top:-60px;position:relative;z-index:1;">
+                </div>
+            </div>
+            <script>
+                $(".feat_imgs_{pigcms:$co.id}").hover(function(){
+                    $(this).find(".erweimas_{pigcms:$co.id}").stop().fadeToggle(300);
+                })
+                $("#qrcodes_{pigcms:$co.id}_hover").css("margin-top","12px");
+                $("#qrcodes_{pigcms:$co.id}_hover").qrcode({
+                    render: "canvas",
+                    width: 90,
+                    height:90,
+                    text: "http://www.meihua.com/index.php?m=Game&c=index&a=index&start=true&id={pigcms:$co.id}"
+                });
+            </script>
+            <div class="feat_txt">
+                <h5 style="margin-top: -3px;"><span>{pigcms:$co.title}</span></h5>
+                <a href="javascript:void(0)" onclick="class_id({pigcms:$co.id})" style="float: left;text-align: left;"><p <if condition="$usertplid eq 2"> style="min-width:210px;margin-top: 7px;" <else /> style="min-width:285px;margin-top: 7px;"</if>> {pigcms:$co.intro} </p></a> <br>
+                <a href="javascript:void(0)" onclick="class_id({pigcms:$co.id})" style="margin-top: -20px;">【详细】</a>
+                <br><br>
+                <h5 style="margin-top: 6px;"><i>游戏</i><i>{pigcms:$co.cat_id}</i></h5>
+               </div>
+        </li>
+        <div class="popup func_{pigcms:$co.id}"  style="margin-bottom: 10px;">
+            <div class="close closes_{pigcms:$co.id}"></div>
+            <div class="popup_bud">
+                <div class="popup_title clearfix">
+                    <div class="feat_img"><img src="{pigcms:$co.logo}" /></div>
+                    <div class="feat_txt feat_txt_i " style="width:475px;">
+                        <h5><span>{pigcms:$co.title}</span><i style="margin-left:5px;">游戏</i><i>{pigcms:$co.cat_id}</i></h5>
+                        <p style="width: 470px;height: 66px;-webkit-line-clamp: 3;"> {pigcms:$co.intro} </p>
+                    </div>
+                    <div style="width:115px;height:115px;float:left;margin-top:10px;">
+                    <div id="qrcodes_{pigcms:$co.id}" style="position:relative;"></div>
+                    <img src="{pigcms:$co.logo}" style="width:30px;height:30px;margin-top:-70px;position:relative;z-index:1;">
+                    </div>
+                    <script>
+                        $("#qrcodes_{pigcms:$co.id}").qrcode({
+                            render: "canvas",
+                            width: 115,
+                            height:115,
+                            text: "http://www.meihua.com/index.php?m=Game&c=index&a=index&start=true&id={pigcms:$co.id}"
+                        });
+                    </script>
+                </div>
+                <div class="popup_content">
+                    <div class="popup_info"><span>游戏玩法</span> <i></i> </div>
+                    <div class="popup_pro" style="text-align: left;">
+                    <?php echo htmlspecialchars_decode(stripslashes($co['rule'])) ?>
+                    {pigcms:$co.rule_pic}
+                    </div>
+                </div>
+            </div>
+            <div class="popup_button">
+                <a href="{pigcms::U('Game/gameSet',array('gameid'=>$co['id']))}"><button>使用此游戏</button></a>
+            </div>
+            </div>
+            <else />
+                <li class="clearfix classoff clearfix_{pigcms:$co.classid}" >
+                    <div class="feat_img"><a href="<?php echo $classfun[$co['nick_title']] ?>"><img src="<?php  if (C('server_topdomain')=='pigcms.cn') { echo $co['img_havecolor']; }else{ echo $co['logo']; }?>" /></a></div>
+                    <div class="feat_txt">
+                    <div>
+                        <h5 style="height: 23px;margin-bottom: 5px;"><span style="float:left;"><a href="<?php echo $classfun[$co['nick_title']] ?>" style="font-size:17px;margin-top: -3px;">{pigcms:$co.title}</a></span>
+                        </h5>
+                    </div>
+                    <div style="width: 100%;height: 50px;">
+                        <a style="width: 100%;" href="javascript:void(0)" onclick="class_id('f{pigcms:$co.id}')"><p style="<if condition="$usertplid neq 2">min-width:285px;</if>">{pigcms:$co.desc}</p></a>
+                    </div>
+                        <a href="javascript:void(0)" onclick="class_id('f{pigcms:$co.id}')" style="margin-top: -20px;">【详细】</a> 
+                        <h5 style="height: 23px;margin-top: 15px;margin-bottom: 0px;">
+                            <?php
+                            foreach ($co["class"] as $key => $value) {
+                                echo "<i style='float:left;background:#44b549;'>".$value."</i>";
+                            }?>
+                        </h5>
+                    </div>
+                </li>
+                <div class="popup func_f{pigcms:$co.id}" style="margin-bottom: 10px;">
+                    <div class="close close_{pigcms:$co.id}"></div>
+                    <div class="popup_bud">
+                        <div class="popup_title clearfix">
+                            <div class="feat_img"><img src="<?php 
+                            if (C('server_topdomain')=='pigcms.cn') { echo $co['img_havecolor']; }else{ echo $co['logo']; }?>" /></div>
+                            <div class="feat_txt feat_txt_i " style="width:558px;">
+                                <h5><span style="float:left;">{pigcms:$co.title}</span><?php
+                                foreach ($co["class"] as $key => $value) {
+                                    echo "<i style='float:left;background:#44b549;'>".$value."</i>";
+                                }?></h5>
+                                <p style="width:100%;height: 66px;-webkit-line-clamp: 3;"> {pigcms:$co.desc} </p>
+                            </div>
+                        </div>
+                        <div class="popup_content">
+                            <div class="popup_info"><span>功能说明</span> <i></i> </div>
+                            <div class="popup_pro" style="text-align: left;font-style: initial;">
+                                <?php echo htmlspecialchars_decode(stripslashes($co['content'])) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup_button">
+                        <a href="<?php echo $classfun[$co['nick_title']]?>"><button>进入</button></a>
+                    </div>
+                </div>
+            </if>
+            </volist>
+            <div id="gamelist">
+            <volist name="games" id="io">
+            <li class="clearfix " >
+                <div class="feat_img feat_img_{pigcms:$io.id}">
+                    <img src="{pigcms:$io.logo}" />
+                    <div class="erweima_{pigcms:$io.id}" style="display:none; position:absolute; width:100%; height:100%; top:0; left:0; background:rgba(0,0,0,0.5); text-align: center; z-index:9">
+                        <div id="qrcode_{pigcms:$io.id}_hover"></div>
+                        <img src="{pigcms:$io.logo}" style="width:30px;height:30px;margin-top:-60px;position:relative;z-index:1;">
+                    </div>
+                </div>
+                <script>
+                    $(".feat_img_{pigcms:$io.id}").hover(function(){
+                        $(this).find(".erweima_{pigcms:$io.id}").stop().fadeToggle(300);
+                    })
+                    $("#qrcode_{pigcms:$io.id}_hover").css("margin-top","12px");
+                    $("#qrcode_{pigcms:$io.id}_hover").qrcode({
+                        render: "canvas",
+                        width: 90,
+                        height:90,
+                        text: "http://www.meihua.com/index.php?m=Game&c=index&a=index&start=true&id={pigcms:$io.id}"
+                    });
+                </script>
+                <div class="feat_txt">
+                    <h5 style="margin-top: -3px;"><span><a href="{pigcms::U('Game/gameSet',array('gameid'=>$io['id']))}" style="font-size: 17px;">{pigcms:$io.title}</a></span></h5>
+                    <a href="javascript:void(0)" onclick="class_id({pigcms:$io.id})" style="float: left;text-align: left;"><p <if condition="$usertplid eq 2"> style="min-width:210px;margin-top: 7px;" <else /> style="min-width:285px;margin-top: 7px;"</if>> {pigcms:$io.intro} </p></a> <br>
+                    <a href="javascript:void(0)" onclick="class_id({pigcms:$io.id})" style="margin-top: -20px;">【详细】</a>
+                    <br><br>
+                    <h5 style="margin-top: 6px;"><i>游戏</i><i>{pigcms:$io.cat_id}</i></h5>
+                   </div>
+            </li>
+            <div class="popup func_{pigcms:$io.id}"  style="margin-bottom: 10px;">
+                <div class="close"></div>
+                <div class="popup_bud">
+                    <div class="popup_title clearfix">
+                        <div class="feat_img"><img src="{pigcms:$io.logo}" /></div>
+                        <div class="feat_txt feat_txt_i " style="width:475px;">
+                            <h5><span>{pigcms:$io.title}</span><i style="margin-left:5px;">游戏</i><i>{pigcms:$io.cat_id}</i></h5>
+                            <p style="width: 470px;height: 66px;-webkit-line-clamp: 3;"> {pigcms:$io.intro} </p>
+                        </div>
+                        <div style="width:115px;height:115px;float:left;margin-top:10px;">
+                        <div id="qrcode_{pigcms:$io.id}" style="position:relative;"></div>
+                        <img src="{pigcms:$io.logo}" style="width:30px;height:30px;margin-top:-70px;position:relative;z-index:1;">
+                        </div>
+                        <script>
+                            $("#qrcode_{pigcms:$io.id}").qrcode({
+                                render: "canvas",
+                                width: 115,
+                                height:115,
+                                text: "http://www.meihua.com/index.php?m=Game&c=index&a=index&start=true&id={pigcms:$io.id}"
+                            });
+                        </script>
+                    </div>
+                    <div class="popup_content">
+                        <div class="popup_info"><span>游戏玩法</span> <i></i> </div>
+                        <div class="popup_pro" style="text-align: left;">
+                        <?php echo htmlspecialchars_decode(stripslashes($io['rule'])) ?>
+                        {pigcms:$io.rule_pic}
+                        </div>
+                    </div>
+                </div>
+                <div class="popup_button">
+                    <a href="{pigcms::U('Game/gameSet',array('gameid'=>$io['id']))}"><button>使用此游戏</button></a>
+                </div>
+                </div>
+            </volist>
+            </div>
+            </ul>
+            <div class="paging clearfix">
+                <div style="float:right;">
+                <div style="float:left;">
+                <a href="{pigcms::U('Function/show_ajax',array('token'=>$token,'class'=>$class,'catid'=>$catid,'p'=>($game_p-1),'search'=>$search))}"><li class="up">上一页</li></a>
+                </div>
+                <div style="width:auto;float:left;">
+                <ul class="active_list clearfix game_page">
+                    <?php
+                        for ($i=$pagestar; $i <= $pageend; $i++) {
+                            echo '<a href="/index.php?g=User&m=Function&a=show_ajax&token='.$token.'&class='.$class.'&p='.$i.'&catid='.$catid.'&search='.$search.'"><li class="page_'.$i.'">'.$i.'</li></a>';
+                        }
+                    ?>
+                </ul>
+                </div>
+                <div style="float:left;">
+                <li class="aiya" style="border:1px solid #fff;display:none;padding:0px;">...</li>
+                </div>
+                <div style="float:left;">
+                <a href="{pigcms::U('Function/show_ajax',array('token'=>$token,'class'=>$class,'catid'=>$catid,'p'=>($game_p+1),'search'=>$search))}"><li class="down">下一页</li></a>
+                </div>
+                <div style="display:none;float:left;" class="and_p">
+                <div style="float:left;width:76px;height:37px;margin-right: 15px;text-align: center;line-height: 35px;font-size: 15px;">
+                共<b>{pigcms:$gamepage}</b>页
+                </div>
+                <div style="float:left;">
+                <li><span style="float:left;font-size: 15px;line-height: 34px;">到第&nbsp;</span><input type="text"  class="tiao_input" style="width:25px;padding: 0px 6px;margin-right:0px;color:#000;text-align:center;" value="{pigcms:$tiao_input}"><span style="float:left;margin-right:10px;font-size: 15px;line-height: 34px;">&nbsp;页</span></li>
+                </div>
+                <div style="float:left;">
+                <a href="{pigcms::U('Function/show_ajax',array('token'=>$token,'class'=>$class,'catid'=>$catid,'search'=>$search))}" class="tiaoba"><li class="tiao">跳</li></a>
+                </div>
+                </div>
+                </div>
+            </div>
+            <div class="paging clearfix active_list" >
+                 <div class="pages" style="float:right;">{pigcms:$page}</div>
+            </div>
+        </section>
+
+        <div style="width:100%;height:100%;margin-top:-300px;display:none;" class="h_key"><center><img src="{pigcms:$staticPath}/tpl/static/welcome/images/kong.png" alt=""></center></div>
+    </article>
+    <script>
+        $(".tiao_input").keyup(function () {
+            if(!isNaN(this.value)){
+              if (this.value > {pigcms:$gamepage}) {
+                this.value = {pigcms:$gamepage};
+              };
+            }else{
+              this.value = this.value.replace(/[^\d]/g, '').replace(/(\d{4})(?=\d)/g, " ");
+            }
+        })
+        function class_id(xx){
+            $(".popup").css({ "top":h*0.05});
+            $("body").css("width", $(window).width()); 
+            $("body").css({"overflow":"hidden","height":h});
+            $("section").css("position","inherit");
+            $(".layer").fadeToggle(0);
+            $(".func_"+xx).fadeToggle(0);
+        }
+        $(".layer,.close").click(function(){
+            $("body").css("width","");
+            $("body").css({"overflow":"auto","height":"auto"});
+            $("section").css("position","relative");
+            $(".layer").fadeToggle(0);
+            $(".popup").css('display','none');
+        })
+    </script>

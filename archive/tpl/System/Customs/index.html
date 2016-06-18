@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>导航管理</title>
+<include file="common:public" />
+<div class="cr"></div>
+<div id="btl">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="alist" class="fonts">
+	  <tr>
+		<td width="150">导航名称</td>
+		<td>链接地址</td>
+		<td>显示 / 隐藏</td>
+		<td>打开方式</td>
+		<td width="100">管理操作</td>
+	  </tr>
+
+		<tr style="height:50px">
+			<td >
+				<b><if condition="$fc['name'] == ''">功能介绍<else/>{pigcms:$fc['name']}</if></b>
+			</td>
+			<td >
+				<if condition="$fc['url'] == ''">{pigcms:$f_siteUrl}/index.php?g=Home&m=Index&a=fc<else/>{pigcms:$fc['url']}</if> 
+			</td>
+			<td>
+				<if condition="$fc['dspl'] == 0">显示<else/>隐藏</if>
+			</td>
+			<td>
+				<if condition="$fc['open'] == 0">当前窗口打开<else/>新窗口打开</if>
+			</td>
+			<td align='center'>
+				<a href="{pigcms::U('Customs/edit/',array('id'=>1,'pid'=>$pid))}">修改</a>
+			</td>
+		</tr>
+
+		<tr style="height:50px">
+			<td >
+				<b><if condition="$about['name'] == ''">关于我们<else/>{pigcms:$about['name']}</if></b>
+			</td>
+			<td >
+				<if condition="$about['url'] == ''">{pigcms:$f_siteUrl}/index.php?g=Home&m=Index&a=about<else/>{pigcms:$about['url']}</if> 
+			</td>
+			<td>
+				<if condition="$about['dspl'] == 0">显示<else/>隐藏</if>
+			</td>
+			<td>
+				<if condition="$about['open'] == 0">当前窗口打开<else/>新窗口打开</if>
+			</td>
+			<td align='center'>
+				<a href="{pigcms::U('Customs/edit/',array('id'=>2,'pid'=>$pid))}">修改</a>
+			</td>
+		</tr>
+
+		<tr style="height:50px">
+			<td >
+				<b><if condition="$price['name'] == ''">资费说明<else/>{pigcms:$price['name']}</if></b>
+			</td>
+			<td >
+				<if condition="$price['url'] == ''">{pigcms:$f_siteUrl}/index.php?g=Home&m=Index&a=price<else/>{pigcms:$price['url']}</if> 
+			</td>
+			<td>
+				<if condition="$price['dspl'] == 0">显示<else/>隐藏</if>
+			</td>
+			<td>
+				<if condition="$price['open'] == 0">当前窗口打开<else/>新窗口打开</if>
+			</td>
+			<td align='center'>
+				<a href="{pigcms::U('Customs/edit/',array('id'=>3,'pid'=>$pid))}">修改</a>
+			</td>
+		</tr>
+
+		<tr style="height:50px">
+			<td >
+				<b><if condition="$common['name'] == ''">产品案例<else/>{pigcms:$common['name']}</if></b>
+			</td>
+			<td >
+				<if condition="$common['url'] == ''">{pigcms:$f_siteUrl}/index.php?g=Home&m=Index&a=common<else/>{pigcms:$common['url']}</if> 
+			</td>
+			<td>
+				<if condition="$common['dspl'] == 0">显示<else/>隐藏</if>
+			</td>
+			<td>
+				<if condition="$common['open'] == 0">当前窗口打开<else/>新窗口打开</if>
+			</td>
+			<td align='center'>
+				<a href="{pigcms::U('Customs/edit/',array('id'=>4,'pid'=>$pid))}">修改</a>
+			</td>
+		</tr>
+
+		<tr style="height:50px">
+			<td >
+				<b><if condition="$login['name'] == ''">管理中心<else/>{pigcms:$login['name']}</if></b>
+			</td>
+			<td >
+				<if condition="$login['url'] == ''">{pigcms:$f_siteUrl}/index.php?g=User&m=Index&a=index<else/>{pigcms:$login['url']}</if>
+			</td>
+			<td>
+				<if condition="$login['dspl'] == 0">显示<else/>隐藏</if>
+			</td>
+			<td>
+				<if condition="$login['open'] == 0">当前窗口打开<else/>新窗口打开</if>
+			</td>
+			<td align='center'>
+				<a href="{pigcms::U('Customs/edit/',array('id'=>5,'pid'=>$pid))}">修改</a>
+			</td>
+		</tr>
+		
+		<tr style="height:50px">
+			<td >
+				<b><if condition="$help['name'] == ''">帮助中心<else/>{pigcms:$help['name']}</if></b>
+			</td>
+			<td >
+				<if condition="$help['url'] == ''">{pigcms:$f_siteUrl}/index.php?g=Home&m=Index&a=help<else/>{pigcms:$help['url']}</if> 
+			</td>
+			<td>
+				<if condition="$help['dspl'] == 0">显示<else/>隐藏</if>
+			</td>
+			<td>
+				<if condition="$help['open'] == 0">当前窗口打开<else/>新窗口打开</if>
+			</td>
+			<td align='center'>
+				<a href="{pigcms::U('Customs/edit/',array('id'=>6,'pid'=>$pid))}">修改</a>
+			</td>
+		</tr>
+
+   
+</table>
+</div>
+</body>
+</html>

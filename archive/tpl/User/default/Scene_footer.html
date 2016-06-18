@@ -1,0 +1,51 @@
+<div class="window qrCodeWindow">
+    <div class="qrWarp">
+    <a class="xClosed" onclick="setWindow.xClosed()"></a>
+    <p>使用微信扫描以下任意二维码，关注后发送指定内容即可参加活动。</p>
+   <div class="qrCodeImg">
+       <ul>
+           <li>
+               <img src="{pigcms:$info.qrcode}" alt="qrcode" width="430"/>
+           </li>
+           <li>
+               <img src="{pigcms:$info.qrcode}" alt="qrcode" width="300"/>
+           </li>
+           <li>
+               <img src="{pigcms:$info.qrcode}" alt="qrcode" width="200"/>
+           </li>
+       </ul>
+   </div>
+    <p>无法扫描二维码的用户，请关注微信号：{pigcms:$info.wxuser}</p>
+    </div>
+</div>
+<div class="window countdown">
+    <div class="bigText"> <em>5</em> </div>
+</div>
+<div class="fullBg"></div>
+<div class="WindowsPromptBox">
+	<div class="iePrompt">
+		<div class="iePrompt_main clearfix">
+			<div class="close" title="Close">Close</div>
+			<div class="ico_tips"></div>
+			<div class="iePrompt_text">
+				你使用的是IE浏览器的旧版本；一些网站的内容可能无法正常工作。我们推荐您使用IE8.0以上或任何其它高级浏览器。</div>
+		</div>
+		<div class="iePrompt_a">
+			<a href="javascript:;" class="i_know">我知道了</a>
+			<a href="http://windows.microsoft.com/en-HK/internet-explorer/download-ie" class="green" target="_blank">升级浏览器</a>
+		</div>
+	</div>
+</div>
+<param class="message" url="{pigcms::U('Scene/ajaxWall', array('token'=>$token, 'id'=>$id))}" />
+<param class="active-people" url="" />
+<param class="notice" url="" />
+<param class="params"
+	url-connect="{pigcms::U('Scene/getConnectNum', array('token'=>$token, 'id'=>$id, 'this_a'=>ACTION_NAME))}"
+	id="{pigcms:$id}"
+/>
+
+
+<script>
+setInterval(function(){ join_count("{pigcms::U('Scene/join_count_ajax',array('id' => $_GET['id'],'this_a'=>ACTION_NAME,'type'=>$_GET['type']))}"); },1000);
+	
+</script>

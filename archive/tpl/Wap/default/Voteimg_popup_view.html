@@ -1,0 +1,782 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><if condition="$action_info['action_name']">{pigcms:$action_info['action_name']}</if></title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+<link  rel="stylesheet" type="text/css" href="{pigcms:$staticPath}/tpl/static/voteimg/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="{pigcms:$staticPath}/tpl/static/voteimg/css/style_PageDefault.css">
+<link rel="stylesheet" type="text/css" href="{pigcms:$staticPath}/tpl/static/voteimg/css/style_PageMaster.css">
+<link rel="stylesheet" type="text/css" href="{pigcms:$staticPath}/tpl/static/voteimg/css/swipe.css">
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/voteimg/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/voteimg/js/jquery.lightbox-0.5.min.js"></script>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/voteimg/js/tanchuang.js"></script>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/voteimg/js/common.js"></script>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/alert/alert.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#fly_page").hide();
+});
+</script>
+<style>.share {display: none;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.7);z-index: 9696969;}
+#babydiv2{overflow: scroll;height: 500px;}
+#faq > ul{margin: 0;padding: 0;display: inline;}
+#faq > ul> li{line-height: 30px;padding: 0 0 5px 22px;border-bottom:1px #ccc solid;height:30px;}
+.content_sou{background-color: #fff;width: 98%;height: auto;float: left;padding: 1%;border: 1px #CCCCCC solid; margin-bottom: 1%;margin-top:2%; overflow: hidden;min-height:100px;}
+#img_mouth{vertical-align: middle;display: inline-block;}
+#img_mouth_playing{vertical-align: middle;display: inline-block;}
+</style>
+</head>
+<body id="body">
+<if condition="$memberNotice neq ''">
+	<if condition="$notice_content eq 'no_follow'">
+	<div style="display:none;" id="membernotice">{pigcms:$memberNotice}</div>
+	<elseif condition="$notice_content eq 'no_register'" />
+	{pigcms:$memberNotice}
+	</if>
+</if>
+  <div id="div">
+    <div id="content_pic">
+      <div class="addWrap">
+	  <if condition="$lottery_name neq '' && $lottery_link neq ''">
+	  <if condition="$votenum gt 0">
+        <div class="header_but" onclick="window.location.href='{pigcms:$lottery_link}'">{pigcms:$html_tag}{pigcms:$lottery_name}</div>
+		<else />
+		 <div class="header_but" id="header_but" pid="1">{pigcms:$html_tag}{pigcms:$lottery_name}</div>
+		</if>
+		</if>
+        <div class="swipe" id="mySwipe">
+          <div class="swipe-wrap">
+		  <if condition="$banner neq ''">
+		  <volist name="banner" id="vo">
+				<if condition="$vo.external_links neq ''">
+				<div style="height:150px;overflow:hidden;width:100%;" onclick="window.location.href='{pigcms:$vo.external_links}'"><img class="img-responsive" src="{pigcms:$vo.img_url}"/></div>
+				<else />
+				<div style="height:150px;overflow:hidden;width:100%;"><img class="img-responsive" src="{pigcms:$vo.img_url}"/></div>
+				</if>
+			</volist>
+			<else />
+			<div style="width:100%;height:130px;overflow:hidden;"><img class="img-responsive" src="{pigcms:$action_info.reply_pic}"/></div>
+			</if>
+          </div>
+        </div>
+        <ul id="position">
+		  <if condition="$banner neq ''">
+			<volist name="banner" id="vo">
+			<if condition="count($banner) gt 1">
+          <li <if condition="$key eq 0">class="cur"</if>></li>
+		  </if>
+		  </volist>
+		  </if>
+        </ul>
+      </div>
+    </div>
+   	<if condition="$hide neq 2"> 
+    <div id="main">
+      <div id="main_1">
+        <div id="main_1_1">
+          {pigcms:$name[0]}
+        </div>
+        <div id="main_a">
+          
+        </div>
+      </div>
+      <div id="main_1">
+        <div id="main_1_1">
+          {pigcms:$name[1]}
+        </div>
+        <div id="main_b">   
+         
+       </div>
+     </div>
+     <div id="main_2">
+      <div id="main_1_1">
+        {pigcms:$name[2]}
+      </div>
+      <div id="main_c"></div>
+    </div>
+  </div>
+  <else />
+  <div style="height: 10px;background: #fff;"></div>
+  </if>
+  <!--参与 -->
+  <nav id="article">
+   <div id="faq">
+   <if condition="$menu[0]['hide'] eq 1">
+    <ul>
+      <li <if condition="$menu[0]['menu_link'] neq ''">onclick="window.location.href='{pigcms:$menu[0]['menu_link']}'"</if>>
+        <div id="article_pic"><img src="<php>if(strpos($menu[0]['menu_icon'],'http') !== false){ echo $menu[0]['menu_icon'];}else{ echo $staticPath.$menu[0]['menu_icon'];}</php>" /></div>
+        <div id="article_word">{pigcms:$menu[0]['menu_name']}</div></li>
+      </ul><div style="clear: both;"></div>
+	  </if>
+	  <if condition="$menu[1]['hide'] eq 1">
+      <ul>
+        <li class="jiajian">
+          <div id="article_pic"><img src="<php>if(strpos($menu[1]['menu_icon'],'http') !== false){ echo $menu[1]['menu_icon'];}else{ echo $staticPath.$menu[1]['menu_icon'];}</php>"/></div>
+          <div id="article_word">
+           {pigcms:$menu[1]['menu_name']}</div></li>
+		    <dd id="date" style="display:none;"   class="qiehuan_s"> <div id="jiandiv1" >
+				<div id="jiandiv2">
+                  <div id="jiandiv">
+                     活动时间
+                  </div>
+                  <div class="toupiao_s">
+				  	报名时间： <br>{pigcms:$action_info['apply_start_time']|date='Y-m-d H:i',###}到{pigcms:$action_info['apply_end_time']|date="Y-m-d H:i",###}<br>
+                   投票时间：<br> {pigcms:$action_info['start_time']|date='Y-m-d H:i',###}到{pigcms:$action_info['end_time']|date="Y-m-d H:i",###}<br>
+                  </div>
+                </div>
+                </div></dd>    
+          </ul><div style="clear: both;"></div>
+		  </if>
+		  <if condition="$menu[2]['hide'] eq 1">
+          <dl>
+            <dt class="jiajian">
+              <div id="article_pic"><img src="<php>if(strpos($menu[2]['menu_icon'],'http') !== false){ echo $menu[2]['menu_icon'];}else{ echo $staticPath.$menu[2]['menu_icon'];}</php>"   /></div>
+              <div id="article_word">
+                {pigcms:$menu[2]['menu_name']}
+              </div></dt>
+              <dd  style="display:none;" class="qiehuan_s"> <div  id="jiandiv1" >
+                <div  id="jiandiv2">
+                  <div id="jiandiv">
+                    活动介绍
+                  </div>
+                  <div class="toupiao_s">
+                    {pigcms:$action_info['action_desc']|html_entity_decode}<br>
+					您一共可以投票的次数：<if condition="$action_info['limit_vote'] eq 0">不限制<else />{pigcms:$action_info['limit_vote']}次</if><br>
+					您每天可以投票的次数：<if condition="$action_info['limit_vote_day'] eq 0">不限制<else />{pigcms:$action_info['limit_vote_day']}次</if><br>
+					每个投票选项您可以投票的次数：<if condition="$action_info['limit_vote_item'] eq 0">不限制<else />{pigcms:$action_info['limit_vote_item']}次</if>
+                  </div>
+                </div>
+		<if condition="strip_tags($action_info['join_desc']) neq ''">
+		<div  id="jiandiv2">
+                  <div id="jiandiv">
+                     如何参与
+                  </div>
+                  <div class="toupiao_s">
+                    {pigcms:$action_info['join_desc']|html_entity_decode}<br>
+                  </div>
+                </div>
+		</if>
+                <if condition="strip_tags($action_info['flow_desc']) neq ''">
+				<div  id="jiandiv2">
+                  <div id="jiandiv">
+                   流程介绍
+                  </div>
+                  <div class="toupiao_s">
+                    {pigcms:$action_info['flow_desc']|html_entity_decode}<br>
+                  </div>
+                </div> 
+		</if>
+				<pigcmsif where="$voteimg_prize">
+                    <div id="jiandiv2">
+                        <div id="jiandiv"> 奖品设置 </div>
+                        <div style="padding:0px 0px 10px 10px">
+                            <div>
+                                <ul class="priceList clearfix">
+								<volist name="voteimg_prize" id="prize">
+                                    <li> <span>{pigcms:$prize.prizegrade}</span>
+                                        <div class="pic"> <img src="{pigcms:$prize.prizepic}"> <small>{pigcms:$prize.prizename}</small> </div>
+                                      <if condition="$prize.sponsorurl eq ''"><h4>{pigcms:$prize.prizesponsor}</h4><else />
+                                       <h4 onclick="window.location.href='{pigcms:$prize.sponsorurl}'" style="text-decoration: underline;">{pigcms:$prize.prizesponsor}</h4></if>
+                                    </li>
+								</volist>
+                                </ul>
+                            </div>
+                        </div>
+                        </div>
+					</pigcmsif>
+						<pigcmsif where="$voteimg_sponor">
+                        <div id="jiandiv2">
+                            <div id="jiandiv"> 感谢赞助商 </div>
+                            <div style="padding:0px 0px 10px 10px">
+                                <div>
+                                    <div class="support clearfix">
+                                        <ul>
+										<volist name="voteimg_sponor" id="sponor">
+                                            <li> <a href="{pigcms:$sponor.sponsorurl}"><div><img src="{pigcms:$sponor.sponsorpic}"></div></a> 
+											<if condition="$sponor.sponsorurl eq ''">
+											<h4>{pigcms:$sponor.sponsorname}</h4>
+											<else />
+											<h4 onclick="window.location.href='{pigcms:$sponor.sponsorurl}'" style="text-decoration: underline;">{pigcms:$sponor.sponsorname}</h4>
+											</if>
+											</li>
+											</volist>
+                                        </ul>
+                                    </div>
+                                </div>
+                     
+                        </div>
+                    </div>
+					</pigcmsif>
+                </div></dd>    
+              </dl><div style="clear: both;"></div>
+			</if>
+		  <if condition="$menu[3]['hide'] eq 1">
+              <dl onclick="window.location.href='{pigcms::U('Voteimg/HomePage',array('user_id'=>$user_id,'id'=>$id,'token'=>$token))}'">
+                <dt><div id="article_pic"><img src="<php>if(strpos($menu[3]['menu_icon'],'http') !== false){ echo $menu[3]['menu_icon'];}else{ echo $staticPath.$menu[3]['menu_icon'];}</php>"   /></div>
+                  <div id="article_word">
+                     {pigcms:$menu[3]['menu_name']}
+                  </div>
+                </dt>
+              </dl><div style="clear: both;"></div>
+			</if>
+		  <if condition="$menu[4]['hide'] eq 1">
+              <ul>
+                <a href="javascript:;" onclick="apply()">  <dt><div id="article_pic"><img src="<php>if(strpos($menu[4]['menu_icon'],'http') !== false){ echo $menu[4]['menu_icon'];}else{ echo $staticPath.$menu[4]['menu_icon'];}</php>"/></div>
+                  <div id="article_word">
+                   {pigcms:$menu[4]['menu_name']}
+                  </div></dt>
+                </a>    
+              </ul><div style="clear: both;"></div>
+			  </if>
+			  <volist name="custom_menu" id="me">
+			   <dl>
+			    <a href="javascript:;" onclick="window.location.href='{pigcms:$me.menu_link}'">
+                <dt><div id="article_pic"><img src="{pigcms:$me.menu_icon}" style="width:25px;height:25px;margin-left:-37%;"/></div>
+                  <div id="article_word" style="padding-left:7px;">
+                    {pigcms:$me.menu_name}
+                  </div></dt></a>
+              </dl><div style="clear: both;"></div>
+			  </volist>
+			  <dl>
+			    <a href="javascript:;" onclick="window.location.href='{pigcms::U('Voteimg/index',array('id'=>$vote_id,'token'=>$token))}'">
+                <dt><div id="article_pic"><img src="{pigcms:$staticPath}/tpl/static/voteimg/img/back1.png"/></div>
+                  <div id="article_word">
+					返回首页
+                  </div></dt></a>
+              </dl><div style="clear: both;"></div>
+            </div> 
+          </nav>
+          <!--内容 -->
+          <div style="clear:both"></div>
+         <if condition="$item neq ''"> 
+        <div id="contentla" >               
+		<!--主体 -->
+		<div style="width:80%; margin:0 auto;">
+		<div style="width:100%; background:#eee; ">
+		{pigcms:$item['vote_title']|mb_substr=0,8,'utf-8'}
+		</div>
+		<div style="width:100%; text-align:left;padding-bottom:20px;">
+		<ul>
+		<li><span style="color:rgb(13, 178, 249);">编号：</span></span>{pigcms:$item['baby_id']}</li>
+		<li><span style="color:rgb(13, 178, 249);">得票数：</span><span id="vote_count">{pigcms:$item['vote_count']}</span></li>
+		<li><span style="color:rgb(13, 178, 249);">当前排名：</span><span>{pigcms:$item['ranking']}</span></li>
+		<li><span style="color:rgb(13, 178, 249);">与上一名差距：</span><span>{pigcms:$item['gap_vote_count']}票</span></li>
+		<li><span style="color:rgb(13, 178, 249);">拉票宣言：</span>{pigcms:$item.manifesto} </li>
+		<if condition="$item.introduction neq ''">
+		<li id="content_pic" style="margin-top:20px;border:solid 1px #fff;"><span style="color:rgb(13, 178, 249);">自我介绍：</span>{pigcms:$item.introduction|html_entity_decode} </li></if>
+		<input type="hidden" id="upload_time" value="{pigcms:$item['upload_time']}" />
+		<if condition="$item['upload_voice'] neq ''">
+		<li><span style="color:rgb(13, 178, 249);">播放语音：</span><a id="img_mouth" style="display:inline-block;vertical-align: middle;" href="javascript:;" onclick="playvoice()"><img src="{pigcms:$staticPath}/tpl/static/voteimg/img/buttonceshi_05.png" style="width:40px;height:40px;"></a> <a id="img_mouth_playing" onclick="pausevoice()" style="display:none;"><img src="{pigcms:$staticPath}/tpl/static/voteimg/img/buttonceshi_03.png" style="width:40px;height:40px;"></a></li>
+		<audio id="myaudio" src='{pigcms:$item.upload_voice}' onpause="pausevoice()"></audio>
+		<elseif condition="$item['localid'] neq '' and $item['upload_voice'] eq ''" />
+		<li><span style="color:rgb(13, 178, 249);">播放语音：</span><a id="img_mouth" style="display:inline-block;vertical-align: middle;" href="javascript:;" onclick="play();"><img src="{pigcms:$staticPath}/tpl/static/voteimg/img/buttonceshi_05.png" style="width:40px;height:40px;"></a> <a id="img_mouth_playing" style="display:none;" onclick="stop();"><img src="{pigcms:$staticPath}/tpl/static/voteimg/img/buttonceshi_03.png" style="width:40px;height:40px;"></a></li></if>
+		<if condition="$item['video_path'] neq ''">
+		<li style="margin-top:15px;"><iframe src="{pigcms:$item['video_path']}" frameborder=0 allowtransparency="false" allowfullscreen="false" allowfullscreenInteractive="false" scrolling="no" border="0" frameborder="0" style="width:100%;height:300px;"></iframe></li>
+		</if>
+		</ul>
+		</div>
+		<foreach name="vote_img" item="vo">
+		<div id="content_pic" style="border:solid 1px #fff;">
+		<img src="{pigcms:$vo}" style="width:100%"/>
+		</div>
+		</foreach>
+		<if condition="$item['ifhongbao'] eq 1">
+			<span style="color: rgb(230, 35, 35);margin-bottom: -35px;display: block;text-align: left;">温馨提示：帮TA分享后，产生投票即可挣得红包佣金哦</span>
+		</if>
+		</div>
+		<pigcmsif where="$voteimg_sponor">
+		<div class="sponsortitle">
+		<div class="sponsorText"><h2>感谢以下赞助商支持</h2></div>
+		</div>
+		<div style="padding:0px 0px 10px 10px">
+		<div>
+		<div class="support clearfix">
+			<ul>
+			<volist name="voteimg_sponor" id="sponor">
+				<li> <a href="{pigcms:$sponor.sponsorurl}"><div><img src="{pigcms:$sponor.sponsorpic}" style="height:150px;"></div></a> 
+				<if condition="$sponor.sponsorurl eq ''">
+				<h4>{pigcms:$sponor.sponsorname}</h4>
+				<else />
+				<h4 onclick="window.location.href='{pigcms:$sponor.sponsorurl}'" style="text-decoration: underline;">{pigcms:$sponor.sponsorname}</h4>
+				</if>
+				</li>
+				</volist>
+			</ul>
+		</div>
+		</div>
+
+		</div>
+		</pigcmsif>
+		<div style="width:100%;height:145px;text-align:center">
+		<div id="lapiao" style="bottom:8%;"><if condition="$is_share eq 1"><button class="STYLE2_la" id="content_button_la" onclick="window.location.href='{pigcms::U('Voteimg/index',array('id'=>$vote_id,'token'=>$token))}'">我也参与</button><else />
+		<?php if($vote_date != "" &&($vote_date == 'over' || $vote_date == 'wait')){?>
+        <button class="STYLE2_la" id="content_button_la" style="background-color:#ccc;" onclick="wait_vote();">给TA拉票</button>
+		<?php }else{ ?>
+		<button class="STYLE2_la" id="content_button_la" onclick="share();">给TA拉票</button>
+		<?php } ?>
+		</if>
+		<if condition="$vote_date neq '' && ($vote_date eq 'over' || $vote_date eq 'wait')">
+		<button class="STYLE1_la" id="content_button_la" style="background-color:#ccc;" onclick="wait_vote();">给TA投票</button>
+		<elseif condition="$notice_content neq '' && $notice_content eq 'no_register'" /><a href="#TipContent" onclick="anchor()"><button class="STYLE1_la" id="content_button_la">给TA投票</button></a><elseif condition="$notice_content neq '' && $notice_content eq 'no_follow'" /><a href="#fly_page" onclick="anchor_follow()"><button class="STYLE1_la" id="content_button_la">给TA投票</button></a>
+		<elseif condition="$notice_content neq '' && $notice_content eq 'mobile_limit'" /><button class="STYLE1_la" id="content_button_la" onclick="votenotice(\'您的手机号不在允许投票地区\');">给TA投票</button>
+		<else />
+		<button class="STYLE1_la" id="content_button_la" onclick="vote({pigcms:$item.id},this)">给TA投票</button></if></div>		      </div>
+
+	</div>
+		<else/>
+		<div class="content_sou">
+		暂时没有相关内容哦!
+		</div>
+		</if>
+<!--主体 --> 
+<!--</form> -->
+<div id="foot"> 
+<div style="width:100%; margin:0 auto;" id="c_foot">
+<volist name="custom_bottom" id="bo">
+<div id="foot_bu">  
+ <div><span><a href="{pigcms:$bo.bottom_link}"><button value='' id="" class="btnclick1" ><img src="{pigcms:$bo.bottom_icon}" width="20" height="20" /><br />
+{pigcms:$bo.bottom_name|mb_substr=0,5,'utf-8'}</button></a></span></div></div>   
+</volist>
+<if condition="$bottom[0]['hide'] eq 1">
+<div id="foot_bu">  
+<div><span><a href="tel:{pigcms:$action_info['phone']}"><button value='' id="btnclick2" class="btnclick2" ><img src="{pigcms:$staticPath}{pigcms:$bottom[0]['bottom_icon']}" width="20" height="20" /><br />
+{pigcms:$bottom[0]['bottom_name']|mb_substr=0,5,'utf-8'}</button></a></span></div></div>
+</if>
+<if condition="$bottom[1]['hide'] eq 1">
+<div id="foot_bu">  
+  <div><span><button value='' id="btnclick1" class="btnclick1" ><img src="{pigcms:$staticPath}{pigcms:$bottom[1]['bottom_icon']}" width="20" height="20" /><br />
+	{pigcms:$bottom[1]['bottom_name']|mb_substr=0,5,'utf-8'}</button></span></div>  </div>    
+</if>
+<if condition="$bottom[2]['hide'] eq 1">	
+<div id="foot_bu">  
+<div><span><button value='' id="btnclick" class="btnclick" onclick="btnclick()"><img src="{pigcms:$staticPath}{pigcms:$bottom[2]['bottom_icon']}" width="20" height="20"/><br />
+{pigcms:$bottom[2]['bottom_name']|mb_substr=0,5,'utf-8'}</button></span></div>  </div>  
+</if>
+<if condition="$bottom[3]['hide'] eq 1">
+<div id="foot_bu">   
+<div><span><button value='' id="btnclick4" class="btnclick4" ><img src="{pigcms:$staticPath}{pigcms:$bottom[3]['bottom_icon']}" width="20" height="20" /><br />
+{pigcms:$bottom[3]['bottom_name']|mb_substr=0,5,'utf-8'}</button></span></div></div>
+</if>
+</div>
+</div>
+<!--搜索-->
+<div class="divShow1"></div>
+<div class="dis1"  > 
+<div class="ttop1">
+<div class="txtspan1">
+  <div id="sec">
+	<form id="form_search" name="form1" method="post" action="{pigcms::U('Voteimg/index',array('id'=>$id,'token'=>$token))}">
+	  <div  id="sec_div">
+		<label for="txt"></label>
+		<div  id="sec_form">
+		  <input type="hidden" name="id" value="{pigcms:$id}" />
+		  <input type="hidden" name="token" value="{pigcms:$token}" />
+		  <input type="text" name="key_word" id="txt" onClick="this.value='  ';" placeholder="请输入选项标题或编号" class="sec_input" style="padding-left:10%;"/>
+		</div>
+		<div id="sec_div2">
+		  <button  id="sec_butt">
+			<div id="sec_sec"><img src="{pigcms:$staticPath}/tpl/static/voteimg/img/daohang_02.png" width="20" height="20" onclick="search()"/></div>&nbsp;&nbsp;搜索</button>
+		  </div>
+		</div>
+	  </form>
+	  	</div>
+		<div class="button_s"><button id="cabutt" onclick="hidediv(1)">关闭</button></div>
+	 </div >
+   </div> 
+ </div>  
+
+ <!-- 搜索-->
+
+<!-- 拉票-->
+<div class="divShow4"></div>
+<div class="dis4"  > 
+<div class="ttop4">
+  <div  class="txtspan4"  >
+	<div  id="sec1">
+		<div  id="sec_div">
+		  <label for="txt"></label>
+		  <div  id="sec_form">
+			<input type="text" name="lp" id="lp" onClick="this.value='  ';" placeholder="请输入选项编号进行拉票" class="sec_input" style="padding-left:10%;"/>
+		  </div>
+		  <div id="sec_div2">
+			<button  id="sec_butt1" onclick="lpclick()">
+
+			  <div id="sec_sec"><img src="{pigcms:$staticPath}/tpl/static/voteimg/img/daohang_04.png" width="20" height="20"/></div>&nbsp;&nbsp;拉票</button>
+			</div>
+		  </div>
+		</div>
+		<div class="button_s"><button id="cabutt" onclick="hidediv(4)">关闭</button></div>
+		
+	   </div >
+	 </div> 
+   </div>  
+   <!-- 拉票-->
+</div>
+<!--投票提示 -->
+<!--div id="vote_notice" class="myDiv" style="display:none">投票成功</div-->
+<div id="notice_vote" style="z-index:99;left:58%;top: 30%;width:250px;height:40px; line-height:40px;color:#fff; font-size:18px;  border-radius: 9px;  background-color: #2dcc70;  margin: 0 auto; text-align:center; font-family:'微软雅黑';margin-left:-150px!important;margin-top:-60px!important;margin-top:0px;position:fixed!important;display:none">投票成功</div>
+
+<div id="no_follow" style="z-index:99;left:48%;top: 30%;width:315px;height:40px; line-height:40px;margin-left:-150px;margin-right:150px;margin-top:-60px;position:fixed;display:none">{pigcms:$memberNotice}</div>
+<div id="bg" class="bg" style="display:none;"></div>
+<div class="share">
+	<img src="{pigcms:$staticPath}/tpl/static/voteimg/img/fx1.png" style="width: 100%;">
+</div>
+<!--投票时的临时记录数据-->
+<input type="hidden" id="stat" value="true" />
+<input type="hidden" id="last_notice" value="" />
+<input type="hidden" id="last_id" value="" />
+<input type="hidden" id="localid" value="" />
+</body>
+</html>
+<script src="{pigcms:$staticPath}/tpl/static/voteimg/js/swipe.js"></script> 
+<script type="text/javascript"> 
+  var bullets = document.getElementById('position').getElementsByTagName('li');
+  var banner = Swipe(document.getElementById('mySwipe'), {
+	auto: 2000,
+	continuous: true,
+	disableScroll:false,
+	callback: function(pos) {
+	  var i = bullets.length;
+	  while (i--) {
+		bullets[i].className = ' ';
+	  }
+	  bullets[pos].className = 'cur';
+	}
+  });
+  </script>
+<script type="text/javascript">
+//活动介绍我的投票展开收缩效果
+$(function(){
+　　$('.jiajian').click(function(){
+		var index=$('.jiajian').index(this);
+	　　$(this).toggleClass('jianjian');
+		$('.qiehuan_s').eq(index).toggle();
+　　})
+});
+//报名判断
+function apply(){
+	var allow_apply = '{pigcms:$allow_apply}';
+	if(allow_apply == ""){
+		window.location.href='/index.php?g=Wap&m=Voteimg&a=apply&id={pigcms:$id}&token={pigcms:$token}';
+	}else{
+		var msg = '';
+		if(allow_apply == 'over'){
+			msg = '报名已截止';
+		}else if(allow_apply == 'wait'){
+			msg = '报名未开始';
+		}else if(allow_apply == 'exists'){
+			msg = '您已经报过名';
+		}else if(allow_apply == 'checking'){
+			msg = '您的报名资料正在审核中';
+		}
+		define_alert(msg);
+	}
+}
+function notice_check_pass(){
+	var check_pass = '{pigcms:$check_pass}';
+	var msg = '';
+	if(check_pass == 1){
+		msg = ' 您的报名资料已通过审核,快找好友帮您来投票吧';
+	}else if(check_pass == 2){
+		msg = ' 您的报名资料审核不通过,请重新报名';
+	}
+	if(msg != ""){
+		define_alert(msg);
+	}
+}
+function define_alert(msg){
+	if(msg != ""){
+		$("#windowcenter,.window_contetn").slideToggle("slow"); 
+		$("#txt").html(msg);
+		$("#txt").css('color','#000');
+		$(".window").css('background-color','#ccc');
+		$(".txtbtn").css('background-color','#2dcc70');
+		$(".txtbtn").css('color','#fff');
+	}
+}
+//底部导航宽度自适应
+$(function(){
+	var foot_bu = $('#c_foot').children('#foot_bu');
+	var len   = foot_bu.length;
+	if(len == 1){
+		foot_bu.each(function(){
+			$(this).css("width","100%");
+		});
+	}else if(len == 2){
+		foot_bu.each(function(){
+			$(this).css("width","50%");
+		});
+	}else if(len == 3){
+		foot_bu.each(function(){
+			$(this).css("width","33%");
+		});
+	}else{
+		foot_bu.each(function(){
+			$(this).css("width","25%");
+		});
+	}
+	$.get("/index.php?g=Wap&m=Voteimg&a=ajax_get_checkstatus&id={pigcms:$id}&token={pigcms:$token}&item_id={pigcms:$item_id}",function(data){
+		var state = GetCookie('alert_state_{pigcms:$item_id}');//手机返回按钮，重新获取cookie的值
+		if(state == 0){
+			notice_check_pass();
+		}
+	});
+});
+//异步请求统计信息
+$(function(){
+	$.get("/index.php?g=Wap&m=Voteimg&a=stat_info&id={pigcms:$id}&token={pigcms:$token}",function(json_data){
+		obj = eval("("+json_data+")");
+		item_count = obj.item_count ? obj.item_count : 0;
+		voted_count = obj.voted_count ? obj.voted_count : 0;
+		visit_count = obj.visit_count ? obj.visit_count : 0;
+		$("#main_a").text(item_count);
+		$("#main_b").text(voted_count);
+		$("#main_c").text(visit_count);
+	});
+});
+//提示信息
+function votenotice(text,time){
+	var t = arguments[1] ? arguments[1] : 2000;
+	$("#notice_vote").text(text);
+	$("#notice_vote").show();
+	$("#bg").show();
+	$("#notice_vote").delay(t).hide(1);
+	$("#bg").delay(t).hide(1);
+}
+//投票
+function vote(id,obj){
+	var stat = $("#stat").val();
+	var last_id = $("#last_id").val();
+	if(last_id == id && stat == 'false'){
+		votenotice($("#last_notice").val());
+	}else{
+		var msg = '';
+		var urlcode = '{pigcms:$urlcode}';
+		var is_share = '{pigcms:$is_share}';
+		$.ajax({
+		  type: 'GET',
+		  async: true,
+		  url: "/index.php?g=Wap&m=Voteimg&a=vote&vote_id={pigcms:$id}&token={pigcms:$token}&id="+id+'&urlcode='+urlcode+"&is_share="+is_share,
+		  beforeSend: function(){ $(obj).attr("disabled","disabled");$(obj).text('投票中');},
+		  success: function(info){
+			var data = eval('('+info+')');
+			if(data.status == 'done'){
+				if(data.data.left_vote_day == ''){
+					msg = '投票成功';
+				}else{
+					msg = '投票成功,今日还可以投'+data.data.left_vote_day+'票';
+				}
+				var total_count = $("#main_b").text();
+				$("#main_b").text((parseInt(total_count)+1));
+				var original_count = $("#vote_count").text();
+				$("#vote_count").text((parseInt(original_count)+1));
+				votenotice(msg);
+				SetCookie('refresh_vote_{pigcms:$id}',1);
+				$("#stat").val('true');
+				$("#last_id").val(id);
+				$("#header_but").attr('pid',2);
+			}else if(data.status == 'hbdone'){
+				msg = '获得'+data.data.getmoney+'元,可去个人中心查看';
+				var total_count = $("#main_b").text();
+				$("#main_b").text((parseInt(total_count)+1));
+				var original_count = $("#vote_count").text();
+				$("#vote_count").text((parseInt(original_count)+1));
+				votenotice(msg);
+				SetCookie('refresh_vote_{pigcms:$id}',1);
+				$("#stat").val('true');
+				$("#last_id").val(id);
+				votenotice(msg);
+			}else{
+				$("#stat").val('false');
+				$("#last_notice").val(data.data);
+				$("#last_id").val(id);
+				votenotice(data.data);
+			}
+		  },
+		  complete: function(){$(obj).removeAttr("disabled");$(obj).text('给TA投票');}
+	});
+	}
+}
+//锚点
+function anchor(){
+	$(".closed").show();
+    $("._flys").show();
+	$("#TipContent").show();
+	$(".zhezhao").show();
+	/*if($("#TopTipHolder").css('height') == '0px'){
+		$("#TopTipClose").click();//执行关闭
+		$("#TopTipHolder").css('height','35px');//弹出
+	}*/
+}
+function anchor_follow(){
+  $(".closed").show();
+    $("._flys").show();
+  $("#fly_page").show();
+  $("#membernotice").show();
+}
+//隐藏提醒关注注册弹框
+$(".close").click(function(){
+	$("#no_follow").hide();
+	$("#bg").hide();
+});
+
+function wait_vote(){
+	var msg = '';
+	var vote_date = '{pigcms:$vote_date}';
+	if(vote_date == 'wait'){
+		msg= '投票活动还未开始';
+	}else if(vote_date == 'over'){
+		msg = '投票活动已结束';
+	}
+	votenotice(msg);
+}
+//隐藏
+function hidediv(id){
+	if(id == 0){
+		$('.dis').hide();
+		$('.divShow').hide();
+	}
+	$('.dis'+id).hide();
+	$('.divShow'+id).removeClass('show1');
+	$('.divShow'+id).css('height',0);
+	$('.divShow'+id).css('width',0);
+}
+//排行
+function btnclick(){
+	window.location.href = "/index.php?g=Wap&m=Voteimg&a=vote_ranking&id={pigcms:$vote_id}&token={pigcms:$token}";
+}
+//搜索
+function search(){
+	$("#form_search").submit();
+}
+//拉票
+function lpclick(){
+	var lp = $("#lp").val();
+	lp = $.trim(lp);
+	if(lp == ""){
+		define_alert('编号或名称不能为空');
+		return false;
+	}
+	var jump_url = '/index.php?g=Wap&m=Voteimg&a=popup_view&id={pigcms:$id}&token={pigcms:$token}&key_word='+lp;
+	window.location.href = jump_url;
+}
+</script>
+<script type="text/javascript">
+function share(){
+	$(".share").show();
+}
+var common_localid;
+function play(){
+	var upload_time = "{pigcms:$item['upload_time']}";
+	var record_time = "{pigcms:$item['record_time']}";//录音时间
+	var left_time = Math.ceil(((new Date()).getTime()/1000 - upload_time));//上传距离时间 
+	if(left_time > 24*3600){//如果上传时间超过1天，重新上传
+		var localId = $("#localid").val();
+		var item_id = "{pigcms:$item['id']}";
+		var token = "{pigcms:$item['token']}";
+		if(localId != ""){ //如果没刷新页面,防止重复上传
+			if(record_time > 0){
+				setTimeout(function () {
+					$("#img_mouth_playing").hide();
+					$("#img_mouth").show();
+				}, record_time * 1000);
+			}
+			$("#img_mouth_playing").show();
+			$("#img_mouth").hide();
+			wx.playVoice({
+				localId: localId
+			});
+			return false;
+		}
+		$.ajax({
+			type: 'POST',
+			url: '/index.php?g=Wap&m=Voteimg&a=uploadVoice',
+			data : "item_id="+item_id+"&token="+token,
+			success:function(info){
+				var obj =  eval('('+info+')');
+				if(obj.status == 'done'){ //上传成功,调取下载接口
+					wx.downloadVoice({
+						serverId: obj.msg, // 上传成功返回的media_id
+						isShowProgressTips:0, //不显示进度提示
+						success: function (res) {
+							var lid = res.localId;
+							$("#localid").val(lid);
+							if(record_time > 0){
+								setTimeout(function () {
+									$("#img_mouth_playing").hide();
+									$("#img_mouth").show();
+								}, record_time * 1000);
+							}
+							$("#img_mouth_playing").show();
+							$("#img_mouth").hide();
+							wx.playVoice({
+								localId: lid
+							});
+						}
+					});
+				}else{
+					define_alert(obj.msg);
+				}
+			}
+		});
+	}else{
+		wx.downloadVoice({
+			serverId: '{pigcms:$item.serverid}',
+			isShowProgressTips: 0, // 默认为1，显示进度提示
+			success: function (res) {
+			common_localid = res.localId;
+			if(record_time > 0){
+				setTimeout(function () {
+					$("#img_mouth_playing").hide();
+					$("#img_mouth").show();
+				}, record_time * 1000);
+			}
+			$("#img_mouth_playing").show();
+			$("#img_mouth").hide();
+			wx.playVoice({
+				localId: res.localId// 需要播放的音频的本地ID，由stopRecord接口获得
+			});
+			}
+		});
+	}
+}
+function stop(){
+	$("#img_mouth_playing").hide();
+	$("#img_mouth").show();
+	var stop_localid = $("#localid").val() ? $("#localid").val() : common_localid;
+	wx.stopVoice({
+		localId: stop_localid
+	});
+}
+$(function(){
+	pausevoice();
+	$(".share").click(function() {
+		$(this).hide() ;
+	}) ;
+	$("#header_but").click(function(){
+		var pid = $(this).attr('pid');
+		if(pid == 1){
+			define_alert('投过一票即可参加');
+		}else{
+			window.location.href='{pigcms:$lottery_link}';
+		}
+	
+	})
+});
+window.shareData = {  
+	"moduleName":"Voteimg",
+	"moduleID":"{pigcms:$vote_id}",
+	"imgUrl": "{pigcms:$imgUrl}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/popup_view',array('token'=>$token,'id'=>$vote_id,'item_id'=>$item_id,'is_share'=>1,'share_code'=>$share_code))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/popup_view',array('token'=>$token,'id'=>$vote_id,'item_id'=>$item_id,'is_share'=>1,'share_code'=>$share_code))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/popup_view',array('token'=>$token,'id'=>$vote_id,'item_id'=>$item_id,'is_share'=>1,'share_code'=>$share_code))}",
+	"tTitle": "{pigcms:$custom_sharetitle_lp|shareFilter}",
+	"tContent": "{pigcms:$custom_sharedsc_lp|shareFilter}",
+	"fTitle": "{pigcms:$custom_sharetitle_lp|shareFilter}",
+};
+</script>
+{pigcms:$shareScript}

@@ -1,0 +1,34 @@
+<nav class="pageinator clearfix">
+    <div id="nav-page" class="pg-next">
+    </div>
+    <pigcmsif where="$hideTopButton neq 1">
+    <div id="nav-top" class="pg-top">
+        <span class="btn btn-top"><span class="icon icon-top"><a href="#top" style="color:#666">回到顶部</a></span></span>
+    </div>
+    </pigcmsif>
+</nav>
+<footer>
+<div class="ft-copyright"><span class="ft-copyright-text"> 
+<if condition="$iscopyright eq 1">
+{pigcms:$homeInfo.copyright}
+<else/>
+{pigcms:$siteCopyright}
+</if> </span></div>
+</footer>
+
+<script>
+window.shareData = {  
+	"moduleName":"Groupon",
+	"moduleID":"0",
+	"imgUrl": "{pigcms:$reply['picurl']}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Groupon/grouponIndex',array('token'=>$token))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Groupon/grouponIndex',array('token'=>$token))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Groupon/grouponIndex',array('token'=>$token))}",
+	"tTitle": "{pigcms:$reply['title']|shareFilter}",
+	"tContent": "{pigcms:$reply['info']|shareFilter}",
+	"fTitle": "{pigcms:$reply['title']|shareFilter}",
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

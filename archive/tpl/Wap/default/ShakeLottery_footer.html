@@ -1,0 +1,30 @@
+<params 
+	AjaxReturnPrizeUrl = "{pigcms::U('ShakeLottery/AjaxReturnPrize',array('token'=>$actioninfo['token'],'id'=>$actioninfo['id']))}"
+	enddate = "<?php echo date('m/d/Y H:i:s', $actioninfo['endtime'])?>"
+	starttime = "<?php echo date('m/d/Y H:i:s', $actioninfo['starttime'])?>"
+	other_source = "{pigcms:$actioninfo['other_source']}"
+	notice_content = '{pigcms:$notice_content}'
+	staticPath = '{pigcms:$staticPath}'
+	aid		   = '{pigcms:$actioninfo['id']}';
+	token		   = '{pigcms:$actioninfo['token']}'
+	user_id		   = '{pigcms:$user_id}'
+	MyRecordUrl 	= "{pigcms::U('ShakeLottery/LotteryMyRecord',array('token'=>$actioninfo['token']))}"
+	OtherRecordUrl 	= "{pigcms::U('ShakeLottery/LotteryRecord',array('token'=>$actioninfo['token'],'record_nums'=>$actioninfo['record_nums']))}"
+/>
+<div class="weiba-footer"><div class="weiba-copyright"></div></div>
+<script>
+window.shareData = {  
+	"moduleName":"ShakeLottery",
+	"moduleID":"{pigcms:$actioninfo.id}",
+	"imgUrl": "{pigcms:$actioninfo.reply_pic}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('ShakeLottery/index',array('token'=>$actioninfo['token'],'id'=>$actioninfo['id']))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('ShakeLottery/index',array('token'=>$actioninfo['token'],'id'=>$actioninfo['id']))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('ShakeLottery/index',array('token'=>$actioninfo['token'],'id'=>$actioninfo['id']))}",
+	"tTitle": "{pigcms:$actioninfo['custom_sharetitle']|shareFilter}",
+	"tContent": "{pigcms:$actioninfo['custom_sharedsc']|shareFilter}",
+	"fTitle": "{pigcms:$actioninfo['custom_sharedsc']|shareFilter}",
+	"isShareNum":1,
+	"ShareNumData":"shakelottery,id,{pigcms:$actioninfo.id},share_count",
+};
+</script>
+{pigcms:$shareScript}

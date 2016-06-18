@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>权限管理</title>
+<include file="common:public" />
+<div class="cr"></div>
+<volist name="info" id="vo">
+<div id="btl" style="width:32%;height:285px;margin:18px 0.5% 0 0.5%;float:left;">
+	<div id="b1t">
+		<b>{pigcms:$vo.name}</b>
+	</div>
+	<hr style="background-color:#DDD;border:none;height:1px">
+	<div id="b2t">
+		<div id="mgpx">
+			<img src="{pigcms:$vo.img_x}"/>
+		</div>
+		<div id="mgpx">
+			<img src="{pigcms:$vo.img_w}"/>
+		</div>
+	</div>
+	<div style="height:40px">
+		<p style="border-bottom: 1px solid #E7E7E7;height:20px">发布时间：{pigcms:$vo.time} <span style="margin-left:100px">状    态：<eq name="vo.status" value="1"><font color="red">显示</font><else/><font color="blue">不显示</font></eq> </span></p>
+		<p style="border-bottom: 1px solid #E7E7E7;height:15px;margin-top:5px;overflow: hidden;">链接地址：{pigcms:$vo.url}</p>
+		
+	</div>
+	<div style="height:30px;">
+	<div id="b3t" style="margin-top: 10px;margin-left: 1px;">
+		<a href="{pigcms::U('Renew/edit/',array('id'=>$vo['id'],'pid'=>$pid))}" style="color:#FFF;line-height:20px;overflow:hidden;">修    改</a>
+	</div>
+	<div id="b3t" style="margin-top: 10px;margin-left: 1px;">
+		<a href="javascript:void(0)" onclick="return confirmurl('{pigcms::U('Renew/del/',array('id'=>$vo['id'],'pid'=>$pid))}','确定删除该信息吗?')" style="color:#FFF;line-height:20px;overflow:hidden;">删    除</a>
+	</div>
+	</div>
+</div>
+</volist>
+</body>
+</html>

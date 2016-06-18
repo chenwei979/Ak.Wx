@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html class=" clickberry-extension clickberry-extension-standalone">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/online_booking.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/pig-ui.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::STATICS}/vhouse/common.css" media="all">
+<script type="text/javascript" src="{pigcms::STATICS}/vhouse/jQuery.js"></script>
+<title>专家详情</title>
+        <style>
+            td{text-align:center;height:55px;}
+        </style>
+    <meta content="clickberry-extension-here">
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;" id="onlinebooking-list">
+
+<div class="qiandaobanner">
+    <a href="javascript:;">
+<if condition="$headpic neq ''">
+        <img src="{pigcms:$headpic}">
+</if>
+    </a></div><a href="javascript:;">
+    </a><div class="cardexplain"><a href="javascript:;">
+
+</a>
+<ul class="round">
+<a href="javascript:;">
+        <li class="title">
+        <span>坐诊专家详情</span>
+        </li>
+</a>
+<if condition="$duty eq ''">
+<li><div class="text">该专家暂未安排坐诊</div>
+</li>
+<else />
+<li><div class="text">
+                <p>专家名称：{pigcms:$doctor['typename']}</p>
+                <p>专家职称：{pigcms:$level['level']}</p>
+                <p>预约费用 ：￥{pigcms:$level['lprice']}</p>
+                <p>专家简介 ：{pigcms:$duty['intro']|html_entity_decode|html_entity_decode|html_entity_decode}</p>
+				<p>每周可预约人数(分上午下午):</p>
+      <table class="ListProduct" border="1" cellspacing="0" cellpadding="0" width="100%" align="CENTER">
+              <thead>
+                    <tr >
+                    <th class="20" style="text-align: center;">周一</th>
+                    <th class="20" style="text-align: center;">周二</th>
+                    <th class="20" style="text-align: center;">周三</th>
+                    </tr>
+                  </thead>
+              <tbody>
+                <pigcmsif where="$duty">
+                    <tr><td>上午{pigcms:$week[1][1]}人<br />下午{pigcms:$week[1][2]}人</td><td>上午{pigcms:$week[2][1]}人<br />下午{pigcms:$week[2][2]}人</td><td>上午{pigcms:$week[3][1]}人<br />下午{pigcms:$week[3][2]}人</td></tr>
+				<else />
+				<tr><td colspan="11" style="text-align:center;">暂无记录</td></tr>
+				</pigcmsif>
+                </tbody>
+            </table> 
+			<br />
+			      <table class="ListProduct" border="1" cellspacing="0" cellpadding="0" width="100%" align="CENTER">
+              <thead>
+                    <tr >
+                    <th class="20" style="text-align: center;">周四</th>
+                    <th class="20" style="text-align: center;">周五</th>
+                    <th class="20" style="text-align: center;">周六</th>
+                    <th class="20" style="text-align: center;">周日</th>
+                    </tr>
+                  </thead>
+              <tbody>
+                <pigcmsif where="$duty">
+                    <tr><td>上午{pigcms:$week[4][1]}人<br />下午{pigcms:$week[4][2]}人</td><td>上午{pigcms:$week[5][1]}人<br />下午{pigcms:$week[5][2]}人</td><td>上午{pigcms:$week[6][1]}人<br />下午{pigcms:$week[6][2]}人</td><td>上午{pigcms:$week[7][1]}人<br />下午{pigcms:$week[7][2]}人</td></tr>
+				<else />
+				<tr><td colspan="11" style="text-align:center;">暂无记录</td></tr>
+				</pigcmsif>
+                </tbody>
+            </table> 
+                </div>
+        </div>
+</li>
+</if>
+</ul>
+    </div>
+<center><a style="color:#fff;width: 30%;margin-bottom:20px;" class="submit" href="{pigcms::U('Medical/registered',array('token'=>$token))}">返回挂号订单页</a></center><br><br><br>
+</body></html>

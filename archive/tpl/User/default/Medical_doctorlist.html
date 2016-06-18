@@ -1,0 +1,52 @@
+<include file="Public:head"/>
+<include file="Medical:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+<div class="cLineB">
+<h4>科室信息>{pigcms:$officename}<a href="{pigcms::U('Medical/addtype',array('token'=>$token,'tid'=>$tid,'officename'=>$officename))}" class="btnGrayS vm bigbtn right"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{pigcms::RES}/images/product/add.png" class="vm"></if> 添加专家</a></h4>
+ </div>
+<div class="msgWrap">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+  <thead>
+		<tr>
+	<th width="5%" style="text-align: center;">序号</th>
+	<th width="20%" style="text-align: center;">专家姓名</th>
+	<th width="20%" style="text-align: center;">职称</th>
+	<th width="10%" style="text-align: center;">预约费用</th>
+	<th class="norightborder" width="" style="text-align: center;">操作</th>
+		</tr>
+	  </thead>
+  <tbody>
+  <pigcmsif where="$list">
+	<volist name='list' id='vo'>
+	<tr>
+	  <td style="text-align: center;"><php>echo ($key+$firstRow+1);</php></td>
+	  <td style="font-weight:bolder;text-align: center;">{pigcms:$vo.typename}</td>
+	  <td style="font-weight:bolder;text-align: center;"><if condition="$vo['level'] neq ''">{pigcms:$vo.level}<else />——</if></td>
+	  <td style="text-align: center;"><if condition="$vo['level'] neq ''">￥{pigcms:$vo.lprice}<else />——</if></td>
+		<td class="norightborder" style="text-align: center;"><A href='index.php?g=User&m=Medical&a=addtype&id={pigcms:$vo.id}&token={pigcms:$vo.token}&tid={pigcms:$vo.tid}&officename={pigcms:$officename}' title="修改专家">修改专家</a>
+		<a class="btn" href=" {pigcms::U('Medical/detail',array('duty_id'=>$vo['id'],'tid'=>$vo['tid'],'token'=>$token,'officename'=>$officename))}" title="详情">详情</a>
+		 <a class="btn" href="javascript:drop_confirm('确定删除吗？','index.php?g=User&m=Medical&a=doctordel&id={pigcms:$vo.id}&tid={pigcms:$vo.tid}&token={pigcms:$token}&officename={pigcms:$officename}')" title="删除">删除</a>
+	  </td>
+		</tr>
+	</volist>
+	<else />
+	<tr><td colspan="6" style="text-align:center;">暂无记录</td></tr>
+	</pigcmsif>
+	</tbody>
+</table>
+</div>
+<script>
+function showIntroDetail(id){
+	art.dialog.open('{pigcms::U('Medical/reser_uinfo',array('token'=>$token))}&iid='+id,{lock:false,title:'预约订单详情',width:700,height:420,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+
+<div class="cLine">
+<div class="pageNavigator right">
+	 <div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>  
+<include file="Public:footer"/>

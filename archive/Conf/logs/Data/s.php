@@ -1,0 +1,1 @@
+<?php	return array ( 'token' => 'vdgizt1464873425', 'wecha_id' => 'oEMtet8iIkdGz65OrVe2D-Sruxi8', 'to' => 'frined', 'module' => 'Voteimg', 'moduleid' => 92, 'time' => 1465108777, 'url' => 'http://www.wooyx.com/index.php?g=Wap&amp;amp;m=Voteimg&amp;amp;a=index&amp;amp;token=vdgizt1464873425&amp;amp;id=92', ); ?>

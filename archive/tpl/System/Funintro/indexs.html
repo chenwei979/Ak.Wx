@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>权限管理</title>
+<include file="common:public" />
+<div class="cr"></div>
+<div id="btl">
+<form action="{pigcms::U('Funintro/bath_del')}" name="myform_zw" method="post">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="alist" class="fonts">
+	  <tr>
+	  	<td width="50">选中</td>
+		<td width="70">ID</td>
+		<td width="150">分类名称</td>
+		<td width="100">管理操作</td>
+	  </tr>
+	    <volist name="list" id="vo">
+			<tr>
+				<td align='center'><input type="checkbox" name='test[]' value="{pigcms:$vo.id}"/></td>
+				<td align='center'>{pigcms:$vo.id}</td>
+				<td >{pigcms:$vo.name}</td>
+				<td align='center'>
+					<a href="{pigcms::U('Funintro/edits/',array('id'=>$vo['id'],'pid'=>$pid))}">修改</a>
+					| <a onclick="o_delete('{pigcms:$vo.id}','确定删除分类吗，删除后，该项分类下的功能也会一起被删除！！');" href="javascript:">删除</a>
+				</td>
+			</tr>
+	    </volist>
+     <tr bgcolor="#FFFFFF"> 
+     <td align='center'>&nbsp;<input type="checkbox" id="checkAll" value="1"/>&nbsp;全选</td>
+     <td><button onclick="return false;" class="kind_del" id="inpts">批量删除</button></td>
+      <td colspan="8"><div class="listpage">{pigcms:$page}</div></td>
+    </tr>
+</table>
+</form>
+</div>
+</body>
+</html>
+
+

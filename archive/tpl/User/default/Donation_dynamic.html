@@ -1,0 +1,52 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">【{pigcms:$donation['name']}】动态列表</h4>
+		<div class="clr"></div>
+	</div>
+	<!--tab start-->
+	<div class="tab">
+		<ul>
+			<li class="current tabli" id="tab0"><a href="{pigcms::U('Donation/index')}">募捐活动</a></li>
+		</ul>
+	</div>
+	<!--tab end-->
+	<div class="msgWrap">
+		<div class="cLine">
+			<div class="pageNavigator left"> <a href="{pigcms::U('Donation/adddynamic',array('did' => $did))}" title="添加" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{pigcms::RES}/images/product/add.png" class="vm"></if> 新增动态</a></div>
+			<div class="clr"></div>
+		</div>
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="100">动态标题</th>
+					<th width="100">动态简介</th>
+					<th width="100" nowrap>创建时间</th>
+					<th width="100">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="dynamic_list" id="o"> 
+				<tr>
+					<td>{pigcms:$o.title}</td> 
+					<td>{pigcms:$o.text}</td> 
+					<td>{pigcms:$o.dateline|date="Y-m-d H:i:s",###}</td>
+					<td class="norightborder">
+						<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Donation/deldynamic', array('id' => $o['id'], 'did' => $did))}');">删除</a> 
+					</td>
+				</tr>
+				</volist>
+			</tbody>
+		</table>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$page}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<include file="Public:footer"/>

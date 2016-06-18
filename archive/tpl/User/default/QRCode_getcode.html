@@ -1,0 +1,19 @@
+<form class="form" method="post" action="{pigcms::U('QRCode/getcode')}" enctype="multipart/form-data">
+    <input type="hidden" id="token" name="token" value="{pigcms:$token}" />
+  <table class="userinfoArea" style=" margin:auto;" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <thead>
+        <tr align="center" height="50px;">
+            <th valign="middle"><label>渠道用户自助功能</label></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr align="center" height="50px;">
+            <td valign="middle">
+                <label for="empid">渠道编号：</label>
+                <input type="input" class="px" id="empid" name="empid" style="width:100px;">
+                <button type="submit" name="button" class="btnGreen left" style="margin-left:10px;">生成</button>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</form>

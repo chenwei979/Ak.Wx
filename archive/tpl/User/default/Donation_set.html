@@ -1,0 +1,122 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js"></script>
+<link rel="stylesheet" href="{pigcms:$staticPath}/tpl/static/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{pigcms:$staticPath}/tpl/static/kindeditor/plugins/code/prettify.css" />
+<script src="{pigcms:$staticPath}/tpl/static/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{pigcms:$staticPath}/tpl/static/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{pigcms:$staticPath}/tpl/static/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+<div class="content">
+	<div class="cLineB">
+		<div class="searchbar right">
+			<a href="{pigcms::U('Donation/index')}" class="btnGrayS vm bigbtn">返回</a>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<!--tab start-->
+	<div class="tab">
+		<ul>
+			<li class="current tabli" id="tab0"><a href="{pigcms::U('Donation/set', array('did' => $did))}">募捐设置</a></li>
+			<!--li class="tabli" id="tab0"><a href="{pigcms::U('Donation/gift', array('did' => $did))}">募捐礼品设置</a></li-->
+			<li class="tabli" id="tab0"><a href="{pigcms::U('Donation/medal', array('did' => $did))}">奖牌设置</a></li>
+		</ul>
+	</div>
+	<div class="cLine">
+		<div class="clr"></div>
+	</div>
+	<!--tab end-->
+	<div class="msgWrap">
+		<form class="form" method="post" action="" target="_top" enctype="multipart/form-data">
+			<input type="hidden" name="did" value="{pigcms:$did}" />
+			<table class="userinfoArea" style="margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+				<tbody>
+					<tr>
+						<th width="120"><span class="red">*</span>圈子名称：</th>
+						<td><input type="text" name="circle_name" value="<if condition="$set['circle_name'] eq ''">校友<else/>{pigcms:$set.circle_name}</if>" class="px" style="width:100px;">(不超过10个字)【如：好友，校友，同事...】&nbsp;&nbsp;&nbsp;<span id="circle_name_msg"></span></td>
+					</tr>
+					<tr>
+						<th width="120"><span class="red">*</span>影响值：</th>
+						<td>捐赠<input type="text" name="money" id="money" value="{pigcms:$set['money']}" class="px" style="width:40px;"> 元 获得增加1　<span class="red">粉丝通过分享，产生的捐赠，每产生<b id="show_money">1</b>元捐赠，给分享人的影响值增加1</span></td>
+					</tr>
+					<!--tr>
+						<th width="120"><span class="red">*</span>获得一个奖牌：</th>
+						<td>捐赠金额大于<input type="text" name="one" value="{pigcms:$set['one']}" class="px" style="width:40px;"> 元 </td>
+					</tr>
+					<tr>
+						<th width="120"><span class="red">*</span>获得二个奖牌：</th>
+						<td>捐赠金额大于<input type="text" name="two" value="{pigcms:$set['two']}" class="px" style="width:40px;"> 元 </td>
+					</tr>
+					<tr>
+						<th width="120"><span class="red">*</span>获得三个奖牌：</th>
+						<td>捐赠金额大于<input type="text" name="three" value="{pigcms:$set['three']}" class="px" style="width:40px;"> 元 </td>
+					</tr>
+					<tr>
+						<th width="120"><span class="red">*</span>获得四个奖牌：</th>
+						<td>捐赠金额大于<input type="text" name="four" value="{pigcms:$set['four']}" class="px" style="width:40px;"> 元 </td>
+					</tr>
+					<tr>
+						<th width="120"><span class="red">*</span>获得五个奖牌：</th>
+						<td>捐赠金额大于<input type="text" name="five" value="{pigcms:$set['five']}" class="px" style="width:40px;"> 元 </td>
+					</tr>
+					
+					<tr>
+						<td colspan="2"><span style="color:red">注：奖牌的个数越多所要的捐赠金额越大</span></td>
+					</tr-->
+					
+					<tr>
+						<th width="120"><span class="red">*</span>感谢语：</th>
+						<td>
+						<input type="text" name="tip" value="{pigcms:$set['tip']}" class="px" style="width:300px;">(不超过10个字)&nbsp;&nbsp;&nbsp;<span id="tip_msg"></span>
+						</td>
+					</tr>
+				
+					<tr>
+						<th width="120">捐赠协议：</th>
+						<td><textarea class="px" id="agreement" name="agreement" style="width: 560px; height: 200px;">{pigcms:$set['agreement']}</textarea></td>
+					</tr>
+					<tr>
+						<th>&nbsp;</th>
+						<td>
+						<button type="submit" name="button" class="btnGreen sub">保存</button>
+						<a href="{pigcms::U('Donation/index')}" class="btnGray vm">取消</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+<script>
+
+$(function(){
+
+	$('#money').keyup(function(){
+		$('#show_money').html($(this).val());
+	});
+	$(":input[name='tip']").blur(function(){
+		var tip = $.trim($(":input[name='tip']").val());
+		if(tip.length > 15){
+			$("#tip_msg").html('<span id="tip_msg" style="color: red;">感谢语不超过10个字</span>');
+		}else if(tip.length == 0){
+			$("#tip_msg").html('<span id="tip_msg" style="color: red;">感谢语不能为空</span>');
+		}else{
+			$("#tip_msg").html('');
+		}
+	});
+
+
+});
+  KindEditor.ready(function(K) {
+    window.editor = K.create('#agreement', {
+      resizeType : 1,
+      allowPreviewEmoticons : false,
+      allowImageUpload : true,
+      uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+      items : ['source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold','underline','removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist','insertunorderedlist','fullscreen']
+      });
+  });
+</script>
+<include file="Public:footer"/>

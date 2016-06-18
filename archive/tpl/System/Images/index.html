@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>权限管理</title>
+<style>
+	.warp{margin-right: 5px;}
+</style>
+<include file="common:public" />
+<div class="cr"></div>
+<div id="btl" style="width:30%;height:240px;margin:18px 1.5% 0 1.5%;float:left;">
+	<div id="b1t">
+		<b>功能介绍</b>
+	</div>
+	<hr style="background-color:#DDD;border:none;height:1px">
+	<div id="b2t">
+		<img src="<if condition="$list['fc'] eq ''">{pigcms:$staticPath}/tpl/Home/pigcms/common/images/images/1.png<else/>{pigcms:$list['fc']}</if>" style="height: 160px;margin-left:0px;width:100%;"/>
+	</div>
+	<div id="b3t">
+		<a href="{pigcms::U('Images/edit/',array('id'=>1,'pid'=>$pid))}" style="color:#FFF;line-height:20px;overflow:hidden;">修    改</a>
+	</div>
+</div>
+<div id="btl" style="width:30%;height:240px;margin:18px 1.5% 0 1.5%;float:left;">
+	<div id="b1t">
+		<b>关于我们</b>
+	</div>
+	<hr style="background-color:#DDD;border:none;height:1px">
+	<div id="b2t">
+		<img src="<if condition="$list['about'] eq ''">{pigcms:$staticPath}/tpl/Home/pigcms/common/images/images/2.png<else/>{pigcms:$list['about']}</if>" style="height: 160px;margin-left:0px;width:100%;"/>
+	</div>
+	<div id="b3t">
+		<a href="{pigcms::U('Images/edit/',array('id'=>2,'pid'=>$pid))}" style="color:#FFF;line-height:20px;overflow:hidden;">修    改</a>
+	</div>
+</div>
+<div id="btl" style="width:30%;height:240px;margin:18px 1.5% 0 1.5%;float:left;">
+	<div id="b1t">
+		<b>资费说明</b>
+	</div>
+	<hr style="background-color:#DDD;border:none;height:1px">
+	<div id="b2t">
+		<img src="<if condition="$list['price'] eq ''">{pigcms:$staticPath}/tpl/Home/pigcms/common/images/images/3.png<else/>{pigcms:$list['price']}</if>" style="height: 160px;margin-left:0px;width:100%;"/>
+	</div>
+	<div id="b3t">
+		<a href="{pigcms::U('Images/edit/',array('id'=>3,'pid'=>$pid))}" style="color:#FFF;line-height:20px;overflow:hidden;">修    改</a>
+	</div>
+</div>
+<div id="btl" style="width:30%;height:240px;margin:18px 1.5% 0 1.5%;float:left;">
+	<div id="b1t">
+		<b>产品案例</b>
+	</div>
+	<hr style="background-color:#DDD;border:none;height:1px">
+	<div id="b2t">
+		<img src="<if condition="$list['common'] eq ''">{pigcms:$staticPath}/tpl/Home/pigcms/common/images/images/4.png<else/>{pigcms:$list['common']}</if>" style="height: 160px;margin-left:0px;width:100%;"/>
+	</div>
+	<div id="b3t">
+		<a href="{pigcms::U('Images/edit/',array('id'=>4,'pid'=>$pid))}" style="color:#FFF;line-height:20px;overflow:hidden;">修    改</a>
+	</div>
+</div>
+<div id="btl" style="width:30%;height:240px;margin:18px 1.5% 0 1.5%;float:left;">
+	<div id="b1t">
+		<b>管理中心</b>
+	</div>
+	<hr style="background-color:#DDD;border:none;height:1px">
+	<div id="b2t">
+		<img src="<if condition="$list['login'] eq ''">{pigcms:$staticPath}/tpl/Home/pigcms/common/images/images/5.png<else/>{pigcms:$list['login']}</if>" style="height: 160px;margin-left:0px;width:100%;"/>
+	</div>
+	<div id="b3t">
+		<a href="{pigcms::U('Images/edit/',array('id'=>5,'pid'=>$pid))}" style="color:#FFF;line-height:20px;overflow:hidden;">修    改</a>
+	</div>
+</div>
+<div id="btl" style="width:30%;height:240px;margin:18px 1.5% 0 1.5%;float:left;">
+	<div id="b1t">
+		<b>管理中心</b>
+	</div>
+	<hr style="background-color:#DDD;border:none;height:1px">
+	<div id="b2t">
+		<img src="<if condition="$list['help'] eq ''">{pigcms:$staticPath}/tpl/Home/pigcms/common/images/images/6.png<else/>{pigcms:$list['help']}</if>" style="height: 160px;margin-left:0px;width:100%;"/>
+	</div>
+	<div id="b3t">
+		<a href="{pigcms::U('Images/edit/',array('id'=>6,'pid'=>$pid))}" style="color:#FFF;line-height:20px;overflow:hidden;">修    改</a>
+	</div>
+</div>
+
+</body>
+</html>

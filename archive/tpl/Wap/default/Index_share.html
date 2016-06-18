@@ -1,0 +1,44 @@
+
+	<if condition="ACTION_NAME eq 'index'">
+		<script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": "0",
+					"imgUrl": "{pigcms:$homeInfo.picurl}", 
+					"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'type'=>$_GET['type'],'bid'=>$_GET['bid'],'id'=>$_GET['id'],'wecha_id'=>$_GET['wecha_id']))}",
+					"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'type'=>$_GET['type'],'bid'=>$_GET['bid'],'id'=>$_GET['id'],'wecha_id'=>$_GET['wecha_id']))}",
+					"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'type'=>$_GET['type'],'bid'=>$_GET['bid'],'id'=>$_GET['id'],'wecha_id'=>$_GET['wecha_id']))}",
+					"tTitle": "{pigcms:$homeInfo.title}",
+					"tContent": "{pigcms:$homeInfo.info}"
+				};
+		</script>
+	<elseif condition="MODULE_NAME eq 'Store' AND ACTION_NAME eq 'cats'" />
+	<script type="text/javascript">
+		window.shareData = {  
+		            "moduleName":"Store",
+		            "moduleID":"{pigcms:$cats[0]['id']}",
+		            "imgUrl": "{pigcms:$cats[0]['logourl']}", 
+		            "timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Store/index',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+		            "sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Store/index',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+		            "weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Store/index',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+		            "tTitle": "{pigcms:$metaTitle}",
+		            "tContent": "{pigcms:$metaTitle}"
+		        };
+	</script>
+	<else />
+		<script type="text/javascript">
+			window.shareData = {  
+				"moduleName":"NewsList",
+				"moduleID": "{pigcms:$_GET['classid']|intval}",
+				"imgUrl": "{pigcms:$thisClassInfo.img}", 
+				"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"tTitle": "{pigcms:$thisClassInfo.name}",
+				"tContent": "{pigcms:$thisClassInfo.info}"
+			};
+		</script>	
+	
+	</if>
+	
+{pigcms:$shareScript}

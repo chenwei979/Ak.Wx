@@ -1,0 +1,52 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+<div class="msgWrap form">
+<ul id="tags" style="width:100%">
+      <li class="selectTag">
+        <a href="{pigcms::U('Signin/lists',array('token'=>xenmws1433121393))}">签到活动列表</a> 
+      </li>
+      <li style="margin-left: 73%;">
+	  <a href="{pigcms::U('Signin/set',array('token'=>$token))}" title="新增签到" class="bigbtn" style="height:30px;margin-left:-5px;"><div class="btnGrayS" style="margin-top:-5px;"><b>新增签到</b></div></a>
+	  </li>
+</ul>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="1">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%" style="text-align:center;">
+<thead>
+<tr>
+<th style="width:100px;"><center>关键词</center></th>                              
+<th style="width:180px;"><center>签到标题</center></th>
+<th><center>签到介绍</center></th>
+<th class="norightborder" style="width:30%;"><center>操作</center></th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="lists" id="vo">
+<tr style="height:50px;text-overflow:clip">
+	<td style="width:100px;">{pigcms:$vo.keywords}</td>
+	<td style="width:180px;">{pigcms:$vo.title}</td>
+	<td style="text-align:left;">{pigcms:$vo.content}</td>
+	<td class="norightborder" style="width:30%;">　
+		<a href="{pigcms::U('Signin/index',array('id'=>$vo['id'],'token'=>$vo['token']))}"><font color="blue">签到记录</font></a>　
+    <a href="{pigcms::U('Signin/set',array('id'=>$vo['id'],'token'=>$vo['token']))}"><font color="green">编辑签到</font></a>　
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Signin/listdel',array('id'=>$vo['id']))}');"><font color="red">删除</font></a>
+    </td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages"></div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

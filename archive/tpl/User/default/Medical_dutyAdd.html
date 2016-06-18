@@ -1,0 +1,155 @@
+<include file="Public:head"/>
+<include file="Medical:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<script src="./tpl/User/default/common/js/date/WdatePicker.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="{pigcms::Common}/daterangepicker/daterangepicker-bs3.css" />
+<script type="text/javascript" src="{pigcms::Common}/daterangepicker/moment.js"></script>
+<script type="text/javascript" src="{pigcms::Common}/daterangepicker/daterangepicker.js"></script>
+
+<link rel="stylesheet" href="{pigcms::STATICS}/jQValidationEngine/css/validationEngine.jquery.css" type="text/css"/>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="{pigcms::STATICS}/jQValidationEngine/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+ <link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{pigcms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+ <script>
+
+   var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#intro', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','clearhtml','hr',
+'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+'insertunorderedlist']
+});
+
+});
+
+    jQuery(document).ready(function(){
+      jQuery("#formID").validationEngine();
+    });
+    </script>
+<style>
+    .tooltips span {
+display: none;
+}
+    .tooltips:hover span {
+        text-align:left;
+        display: block;
+        position: absolute;
+        margin:0 auto;
+        width: 310px;
+        border: 1px solid #CCC;
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        border-radius: 6px;
+        padding: 10px;
+        font-size: 12px;
+        line-height: 22px;
+        color: #333;
+    }
+#time{
+  font-size:15px;
+}
+</style>
+<div class="content">
+<div class="cLineB">
+  <h4>专家信息管理><if condition="$res.id eq ''">添加预约信息<else />修改预约信息</if></h4><a href="{pigcms::U('Medical/dutyShow',array('token'=>$token))}" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+  <div class="msgWrap bgfc">   <!--id="formID"-->
+  <form action="{pigcms::U('Medical/dutyAddSava')}" method="post"  class="form-horizontal form-validate">
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<tr>
+  <th valign="top"><span class="red">*</span>选择专家：</th>
+  <td>
+<if condition="$doctor eq '' && $res['id'] eq ''">
+<span style="color:#4a98e0">请先添加专家</span>
+<else />
+<select name="did" id="did" style="width:140px;">
+ <option value="">请选择专家</option>
+   <if condition="$res.id neq ''">
+  <option value="{pigcms:$res.did}" selected="selected">{pigcms:$res.docter}</option>
+  </if>
+ <volist name="doctor" id="o">
+	<option value="{pigcms:$o.id}" <if condition="$res['did'] eq $o['id']">selected="selected"</if>>{pigcms:$o.typename}</option>
+ </volist>            
+</select>  
+</if>
+<input type="hidden" name="docter" id="docter" value="{pigcms:$res.docter}" />
+</td>	
+</tr>
+<tr>
+  <th valign="top">星期一：</th>
+  <td><input type="radio" name="week1" value="11" id="week1_1" <if condition="$res.week1 eq 11">checked</if> /><label for="week1_1">上午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week1" value="12" id="week1_2" <if condition="$res.week1 eq 12">checked</if> /><label for="week1_2">下午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week1" value="13" id="week1_3" <if condition="$res.week1 eq 13">checked</if> /><label for="week1_3">全天</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week1" value="14" id="week1_4" <if condition="$res.week1 eq 14">checked</if> /><label for="week1_4">休息</label></td>
+ </tr>
+ <tr>
+  <th valign="top">星期二：</th>
+  <td><input type="radio" name="week2" value="21" id="week2_1" <if condition="$res.week2 eq 21">checked</if>/><label for="week2_1">上午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week2" value="22" id="week2_2" <if condition="$res.week2 eq 22">checked</if>><label for="week2_2">下午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week2" value="23" id="week2_3" <if condition="$res.week2 eq 23">checked</if>/><label for="week2_3">全天</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week2" value="24" id="week2_4" <if condition="$res.week2 eq 24">checked</if>/><label for="week2_4">休息</label></td>
+ </tr>
+ <tr>
+  <th valign="top">星期三：</th>
+  <td><input type="radio" name="week3" value="31" id="week3_1" <if condition="$res.week3 eq 31">checked</if>/><label for="week3_1">上午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week3" value="32" id="week3_2" <if condition="$res.week3 eq 32">checked</if>/><label for="week3_2">下午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week3" value="33" id="week3_3" <if condition="$res.week3 eq 33">checked</if>/><label for="week3_3">全天</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week3" value="34" id="week3_4" <if condition="$res.week3 eq 34">checked</if>/><label for="week3_4">休息</label></td>
+ </tr>
+ <tr>
+  <th valign="top">星期四：</th>
+  <td><input type="radio" name="week4" value="41" id="week4_1" <if condition="$res.week4 eq 41">checked</if>/><label for="week4_1">上午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week4" value="42" id="week4_2" <if condition="$res.week4 eq 42">checked</if>/><label for="week4_2">下午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week4" value="43" id="week4_3" <if condition="$res.week4 eq 43">checked</if>/><label for="week4_3">全天</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week4" value="44" id="week4_4" <if condition="$res.week4 eq 44">checked</if>/><label for="week4_4">休息</label></td>
+ </tr>
+ <tr>
+  <th valign="top">星期五：</th>
+  <td><input type="radio" name="week5" value="51" id="week5_1" <if condition="$res.week5 eq 51">checked</if>/><label for="week5_1">上午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week5" value="52" id="week5_2" <if condition="$res.week5 eq 52">checked</if>/><label for="week5_2">下午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week5" value="53" id="week5_3" <if condition="$res.week5 eq 53">checked</if>/><label for="week5_3">全天</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week5" value="54" id="week5_4" <if condition="$res.week5 eq 54">checked</if>/><label for="week5_4">休息</label></td>
+ </tr>
+  <tr>
+  <th valign="top">星期六：</th>
+  <td><input type="radio" name="week6" value="61" id="week6_1" <if condition="$res.week6 eq 61">checked</if>/><label for="week6_1">上午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week6" value="62" id="week6_2" <if condition="$res.week6 eq 62">checked</if>/><label for="week6_2">下午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week6" value="63" id="week6_3" <if condition="$res.week6 eq 63">checked</if>/><label for="week6_3">全天</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week6" value="64" id="week6_4" <if condition="$res.week6 eq 64">checked</if>/><label for="week6_4">休息</label></td>
+ </tr>
+ <tr>
+  <th valign="top">星期日：</th>
+  <td><input type="radio" name="week7" value="71" id="week7_1" <if condition="$res.week7 eq 71">checked</if>/><label for="week7_1">上午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week7" value="72" id="week7_2" <if condition="$res.week7 eq 72">checked</if>/><label for="week7_2">下午</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week7" value="73" id="week7_3" <if condition="$res.week7 eq 73">checked</if>/><label for="week7_3">全天</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="week7" value="74" id="week7_4" <if condition="$res.week7 eq 74">checked</if>/><label for="week7_4">休息</label></td>
+ </tr>
+  <tr>
+  <th valign="top"><span class="red">*</span>上午预约量：</th>
+  <td><input type="text" name="resernumber1"  class="px" value="{pigcms:$res.resernumber1}" /></td>
+ </tr>
+  <tr>
+  <th valign="top"><span class="red">*</span>下午预约量：</th>
+  <td><input type="text" name="resernumber2"  class="px" value="{pigcms:$res.resernumber2}" /></td>
+ </tr>
+   <tr>
+  <th valign="top">专家简介：</th>
+  <td><textarea name="intro" id="intro"  rows="5" style="width:590px;height:360px">{pigcms:$res.intro}</textarea> </td>
+ </tr>
+<tr>
+<th>&nbsp;</th>
+<if condition="$res.id neq ''">
+<input type="hidden" name="id" value="{pigcms:$res.id}" />
+</if>
+<input type="hidden" name="token" value="{pigcms:$token}" />
+<td><button type="submit" name="button" class="btnGreen sub"><if condition="$res.id eq ''">添加<else />修改</if></button>
+<a href="" class="btnGray vm">取消</a>
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+  </div>
+</div>
+<script>
+$(function(){
+	$("#did").change(function(){
+		var c = $("#did").find("option:selected").text();
+		$("#docter").val(c);
+	});
+})
+</script>
+<include file="Public:footer"/>

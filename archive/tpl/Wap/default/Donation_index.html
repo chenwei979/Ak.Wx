@@ -1,0 +1,170 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<link href="{pigcms:$staticPath}/tpl/static/donation/css/index.css" type="text/css" rel="stylesheet" />
+<script src="{pigcms:$staticPath}/tpl/static/donation/js/jquery-1.7.2.js"></script>
+<script src="{pigcms:$staticPath}/tpl/static/donation/js/index.js"></script>
+<script src="/tpl/static/alert.js"></script>
+<title>{pigcms:$donation['name']}</title>
+</head>
+<body>
+<if condition="$memberNotice neq ''">{pigcms:$memberNotice}</if>
+	<div id="pageContainer">
+		<div class="detail">
+			<div class="top">
+				<div id="YJin"></div>
+				<div class="clear"></div>
+				<img src="{pigcms:$donation['pic']}" />
+				<div class="clear"></div>
+				<table border="0" class="tb">
+					<tbody>
+						<tr>
+							<td width="50%"><p>已筹：<span>{pigcms:$total_arr['price']}</span>元 </p><p>捐款人数：<span>{pigcms:$total_arr['cnt']}</span>人</p></td>
+							<td width="50%" class="tl"><a href="{pigcms::U('Donation/info', array('token' => $token, 'id' => $id, 'wecha_id' => $wecha_id))}"  style="">我的捐款</a></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="summ">{pigcms:$donation['note']} </div>
+			</div>
+			
+			<div class="btns">
+				<div style="margin:5px;">
+					<table style="width:100%">
+						<tbody>
+							<tr>
+								<td width="49%"><a href="javascript:void(0);" id="btn_submit1"><div class="btn">立即捐款</div></a></td>
+								<td width="3%"></td>
+								<td width="49%"><a href="{pigcms::U('Donation/invitation', array('token' => $token, 'id' => $id, 'wecha_id' => $wecha_id))}" id="btn_yiqijuan"><div class="btn_b">邀{pigcms:$set['circle_name']}一起捐</div></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<if condition="$orders">
+			<div class="yqjrank2" style="margin-top: 10px; display: block;">
+				<div class="tt">感谢<span>{pigcms:$count_share['share']}</span>位爱心传播者和<span>{pigcms:$count_share['people']}</span>位朋友</div>
+				<div class="ctx clearfix">
+					<div class="imgs clearfix">
+						<volist name="orders" id="orw">
+						<div class="li fl ed" i="0"> <img class="head" src="{pigcms:$orw['portrait']}" > <img class="arr and_img_detail and_icon_8" src="{pigcms:$staticPath}/tpl/static/donation/images/yqj_selected.png"> </div>
+						</volist>
+					</div>
+					<i class="arr fr" style="margin-top: 28px;"><a href="{pigcms::U('Donation/detail', array('token' => $token, 'id' => $id))}"><img src="{pigcms:$staticPath}/tpl/static/donation/images/icon_9.png"></a></i> 
+				</div>
+				<div class="clear"></div>
+				<ul class="ctx_img">
+					<volist name="orders" id="rw">
+					<li style="display:block">
+						<div class="desc">{pigcms:$rw['wechaname']}/{pigcms:$rw['city']} 和<span>{pigcms:$rw['people']}</span>位朋友共捐助<span>{pigcms:$rw['price']}</span>元
+						<div class="d">{pigcms:$rw['share_content']}</div>
+						</div>
+					</li>
+					</volist>
+				</ul>
+			</div>
+			</if>
+			<div class="proj">
+			    <div class="tt">
+			        <div class="bb"><i> 捐赠接受机构：</i><span>{pigcms:$donation['company']}</span> </div>
+			    </div>
+			    <div class="tt">
+			        <div class="bb bb_tab"><i>项目详情</i></div>
+			    </div>
+			    <div class="desc">{pigcms:$donation['content']|html_entity_decode}</div>
+			</div>
+		
+			<div class="progress" style="display: block;"> </div>
+			<div class="footer"><img src="{pigcms:$donation['logo']}" class="and_img_detail and_logo_bottom" /></div>
+		
+			<div id="payTips" style="position: absolute; width: 100%; height:100%; top: 0px; left: 0px; z-index: 700; display: none; background: rgba(0, 0, 0, 0.701961);z-index:1"></div>
+			<div class="pay" style="display:none;">
+				<div class="t">
+					<div class="close"><img src="{pigcms:$staticPath}/tpl/static/donation/images/icon_close.png" class="and_img_detail and_icon_close" /></div>
+					<span class="ttt">请输入捐款金额</span>
+					<div class="clear"></div>
+				</div>
+				<div class="box" id="pay_donate_s">
+					<table class="tb">
+						<tbody>
+							<tr>
+								<td colspan="4"><div style="color:#333333;height:28px;font-size:14px;">{pigcms:$donation['tip']}</div></td>
+							</tr>
+							<tr>
+								<td><div data="{pigcms:$donation['fixed_money1']}" class="sel l ed"><img src="{pigcms:$staticPath}/tpl/static/donation/images/yqj_selected.png" class="and_img_detail and_yqj_selected" /><span>{pigcms:$donation['fixed_money1']}</span>元</div></td>
+								<td><div data="{pigcms:$donation['fixed_money2']}" class="sel l"><img src="{pigcms:$staticPath}/tpl/static/donation/images/yqj_selected.png" class="and_img_detail and_yqj_selected" /><span>{pigcms:$donation['fixed_money2']}</span>元</div></td>
+								<td><div data="{pigcms:$donation['fixed_money3']}" class="sel l"><img src="{pigcms:$staticPath}/tpl/static/donation/images/yqj_selected.png" class="and_img_detail and_yqj_selected" /><span>{pigcms:$donation['fixed_money3']}</span>元</div></td>
+								<td><div data="{pigcms:$donation['fixed_money4']}" class="sel l"><img src="{pigcms:$staticPath}/tpl/static/donation/images/yqj_selected.png" class="and_img_detail and_yqj_selected" /><span>{pigcms:$donation['fixed_money4']}</span>元</div></td>
+							</tr>
+							<tr>
+								<td colspan="4"><div style="height:5px;"></div></td>
+							</tr>
+							<tr id="other_money">
+								<td colspan="4">
+									<div data="0" class="sel l">
+										<img src="{pigcms:$staticPath}/tpl/static/donation/images/yqj_selected.png" class="and_img_detail and_yqj_selected">
+										<div class="fl" style="margin-left:8px">其他</div>
+										<div class="fr" style="margin-right:8px">元</div>
+										<div style=" width:100%; position:absolute; left:0;"><input type="number" id="money" /></div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<a href="javascript:void();" class="btn_a" id="btn_submit"><div class="btn">立即捐款</div></a>
+					<div class="prot" style="margin-top:15px;"><label for="check"><img src="{pigcms:$staticPath}/tpl/static/donation/images/detail_icon_8_checked.png" class="check and_img_detail and_detail_icon_8_checked inputcheck" data-src="{pigcms:$staticPath}/tpl/static/donation/images/detail_icon_8.png"/>
+						<input type="checkbox" id="check" name="check" checked="checked" class="none" />同意并接受</label><span class="p" style="color: #860101; text-decoration: underline;">《募捐协议》 </span>
+					</div>
+				</div>
+			</div>
+			<div id="tips" style="background:rgba(0,0,0,0.7);position:fixed;width:100%;height:100%;top:0;z-index:900;display:none"></div>
+			<div style="height:50px;"></div>
+			<div class="xieyi" style="display:none"><span class="xieyi_ca"><img src="{pigcms:$staticPath}/tpl/static/donation/images/ca.png"></span>
+				<div class="about">
+				<div class="content"><div style="margin-left: 6px;">{pigcms:$set['agreement']|html_entity_decode}</div></div>
+				</div>
+        	</div>
+		</div>
+	</div>
+	<div class="mask_level"></div>
+<script>
+$(document).ready(function(){
+	$('#other_money').click(function(){
+		$('#money').focus();
+	});
+	$('#btn_submit').click(function(){
+		var price = 0, t = parseInt($("#pay_donate_s").find('.ed').attr('data'));
+		if (t > 0) {
+			price = t;
+		} else {
+			price = $('#money').val();
+		}
+		if (price <= 0) {
+			alert('募捐金额应该大约0');
+			return false;
+		}
+		if (!$('#check').attr('checked')) {
+			alert('只有同意捐赠协议才能捐款');
+			return false;
+		}
+		location.href="{pigcms::U('Donation/to_pay', array('token' => $token, 'id' => $id, 'wecha_id' => $wecha_id))}&price=" + price;
+	});
+});
+window.shareData = {  
+	"moduleName":"Donation",
+	"moduleID":"{pigcms:$donation['id']}",
+	"imgUrl": "{pigcms:$donation['share_pic']}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"tTitle": "{pigcms:$donation['name']|shareFilter}",
+	"tContent": "{pigcms:$donation['note']|shareFilter}",
+	"fTitle": "{pigcms:$donation['name']|shareFilter}",
+	"isShareNum":1,
+	"ShareNumData":"donation,id,{pigcms:$id},share_num"
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

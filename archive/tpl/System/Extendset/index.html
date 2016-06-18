@@ -1,0 +1,52 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>扩展管理配置</title>
+<script src="./tpl/Home/pigcms/common/js/jquery-1.7.2.min.js" type="text/javascript" ></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/Home/pigcms/common/js/newIndex/display.js" type="text/javascript" ></script>
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+</head>
+<body class="warp">
+<form id="myform" action="/index.php?g=System&m=Extendset&a=index" method="post">
+<div class="main_zz" style="padding: 40px;">
+  <div class="tr_one" style="margin-bottom: 20px;">
+    <span><strong>前台模板选择：</strong></span><br/><hr>
+  </div>
+  <div class="tr_two" style="margin-bottom: 40px;">
+        <div class="tr_two_left" style="margin-bottom: 20px;">
+          <input type="radio" id="radio_one" name="cloose_display" value="1" <?php  if($info['cloose_display']==1 ||empty($info)){   echo 'checked';  }  ?>/><label for="radio_one">模板序号：1&nbsp;&nbsp;=></label>
+          <span style="color: red;"><a onclick="viewImg_one('./tpl/Home/pigcms/common/images/newIndex/1.jpg');" style="cursor: pointer;">大图查看</a></span>
+          <span><a href="javascript:sup(1);" style="color: red;text-decoration: none;">动态预览</a></span>
+        </div>
+        <div class="tr_two_right">
+          <label for="radio_one"><img src="./tpl/Home/pigcms/common/images/newIndex/1.jpg" style="height: 300px;width: 500px;"/></label>
+          <br/><br/>    
+        </div>
+    <hr>
+  </div>
+  <div class="tr_three" style="margin-bottom: 40px;">
+        <div class="tr_three_left" style="margin-bottom: 20px;">  
+          <input type="radio" id="radio_two" name="cloose_display" value="2" <?php  if($info['cloose_display']=='2'){   echo 'checked';  }  ?> /> <label for="radio_two">模板序号：2&nbsp;&nbsp;=></label>
+          <span style="color: red;"><a onclick="viewImg_two('./tpl/Home/pigcms/common/images/newIndex/2.jpg');" style="cursor: pointer;">大图查看</a></span>
+          <span><a href="javascript:sup(2);" style="color: red;text-decoration: none;">动态预览</a></span>
+        </div>
+        <div class="tr_three_right">
+          <label for="radio_two"><img src="./tpl/Home/pigcms/common/images/newIndex/2.jpg" style="height: 300px;width: 500px;"/></label><br/><br/>
+        </div>
+    <hr>
+  </div>
+  <div style="float:left;padding-left:100px;">
+  <input type="submit" name="submit" value="保存设置" />
+  </div>
+</div>
+    	<input type="hidden" name="edditid" value="{pigcms:$info.id}" />
+</form>
+<br />
+<br />
+<br />
+</body>
+</html>

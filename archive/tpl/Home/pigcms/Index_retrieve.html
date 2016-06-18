@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>找回密码－{pigcms:$f_siteTitle}</title>
+<link href="{pigcms:$staticPath}/tpl/Home/pigcms/common/css/public.css" rel="stylesheet" type="text/css" />
+<script src="{pigcms:$staticPath}/tpl/Home/pigcms/common/js/jquery.js" type="text/javascript"></script>
+<script src="{pigcms:$staticPath}/tpl/Home/pigcms/common/js/daohang.js" type="text/javascript"></script>
+<script src="{pigcms:$staticPath}/tpl/Home/pigcms/common/js/send.js" type="text/javascript"></script>
+<link href="{pigcms:$staticPath}/tpl/Home/pigcms/common/css/manage.css?v3.1" rel="stylesheet" type="text/css" />
+<link href="{pigcms:$staticPath}/tpl/Home/pigcms/common/css/new_index.css" rel="stylesheet" type="text/css" />
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<style type="text/css">
+input[type="text"] {
+text-indent: 10px;    
+}
+input[type="password"] {
+text-indent: 10px; 
+}
+.contRt .password span{ padding-left:32px; padding-right:10px;}
+#sp_01_01{border:0px solid red;font-size:1px;position: relative;bottom:35px;left:390px ;color: red }
+</style>
+</head>
+<body>
+    	<!--startof header-->
+    	<include file="Public:header03"/>
+        <!--ENDOF header-->
+        
+        <!--startof content-->
+        <div class="content clr">
+        	<div class="congtS clr">
+            	<div class="t">
+                	忘记密码，找回后即可管理微信营销系统！
+                </div>
+            	<!--<div class="shangLt clr">当前位置</div>
+                <div class="shangRt clr">
+                	<p class="oneth clr"> <a href="#">{pigcms:$f_siteName}多用户微信营销系统</a></p>
+                    <p>»</p>
+                    <p class="twoth clr"><a href="#">管理中心</a></p>
+                </div>-->
+            </div>
+            <!--end congtX-->
+            <div class="congtX">
+            	
+                <!--end left-->
+                
+                <div class="contRt regbox clr">
+                	<form action="{pigcms::U('Users/savepassword')}" method="post" class="login">
+                    	<p class="clr"></p>
+                    	<div class="name clr">
+                        	<span>手机号</span> 
+                            <input class="text" required=""  placeholder="请输入手机号"  type="text" name="username" id="username">
+                        </div><br />
+                        
+						<div class="name clr">
+                        	<span>验证码</span> 
+                            <input class="text verification" required=""  placeholder="请输入验证码"  type="text" name="verification"/> <span id="send" class="sure">发送验证码</span>
+                        </div><br />
+
+                        
+                        <div class="password clr">
+                        	<span>新密码</span> 
+                            <input class="text" type="password" name="password">
+                        </div><br />
+                        <div class="aginword clr">
+                        	<span >重复密码</span> 
+                            <input class="text" type="password" name="repassword">
+                        </div><br />
+                        <php>if($f_regNeedMp){</php>
+                        <div class="teliphone clr">
+                        	<span>手机</span> 
+                            <input class="text" type="text" id="sms_mp" name="mp" />
+                        </div><br />
+                        <php>}</php>
+                        <input type="hidden" name="verifytype" id="verifytype" value="1"/>
+                        <input class="text" type="hidden" name="invitecode" value="<?php echo $_GET['invitecode'];?>">
+                        <button class="submit" type="submit" class="buttom"style=" margin-left:84px;">确定</button>
+
+                    </form>
+                </div>
+                <!--end right-->
+                <p style="border-right:1px solid #E3E3E3; width:1px; float:left; height:330px; padding-left:20px;"></p>
+                <div class="contRt clr">
+					<div class="title">已有账号？</div>
+                    <a class="btnbox" href="/login.html">马上登陆</a>
+
+                </div>
+            </div>
+        </div>
+        
+        <!--endof content-->
+        
+        
+        <!--footer-->
+        	<include file="Public:footer03"/>
+    </body>
+</html>

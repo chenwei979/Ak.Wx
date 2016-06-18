@@ -1,0 +1,1 @@
+<?phpclass checkZend {	public function __construct(){			}}

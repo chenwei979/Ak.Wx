@@ -1,0 +1,85 @@
+<include file="Public:head"/>
+<include file="Medical:menu"/>
+<div class="content">
+<div class="cLineB">
+  <h4>科室信息管理>专家详细信息</h4>
+<a href="{pigcms::U('Medical/doctorlist',array('token'=>$token,'tid'=>$tid,'officename'=>$officename))}" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+      <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%" align="CENTER" >
+              <thead>
+                    <tr >
+                    <th width="60"  style="text-align: center;">坐诊专家</th>
+                    <th class="20" style="text-align: center;">周一</th>
+                    <th class="20" style="text-align: center;">周二</th>
+                    <th class="20" style="text-align: center;">周三</th>
+                    <th class="20" style="text-align: center;">周四</th>
+                    <th class="20" style="text-align: center;">周五</th>
+                    <th class="20" style="text-align: center;">周六</th>
+                    <th class="20" style="text-align: center;">周日</th>
+                    <th class="20" width="80" style="text-align: center;">上午预约量</th>
+                    <th class="20" width="80" style="text-align: center;">下午预约量</th>
+                    </tr>
+                  </thead>
+              <tbody>
+                <pigcmsif where="$duty">
+                    <tr>
+                         <td style="text-align: center;">{pigcms:$duty.docter}</td>
+                    <td style="text-align: center;">
+                        <if condition="$duty.week1 eq 11">上午
+                        <elseif condition="$duty.week1 eq 12"/>下午
+                        <elseif condition="$duty.week1 eq 13"/>全天
+                        <elseif condition="$duty.week1 eq 14"/>休息
+                        </if>
+                    </td>
+                    <td style="text-align: center;">
+                        <if condition="$duty.week2 eq 21">上午
+                        <elseif condition="$duty.week2 eq 22"/>下午
+                        <elseif condition="$duty.week2 eq 23"/>全天
+                        <elseif condition="$duty.week2 eq 24"/>休息
+                        </if>
+                    </td>
+                    <td style="text-align: center;">
+                        <if condition="$duty.week3 eq 31">上午
+                        <elseif condition="$duty.week3 eq 32"/>下午
+                        <elseif condition="$duty.week3 eq 33"/>全天
+                        <elseif condition="$duty.week3 eq 34"/>休息
+                        </if>
+                    </td>
+                    <td style="text-align: center;">
+                        <if condition="$duty.week4 eq 41">上午
+                        <elseif condition="$duty.week4 eq 42"/>下午
+                        <elseif condition="$duty.week4 eq 43"/>全天
+                        <elseif condition="$duty.week4 eq 44"/>休息
+                        </if>
+                    </td>
+                    <td style="text-align: center;">
+                        <if condition="$duty.week5 eq 51">上午
+                        <elseif condition="$duty.week5 eq 52"/>下午
+                        <elseif condition="$duty.week5 eq 53"/>全天
+                        <elseif condition="$duty.week5 eq 54"/>休息
+                        </if>
+                    </td>
+                    <td style="text-align: center;">
+                        <if condition="$duty.week6 eq 61">上午
+                        <elseif condition="$duty.week6 eq 62"/>下午
+                        <elseif condition="$duty.week6 eq 63"/>全天
+                        <elseif condition="$duty.week6 eq 64"/>休息
+                        </if>
+                    </td>                                     
+                    <td style="text-align: center;">
+                        <if condition="$duty.week7 eq 71">上午
+                        <elseif condition="$duty.week7 eq 72"/>下午
+                        <elseif condition="$duty.week7 eq 73"/>全天
+                        <elseif condition="$duty.week7 eq 74"/>休息
+                        </if>
+                    </td>
+                    <td style="text-align: center;">{pigcms:$duty.resernumber1}</td>
+                    <td style="text-align: center;">{pigcms:$duty.resernumber2}</td>                            
+                    </tr>
+				<else />
+				<tr><td colspan="11" style="text-align:center;">暂无记录</td></tr>
+				</pigcmsif>
+                </tbody>
+            </table>          
+        </div>
+<include file="Public:footer"/>

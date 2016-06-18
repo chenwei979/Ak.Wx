@@ -1,0 +1,36 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content">
+  <div class="cLineB">
+    <h4>认证服务号渠道二维码生成与统计</h4>
+  </div>
+  <div class="ftip" style="margin:25px auto 5px auto;">只有认证服务号才能使用（向微信官方交过300元认证费的服务号）</div>
+  <div class="msgWrap bgfc" style="padding:5px 10px; margin:0">
+    <form class="form" method="post" action="{pigcms::U('QRCode/add')}" enctype="multipart/form-data">
+      <table class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th valign="top"><label for="empid">渠道编号：</label></th>
+            <td><input type="input" class="px" required="" id="empid" value="" name="empid" style="width:400px"></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <th valign="top"><label for="empname">渠道名称：</label></th>
+            <td><input type="input" class="px" required="" id="empname" value="" name="empname" style="width:400px"></td>
+            <td>&nbsp;</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th></th>
+            <td>
+            	<button type="submit" name="button" class="btnGreen left">添加</button>
+                <button type="button" name="buttonr" class="btnGreen left" onclick="javascript:href.location={pigcms::U('QRCode/index')}">返回</button>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+</div>
+<include file="Public:footer"/>

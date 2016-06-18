@@ -1,0 +1,101 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0,user-scalable=0" /><meta content="telephone=no" name="format-detection" /><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title></title><meta name="Description" content="" /><meta name="Keywords" content="" /><link href="/Public/Css/font-awesome.css?t=20150408" rel='stylesheet' type='text/css' /><link href="/Public/Css/web/global.css?t=20150408" rel='stylesheet' type='text/css' /><link href="/Public/Css/web/style.css?t=20150408" rel='stylesheet' type='text/css' /><script type='text/javascript' src="/Public/Js/jquery-1.7.2.min.js"></script><script type='text/javascript' src="/Public/Js/web/global.js?t=20150408"></script><script type='text/javascript' src="/Public/Js/web/web.js?t=20150408"></script><script language="javascript">$(document).ready(web_obj.page_init);</script></head><body itokit-img="/weixin.itokit.com//Public/Images/web/018/0/banner.jpg" itokit-desc="点击这里访问我们的微网站" ><div id="web_page_contents_loading"><img src="/Public/Images/web/loading.gif" /></div><div id="header" class="wrap"><ul><li class="home first"><a href="/front/Index/index/uid/12682.html" class="icon-home"></a></li><li class="back"><a href="javascript:history.go(-1);" target="_self" class="icon-arrow-left"></a></li><li class="lbs"><a href="/front/Index/lbs/uid/12682.html" class="icon-map-marker"></a></li></ul></div><div id="web_page_contents"><link href='/Public/Css/web/skin/018/style.css' rel='stylesheet' type='text/css' /><link href='/Public/Css/web/skin/018/index.css' rel='stylesheet' type='text/css' /><link href='/Public/Css/web/skin/018/index_media.css' rel='stylesheet' type='text/css' /><script type='text/javascript' src='/Public/Js/web/flexslider/flexslider.js'></script><link href='/Public/Js/web/flexslider/flexslider.css' rel='stylesheet' type='text/css' /><script type='text/javascript' src='/Public/Js/web/index.js'></script><script language="javascript">var web_skin_data=[{"SId":"18","TradeId":"0","MemberId":"12682","ContentsType":"1","Title":"[\"\"]","ImgPath":"[\"\\\/Public\\\/Images\\\/web\\\/018\\\/0\\\/banner.jpg\"]","Url":"[\"\"]","Postion":"t01","Width":"640","Height":"1010","NeedLink":"0"},{"SId":"18","TradeId":"0","MemberId":"12682","ContentsType":"0","Title":"","ImgPath":"\/Public\/Images\/web\/018\/0\/i0.png","Url":"","Postion":"t02","Width":"320","Height":"112","NeedLink":"0"}];
+var MusicPath='';
+$(document).ready(index_obj.index_init);
+</script><script type="text/javascript">var skin_index_init=function(){
+	$('#header, #footer, #footer_points').hide();
+	$('a').filter('[ajax_url]').off().each(function(){
+		$(this).attr('href', $(this).attr('ajax_url'));
+	});
+	window.onload = window.onresize = function(){  
+	    $('#web_skin_index .banner *').not('img').height($(window).height());
+	}
+};
+</script><div id="web_skin_index">
+    <div class="web_skin_index_list banner" rel="edit-t01">
+        <div class="img"></div>
+    </div>
+    <div class="web_skin_index_list list" rel="edit-t02">
+        <div class="img"></div>
+    </div>
+</div>
+<div id="web_skin_menu"><ul><li class="m0"><label></label><div><img src="/Public/Images/web/icon/01.png" /></div><a href="/front/Index/column/uid/12682/cid/7309.html">999</a></li><li class="m1"><label></label><div><img src="/Public/Images/web/icon/02.png" /></div><a href="/front/Index/column/uid/12682/cid/7308.html">888</a></li><li class="m2"><label></label><div><img src="/Public/Images/web/icon/03.png" /></div><a href="/front/Index/column/uid/12682/cid/7307.html">777</a></li><li class="m3"><label></label><div><img src="/Public/Images/web/icon/04.png" /></div><a href="/front/Index/column/uid/12682/cid/7306.html">666</a></li><li class="m1"><label></label><div><img src="/Public/Images/web/icon/05.png" /></div><a href="/front/Index/column/uid/12682/cid/7305.html">5555</a></li><li class="m2"><label></label><div><img src="/Public/Images/web/icon/06.png" /></div><a href="/front/Index/column/uid/12682/cid/7304.html">4444</a></li><li class="m0"><label></label><div><img src="/Public/Images/web/icon/07.png" /></div><a href="/front/Index/column/uid/12682/cid/7303.html">333</a></li><li class="m1"><label></label><div><img src="/Public/Images/web/icon/08.png" /></div><a href="/front/Index/column/uid/12682/cid/7302.html">2222</a></li><li class="m2"><label></label><div><img src="/Public/Images/web/icon/09.png" /></div><a href="/front/Index/column/uid/12682/cid/7301.html">1111</a></li></ul></div><div class="cbp-spmenu cbp-spmenu-horizontal cbp-spmenu-top" id="cbp-spmenu-s3"><section class="search_section"><div id="sb-search" class="sb-search sb-search-open"><form class="search" action="/front/Index/column/uid/12682.html" method="get"><input class="sinput" placeholder="请输入关键词" type="text" name="q" /><input class="sbtn" type="submit" value="搜索" /><span class="icon-remove cancel-search"></span></form></div></section><div class="clear"></div><section class="column_class" style='font-family: "微软雅黑", "宋体", Arial, Helvetica, sans-serif'><ul><li><a href="/front/Index/column/uid/12682/cid/7309.html">999</a></li><li><a href="/front/Index/column/uid/12682/cid/7308.html">888</a></li><li><a href="/front/Index/column/uid/12682/cid/7307.html">777</a></li><li><a href="/front/Index/column/uid/12682/cid/7306.html">666</a></li><li><a href="/front/Index/column/uid/12682/cid/7305.html">5555</a></li><li><a href="/front/Index/column/uid/12682/cid/7304.html">4444</a></li><li><a href="/front/Index/column/uid/12682/cid/7303.html">333</a></li><li><a href="/front/Index/column/uid/12682/cid/7302.html">2222</a></li><li><a href="/front/Index/column/uid/12682/cid/7301.html">1111</a></li></ul></section></div></div><!--end web_page_contents--><div id="footer_points"></div><footer id="footer"><ul></ul></footer><style>#web_page_contents {max-width: 640px;margin: 0 auto;}    .copy_right_foo p {margin:0;}
+</style><script type="text/javascript">var uid = "12682";
+var nonceStr = "",signature = "",wx_timestamp="1428445390",app_id="";
+</script><script type="text/javascript" src="/Public/Js/web/weiwei.js?t=20150408"></script><div style="display:none;"><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " /");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F455359d0f41ef722637829aa7767f9b2' type='text/javascript'%3E%3C/script%3E"));
+</script></div><script type="text/javascript">var _url = window.location.href;
+_url = encodeURIComponent(_url);
+function callBack(json){
+    var data = json||{};
+    if(parseInt(data.status) == 1){
+            if(!data.data.contents)return;
+            data.data.contents.suspended_btn = typeof(data.data.contents.suspended_btn)!="undefined"?data.data.contents.suspended_btn:{};
+            if(data.data.contents.suspended_btn.is_open == 1) {				
+                    createSuspended(data);				
+            }
+    }
+}
+$(function(){
+    var static_domain = "/";
+    $.ajax({  
+             type: "get",  
+             async: false,
+             url:static_domain+"front/Index/countView?uid=12682",
+             data:{url:_url,format:"jsonp"},
+             dataType: "jsonp",
+             jsonpCallback:"callBack", 
+             success: function(json){  },  
+             error: function(){  }  
+         });  
+    //ajax user extends
+    var _glo_url = window.location.href;
+    if(_glo_url.indexOf('front/Index/') >= 0 || _glo_url.indexOf('front/shop/') >= 0|| _glo_url.indexOf('front/user/') >= 0) {
+            $.ajax({  
+             type: "get",  
+             async: false,
+             url:static_domain+"front/businesscard/ajaxUserExtends/uid/12682",
+             data:{url:_url,format:"jsonp"},
+             dataType: "jsonp",
+             jsonpCallback:"callBack", 
+             success: function(json){
+                 callBack(json)
+            },  
+             error: function(){  }  
+         });  
+    }
+})
+</script></body></html><script>   /* document.addEventListener("WeixinJSBridgeReady",
+    function onBridgeReady(){
+        $(".go-search").bind("click",function(){
+            WeixinJSBridge.call('hideToolbar');
+        });
+         $(".cancel-search").bind("click",function(){
+            WeixinJSBridge.call('showToolbar');
+        })
+    })*/
+    $(function(){
+        var min_h = parseFloat($(window).height());
+        $("#column .contents").css({"min-height":(min_h - 200)+"px"});
+        $(".go-search").bind("click",function(){
+            $(".cbp-spmenu-top").addClass("cbp-spmenu-open");
+        });
+        $(".cancel-search").bind("click",function(){
+            $(".cbp-spmenu-top").removeClass("cbp-spmenu-open");
+        })
+        $("input").on("focus",function(){
+            $(".foot_block").hide();
+        }).on("blur",function(){
+            $(".foot_block").show();
+        })
+        $("body").bind("touchstart mousedown",function(e){
+           if( e.target.nodeName.toLowerCase() !== "input"){
+               $("input").blur();
+               
+           }
+        })
+
+        if($(".footer_bar").length > 0 || $("#footer").length > 0  ){
+            $("#footer_points").show();
+        }
+    })
+</script>

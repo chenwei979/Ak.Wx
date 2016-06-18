@@ -1,0 +1,34 @@
+<include file="Public:head"/>
+<include file="Medical:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+<div class="cLineB">
+  <h4>医生职称管理><if condition="$set.lid eq ''">添加职称<else />修改职称</if></h4>
+ </div>
+  <div class="msgWrap bgfc">   <!--id="formID"-->
+  <form action="{pigcms::U('Medical/LevelAdd_save')}" method="post"  class="form-horizontal form-validate">
+  <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<tr>
+  <th valign="top"><span class="red">*</span>医生职称：</th>
+  <td><input type="text" name="level" id="level" class="px" value="{pigcms:$set.level}" /></td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>预约费用：</th>
+  <td><input type="text" name="lprice" id="lprice" class="px" value="{pigcms:$set.lprice}" />/元&nbsp;&nbsp;&nbsp;(四舍五入后保留2位小数)</td> 	
+</tr>
+<th>&nbsp;</th>
+<if condition="$set.lid neq ''">
+<input type="hidden" name="id" value="{pigcms:$set.lid}" />
+</if>
+<input type="hidden" name="token" value="{pigcms:$token}" />
+<td><button type="submit" name="button" class="btnGreen sub"><if condition="$set.lid eq ''">添加<else />修改</if></button>
+<a href="" class="btnGray vm">取消</a>
+</td>
+</tr>
+  </tbody>
+  </table>
+</form>
+  </div>
+</div>
+<include file="Public:footer"/>

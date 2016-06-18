@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>登陆与注册－{pigcms:$f_siteTitle}</title>
+    <!-- 头部信息start -->
+    <include file="Public:header22"/>
+    <!-- 头部信息end -->
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/js/newIndex/register.js"></script>
+<div class="main">
+    <if condition="C('server_topdomain') == 'pigcms.cn'">
+        <div class="report">
+            友情提醒：因试用客户众多，小猪cms多用户微信营销系统演示站仅供客户体验功能，不能在此站做正式活动
+        </div>
+    </if>
+    <div class="row lrForm">
+        <div class="w1000">
+            <div class="fl imageList mt50" style="height: 400px;">
+                <div class="row">
+                    <img class="r0" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r0.png" alt="r0">
+                    <img class="r1" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r1.png" alt="r1">
+                    <img class="r2" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r2.png" alt="r2">
+                    <img class="r3" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r3.png" alt="r3">
+                    <img class="r4" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r4.png" alt="r4">
+                    <img class="r4-l1" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r4.png" alt="r4">
+                    <img class="r4-l2" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r4.png" alt="r4">
+                    <img class="r4-l3" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r4.png" alt="r4">
+                    <img class="r4-r1" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r4.png" alt="r4">
+                    <img class="r4-r2" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r4.png" alt="r4">
+                    <img class="r4-r3" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r4.png" alt="r4">
+                    <img class="r4-r4" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r4.png" alt="r4">
+                    <img class="r5" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r5.png" alt="r5">
+                    <img class="r5-1" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r5.png" alt="r5">
+                    <img class="r6" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r6.png" alt="r6">
+                    <img class="r7" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r7.png" alt="r7">
+                    <img class="r6-1" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r6.png" alt="r6">
+                    <img class="r7-1" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r7.png" alt="r7">
+                    <img class="r8" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/r8.png" alt="r8">
+                </div>
+            </div>
+            <form action="{pigcms::U('Users/checkreg')}" method="post" class="login">
+            <div class="formRow fl">
+                <div class="row">
+                    <label>用户名</label>
+                    <span>
+                        <input type="text" name="username"  placeholder="请输入用户名" />
+                    </span>
+                </div>
+                <div class="row">
+                    <label>密码</label>
+                    <span>
+                        <input type="password" name="password" placeholder="请输入密码" />
+                    </span>
+                </div>
+                <div class="row">
+                    <label>重复密码</label>
+                    <span>
+                        <input type="password" name="repassword" placeholder="请输入密码" />
+                    </span>
+                </div>
+                <php>if($f_regNeedMp){</php>
+                <div class="row">
+                    <label>手机</label>
+                    <span>
+                        <input type="text" name="mp"  id="sms_mp"  placeholder="请输入手机号码" />
+                    </span>
+                </div>
+                <php>}</php>                
+                <div class="row">
+                    <label>邮箱</label>
+                    <span>
+                        <input type="text" name="email" placeholder="请输入邮箱" />
+                    </span>
+                </div>
+                <div class="row">
+                    <label>行业</label>
+                    <span class="selectPut">
+                            <select name="business">
+                                <volist name="business" id="business">
+                                    <option value="{pigcms:$business.key}">{pigcms:$business.val}</option>
+                                </volist>
+                            </select>
+                    </span>
+                </div>
+
+                <if condition="C('reg_mp_verify') eq 0">
+                <div class="row">
+                    <label>验证码</label>
+                    <span class="short">
+                        <input type="text" placeholder="请输入验证码" name="verifycode" />
+                    </span>
+                    <span class="shortCode"><img src="{pigcms::U('Index/verify')}" alt="1482" id="txtCheckCode" ></span><a class="changeA" href="javascript:refreshImg();">点击换一张</a>
+                </div>
+                <else />
+                <div class="row">
+                    <label>短信验证</label>
+                    <span class="short">
+                        <input type="text" name="verifycode" placeholder="输入手机验证码" style="width: 96px" />
+                    </span>
+                    <span  id="a_verify" style="border: none;">
+                        <a class="changeA" href="javascript:;" onclick="sendMsg()" id="a_btn" >获取验证码</a>                        
+                    </span>                   
+                </div>
+                </if>
+
+                <div class="row">
+                    <label></label>
+                    <span class="noborder lrBtn">
+                        <input class="text" type="hidden" name="invitecode" value="<?php echo $_GET['invitecode'];?>">
+                        <button class="loginBtn" type="submit">注　册</button>
+                    </span>
+                </div>
+                <div class="row">
+                    <label></label>
+                    <span class="noborder lrBtn">
+                        <a href="{pigcms::U('Index/login')}" class="registerBtn">登　录</a>
+                    </span>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- foorter信息start -->
+<include file="Public:footer22"/>
+<!-- foorter信息end -->

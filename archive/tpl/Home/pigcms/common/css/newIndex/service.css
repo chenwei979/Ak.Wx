@@ -1,0 +1,29 @@
+table{ width:1000px; text-align:center;}
+table tr{ height:50px; line-height:50px;}
+table tr:hover{ background:#f2f2f2;}
+table .priceTitle{ background:#1bbc6b; height:90px; line-height:90px;}
+table .priceTitle:hover{ background:#1bbc6b;}
+table .priceTitle img{ padding-top:32px;}
+table td{ border-bottom:1px solid #E6E6E6; border-left:1px solid #E6E6E6; font-size:14px; color:#666;}
+table .priceTitle td{ font-size:18px; color:#fff; font-weight:bold;}
+table .wuXian{ border-left:0;}
+table .shuanCeng{ height:70px; line-height:normal;}
+table .shuanCeng .neiJu{ padding-top:9px;}
+table .shuanCeng .neijuOne{ padding-top:15px; line-height:normal;}
+table .cuoWu{ background:url(../../images/newIndex/duicuo_16_16.png) no-repeat center;}
+table .zhengQue{ background:url(../../images/newIndex/duicuo_10.png) no-repeat center;}
+table .shuanCeng p{ line-height:28px;}
+.shuanCeng .neijuTwo{ padding-top:5px;}
+.shuanCeng .neijuTwo .jiShu{ background:url(../../images/newIndex/duicuo_16_16.png) no-repeat 40px center;}
+.shuanCeng .neijuTwo .yunYing{ background:url(../../images/newIndex/duicuo_10.png) no-repeat 40px center;}
+table .goumaizhuji a{ background:url(../../images/newIndex/zfb.jpg) no-repeat center; display:block; height:50px;}
+.biaoend td{ border-bottom:1px solid #1bbc6b;}
+.lastduan td{ text-align:left; border-bottom:3px solid #1bbc6b; padding-top:20px; padding-bottom:20px;}
+.lastduan .shouQuan{ font-size:18px; color:#000;}
+.lastduan .listWord li{ line-height:26px; font-size:14px;}
+.lastduan .wuXian{ padding-left:20px;}
+.lastduan span{ padding:4px 25px;}
+.lastduan .banBenO{ background:url(../../images/newIndex/duicuo_16_16.png) no-repeat 1px 3px;}
+.lastduan .banBenT{ background:url(../../images/newIndex/duicuo_10.png) no-repeat 1px 3px;}
+#online_qq_layer table, td{line-height:50px;}
+#online_qq_layer table, .priceTitle td{line-height:100px

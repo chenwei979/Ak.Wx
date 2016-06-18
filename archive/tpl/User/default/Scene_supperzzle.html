@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{pigcms:$info.title}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/base.css">
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/style.css">
+<link href="{pigcms::STATICS}/scene/css/index.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/v6_common.css" type="text/css">
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/animate.css" type="text/css">
+</head>
+<body style=" background:#533C58   url(<?php echo $info['supperzzle_background'] ? $info['supperzzle_background'] : STATICS.'/scene/images/supperzzle_background.png' ?>);background-size: cover;" >
+<div class="wrapbg content">
+    <div class="whole">    	
+		<include file="Scene:header"/>
+        <div class="mian mt40 toupiao clearfix" style="margin-top:20px;"> 
+            <!----中间部分------>
+            <div class="duiduipeng clearfix">
+                <div class="duiduipeng_left">
+                    <div class="duiduipeng_left_title"> <span>对对碰</span><span><i>参加配对人数:<b>{pigcms::$count}</b></i></span> </div>
+                    <div class="duiduuipeng_con clearfix">
+                        <div class="dui_left">
+							<div id="box"><img src="{pigcms::STATICS}/scene/images/duiduuipeng_15.png" /></div>
+							<?php if($info['ddp_is_sex'] == 1){?><i>♂共<em>{pigcms:$maleCount}</em>位</i><?php }else{
+                            //echo "<i>共<em>$maleCount</em>位</i>";
+                            }?>
+						</div>
+                        <div class="dui_con"> <i class="dui_con1">恭喜两位!</i> <i class="dui_con2"><img src="{pigcms::STATICS}/scene/images/b2.png" /></i> <i class="dui_con3"><img src="{pigcms::STATICS}/scene/images/b3.png" /></i> <span><img src="{pigcms::STATICS}/scene/images/duiduuipeng_07.png" /></span></div>
+						<div class="dui_left">
+							<div  id="box1"><img src="{pigcms::STATICS}/scene/images/duiduuipeng_15.png" /></div>
+							<?php if($info['ddp_is_sex'] == 1){?><i>♀共<em>{pigcms:$femaleCount}</em>位</i><?php }else{
+                            //echo "<i>共<em>$femaleCount</em>位</i>";
+                                }?>
+						</div>
+                    </div>
+                    <div class="peidui" id="start">开始对对碰</div>
+                    <div class="peidui" id="stop">停止</div>
+                </div>
+                <div class="duiduipeng_right">
+                    <div class="duiduipeng_title"> <span>配对名单</span> <span><i>配对组数</i><b><?php echo count($slist);?></b></span> </div>
+                    <div class="duiduipeng_info"> <span>配对序号</span><span>配对的微信信息</span> </div>
+                    <ul class="peidui_list">
+                       <!-- <li><i>1</i>
+                            <div class="peidui_content clearfix">
+                                <div class="peidui_head"><span></span><a href="#">
+                                    <div class="head_img"><img src="images/choujiang_06.png"></div>
+                                    <p>衔着花的姑娘</p>
+                                    </a> </div>
+                                <div class="peidui_xin"></div>
+                                <div class="peidui_head"><span></span><a href="#">
+                                    <div class="head_img"><img src="images/choujiang_24.png"></div>
+                                    <p>衔着花的姑娘</p>
+                                    </a> </div>
+                            </div>
+                            <div class="close_but"></div>
+                        </li>-->
+						<volist name='slist' id='sv'>
+						<li>
+							<i><?php echo (count($slist)-$i+1);?></i>
+							<div class='peidui_content clearfix'>
+								<div class='peidui_head'>
+									<span stype='nid' nid='{pigcms:$sv.nid}' sid='{pigcms:$sv.id}'></span>
+									<div class='head_img'><img src='{pigcms:$sv["ninfo"]["portrait"]}' /></div>
+									<p>{pigcms:$sv["ninfo"]["nickname"]}</p>
+								</div>
+								<div class='peidui_xin'></div>
+								<div class='peidui_head'>
+									<span stype='vid' vid='{pigcms:$sv.vid}' sid='{pigcms:$sv.id}'></span>
+									<div class='head_img'><img src='{pigcms:$sv["vinfo"]["portrait"]}' /></div>
+									<p>{pigcms:$sv["vinfo"]["nickname"]}</p>
+								</div>
+							</div>
+							<div class='close_but' sid='{pigcms:$sv.id}'></div>
+						</li>
+						</volist>
+                    </ul>
+                    <div class="peidui_bot">重新配对</div>
+                </div>
+            </div>
+        </div>        
+		<include file="Scene:toolbar"/>
+    </div>
+</div>
+<include file="Scene:footer"/>
+<param class="lottery"
+url-prize="{pigcms::U('Scene/prize_data', array('token'=>$token, 'id'=>$id))}"
+url-start="{pigcms::U('Scene/defUser', array('token'=>$token, 'id'=>$id))}"
+url-stop="{pigcms::U('Scene/add_slog', array('token'=>$token, 'id'=>$id))}"
+url-del="{pigcms::U('Scene/del_slog', array('token'=>$token, 'id'=>$id))}"
+url-set="{pigcms::U('Scene/set_slog', array('token'=>$token, 'id'=>$id))}"
+url-again="{pigcms::U('Scene/supperzzle_again', array('token'=>$token, 'id'=>$id))}"
+url-duiduuipeng_15="{pigcms::STATICS}/scene/images/duiduuipeng_15.png"
+url-count="<?php echo (count($slist)+1);?>"
+/>
+<script src="{pigcms::STATICS}/scene/js/jquery-1.7.2.min.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/scroll-marquee.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/jquery.soChange.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/jquery.tooltipster.min.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/common.js"></script> 
+<!-- <script src="{pigcms::STATICS}/scene/js/supperzzle.js"></script> -->
+<script src="{pigcms::STATICS}/scene/js/dui.js"></script>
+</body>
+</html>

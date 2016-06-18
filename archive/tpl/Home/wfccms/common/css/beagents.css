@@ -1,0 +1,139 @@
+@charset "utf-8";
+/* CSS 通用库 */
+*{padding:0;margin:0;}
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,img{border:0;font-style:normal;font-weight:normal;margin:0;padding:0;}
+
+body{
+	background-color:#fff;
+	font-family: Microsoft YaHei,"宋体",Arial,Verdana,Sans-serif;/*设置字体，如果浏览器不支持第一个字体，则会尝试下一*/	
+	}
+.res-wrap{min-width:1280px;max-width:1920px;margin:0 auto;}
+.res-wrap a img,.res-wrap img{display:block;}
+.res-row-1{border-top:5px solid #69ae17;height:815px;background:url(/tpl/Home/wfccms/common/images/beagent/res-row-1.jpg) no-repeat center center;}
+.res-row-1 .btn{display:block;width:201px;height:55px;line-height:54px;font-size:24px;text-align:center;font-weight:700;color:#fff;margin:687px auto 0;background:url(/tpl/Home/wfccms/common/images/beagent/res-row-1-bd1.png) no-repeat 0 0;}
+.res-row-1 .btn:hover{background:url(/tpl/Home/wfccms/common/images/beagent/res-row-1-bd1.png) no-repeat 0 -67px;}
+.res-row-2{height:322px;}
+.res-row-3{position:relative;height:680px;background:url(/tpl/Home/wfccms/common/images/beagent/res-row-3-bd3.jpg) no-repeat center center;}
+.row3-cnt{position:relative;top:-75px;margin:0 auto;width:1280px;}
+.row3-cnt .cnt-box{width:100%;height:651px;background:#fff;}
+.row3-cnt .title{margin:0 auto;width:1035px;text-align:center;}
+.row3-cnt .title h2{padding-top:34px;padding-bottom:7px;border-bottom:1px solid #333;font-weight:700;font-size:30px;}
+.row3-cnt h2 span{padding-left:5px;letter-spacing:2px;font-weight:400;font-size:45px;}
+.row3-cnt .sub{padding-top:12px;font-size:13px;}
+.row3-cnt .sub span{color:#dc0000;}
+.row3-cnt .list{overflow:hidden;margin-left:120px;}
+.row3-cnt .item{float:left;margin-top:60px;margin-right:48px;width:230px;height:386px;background:url(/tpl/Home/wfccms/common/images/beagent/res-row-3-bd.png) no-repeat 16px top;}
+.row3-cnt .item .info{width:190px;text-align:center;}
+.row3-cnt .info-img{display:table;margin-left:16px;width:166px;height:166px;line-height:166px;}
+.row3-cnt .info-img .cell{display:table-cell;vertical-align:middle;}
+.row3-cnt .cell img{margin:0 auto;}
+.row3-cnt .info-txt{margin-left:5px;}
+.row3-cnt .info-txt h4{padding:28px 0 20px;font-weight:700;font-size:20px;}
+.row3-cnt .info-txt p{color:#666;font-size:12px;line-height:24px;}
+.res-row-4{height:860px;}
+.res-row-4 .title{margin:0 auto;padding-top:102px;width:1035px;color:#fff;text-align:center;}
+.res-row-4 h2{padding-bottom:8px;border-bottom:1px solid #898c99;letter-spacing:2px;font-weight:700;font-size:34px;}
+.res-row-4 h2 span{font-size:56px;}
+.res-row-4 .sub{padding-top:2px;letter-spacing:1px;font-size:18px;height:56px;}
+.res-row-4 .sub span{color:#d9052e;font-size:36px;}
+.res-row-4 .list{margin-top:102px;color:#fff;text-align:center;}
+.res-row-4 .list .item{margin:0 43px;}
+.res-row-4 .img{display:block;border:1px solid #888c99;}
+.res-row-4 .img img{padding:11px 13px;width:287px;height:181px;}
+.res-row-4 .list .h5{margin:37px 0 20px;font-size:18px;}
+.res-row-4 .list .p1,.res-row-4 .list .p1 a{color:#878991;font-size:14px;line-height:24px;}
+.res-row-4 .list .p1 a:hover{color:#fff;text-decoration:underline;}
+.res-row-5{height:851px;}
+.res-row-5 .title{margin:0 auto;padding-top:82px;width:1279px;text-align:center;}
+.res-row-5 h2{background:url(/tpl/Home/wfccms/common/images/beagent/res-row-5-bd3.png) no-repeat -12px 61px;color:#fff;font-weight:700;font-size:37px;}
+.res-row-5 h2 span{font-size:54px;}
+.res-row-5 .sub{position:relative;left:-15px;color:#69ae17;letter-spacing:5px;font-size:18px;}
+.res-row-5 .sub span{color:#d70000;}
+.res-row-5 .imgs img{margin:43px auto 0;}
+.res-row-5 .more{color:#fff;text-align:center;font-size:36px;}
+.res-row-6{height:862px;}
+.res-row-6 .title{text-align:center;}
+.res-row-6 .title h2{padding-top:98px;font-weight:700;font-size:36px;}
+.res-row-6 .title .sub{margin-top:8px;font-size:14px;}
+.res-row-6 .sub span{color:#dc0000;font-size:18px;}
+.res-row-6 .cnt{overflow:hidden;margin:48px auto 0;width:1204px;}
+.res-row-6 .list{overflow:hidden;width:1224px;}
+.res-row-6 .item{float:left;margin:0 8px 9px 0;background:#fff;}
+.res-row-6 .item img{margin:6px;width:282px;height:146px;}
+.res-row-7{height:1236px;background:url(/tpl/Home/wfccms/common/images/beagent/res-row-7-bd3.png) repeat;}
+.res-row-7 .title{margin:0 auto;padding-top:90px;padding-bottom:24px;width:1280px;border-bottom:1px solid #07525d;text-align:center;}
+.res-row-7 h2{color:#17e4d1;font-weight:700;font-size:32px;}
+.res-row-7 h2 span{font-weight:400;font-size:60px;}
+.res-row-7 .sub{color:#0aaa9e;font-size:16px;}
+.res-row-7 .cnt{overflow:hidden;margin:40px auto 0;width:1176px;height:772px;position:relative;}
+.res-row-7 .list{overflow:hidden;width:1280px;position:absolute;top:0;left:0;display:none;}
+.res-row-7 .show{display:block;}
+.res-row-7 .list .item{float:left;margin-right:75px;margin-bottom:26px;width:173px;height:360px;background:url(/tpl/Home/wfccms/common/images/beagent/res-row-7-bd2.png) no-repeat left top;}
+.res-row-7 .item a{display:block;height:100%;}
+.res-row-7 .item img{position:relative;left:2px;margin:50px auto 0;width:147px;height:259px;}
+.res-row-7 .btn{display:block;margin:48px auto 0;width:205px;height:52px;background:url(/tpl/Home/wfccms/common/images/beagent/res-row-7-bd.png) no-repeat center center;color:#fff;text-align:center;letter-spacing:4px;font-size:18px;line-height:52px;}
+.res-row-8{height:630px;}
+.res-row-8 .title{margin:0 auto;padding-top:102px;width:1068px;text-align:center;}
+.res-row-8 h2{position:relative;color:#fff;font-size:50px;}
+.res-row-8 h2 i{position:absolute;top:50%;width:330px;height:2px;background:#fff;opacity:.3;filter:alpha(opacity=30);}
+.res-row-8 h2 .left{left:0;}
+.res-row-8 h2 .right{right:0;}
+.res-row-8 h2 span{font-weight:700;}
+.res-row-8 .sub{padding-top:4px;color:#69ae17;font-size:14px;}
+#ajax_Loading .succes{z-index:9999;margin:0 auto;padding:45px;width:350px;height:120px;color:red;vertical-align:middle;text-align:center;font-size:20px;line-height:30px;}
+.res-row-8 .form{position:relative;margin:48px auto;width:1070px;height:502px;background:url(/tpl/Home/wfccms/common/images/beagent/res-row-8-bd2.png) no-repeat left top;}
+.res-row-8 .form-tab{margin:0 auto;padding-top:82px;width:782px;color:#fff;font-size:18px;}
+.res-row-8 .formtitle{width:134px;}
+.bsc_form .input_box{float:none!important}
+.bsc_form_bg{height:771px;}	
+
+.bsc_form{width:500px;}
+#clk{display:inline-block;border:1px solid white;margin:10px;height:30px;margin-left: 180px;line-height: 30px;  width: 50px;text-align: center;}
+.input_address{width: 479px;}
+.bsc_form .input_box .rt_select5 {
+	margin-top:5px;
+    margin-left: 8px;
+    height: 40px;
+    width: 116px;
+	background-color: #B7B8B9;
+	padding:8px 5px;
+}
+.bsc_form .input_box {
+	margin: 30px 10px 10px 0;
+}
+.bsc_form .address{
+	padding:0 22px;height:50px;
+}
+#ajax_Loading {
+    width: 526px;
+    height: 340px;
+    display: none;
+    margin: 0 auto;
+    background-color: silver;
+    position: absolute;
+}
+#ajax_Loading .succes{
+	width:350px;
+	text-align: center;
+    line-height: 30px;
+    font-size: 20px;	
+}
+.btnconfirm {
+    background-color: red;
+    width: 60px;
+    margin-top: 30px;
+    margin-left: 125px;
+}
+.tip_c {
+    font-size: 30px;
+    position: absolute;
+    float: right;
+    top: 1px;
+    right: 5px;
+	-webkit-transition: 0.5s all;
+}
+.formtitle{
+	float:left;
+	margin-top:8px;
+}

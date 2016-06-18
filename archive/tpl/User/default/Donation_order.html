@@ -1,0 +1,63 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">【{pigcms:$donation['name']}】捐款详情</h4>
+		<div class="searchbar right">
+			<form method="post" action="{pigcms::U('Donation/order',array('did' => $donation['id']))}">
+				<input type="text" class="txt left" placeholder="输入捐款人姓名或电话或订单号搜索" name="searchkey" value="{pigcms:$searchkey}" style="width:300px;height:24px""/>
+				<input type="submit" value="搜索" id="msgSearchBtn" class="btnGrayS" />
+			</form>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<!--tab start-->
+	<div class="tab">
+		<ul>
+			<li class="current tabli" id="tab0"><a href="{pigcms::U('Donation/index')}">募捐活动</a></li>
+		</ul>
+	</div>
+	<!--tab end-->
+	<div class="msgWrap">
+		<div class="cLine">
+			<div style="margin-top:20px;"><a href="{pigcms::U('Donation/export', array('did' => $donation['id']))}" class="btnGrayS vm">导出捐款记录</a></div>
+
+			<div class="clr"></div>
+		</div>
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="100">捐赠流水号</th>
+					<th width="100">姓名</th>
+					<th width="100">电话</th>
+					<th width="100">微信昵称</th>
+					<th width="70">微信头像</th>
+					<th width="50">捐赠金额</th>
+					<th width="100">捐赠时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="orders" id="o"> 
+				<tr>
+					<td>{pigcms:$o.orderid}</td> 
+					<td>{pigcms:$o.truename}</td>
+					<td>{pigcms:$o.tel}</td>
+					<td>{pigcms:$o.wechaname}</td>
+					<td><img src="{pigcms:$o.portrait}" style="width:60px;height:60px;"></td>
+					<td>{pigcms:$o.price}</td>
+					<td>{pigcms:$o.dateline|date="Y-m-d H:i:s",###}</td>
+				</tr>
+				</volist>
+			</tbody>
+		</table>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$page}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<include file="Public:footer"/>

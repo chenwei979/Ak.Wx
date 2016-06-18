@@ -1,0 +1,118 @@
+<include file="Public:head"/>
+<link  type="text/css" rel="stylesheet" href="{pigcms:$staticPath}/tpl/static/welcome/css/base.css" />
+<link  type="text/css" rel="stylesheet" href="{pigcms:$staticPath}/tpl/static/welcome/css/index.css" />
+<script src="{pigcms:$staticPath}/tpl/static/welcome/js/index.js"></script>
+<style>
+.pages a{
+    height: 35px !important;
+    padding: 0 15px !important;
+    float: left !important;
+    margin-right: 15px !important;
+    line-height: 35px !important;
+    font-size: 14px !important;
+    border: #1abd6c 1px solid !important;
+    color: #1abd6c !important;
+}
+.current{
+background: #1abd6c !important;
+    height: 35px !important;
+    padding: 0 15px !important;
+    float: left !important;
+    margin-right: 15px !important;
+    line-height: 35px !important;
+    font-size: 14px !important;
+    border: #1abd6c 1px solid !important;
+}
+.game_page li,.up,.down,.tiao,.tiao_input,.aiya{
+    height: 35px;
+    padding: 0 15px;
+    float: left;
+    margin-right: 15px;
+    line-height: 35px;
+    font-size: 14px;
+    border: #1abd6c 1px solid;
+    color: #1abd6c;
+    line-height:2.5 !important;
+}
+.yourclass{
+top:30%;
+}
+.active{color: #fff !important; }
+.game_page li:hover,.up:hover,.down:hover,.tiao:hover{background:#44b549;color: #fff !important;}
+.pages a:hover{background:#44b549;color: #fff !important;}
+.feature_list .feature_table .feat_txt a:hover{color:#44b549;}
+.popup_pro p{line-height: 30px}
+.feat_txt h5 span:hover{color:#44b549;}
+.feature_list .search .search_input i{cursor:pointer; }
+</style>
+<script src="{pigcms:$staticPath}/tpl/static/new/js/jquery-2.1.1.js"></script>
+<script src="{pigcms::$staticPath}/tpl/static/jquery.qrcode.min.js" type="text/javascript"></script>
+<script src="{pigcms::$staticPath}/tpl/static/layer/layer.js" type="text/javascript"></script>
+
+<div class="ajax_show">
+    
+</div>
+<script>
+<?php S('menus_'.$token,$menus); ?>
+$(function (){
+    var bodywidth = $(window).width();
+    <?php if ($usertplid == 2) { ?>
+        if (bodywidth > 1546) {
+            var num = 12;
+        }else{
+            var num = 10;
+        }
+    <?php }else{ ?>
+        var num = 8;
+    <?php } ?>
+    $.ajax({
+        type : 'post',
+        url : '{pigcms::U('Function/show_ajax',array('token'=>$token,'class'=>'0'))}',
+        data:{'num':num},
+        success : function (html) {
+            $('.ajax_show').html(html);
+
+        }
+    });
+    $('.ajax_show').on("click",".feature_list menu a,.paging a",function(){
+        $.ajax({
+            type : 'post',
+            url : $(this).attr('href'),
+            data:{'num':num},
+            success : function (html) {
+                $('.ajax_show').html(html);
+                $('body,html').animate({scrollTop:0},1);
+            }
+        })
+        return false;
+    });
+    $('.ajax_show').on("click",".search_what",function(){
+        var what_val = $('#textfield').val();
+        $.ajax({
+            type : 'post',
+            url : $(this).attr('type')+"&search="+what_val,
+            data:{'num':num},
+            success : function (html) {
+                $('.ajax_show').html(html);
+                $('body,html').animate({scrollTop:0},1);
+            }
+        })
+        return false;
+    });
+    $('.ajax_show').on("click",".tiao",function(){
+        var p = $('.tiao_input').val();
+        $.ajax({
+            type : 'post',
+            url : $('.tiaoba').attr('href')+"&p="+p,
+            data:{'num':num,'tiao_input':p},
+            success : function (html) {
+                $('.ajax_show').html(html);
+                $('body,html').animate({scrollTop:0},1);
+            }
+        })
+        return false;
+    });
+});
+
+</script>
+<include file="Public:footer"/>

@@ -1,0 +1,46 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">帮助【{pigcms:$user['userinfo']['wechaname']}】的人</h4>
+<a href="<?php echo U('User/Helping/rank',array('token'=>$token,'id'=>$user['pid']));?>" class="right btnGrayS vm">返回</a>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="">OPENID</th>
+<th width="">昵称</th>
+<th width="">手机号码</th>
+<th width="">助力时间</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item" key="key"> 
+<tr>
+<td>{pigcms:$item['wecha_id']}</td>
+<td>{pigcms:$item['userinfo']['wechaname']}</td>
+<td>{pigcms:$item['userinfo']['tel']}</td>
+<td>{pigcms:$item.addtime|date="Y-m-d H:i:s",###}</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<script>
+</script>
+<include file="Public:footer"/>

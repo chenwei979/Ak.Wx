@@ -1,0 +1,47 @@
+<include file="Public:head"/>
+<include file="Medical:menu"/>
+<link rel="stylesheet" type="text/css" href="{pigcms::Common}/default_user_com.css" media="all">
+<div class="content">
+<div class="cLineB">
+<a href="{pigcms::U('Medical/officeset',array('token'=>$token))}" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{pigcms::RES}/images/product/add.png" class="vm"></if> 添加科室</a>
+ </div>
+<div class="msgWrap">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+  <thead>
+<tr>
+	<th width="10%" style="text-align: center;">序号</th>
+	<th width="40%" style="text-align: center;">科室名称</th>
+	<th class="norightborder" width="" style="text-align: center;">操作</th>
+</tr>
+</thead>
+  <tbody>
+  <pigcmsif where="$list">
+	<volist name='list' id='vo'>
+	<tr>
+	  <td style="text-align: center;"><php>echo ($key+$firstRow+1);</php></td>
+	  <td style="font-weight:bolder;text-align: center;">{pigcms:$vo.typename}</td>
+		<td class="norightborder" style="text-align: center;"><A href='index.php?g=User&m=Medical&a=officeset&id={pigcms:$vo.id}&token={pigcms:$token}'>修改科室</a>
+		<a href='index.php?g=User&m=Medical&a=doctorlist&tid={pigcms:$vo.id}&token={pigcms:$token}&officename={pigcms:$vo.typename}'>专家列表</a>
+      <a class="btn" href="javascript:drop_confirm('确定删除吗？','{pigcms::U('Medical/officedel',array('id'=>$vo['id'],'token'=>$token))}')" title="删除">删除</a></td>
+		</tr>
+	</volist>
+	<else />
+	<tr><td colspan="6" style="text-align:center;">暂无记录</td></tr>
+	</pigcmsif>
+	</tbody>
+</table>
+</div>
+<script>
+function showIntroDetail(id){
+	art.dialog.open('{pigcms::U('Medical/reser_uinfo',array('token'=>$token))}&iid='+id,{lock:false,title:'预约订单详情',width:700,height:420,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+
+<div class="cLine">
+<div class="pageNavigator right">
+	 <div class="pages">{pigcms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>  
+<include file="Public:footer"/>

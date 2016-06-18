@@ -1,0 +1,225 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<link href="{pigcms:$staticPath}/tpl/static/donation/css/geren.css" type="text/css" rel="stylesheet">
+<script src="{pigcms:$staticPath}/tpl/static/donation/js/jquery-1.7.2.js"></script>
+<script src="{pigcms:$staticPath}/tpl/static/donation/js/index.js"></script>
+<title>{pigcms:$donation['name']}</title>
+</head>
+<body>
+<div id="pageContainer">
+    <div class="mynewrd">
+        <div class="top"> <img src="{pigcms:$staticPath}/tpl/static/donation/images/bg_myrecord_1.jpg" class="bg">
+            <div class="txt">
+                <div class="icon_bg"><img src="{pigcms:$fans['portrait']}"></div>
+                <div class="c">亲爱的<span class="r n" id="user"> {pigcms:$fans['wechaname']}</span></div>
+                <div class="c" id="head_desc">感谢您捐赠的<span class="r n">{pigcms:$my_order['price']}</span>元善款, <span class="r n">您</span>帮助到了有需要的人。</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="box">
+            <div class="nav">
+                <div class="bg">
+                    <a href="{pigcms::U('Donation/info', array('token' => $token, 'id' => $id, 'wecha_id' => $wecha_id, 'type' => 2))}"><div class="item item1 <if condition="$type eq 2">ed</if>">我的捐赠</div></a>
+                    <a href="{pigcms::U('Donation/info', array('token' => $token, 'id' => $id, 'wecha_id' => $wecha_id, 'type' => 3))}"><div class="item item2 <if condition="$type eq 3">ed</if>">我的影响值</div></a>
+                    <a href="{pigcms::U('Donation/info', array('token' => $token, 'id' => $id, 'wecha_id' => $wecha_id, 'type' => 1))}"><div class="item item3 <if condition="$type eq 1">ed</if>">项目动态</div></a>
+                </div>
+            </div>
+            <div class="content">
+                <ul id="list" class="cont_list">
+                    <li <if condition="$type neq 1">style="display:none"</if> id="type_1">
+                    	<volist name="dynamic_list" id="dynamic_row">
+                        <div class="item "> 
+                        	<a href="{pigcms::U('Index/content', array('token' => $token, 'wecha_id' => $wecha_id, 'id' => $dynamic_row['id']))}">
+	                            <h1>{pigcms:$dynamic_row['title']}</h1>
+	                            <!-- div class="summary">{pigcms:$dynamic_row['text']}</div-->
+                            </a>
+                            <div class="citem">
+                                <div class="t"><img src="{pigcms:$staticPath}/tpl/static/donation/images/detail_icon_1.png">{pigcms:$dynamic_row['dateline']|date="Y年m月d日",###}</div>
+                                <div class="d">{pigcms:$dynamic_row['text']} </div>
+                            </div>
+                            <div class="citem">
+                                <div class="t"><img src="{pigcms:$staticPath}/tpl/static/donation/images/detail_icon_1.png"><a href="{pigcms::U('Index/content', array('token' => $token, 'wecha_id' => $wecha_id, 'id' => $dynamic_row['id']))}"><span>更多详情 &gt;&gt;</span></a></div>
+                            </div>
+                        </div>
+                        </volist>
+                    </li>
+                    <li <if condition="$type neq 2">style="display:none"</if>>
+                        <div class="influence">
+                            <div class="influence_info clearfix juankuan">
+                                <div class="in_l">已捐金额:<span>{pigcms:$my_order['price']}</span>元</div>
+                                <if condition="$order gt 0"><div class="in_c"><i></i><span>{pigcms:$order}</span></div></if>
+                                <div class="in_r">捐赠次数<span>{pigcms:$my_order['cnt']}</span>次</div>
+                            </div>
+                            <if condition="$share_count['cnt'] OR $share_count['price']">
+							<p style="color: #9f9f9f;font-size: 16px; margin-left: 5%; line-height: 26px;">项目名称:<span>{pigcms:$donation['name']}</span></p>
+                            <div class="in_list">
+                                <ul>
+                                    <li class="clearfix">
+                                    	<a href="{pigcms::U('Donation/index', array('token' => $token, 'wecha_id' => $wecha_id, 'id' => $donation['id']))}" style="color:#fe5842;  text-decoration: inherit;">
+                                        <div class="in_img"><img src="{pigcms:$donation['pic']}" style="width: 150px;"/></div>
+                                        <div class="in_txt">
+                                            <p>已捐金额:<span><i>{pigcms:$share_count['price']}</i>元</span></p>
+                                            <p>已捐次数:<span><i>{pigcms:$share_count['cnt']}</i>次</span></p>
+                                        </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            </if>
+                            <if condition="$order_list">
+                            <div class="influence_titel">{pigcms:$set['circle_name']}捐赠排行榜</div>
+                            <div class="influence_tab">
+                                <ul id="type_2">
+                                	<volist name="order_list" id="rowset">
+                                    <li class="and_search clearfix ">
+                                    	<if condition="$i eq 1">
+                                    		<div class="ranking one"><span>{pigcms:$i}</span></div>
+                                    	<elseif condition="$i eq 2" />
+                                    		<div class="ranking two"><span>{pigcms:$i}</span></div>
+                                    	<elseif condition="$i eq 3" />
+                                    		<div class="ranking three"><span>{pigcms:$i}</span></div>
+                                    	<else />
+                                    		<div class="ranking"><span>{pigcms:$i}</span></div>
+                                    	</if>
+                                        <div class="head"><img src="{pigcms:$rowset['portrait']}"  style="height:45px;width:45px;"/></div>
+                                        <div class="name">{pigcms:$rowset['wechaname']}</div>
+                                        <div class="ranking_txt">{pigcms:$rowset['p']}</div>
+                                        <div class="medal" style="margin-top: 9px;">{pigcms:$rowset['medal']}</div>
+                                        <div style=" clear:both"></div>
+                                    </li>
+                                    </volist>
+                                </ul>
+                            </div>
+                            </if>
+                            <div class="influence_titel"><a href="{pigcms::U('Donation/index', array('token' => $token, 'id' => $id, 'wecha_id' => $wecha_id))}">我要捐款</a></div>
+                        </div>
+                    </li>
+                    <li <if condition="$type neq 3">style="display:none"</if>>
+                        <div class="influence">
+                            <div class="influence_info clearfix">
+                                <div class="in_l">我的影响值:<span>{pigcms:$myorder}</span></div>
+                                <if condition="$mycount gt 0"><div class="in_r"><i></i><span>{pigcms:$mycount}</span></div></if>
+                            </div>
+                            <if condition="$value_list">
+                            <div class="influence_titel">{pigcms:$set['circle_name']}影响值排行榜</div>
+                            <div class="influence_tab two_tab">
+                                <ul id="type_3">
+                                	<volist name="value_list" id="value">
+                                    <li class="clearfix">
+                                    	<if condition="$i eq 1">
+                                    		<div class="ranking one"><span>{pigcms:$i}</span></div>
+                                    	<elseif condition="$i eq 2" />
+                                    		<div class="ranking two"><span>{pigcms:$i}</span></div>
+                                    	<elseif condition="$i eq 3" />
+                                    		<div class="ranking three"><span>{pigcms:$i}</span></div>
+                                    	<else />
+                                    		<div class="ranking"><span>{pigcms:$i}</span></div>
+                                    	</if>
+                                        <div class="head"><img src="{pigcms:$value['portrait']}"  style="height:45px;width:45px;"/></div>
+                                        <div class="name">{pigcms:$value['wechaname']}</div>
+                                        <div class="ranking_txt">{pigcms:$value['num']}</div>
+                                    </li>
+                                    </volist>
+                                </ul>
+                            </div>
+                            </if>
+                            <div class="influence_titel"><a href="{pigcms::U('Donation/invitation', array('token' => $token, 'id' => $id, 'wecha_id' => $wecha_id))}">邀请{pigcms:$set['circle_name']}一起捐，提升影响值</a></div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="more none" style="display: none;"><img src="{pigcms:$staticPath}/tpl/static/donation/images/loading_1.gif">加载中...</div>
+            </div>
+        </div>
+        <input type="hidden" id="page" value="2" />
+        <input type="hidden" id="canScroll" value="1" />
+        <div class="footer"><img  src="{pigcms:$donation['logo']}"></div>
+    </div>
+    <div id="tips" style="background:rgba(0,0,0,0.7);position:fixed;width:100%;height:100%;left:0;top:0;z-index:2000;display:none"></div>
+</div>
+<script type="text/javascript">
+/*$(function() {
+	var type = {pigcms:$type}, token='{pigcms:$token}', wecha_id='{pigcms:$wecha_id}';
+	var b_url = "{pigcms::U('Donation/ajax_list', array('token' => $token, 'id' => $id, 'wecha_id' => $wecha_id))}";
+	$(window).bind("scroll", function() {
+		if ($(document).scrollTop() + $(window).height() >= $(document).height()) {
+			var _page = $('#page').val();
+			if (_page < 1) return false;
+			$('.more').show();
+			if($('#canScroll').val()==0){//不要重复加载
+				$('.more').hide();
+				return;
+			}
+			$('#canScroll').val(0);
+			$.ajax({
+				type : "GET",
+				data : {'page' : _page, 'inajax' : 1, 'type' : type},
+				url :  b_url,
+				dataType : "json",
+				success : function(response) {
+					$('#canScroll').val(1);
+					$('.more').hide();
+					$('#page').val(response.page);
+					var data = response.data;
+					var _tmp_html = '';
+					if (type == 2) {
+						$.each(data, function(x, y) {
+							_tmp_html += '<li class="and_search clearfix "><div class="ranking"><span>' + y.ranking + '</span></div>';
+							_tmp_html += '<div class="head"><img src="' + y.portrait + '" style="height:45px;width:45px;"/></div>';
+							_tmp_html += '<div class="name">' + y.wechaname + '</div>';
+							_tmp_html += '<div class="ranking_txt">' + y.p + '</div>';
+							_tmp_html += '<div class="medal"  style="margin-top: 9px;">' + y.medal + '</div>';
+							_tmp_html += '<div style=" clear:both"></div>';
+							_tmp_html += '</li>';
+						});
+					} else if (type == 3) {
+						$.each(data, function(x, y) {
+							_tmp_html += '<li class="clearfix">';
+							_tmp_html += '<div class="ranking"><span>' + y.ranking + '</span></div>';
+							_tmp_html += '<div class="head"><img src="' + y.portrait + '" style="height:45px;width:45px;"/></div>';
+							_tmp_html += '<div class="name">' + y.wechaname + '</div>';
+							_tmp_html += '<div class="ranking_txt">' + y.num + '</div>';
+							_tmp_html += '</li>';
+						});
+					} else {
+						$.each(data, function(x, y) {
+							_tmp_html += '<div class="item "> ';
+							_tmp_html += '<a href="/index.php?g=Wap&m=Index&a=content&token='+token+'&wecha_id=' + wecha_id + '&id=' + y.id + '">';
+							_tmp_html += '<h1>' + y.title + '</h1>';
+							_tmp_html += '<div class="summary">' + y.text + '</div>';
+							_tmp_html += '</a>';
+							_tmp_html += '<div class="citem">';
+							_tmp_html += '<div class="t"><img src="/tpl/static/donation/images/detail_icon_1.png">' + y.dateline + '</div>';
+							_tmp_html += '<div class="d">' + y.text + '</div>';
+							_tmp_html += '</div>';
+							_tmp_html += '<div class="citem">';
+							_tmp_html += '<div class="t"><img src="/tpl/static/donation/images/detail_icon_1.png"><a href="/index.php?g=Wap&m=Index&a=content&token='+token+'&wecha_id=' + wecha_id + '&id=' + y.id + '"><span>更多详情 &gt;&gt;</span></a></div>';
+							_tmp_html += '</div>';
+							_tmp_html += '</div>';
+						});
+					}
+					$('#type_' + type).append(_tmp_html);
+				}
+			});
+		}
+	});
+});*/
+
+window.shareData = {  
+	"moduleName":"Donation",
+	"moduleID":"{pigcms:$donation['id']}",
+	"imgUrl": "{pigcms:$donation['share_pic']}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"tTitle": "{pigcms:$donation['name']|shareFilter}",
+	"tContent": "{pigcms:$donation['note']|shareFilter}",
+	"fTitle": "{pigcms:$donation['name']|shareFilter}",
+	"isShareNum":1,
+	"ShareNumData":"donation,id,{pigcms:$id},share_num"
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

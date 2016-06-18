@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>权限管理</title>
+<include file="common:public" />
+<style>
+	#system td{border-top: 1px solid #E7E7E7;}
+	.ksearch{border-bottom: 1px solid #E7E7E7;}
+	.kserico{margin-left:-25px}
+	.kser{margin-left:20px;}
+	.sels{height:25px;width:120px}
+	.ipt{margin-left:50px;}
+	.ipt:focus{border-color: #1ab394 !important;}
+</style>
+<div class="cr"></div>
+<div id="artlist">
+<div id="btl">
+	 <div class="ksearch" style="width:100%;margin:0px">
+    	<div class="fl">
+			<form action="{pigcms::U('Users/search')}" method="post"  id="myform">
+	
+			<b class="kserico">快速搜索：</b><span class="kser">搜索类型：</span>
+			<select name="type" class="sels" style="width:100px">
+				<option value="1">用户名</option>
+				<option value="2">用户ID</option>
+				<option value="3">用户邮箱</option>
+				<option value="4">手机号</option>
+			</select> 
+			<input name="name" class="ipt" type="text" value=""> 
+			<input type="submit" value="搜    索" class="shel" style="color: #FFFFFF;text-align:center;"/>
+			</form>
+        </div>
+        <div class="fl">
+			<b>排序方式：</b>
+			<select class="sels" >
+				<option value="">注册时间（降序）</option>
+				<option value="">登陆时间（降序）</option>
+			</select>
+		</div>
+        <div class="fl">
+			<b>查看方式：</b>
+			<select class="sels" >
+				<option value="">按分类查看</option>
+			</select>
+		</div>
+    </div>
+<form name="form1" method="post" id="myform">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" id="alist" class="fonts">
+		<tr>
+			<td align='center'><input type="checkbox" id="checkAll" value="1" style="vertical-align:middle;"/>&nbsp;全选</td>
+			<td align='center'><input type="submit" value="设为系统用户" onclick="send();" class="subs" style="width:100px"/></td>
+			<td align='center' style="width:400px"><input type="submit" value="取消系统用户" onclick="save();" class="subs1" style="width:100px"/>&nbsp;&nbsp;<nobr>系统用户可以看到视频帮助</nobr></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td align='center'><input type="hidden" name="pid" value="{pigcms:$pid}"/></td>
+		</tr>
+		  <tr id="system">
+		  	<td width="40">选中</td>
+			<td width="20">ID</td>
+			<td width="150">用户名称</td>
+			<td width="50">系统用户</td>
+			<td width="150">角色组</td>
+			<td width="100">最后登录IP</td>
+			<td width="150">最后登录时间</td>
+			<td width="70">状态</td>
+			<td width="100">管理操作</td>
+		  </tr>
+		    <volist name="info" id="vo">
+				<tr id="nsv">
+					<td align='center'><input type="checkbox" name='test[]' value="{pigcms:$vo.id}"/></td>
+					<td align='center'>{pigcms:$vo.id}</td>
+					<td >{pigcms:$vo.username}</td>
+					<td ><eq name="vo.sysuser" value="1">是<else/>否</eq></td>
+					<td >{pigcms:$group[$vo['gid']]}</td>
+					<td align='center'>{pigcms:$vo.lastip}</td>
+					<td align='center'><php>echo date('Y-m-d H:i:s', $vo['lasttime'])</php></td>
+					<td align='center'><eq name="vo.status" value="1"><font color="red">√</font><else/><font color="blue">×</font></eq> 
+					</td>
+					<td align='center'>
+						<a href="{pigcms::U('Users/edit/',array('id'=>$vo['id']))}">修改</a>
+						| <a href="javascript:void(0)" onclick="if(confirm('确定删除吗')){location.href='{pigcms::U('Users/del/',array('id'=>$vo['id']))}'}">删除</a>
+					</td>
+				</tr>
+		    </volist>
+	    <tr bgcolor="#FFFFFF"> 
+	      	<td colspan="9"><div class="listpage">{pigcms:$page}</div></td>
+	    </tr>
+	   
+	</table>
+</form>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$('#checkAll').click(function(){
+			if($(this).attr('checked')){
+				$(':checkbox').attr('checked','true');
+			}else{
+				$(':checkbox').removeAttr('checked');
+			}
+		});
+	});
+</script>
+<script type="text/javascript">
+	function send(){ 
+		document.form1.action="{pigcms::U('Users/syname')}";
+		document.form1.submit();
+	}
+	function save(){
+		document.form1.action="{pigcms::U('Users/sysname')}";
+		document.form1.submit();
+	}
+</script>
+</body>
+</html>

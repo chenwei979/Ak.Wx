@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>{pigcms:$info.title}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <link rel="stylesheet" href="{pigcms::STATICS}/scene/css/base.css">
+    <link rel="stylesheet" href="{pigcms::STATICS}/scene/css/style.css">
+</head>
+<body style="background-image:url(<?php echo $info['lottery_background'] ? $info['lottery_background'] : STATICS.'/scene/images/lottery_background.png' ?>);">
+<div class="wrapbg">
+    <div class="whole">
+		<include file="Scene:header"/>
+        <div class="mian mt40 clearfix">
+            <div class="daZhuanPan">
+                <div class="topText">
+                    <img class="zptext0" src="{pigcms::STATICS}/scene/images/zptext0.png" alt="zptext0">
+                    <img class="zptext1" src="{pigcms::STATICS}/scene/images/zptext1.png" alt="zptext1">
+                </div>
+                <div class="starBtn">
+                    <a href="javascript:;">开始倒计时</a>
+                </div>
+            </div>
+        </div>
+		<include file="Scene:toolbar"/>
+    </div>
+</div>
+
+
+<!-- <div class="lightFixed leftOne"></div>
+<div class="lightFixed rightOne"></div> -->
+<include file="Scene:footer"/>
+<param class="param"
+url-location="{pigcms::U('Scene/hudong', array('token'=>$token, 'id'=>$id, 'type'=>'dazhuanpan'))}"
+url-start="{pigcms::U('Scene/active_start', array('token'=>$token, 'id'=>$id, 'type'=>'dazhuanpan'))}"
+/>
+<script src="{pigcms::STATICS}/scene/js/jquery-1.7.2.min.js"></script>
+<script src="{pigcms::STATICS}/scene/js/scroll-marquee.js"></script>
+<script src="{pigcms::STATICS}/scene/js/jquery.soChange.js"></script>
+<script src="{pigcms::STATICS}/scene/js/jquery.tooltipster.min.js"></script>
+<script src="{pigcms::STATICS}/scene/js/common.js"></script>
+</body>
+</html>

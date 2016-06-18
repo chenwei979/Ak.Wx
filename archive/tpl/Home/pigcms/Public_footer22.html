@@ -1,0 +1,94 @@
+<div class="footer">
+    <div class="w1000">
+        <p>&copy;{pigcms::C('copyright')}&nbsp;{pigcms::C('ipc')}</p>
+        <div class="ftImg">
+            <a href="##">
+                <img src="./tpl/Home/pigcms/common/images/newIndex/ftimg.png" alt="ft">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="rightBar">
+    <ul>
+    <if condition="$agentid eq 0">
+        <li class="chat">
+            <a href="##">
+                <img src="./tpl/Home/pigcms/common/images/newIndex/rightBar0.png" alt="right">
+                <h3>联系电话</h3>
+                    <if condition="C('site_mp') eq ''">
+                        <p style="font-size: 13px;color: #f26161;">xxxxxxxxxxx</p>
+                    <else/>
+                        <volist name="sitemp" id="vo">
+                        <p style="font-size: 13px;color: #f26161;">{pigcms:$vo}</p>   
+                        </volist>             
+                    </if>
+            </a>
+        </li>
+        <li class="qq">
+            <a href="http://wpa.qq.com/msgrd?v=3&uin={pigcms::C('site_qq')}&site=qq&menu=yes">
+                <img src="./tpl/Home/pigcms/common/images/newIndex/rightBar1.png" alt="right">
+                <h3>QQ咨询</h3>
+            </a>
+        </li>
+        <li class="free">
+            <a href="index.php?m=Index&a=reg">
+                <img src="./tpl/Home/pigcms/common/images/newIndex/rightBar2.png" alt="right">
+                <h3>免费体验</h3>
+            </a>
+        </li>
+        <li class="xz">
+            <img src="<?php if(C('site_twm')){  echo  C('site_twm');  }else{   echo './tpl/Home/pigcms/common/images/newIndex/erw.png';  }  ?>" alt="right">
+            <h3>码上加入</h3>
+            <p>{pigcms:$f_siteName}官方微信</p>
+        </li>
+    <else />
+        <li class="chat">
+            <a href="##">
+                <img src="./tpl/Home/pigcms/common/images/newIndex/rightBar0.png" alt="right">
+                <h3>联系电话</h3>
+                    <if condition="sitemp eq ''">
+                        <p style="font-size: 13px;color: #f26161;">xxxxxxxxxxx</p>
+                    <else />
+                        <volist name="sitemp" id="vo">
+                            <p style="font-size: 13px;color: #f26161;">{pigcms:$vo}</p>
+                        </volist>    
+                    </if>
+            </a>
+        </li>
+        <li class="qq">
+            <a href="http://wpa.qq.com/msgrd?v=3&uin={pigcms:$qq}&site=qq&menu=yes">
+                <img src="./tpl/Home/pigcms/common/images/newIndex/rightBar1.png" alt="right">
+                <h3>QQ咨询</h3>
+            </a>
+        </li>
+        <li class="free">
+            <a href="index.php?m=Index&a=reg">
+                <img src="./tpl/Home/pigcms/common/images/newIndex/rightBar2.png" alt="right">
+                <h3>免费体验</h3>
+            </a>
+        </li>
+        <li class="xz">
+            <img src="{pigcms:$qrcode}" alt="right">
+            <h3>码上加入</h3>
+            <p>{pigcms:$f_siteName}官方微信</p>
+        </li>
+    </if>
+
+
+
+
+
+
+    </ul>
+    <a class="barClosed" href="javascript:;"></a>
+</div>
+<div class="barToggle">
+    <a href="javascript:;">
+        <i></i>
+        <em>联系咨询</em>
+    </a>
+</div>
+<script src="{pigcms:$staticPath}/tpl/Home/pigcms/common/js/newIndex/common.js"></script>
+</body>
+</html>
+<span style="display:none"><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5524076'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D5524076' type='text/javascript'%3E%3C/script%3E"));</script></span>

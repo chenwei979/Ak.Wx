@@ -1,0 +1,320 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<style>
+.aui_dialog .aui_content img {
+	width:700px;
+	height:400px;
+}
+
+</style>
+<div class="content" >  
+<div class="cLineB"><h4>微现场设置</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+<form class="form" method="post" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+<TR>
+  <TH valign="top"><span class="red">*</span><label for="acttitle">现场名称：</label></TH>
+  <TD><input type="input" class="px" id="title"  name="title" style="width:400px"  value="{pigcms:$info.title}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><span class="red">*</span><label for="acttitle">关键词：</label></TH>
+  <TD><input type="input" class="px" id="keyword"  name="keyword" style="width:400px"  value="{pigcms:$info.keyword}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+
+ <tr> 
+        <th><span class="red"></span>图文回复图片：</th>
+        <td><input type="text" name="pic" value="{pigcms:$info.pic}" class="px" id="pic" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',365,158,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a>      	<span>建议尺寸[365*158]</span></td> 
+       </tr>
+   
+   <tr> 
+        <th><span class="red"></span>LOGO：</th>
+        <td>
+          <input type="text" name="logo" value="<if condition="$info['logo'] eq ''">./tpl/static/scene/images/default_logo.png<else/>{pigcms:$info.logo}</if>" class="px" id="logo" style="width:320px;" />  
+        <script src="/tpl/static/upyun.js"></script>
+        <a href="###" onclick="upyunPicUpload('logo',240,90,'{pigcms:$token}')" class="a_upload">上传</a> 
+        <a href="###" onclick="viewImg('logo')">预览</a>      	建议尺寸[240*90]</td> 
+       </tr>
+      <tr> 
+        <th><span class="red"></span>二维码：</th>
+        <td><input type="text" name="qrcode" value="{pigcms:$info.qrcode}" class="px" id="qrcode" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('qrcode',0,0,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('qrcode')">预览</a>      	<span></span></td> 
+      </tr>
+	    <tr> 
+	      <th><span class="red"></span>微信墙背景图：</th>
+	      <td><input type="text" name="background" value="<if condition="$info['background'] eq ''">./tpl/static/scene/images/background.jpg<else/>{pigcms:$info.background}</if>" class="px" id="background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('background',1024,768,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('background',700,420)">预览</a>      	<span>建议尺寸[1024*768]</span></td> 
+	    </tr>
+      <tr> 
+        <th><span class="red"></span>签到背景图：</th>
+        <td><input type="text" name="signin_background" value="<if condition="$info['signin_background'] eq ''">./tpl/static/scene/images/signin_background.png<else/>{pigcms:$info.signin_background}</if>" class="px" id="signin_background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('signin_background',1024,768,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('signin_background',700,420)">预览</a>      	<span>建议尺寸[1024*768]</span></td> 
+	  </tr>
+      <tr> 
+        <th><span class="red"></span>对对碰背景图：</th>
+        <td><input type="text" name="supperzzle_background" value="<if condition="$info['supperzzle_background'] eq ''">./tpl/static/scene/images/supperzzle_background.png<else/>{pigcms:$info.supperzzle_background}</if>" class="px" id="supperzzle_background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('supperzzle_background',1024,768,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('supperzzle_background',700,420)">预览</a>      	<span>建议尺寸[1024*768]</span></td> 
+      </tr>
+      <tr> 
+        <th><span class="red"></span>抽奖背景图：</th>
+        <td><input type="text" name="prize_background" value="<if condition="$info['prize_background'] eq ''">./tpl/static/scene/images/choujiang_background.jpg<else/>{pigcms:$info.prize_background}</if>" class="px" id="prize_background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('prize_background',1024,768,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('prize_background',700,420)">预览</a>      	<span>建议尺寸[1024*768]</span></td> 
+      </tr>
+      <!-- 
+      <tr> 
+        <th><span class="red"></span>现场互动背景图：</th>
+        <td><input type="text" name="hudong_background" value="<if condition="$info['hudong_background'] eq ''">./tpl/static/scene/images/background.jpg<else/>{pigcms:$info.hudong_background}</if>" class="px" id="hudong_background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('hudong_background',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('hudong_background',700,420)">预览</a></td> 
+      </tr>
+       -->
+      <tr> 
+        <th><span class="red"></span>简介：</th> 
+        <td><textarea name="intro" class="px" style="width:400px;height:80px;">{pigcms:$info.intro}</textarea></td> 
+      </tr>      
+      <tr> 
+        <th><span class="red"></span>公告：</th> 
+        <td>
+        	<textarea name="notice" class="px" style="width:400px;height:70px;">{pigcms:$info.notice}</textarea>
+        </td> 
+      </tr>
+	  <tr><td colspan='2' style="border-bottom:1px dashed #aaa"></td></tr>
+      <tr> 
+        <th><span class="red"></span>摇一摇：</th> 
+        <td>
+            <select name="shake_id" id="">
+              <option value="">请选择活动...</option>
+              <volist id="shake"  name="shake">
+                <option value="{pigcms:$shake.id}" <if condition="$shake['id'] eq $info['shake_id']">selected</if>>{pigcms:$shake.title|mb_substr=###,0,20,'utf-8'}</option>
+              </volist>
+            </select>
+            <a class="a_upload" href="{pigcms::U('Shake/add', array('type'=>'scene'))}">添加摇一摇</a>
+            只能选择已经开启的摇一摇活动
+        </td> 
+      </tr>
+      <tr> 
+        <th><span class="red"></span>摇一摇背景图：</th>
+        <td><input type="text" name="shake_background" value="<if condition="$info['shake_background'] eq ''">./tpl/static/scene/images/shake_background.png<else/>{pigcms:$info.shake_background}</if>" class="px" id="shake_background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('shake_background',1024,768,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('shake_background',700,420)">预览</a>      	<span>建议尺寸[1024*768]</span></td> 
+      </tr>
+      <tr> 
+        <th><span class="red"></span>摇一摇关键词：</th>
+        <td><input type="text" name="shake_keyword" value="<if condition="$info['shake_keyword'] eq ''"><else/>{pigcms:$info.shake_keyword}</if>" class="px" id="shake_keyword" style="width:320px;" /></td> 
+      </tr>
+	  <tr><td colspan='2' style="border-bottom:1px dashed #aaa"></td></tr>
+      <tr> 
+        <th><span class="red"></span>摇红包：</th> 
+        <td>
+            <select name="red_packet_id" id="">
+              <option value="">请选择活动...</option>
+              <volist id="red_packet"  name="red_packet">
+                <option value="{pigcms:$red_packet.id}" <if condition="$red_packet['id'] eq $info['red_packet_id']">selected</if>>{pigcms:$red_packet.action_name|mb_substr=###,0,20,'utf-8'}...</option>
+              </volist>
+            </select>
+            <a class="a_upload" href="{pigcms::U('ShakeLottery/AddShakeLottery', array('type'=>'scene'))}">添加摇一摇红包</a>
+            只能选择已经开启的摇一摇红包
+        </td> 
+      </tr>
+      <tr> 
+        <th><span class="red"></span>摇红包背景图：</th>
+        <td><input type="text" name="hongbao_background" value="<if condition="$info['hongbao_background'] eq ''">./tpl/static/scene/images/background.jpg<else/>{pigcms:$info.hongbao_background}</if>" class="px" id="hongbao_background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('hongbao_background',1024,768,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('hongbao_background',700,420)">预览</a>      	<span>建议尺寸[1024*768]</span></td> 
+      </tr>
+      <tr> 
+        <th><span class="red"></span>摇红包关键词：</th>
+        <td><input type="text" name="hongbao_keyword" value="<if condition="$info['hongbao_keyword'] eq ''"><else/>{pigcms:$info.hongbao_keyword}</if>" class="px" id="hongbao_keyword" style="width:320px;" /></td> 
+      </tr>
+	  <tr><td colspan='2' style="border-bottom:1px dashed #aaa"></td></tr>
+      <tr class='Jiugong'> 
+        <th><span class="red"></span>九宫格：</th> 
+        <td>
+            <select name="jiugongge_id" id="">
+              <option value="">请选择活动...</option>
+              <volist id="jiugongge"  name="jiugongge">
+                <option value="{pigcms:$jiugongge.id}" <if condition="$jiugongge['id'] eq $info['jiugongge_id']">selected</if>>{pigcms:$jiugongge.title|mb_substr=###,0,20,'utf-8'}...</option>
+              </volist>
+            </select>
+            <a class="a_upload" href="{pigcms::U('Jiugong/add', array('type'=>'scene'))}">添加九宫格</a>
+            只能选择已经开启的九宫格
+        </td> 
+      </tr>
+      <tr class='Jiugong'> 
+        <th><span class="red"></span>九宫格背景图：</th>
+        <td><input type="text" name="jiugongge_background" value="<if condition="$info['jiugongge_background'] eq ''">./tpl/static/scene/images/jiugongge_background.png<else/>{pigcms:$info.jiugongge_background}</if>" class="px" id="jiugongge_background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('jiugongge_background',1024,768,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('jiugongge_background',700,420)">预览</a>      	<span>建议尺寸[1024*768]</span></td> 
+      </tr>
+      <tr class='Jiugong'> 
+        <th><span class="red"></span>九宫格关键词：</th>
+        <td><input type="text" name="jiugongge_keyword" value="<if condition="$info['jiugongge_keyword'] eq ''"><else/>{pigcms:$info.jiugongge_keyword}</if>" class="px" id="jiugongge_keyword" style="width:320px;" /></td> 
+      </tr>
+	  <tr><td colspan='2' style="border-bottom:1px dashed #aaa"></td></tr>
+      <tr class='GoldenEgg'> 
+        <th><span class="red"></span>砸金蛋：</th> 
+        <td>
+            <select name="zajindan_id" id="">
+              <option value="">请选择活动...</option>
+              <volist id="zajindan"  name="zajindan">
+                <option value="{pigcms:$zajindan.id}" <if condition="$zajindan['id'] eq $info['zajindan_id']">selected</if>>{pigcms:$zajindan.title|mb_substr=###,0,20,'utf-8'}...</option>
+              </volist>
+            </select>
+            <a class="a_upload" href="{pigcms::U('GoldenEgg/add', array('type'=>'scene'))}">添加砸金蛋</a>
+            只能选择已经开启的砸金蛋
+        </td> 
+      </tr>
+      <tr class='GoldenEgg'> 
+        <th><span class="red"></span>砸金蛋背景图：</th>
+        <td><input type="text" name="goldenegg_background" value="<if condition="$info['goldenegg_background'] eq ''">./tpl/static/scene/images/goldenegg_background.png<else/>{pigcms:$info.goldenegg_background}</if>" class="px" id="goldenegg_background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('goldenegg_background',1024,768,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('goldenegg_background',700,420)">预览</a>      	<span>建议尺寸[1024*768]</span></td> 
+      </tr>
+      <tr class='GoldenEgg'> 
+        <th><span class="red"></span>砸金蛋关键词：</th>
+        <td><input type="text" name="goldenegg_keyword" value="<if condition="$info['goldenegg_keyword'] eq ''"><else/>{pigcms:$info.goldenegg_keyword}</if>" class="px" id="goldenegg_keyword" style="width:320px;" /></td> 
+      </tr>
+	  <tr><td colspan='2' style="border-bottom:1px dashed #aaa"></td></tr>
+      <tr class='LuckyFruit'> 
+        <th><span class="red"></span>水果机：</th> 
+        <td>
+            <select name="shuiguoji_id" id="">
+              <option value="">请选择活动...</option>
+              <volist id="shuiguoji"  name="shuiguoji">
+                <option value="{pigcms:$shuiguoji.id}" <if condition="$shuiguoji['id'] eq $info['shuiguoji_id']">selected</if>>{pigcms:$shuiguoji.title|mb_substr=###,0,20,'utf-8'}...</option>
+              </volist>
+            </select>
+            <a class="a_upload" href="{pigcms::U('LuckyFruit/add', array('type'=>'scene'))}">添加水果机</a>
+            只能选择已经开启的水果机
+        </td> 
+      </tr>
+      <tr class='LuckyFruit'> 
+        <th><span class="red"></span>水果机背景图：</th>
+        <td><input type="text" name="luckyfruit_background" value="<if condition="$info['luckyfruit_background'] eq ''">./tpl/static/scene/images/luckyfruit_background.png<else/>{pigcms:$info.luckyfruit_background}</if>" class="px" id="luckyfruit_background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('luckyfruit_background',1024,768,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('luckyfruit_background',700,420)">预览</a>      	<span>建议尺寸[1024*768]</span></td> 
+      </tr>
+      <tr class='LuckyFruit'> 
+        <th><span class="red"></span>水果机关键词：</th>
+        <td><input type="text" name="luckyfruit_keyword" value="<if condition="$info['luckyfruit_keyword'] eq ''"><else/>{pigcms:$info.luckyfruit_keyword}</if>" class="px" id="luckyfruit_keyword" style="width:320px;" /></td> 
+      </tr>
+	  <tr><td colspan='2' style="border-bottom:1px dashed #aaa"></td></tr>
+      <tr class='Guajiang'> 
+        <th><span class="red"></span>刮刮卡：</th> 
+        <td>
+            <select name="guaguaka_id" id="">
+              <option value="">请选择活动...</option>
+              <volist id="guaguaka"  name="guaguaka">
+                <option value="{pigcms:$guaguaka.id}" <if condition="$guaguaka['id'] eq $info['guaguaka_id']">selected</if>>{pigcms:$guaguaka.title|mb_substr=###,0,20,'utf-8'}...</option>
+              </volist>
+            </select>
+            <a class="a_upload" href="{pigcms::U('Guajiang/add', array('type'=>'scene'))}">添加刮刮卡</a>
+            只能选择已经开启的刮刮卡
+        </td> 
+      </tr>
+      <tr class='Guajiang'> 
+        <th><span class="red"></span>刮刮卡背景图：</th>
+        <td><input type="text" name="guajiang_background" value="<if condition="$info['guajiang_background'] eq ''">./tpl/static/scene/images/guajiang_background.png<else/>{pigcms:$info.guajiang_background}</if>" class="px" id="guajiang_background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('guajiang_background',1024,768,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('guajiang_background',700,420)">预览</a>      	<span>建议尺寸[1024*768]</span></td> 
+      </tr>
+      <tr class='Guajiang'> 
+        <th><span class="red"></span>刮刮卡关键词：</th>
+        <td><input type="text" name="guajiang_keyword" value="<if condition="$info['guajiang_keyword'] eq ''"><else/>{pigcms:$info.guajiang_keyword}</if>" class="px" id="guajiang_keyword" style="width:320px;" /></td> 
+      </tr>
+	  <tr><td colspan='2' style="border-bottom:1px dashed #aaa"></td></tr>
+      <tr class='Lottery'> 
+        <th><span class="red"></span>大转盘：</th> 
+        <td>
+            <select name="dazhuanpan_id" id="">
+              <option value="">请选择活动...</option>
+              <volist id="dazhuanpan"  name="dazhuanpan">
+                <option value="{pigcms:$dazhuanpan.id}" <if condition="$dazhuanpan['id'] eq $info['dazhuanpan_id']">selected</if>>{pigcms:$dazhuanpan.title|mb_substr=###,0,20,'utf-8'}...</option>
+              </volist>
+            </select>
+            <a class="a_upload" href="{pigcms::U('Lottery/add', array('type'=>'scene'))}">添加大转盘</a>
+            只能选择已经开启的大转盘
+        </td> 
+      </tr>
+      <tr class='Lottery'> 
+        <th><span class="red"></span>大转盘背景图：</th>
+        <td><input type="text" name="lottery_background" value="<if condition="$info['lottery_background'] eq ''">./tpl/static/scene/images/lottery_background.png<else/>{pigcms:$info.lottery_background}</if>" class="px" id="lottery_background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('lottery_background',1024,768,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('lottery_background',700,420)">预览</a>      	<span>建议尺寸[1024*768]</span></td> 
+      </tr>
+      <tr class='Lottery'> 
+        <th><span class="red"></span>大转盘关键词：</th>
+        <td><input type="text" name="lottery_keyword" value="<if condition="$info['lottery_keyword'] eq ''"><else/>{pigcms:$info.lottery_keyword}</if>" class="px" id="lottery_keyword" style="width:320px;" /></td> 
+      </tr>
+	  <tr><td colspan='2' style="border-bottom:1px dashed #aaa"></td></tr>
+      <tr> 
+        <th><span class="red"></span>选择投票：</th> 
+        <td> 
+          <select name="vote_id" id="">
+              <option value="">请选择活动...</option>
+              <volist id="vote"  name="vote">
+                <option value="{pigcms:$vote.id}" <if condition="$vote['id'] eq $info['vote_id']">selected</if>>{pigcms:$vote.title|mb_substr=###,0,20,'utf-8'}...</option>
+              </volist>
+            </select>
+          <a href="{pigcms::U('Vote/add',array('type'=>'scene'))}"  class="a_upload" >添加投票</a>
+        </td> 
+      </tr>
+      <tr class='Vote'> 
+        <th><span class="red"></span>投票背景图：</th>
+        <td><input type="text" name="vote_background" value="<if condition="$info['vote_background'] eq ''">./tpl/static/scene/images/vote_background.png<else/>{pigcms:$info.vote_background}</if>" class="px" id="vote_background" style="width:320px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('vote_background',1024,768,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('vote_background',700,420)">预览</a>      	<span>建议尺寸[1024*768]</span></td> 
+      </tr>
+      <tr class='Vote'> 
+        <th><span class="red"></span>投票关键词：</th>
+        <td><input type="text" name="vote_keyword" value="<if condition="$info['vote_keyword'] eq ''"><else/>{pigcms:$info.vote_keyword}</if>" class="px" id="vote_keyword" style="width:320px;" /></td> 
+      </tr>
+	  <tr><td colspan='2' style="border-bottom:1px dashed #aaa"></td></tr>
+      <tr> 
+        <th><span class="red"></span>微信墙审核：</th> 
+        <td>
+          <input type="radio" name="wall_check" value="1" <if condition="$info.wall_check neq '0'">checked</if>>审核
+          <input type="radio" name="wall_check" value="0" <if condition="$info.wall_check eq '0'">checked</if>>不审核
+        </td> 
+      </tr>
+      <input type="hidden" id="" name="lottery_type" value="1" >
+      <tr class="Vote"> 
+        <th><span class="red"></span>投票开关：</th> 
+        <td>
+          <input type="radio" name="open_vote" value="1" <if condition="$info.open_vote neq '0'">checked</if>>开启
+          <input type="radio" name="open_vote" value="0" <if condition="$info.open_vote eq '0'">checked</if>>关闭
+        </td> 
+      </tr>
+      <tr> 
+        <th><span class="red"></span>抽奖开关：</th> 
+        <td>
+          <input type="radio" name="open_lottery" value="1" <if condition="$info.open_lottery neq '0'">checked</if>>开启
+          <input type="radio" name="open_lottery" value="0" <if condition="$info.open_lottery eq '0'">checked</if>>关闭
+        </td> 
+      </tr>
+      <tr> 
+        <th><span class="red"></span>对对碰开关：</th> 
+        <td>
+          <input type="radio" name="open_zzle" value="1" <if condition="$info.open_zzle neq '0'">checked</if>>开启
+          <input type="radio" name="open_zzle" value="0" <if condition="$info.open_zzle eq '0'">checked</if>>关闭
+        </td> 
+      </tr>   
+      <tr> 
+        <th><span class="red"></span>对对碰是否分男女：</th> 
+        <td>
+          <input type="radio" name="ddp_is_sex" value="1" <if condition="$info.ddp_is_sex neq '2'">checked</if>>是
+          <input type="radio" name="ddp_is_sex" value="2" <if condition="$info.ddp_is_sex eq '2'">checked</if>>否
+        </td> 
+      </tr>   
+      <tr> 
+        <th><span class="red">*</span>现场开关：</th> 
+        <td>
+            <input type="radio" name="is_open" value="1" <if condition="$info.is_open neq '0'">checked</if>>开启
+            <input type="radio" name="is_open" value="0" <if condition="$info.is_open eq '0'">checked</if>>关闭
+            <input type="hidden" id="sid" name="id" value="{pigcms:$info.id}">
+            <span style="color:red;">关闭活动后所有的用户将会自动退出微信墙模式</span>
+        </td> 
+      </tr>
+	  <TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>　
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+
+
+
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<include file="Public:footer"/>

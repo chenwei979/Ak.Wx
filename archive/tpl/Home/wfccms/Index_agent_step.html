@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>{pigcms:$f_site_name}-{pigcms:$f_siteTitle}</title>
+    <meta name="keywords" content="{pigcms:$f_metaKeyword}"/>
+    <meta name="description" content="{pigcms:$f_metaDes}"/>
+    <!--activity-->
+    <meta charset=utf-8 />
+    <script src="/tpl/Home/wfccms/common/js/ac_Jquery.js"></script>
+</head>
+<body>
+
+<link rel="stylesheet" href="/tpl/Home/wfccms/common/css/base.css" />
+<link rel="stylesheet" href="/tpl/Home/wfccms/common/css/swiper.min.css" />
+<link rel="stylesheet" href="/tpl/Home/wfccms/common/css/khb.css?v2.1" />
+<script type="text/javascript" src="/tpl/Home/wfccms/common/js/jquery-1.11.1.min.js" ></script>
+<script src="/tpl/Home/wfccms/common/js/swiper.jquery.min.js"></script>
+<script src="/tpl/Home/wfccms/common/js/unslider.js"></script>
+<script src="/tpl/Home/wfccms/common/js/main.js"></script>
+<link rel="stylesheet" href="/tpl/Home/wfccms/common/js/slick/slick.css" />
+<link rel="stylesheet" href="/tpl/Home/wfccms/common/js/slick/slick-theme.css" />
+
+<div class="webSiteTools">
+    <!-- header start -->
+    <div id="khb-navbar">
+        <div class="khn-navbar-inner clearfix">
+            <div class="khb-logo left">
+                <a class="logo" href="/"><img src="{pigcms:$f_logo}" alt="{pigcms:$f_siteTitle}" /></a>
+                <p>微信公众号自助营销平台</p>
+            </div>
+
+            <div class="khb-nav right">
+                <div class="site-tools text-right">
+                    <div class="login-reg right">
+                        <if condition="$_SESSION[uid]==false">
+                                <div class="login-reg-before">
+                                    <a class="login" href="{pigcms::U('Index/login')}">登录</a>
+                                    <a class="reg text-left" href="{pigcms::U('Index/register')}">注册</a>
+                                </div>
+                        <else/>
+                            <div class="login-reg-after">
+                                你好,<span style="color:red">{pigcms:$Think.session.uname}</span>
+                                <a class="nav-menu-a" href="{pigcms::U('User/Index/index')}" style="color:red;">管理中心</a>
+                                <a href="{pigcms::U('System/Admin/logout')}" >退出</a>
+                            </div>
+                        </if>
+
+                    </div>
+                    <div class="contact-us"><i class="i-phone-green"></i>咨询热线：<b>{pigcms::C('site_tel')}</b></div>
+                </div>
+                <ul class="list-float-lt khb-nav-menu">
+                    <li><a class="nav-menu-a" href="/">首 页</a></li>
+                    <li class="drop-sub-menu">
+
+                        <a class="nav-menu-a" href="{pigcms::U('Index/weixinyingxiaoxitong')}">产品中心</a>
+
+                        <!-- 弹层 -->
+                        <div class="nav-menu-mask">
+                            <i class="caret"></i>
+                            <div class="nav-menu-inner">
+                                <div class="hd">
+                                    <h2><em>产品中心</em>Product center</h2>
+                                </div>
+                                <div class="bd">
+                                    <ul>
+                                        <li><a href="{pigcms::U('Index/weixinyingxiaoxitong')}">微信营销系统</a></li>
+                                        <li><a href="{pigcms::U('Index/weixinfenxiaoxitong')}">微信分销系统</a></li>
+                                        <li><a href="http://s.wooyx.com/" target="_blank">微信场景系统</a></li>
+                                        <li><a href="{pigcms::U('Index/weixinoaxitong')}">微信OA系统</a></li>
+                                        <!--<li><a href="/">营销硬件</a></li>-->
+                                    </ul>
+                                    <div class="animation-area">
+                                        <i class="anim animation-1"></i>
+                                        <i class="anim animation-2"></i>
+                                        <i class="anim animation-3"></i>
+                                        <i class="anim animation-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <if condition="$_SESSION[uid]==false">
+                        <li><a class="nav-menu-a" href="{pigcms::U('Index/register')}">体验中心</a></li>
+                    </if>
+
+                    <li><a class="nav-menu-a" href="{pigcms::U('Index/weiyingxiaoanli')}">客户案例</a></li>
+                    <li><a class="nav-menu-a" href="{pigcms::U('Index/weiyingxiaodaili')}">招商合作</a></li>
+                    <li><a class="nav-menu-a" href="{pigcms::U('Index/about')}" target="_blank">关于我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- header end -->
+    </div>
+
+<link rel="stylesheet" href="/tpl/Home/wfccms/common/css/select2.css"/>
+<link rel="stylesheet" href="/tpl/Home/wfccms/common/css/beagents.css"/>
+<div class="res-wrap">
+    <div class="res-row-1"><a href="/weiyingxiaodaili.html#bsc_form" class="btn">立即加盟</a></div>
+    <div class="res-row-2" style="background:url(/tpl/Home/wfccms/common/images/beagent/res-row-2.jpg) no-repeat center center;"></div>
+    <div class="res-row-3">
+        <div class="row3-cnt"> <img src="/tpl/Home/wfccms/common/images/beagent/res-row-3-bd2.png" />
+            <div class="cnt-box">
+                <div class="title">
+                    <h2>最值得您信赖的<span>企业和产品</span></h2>
+                    <p class="sub">2014年9月9日{pigcms:$f_siteName}O2O营销云平台商家数突破<span>100</span>万家！</p>
+                </div>
+                <div class="list">
+                    <div class="item">
+                        <div class="info">
+                            <div class="info-img">
+                                <div class="cell"> <img src="/tpl/Home/wfccms/common/images/beagent/res-row-3-1.png" title="成熟商业模式" /> </div>
+                            </div>
+                            <div class="info-txt">
+                                <h4>成熟商业模式</h4>
+                                <p>12年互联网经验沉淀的商业模式，</p>
+                                <p>接地气的客户服务，</p>
+                                <p>成熟的销售模式，</p>
+                                <p>成熟的渠道管理体系，</p>
+                                <p>让您加盟无后顾之忧，</p>
+                                <p>总部销售全程指导代理落地。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="info">
+                            <div class="info-img">
+                                <div class="cell"> <img src="/tpl/Home/wfccms/common/images/beagent/res-row-3-2.png" title="强大培训体系" /> </div>
+                            </div>
+                            <div class="info-txt">
+                                <h4>强大培训体系</h4>
+                                <p>天猫智囊团会长、</p>
+                                <p>淘宝大卖家CEO、微信营销专家、</p>
+                                <p>O2O营销服务专家组成的讲师团，</p>
+                                <p>不定期举办当地营销论坛，</p>
+                                <p>同时还支持代理商举办</p>
+                                <p>会场营销论坛。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="info">
+                            <div class="info-img">
+                                <div class="cell"> <img src="/tpl/Home/wfccms/common/images/beagent/res-row-3-3.png" title="共享未来红利" /> </div>
+                            </div>
+                            <div class="info-txt">
+                                <h4>共享未来红利</h4>
+                                <p>互联在线计划2016年IPO挂牌上市</p>
+                                <p>除了近期丰厚销售利润</p>
+                                <p>回报及各项奖励，</p>
+                                <p>还按照一定的比例配发期权。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="info">
+                            <div class="info-img">
+                                <div class="cell"> <img src="/tpl/Home/wfccms/common/images/beagent/res-row-3-4.png" title="无风险共成长" /> </div>
+                            </div>
+                            <div class="info-txt">
+                                <h4>无风险共成长</h4>
+                                <p>2013年五月获得A轮风险投资；</p>
+                                <p>2014年6月获得B轮风险投资，</p>
+                                <p>2014年11月获得B+ 轮风险投资，</p>
+                                <p>雄厚的推广资金，</p>
+                                <p>为代理商提供强有力的市场</p>
+                                <p>推广及技术支持服务。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="res-row-4" style="background:url(/tpl/Home/wfccms/common/images/beagent/res-row-4-bd.jpg) repeat center center;">
+        <div class="title">
+            <h2><span>“真金白银”</span>助力代理商开拓当地市场</h2>
+            <p class="sub"><!--加盟费只需要<span>5000</span>元就可以加盟为{pigcms:$f_siteName}的合作伙伴啦！--></p>
+        </div>
+        <div class="list">
+            <div class="item dib"> <a class="img" href="http://www.ichina.cn"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-4-2.jpg" title="自助APP平台"> </a>
+                <h5 class="h5">送代理商“自助APP平台”OEM版</h5>
+                <p class="p1">加盟{pigcms:$f_siteName}同时也可以获得</p>
+                <p class="p1">“自助APP平台</p>
+                <p class="p1"><a href="http://www.ichina.cn">www.ichina.cn</a>”的OEM版；</p>
+            </div>
+            <div class="item dib"> <a class="img" href=""> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-4-1.jpg" title="融合易"> </a>
+                <h5 class="h5">送代理商“微信营销自助平台”OEM版</h5>
+                <p class="p1">加盟{pigcms:$f_siteName}同时也可以获得</p>
+                <p class="p1">“微信营销自助平台</p>
+                <p class="p1"><a href="http://www.khb.com">www.khb.com</a>”的OEM版；</p>
+            </div>
+            <div class="item dib"> <a class="img" href="http://www.rhy.com"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-4-3.jpg" title="微信营销自助平台"> </a>
+                <h5 class="h5">送代理商“融合易”大系统业务扩展</h5>
+                <p class="p1">加盟{pigcms:$f_siteName}同时也可以获得</p>
+                <p class="p1">“融合易<a href="http://www.rhy.com">www.rhy.com</a>”大系统业务扩展，</p>
+                <p class="p1">让您的企业在当地更具竞争力；</p>
+            </div>
+        </div>
+    </div>
+    <div class="res-row-5" style="background:url(/tpl/Home/wfccms/common/images/beagent/res-row-5-bd.jpg) repeat center center;">
+        <div class="title">
+            <h2>他们都选择了<span>“{pigcms:$f_siteName}”</span></h2>
+            <p class="sub">2015年6月6日{pigcms:$f_siteName}代理商突破<span>1000</span>家！</p>
+        </div>
+        <div class="imgs"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-5-1.jpg" width="1277" height="536"/> </div>
+        <p class="more">......</p>
+    </div>
+    <div class="res-row-6" style="background:url(/tpl/Home/wfccms/common/images/beagent/res-row-6-bd.jpg) repeat center center;">
+        <div class="title">
+            <h2>互联在线公司实景展示</h2>
+            <p class="sub">欢迎莅临互联在线深圳总部实地考察洽谈 / 加盟热线：<span>{pigcms::C('site_tel')}</span></p>
+        </div>
+        <div class="cnt">
+            <div class="list">
+                <div class="item"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-6-1.jpg"/> </div>
+                <div class="item"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-6-2.jpg"/> </div>
+                <div class="item"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-6-3.jpg"/> </div>
+                <div class="item"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-6-4.jpg"/> </div>
+                <div class="item"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-6-5.jpg"/> </div>
+                <div class="item"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-6-6.jpg"/> </div>
+                <div class="item"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-6-7.jpg"/> </div>
+                <div class="item"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-6-8.jpg"/> </div>
+                <div class="item"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-6-9.jpg"/> </div>
+                <div class="item"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-6-10.jpg"/> </div>
+                <div class="item"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-6-11.jpg"/> </div>
+                <div class="item"> <img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-6-12.jpg"/> </div>
+            </div>
+        </div>
+    </div>
+    <div class="res-row-7">
+        <div class="title">
+            <h2>加盟{pigcms:$f_siteName}，<span>千万模板供您选择</span></h2>
+            <p class="sub">独一无二的设计风格，数十种行业，上千万企业模板，您还在等什么？</p>
+        </div>
+        <div class="cnt">
+            <div class="list list1 show">
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-1.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-2.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-3.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-4.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-5.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-6.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-7.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-8.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-9.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-10.jpg"/></a> </div>
+            </div>
+            <div class="list list2">
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-11.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-12.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-13.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-14.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-15.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-16.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-17.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-18.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-19.jpg"/></a> </div>
+                <div class="item"> <a href="javascript:;"><img class="lazy" src="/tpl/Home/wfccms/common/images/beagent/grey.gif" data-original="/tpl/Home/wfccms/common/images/beagent/res-row-7-20.jpg"/></a> </div>
+            </div>
+        </div>
+        <a class="btn" href="javascript:;">换一批</a> </div>
+    <div class="res-row-8" style="background:url(/tpl/Home/wfccms/common/images/beagent/res-row-8-bd.jpg) repeat center center;">
+        <div class="title">
+            <h2> <i class="dib left"></i>申请成为<span>代理商</span> <i class="dib right"></i> </h2>
+            <p class="sub">速度、果断、不要犹豫这将是您最明智的选择！</p>
+        </div>
+        <div class="bsc_form" id="bsc_form">
+            <!--apply_frommain -->
+            <div style="position:relative;z-index:999;">
+                <div id="ajax_Loading" class="ajax_Loading">
+                    <div id="ajax_text" class="succes">正在提交中...</div>
+                </div>
+            </div>
+            <!--apply_formmain -->
+            <form class="clearfix" method="post">
+                <div class="input_box" style="width:480px;">
+                    <label for="companyName">公司名称/姓名：</label>
+                    <input type="text" id="cname" name="cname">
+                </div>
+                <div class="input_box" style="width:480px;">
+                    <label for="contact">手机号码/电话：</label>
+                    <input type="text" id="phone" name="phone">
+                </div>
+                <div class="input_box address" style="width:480px;"> <span class="ormtitle">所在区域： </span>
+                    <select class="rt_select5 p_14" id="province">
+                        <option value="0">请选择省市</option>
+                    </select>
+                    <select class="rt_select5 p_14" id="city">
+                        <option value="0">请选择市区</option>
+                    </select>
+                    <select class="rt_select5 p_14" id="area">
+                        <option>选择地区</option>
+                    </select>
+                </div>
+                <!-- input_list -->
+                <div class="sub_btn">
+                    <input type="button" id="apply_but" value="提交">
+                </div>
+                <input type="hidden" name="__hash__" value="13d7831558a3a8a4362a0254ae49ba56_1a710a3e960d33b3599ae11463d65927">
+            <input type="hidden" name="__hash__" value="2bcc5dfff31b469b8d1bf673dd2be6d9_e22b41b854fe12a52c9b305af3bdd8b6" /></form>
+        </div>
+    </div>
+
+    <!--返回顶部-->
+    <a href="#" id="goto-top"></a> </div>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $(".lazy").lazyload({
+            threshold : 200
+        });
+
+        var doc=document,inputs=doc.getElementsByTagName('input'),supportPlaceholder='placeholder'in doc.createElement('input'),placeholder=function(input){var text=input.getAttribute('placeholder'),defaultValue=input.defaultValue;
+            if(defaultValue==''){
+                input.value=text}
+            input.onfocus=function(){
+                if(input.value===text){this.value=''}};
+            input.onblur=function(){if(input.value===''){this.value=text}}};
+        if(!supportPlaceholder){
+            for(var i=0,len=inputs.length;i<len;i++){var input=inputs[i],text=input.getAttribute('placeholder');
+                if(input.type==='text'&&text){placeholder(input)}
+            }}
+
+        //换一换
+        $('.res-row-7 .btn').on('click', function(){
+            $('.res-row-7 .list1').toggleClass('show');
+            $('.res-row-7 .list2').toggleClass('show');
+        })
+        //from1
+        $("input[type='button']").click(function(){
+            $("input[type='radio']").each(function(){
+                this.checked = false;
+                this.disabled = true;
+            });
+        });
+        $(function(){
+            $("#clk").click(function(){
+                $("#ply").toggle();
+            })
+        })
+        $("input:radio[name='analyfsftype']").eq(0).attr("checked",'checked');
+        $("input:radio[name='analyshowtype']").attr("checked",false);
+
+        //form1
+        //get address by ip start
+        $.get("/loading/?a=province&time="+Math.random(), { id: 0, isip : 1},function(data){
+            $("#province").html(data);
+            viewcity(1);
+        });
+        $("#province").change(function(){
+            viewcity(0);
+        });
+        $("#city").change(function(){
+            viewarea();
+        });
+
+        function viewcity(isip){
+            var provinceid = $("#province").children('option:selected').val();//这就是selected的值
+            $.get("/loading/?a=city&time="+Math.random(), { id: provinceid, isip : isip},function(data){$("#city").html(data);});
+            $("#area").html('<option>请先选择市区</option>')
+            $("#province").css("background-color","");
+            if(isip==1){
+                setTimeout(viewarea,1000);
+            }
+        }
+
+        function viewarea(){
+            var cityid = $("#city").children('option:selected').val();//这就是selected的值
+            $.get("/loading/?a=area&time="+Math.random(), { id: cityid},function(data){$("#area").html(data);});
+            $("#city").css("background-color","");
+        }
+        //get address by ip end
+        $("#province").change(function(){
+            var provinceid = $(this).children('option:selected').val();//这就是selected的值
+            $.get("/loading/?a=city&time="+Math.random(), { id: provinceid},function(data){$("#city").html(data);});
+            $("#area").html('<option></option>')
+            $("#province").css("background-color","");
+        });
+        $("#city").change(function(){
+            var cityid = $(this).children('option:selected').val();//这就是selected的值
+            $.get("/loading/?a=area&time="+Math.random(), { id: cityid},function(data){$("#area").html(data);});
+            $("#city").css("background-color","");
+        });
+        $('#apply_but').click(function(){
+
+            validate();
+        })
+
+        function validate(){
+
+            var cname = $('#cname').val();
+            var phone = $('#phone').val();
+            var contact = "khb";
+            var province = $('#province').children('option:selected').val();
+            var city = $('#city').children('option:selected').val();
+            var area = $('#area').children('option:selected').val();
+            if(cname ==0 && cname.length==0){
+                alert('请填写联系人姓名');
+                $("#cname").focus();
+                return false;
+            }
+            if(phone.length==0){
+                $("#phone").focus();
+                alert('请填写联系人【手机号码】');
+                return false;
+            }
+            if(province.length==0 || province==0){
+                $("#province").css("background-color","#FFFFCC");
+                alert('请选择省市');
+                return false;
+            }
+            if(city.length==0 || city==0){
+                $("#city").css("background-color","#FFFFCC");
+                alert('请选择市区');
+                return false;
+            }
+            $('#ajax_Loading').css("display","block");
+            $("#ajax_text").html('正在提交中...');
+
+            $.getJSON("/loading/?a=form&time="+Math.random(), { cname: cname, contact: contact, phone: phone, province: province, city: city, area: area, },function(rsdata){
+
+                if(rsdata.msg==1){
+
+                    $("#ajax_text").html('<p style="font-size:25px;">您的代理申请已经提交成功！</p><br /><p style="color:black;margin-top:20px;">非常感谢您对{pigcms:$f_siteName}的支持！<br />我们在最快的时间内回复您！<br/></p><a class="tip_c">×</a><div class="btnconfirm"><a class="fdc_span"><span>确定</span></a></div>');
+
+                    $(".fdc_span").click(function()
+                    {
+                        $('#ajax_Loading').fadeOut(300);
+                        $("#ajax_text").fadeOut(300);
+                    });
+                    $(".tip_c").click(function()
+                    {
+                        $('#ajax_Loading').fadeOut(200);
+                        $("#ajax_text").fadeOut(200);
+                    })
+                } else {
+                    $('#ajax_Loading').css("display","none");
+                    alert(rsdata.data);
+                }
+
+            });
+        }
+
+        $("input:text").focus(function(){
+            $(this).css("background-color","#FFFFCC");
+        });
+        $("input:text").blur(function(){
+            $(this).css("background-color","");
+        });
+
+    });
+</script>
+<script type="text/javascript" src="http://www.ichina.cn/js/index.js?2013"></script>
+<script src="/tpl/Home/wfccms/common/js/beagent/jquery.lazyload.min.js"></script>
+<!--返回顶部-->
+
+<div><a href="javascript:void(0);" id="goto-top" class="to_top"></a></div>
+<!-- footer start -->
+<div id="footer">
+    <div class="container clearfix">
+        <div class="left company-info">
+            <div class="follow-us dib-wrap">
+                <span class="dib">关注我们：</span>
+                <a class="dib i-tb-ico i-snia-weibo" href="http://weibo.com/ichinacn" target="_blank"></a>
+                <a class="dib i-tb-ico i-weixin" href="javascript:void(0);"></a>
+                <a class="dib i-tb-ico i-tx-weibo" href="http://t.qq.com/ichinacn722496" target="_blank"></a>
+                <!-- <a class="dib i-tb-ico i-tx-qq" href="http://crm2.qq.com/page/portalpage/wpa.php?uin=4006801888&aty=0&a=0&curl=&ty=1" target="_blank"></a> -->
+            </div>
+      
+<!-- <div id="jiathis_weixin_share" style="position: fixed; z-index: 2147483647;"> -->
+<div id="jiathis_weixin_modal" style="background-clip: padding-box;background-color: #FFFFFF;border: 1px solid rgba(0, 0, 0, 0.3);  border-radius: 6px 6px 6px 6px;  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); left: 50%; margin: -200px 0 0 -200px;overflow: hidden; position: fixed; top: 50%; width:360px;height:360px; overflow:hidden;display:none;" class="jiathis_weixin_modal">
+<div class="jiathis_modal_header" id="jiathis_modal_header" style="border-bottom: 1px solid #EEEEEE; padding: 9px 15px;"><a style="text-decoration:none;  margin-top: 2px; color: #000000; float: right;  font-size: 20px;  font-weight: bold; cursor:pointer;line-height: 20px; opacity: 0.2; text-shadow: 0 1px 0 #FFFFFF;" class="jiathis_weixin_close" id="jiathis_weixin_close" onclick="jiathis_cancel()" target="_self">×</a><h3 id="jiathis_weixin_h3" style=" line-height: 30px; margin: 0; font-weight:normal; font-family:" 微软雅黑";"="">分享到微信朋友圈</h3>
+</div>
+<div class="jiathis_modal_body" id="jiathis_modal_body" style="text-align:center;height:251px;"><p id="jiathis_webchat"><img src="{pigcms::C('site_twm')}" width="220" height="220" alt="二维码加载失败..." style="margin-top: 15px;"></p></div><div class="jiathis_modal_footer" id="jiathis_modal_footer" style="border-radius: 0 0 6px 6px; border-top: 1px solid #DDDDDD; box-shadow: 0 1px 0 #FFFFFF inset; height:100%;padding:0 10px;padding-top:11px;text-align: right; font-size:12px;"><div id="jiathis_weixin_tip" style="text-align:left;margin:0; padding:0;font-size:12px;">打开微信，点击底部的“发现”，使用 “扫一扫” 即可将网页分享到我的朋友圈。 <a href="http://s.jiathis.com?webid=weixin&amp;url=http%3A%2F%2Fwww.hlzx.com%2F&amp;title=%E4%BA%92%E8%81%94%E5%9C%A8%E7%BA%BF%E5%AE%98%E7%BD%91--%E4%B8%AD%E5%9B%BD%E9%A2%86%E5%85%88%E7%9A%84%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%B9%B3%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%95%86%E4%BA%92%E8%81%94%E5%9C%A8%E7%BA%BF%EF%BC%88%E8%82%A1%E6%9D%83%E4%BB%A3%E7%A0%81%3A660764%EF%BC%89%EF%BC%8C%E5%9B%BD%E5%AE%B6%E9%AB%98%E6%96%B0%E4%BC%81%E4%B8%9A%E3%80%81%E5%8F%8C%E8%BD%AF%E8%AE%A4%E8%AF%81%E4%BC%81%E4%B8%9A%EF%BC%8C%E8%BD%AF%E4%BB%B6%E8%91%97%E4%BD%9C%E6%9D%83...&amp;isexit=false" target="_blank">如何使用？</a></div>  </div>
+</div>
+<!-- </div> -->
+            <div class="copyright-info">
+                <p class="nav-link"><a href="/#pro-center">产品中心</a>|<a href="{pigcms::U('Index/register')}">体验中心</a>|<a href="{pigcms::U('Index/case')}">经典案例</a>|<a href="{pigcms::U('Index/agent_step')}">招商合作</a>|<a href="{pigcms::U('Index/about')}" target="_blank">关于我们</a></p>
+                <p class="txt">COPYRIGHT © 2002-2015 深圳市互联在线云计算有限公司旗下产品 ALL RIGHTS RESERVED<br/>
+                    增值电信业务经营许可证： 粤B2-20080198 粤B1-20080198 广电业务经营许可证号： (粤)字第577号 双软企业证书： DGY-2009-2004 <br/>
+                    国家高新证书： GR201244200450 中文域名:<a href="/">{pigcms:$f_siteName}</a>.com  通用网址:{pigcms:$f_siteName} <a href="http://www.miitbeian.gov.cn/" target="_blank">{pigcms::C('ipc')}</a> <script src="http://s9.cnzz.com/stat.php?id=5415408&web_id=5415408" language="JavaScript"></script> </p>
+            </div>
+
+        </div>
+        <div class="right contact">
+            <p><i class="i-phone-gray"></i><b>{pigcms::C('site_tel')}</b></p>
+            <!-- <a class="contact-kufu" target="_blank" href="tencent://message/?uin=4006801888&在线咨询&Menu=yes" disabled="disabled">联系客服</a> -->
+        </div>
+    </div>
+</div>
+
+<!-- footer end -->
+
+	<script type="text/javascript" src="http://static.b.qq.com/account/bizqq/js/wpa.js?wty=1&type=13&kfuin=4006801888&ws=http%3A%2F%2Fwww.iChina.cn&title=%E5%9C%A8%E7%BA%BFQQ&cot1=%E5%B7%A5%E4%BD%9C%E6%97%A5%208%3A30-20%3A00%20&btn1=%E4%BC%81%E4%B8%9AQQ%E4%BA%A4%E8%B0%88&fsty=0&fposX=2&fposY=1&tx=1&aty=0&a=1002&key=X1%032Ta%074QmR4%001X9%00hThWnW9%021S%3DU3%0An%5B7%003Wd%064"></script><script>
+
+
+$(function() {
+
+    $('.drop-sub-menu').hover(function () {
+        $(this).addClass('on');
+    }, function () {
+        $(this).removeClass('on');
+
+    })
+
+     $("ul.menu li a").click(function(){
+        var hr = $(this).attr("href");
+        var anh = $(hr).offset().top;
+        $("html,body").stop().animate({scrollTop:anh},1000);
+    })
+    $('.to_top').click(function() {
+        $('body,html').animate({
+            "scrollTop": "0"
+        }, 500);
+    });
+//    var swiper = new Swiper('.banner_swiper', {
+//        // nextButton: '.banner_next',
+//        // prevButton: '.banner_prev',
+//        slidesPerView: 1,
+//        pagination: ".banner_pagination",
+//        paginationClickable: true,
+//        loop: true,
+//        autoplay: 5000,
+//        autoplayDisableOnInteraction: false
+//    });
+});
+function M_over(){
+    var div = document.getElementById('wximg');
+    div.setAttribute("class", "wxewm2");
+}
+function M_leave(){
+    var div = document.getElementById('wximg');
+    div.setAttribute("class", "wxewm");
+}
+function to_top() {
+    var win_height = $(window).scrollTop();
+    if (win_height > 100) {
+        $('.to_top').fadeIn(500);
+    } else {
+        $('.to_top').fadeOut(500);
+    }
+}
+$(window).scroll(function() {
+    to_top();
+});
+ // $("#jiathis_weixin_modal").hide();
+$(document).ready(function(){
+  $(".jiathis_weixin_close").click(function(){
+  $("#jiathis_weixin_modal").hide();
+  });
+  $(".i-weixin").click(function(){
+  $("#jiathis_weixin_modal").show();
+  });
+});
+</script>
+<!--统计代码 @author sunles-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad6cc7b9f4b19d4cd70bcbb8dc3b146b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><div style="display:none;">
+    <script src="http://s11.cnzz.com/stat.php?id=1256211899&web_id=1256211899" language="JavaScript"></script>
+</div>
+</body>
+</html>

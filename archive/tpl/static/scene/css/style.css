@@ -1,0 +1,531 @@
+body{color:#fff;background-color:#000;background-image:url("../images/background.jpg");background-position:top center;background-repeat:repeat;background-size: cover}
+.wrapbg{position: relative;width: 100%;min-width: 1014px;height: 750px;overflow: hidden}
+.whole{width: 950px;height: auto;margin: 0 auto;z-index: 2;}
+.whole .ppHeader{position: relative;z-index: 2;height: 137px;width: 100%}
+.whole .ppHeader .header{position: absolute;top: 0;left: 0;width: 100%;visibility: visible}
+.header{padding-top: 25px;visibility: visible}
+.logo-t{margin-top: 10px;}
+.logo-t img{position: relative;width: 240px;height: 90px;left: 5px;}
+.word-scroll{width: 590px;height: 112px;background: url(../images/sc_bg.png) center 0 no-repeat;}
+.scrollbox{width: 440px;}
+.word-list{width: 440px;height: 96px;position: relative;}
+.word-list li{width: 100%;height: 84px;padding-top: 10px;font-size: 24px;text-align: center;line-height: 38px;position: absolute;overflow: hidden;}
+.reserved  img{width:100px;height:100px;}
+.num-t{padding: 14px 15px;height: 80px;width: 106px;text-align: center;background: url(../images/top_line.png) left center no-repeat;}
+.num-t p{text-align: center;line-height: 35px;}
+.num-t em{display: block;font-size: 24px;}
+.num-t span{font-size: 18px;}
+.topText{position: relative;margin: 0 auto}
+.hongbao .topText{    width: 560px;
+    height: 160px;}
+.hongbao .topText img{position: absolute;top: 0;left: 0}
+.hongbao .topText .toptext0{left: 64px}
+.hongbao .topText .toptext1{top: 117px;left: 155px;}
+.hongbao .topText .toptext2{top: 65px;left: 20px;}
+.hongbao .starBtn{    width: 300px;
+    height: 240px;margin: 0 auto;background: url("../images/startbtnbg.png") top center no-repeat;margin-top: 30px;}
+.hongbao .starBtn a{border: 2px solid #ed2516;border-radius: 50px;background: #fff;padding: 5px 20px;display:inline-block;margin: 107px 0 0 86px;font-size: 18px;color: #fe492a}
+.hongbao .starBtn a{*display: inline}
+.daZhuanPan .topText{    height: 102px;
+    width: 341px;}
+.daZhuanPan .topText img{position: absolute}
+.daZhuanPan .topText .zptext0{top: 0;left: 0}
+.daZhuanPan .topText .zptext1{top: 42px;right: 0}
+.daZhuanPan .starBtn{    width: 308px;
+    height: 342px;
+    background: url("../images/dazhuanpan.png") no-repeat top center;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;}
+.daZhuanPan .starBtn a{display: block;
+    width: 100px;
+    height: 88px;
+    background: url("../images/zpbtn.png") no-repeat;
+    position: absolute;
+    top: 113px;
+    left: 111px;
+    line-height: 99999px;}
+.lightFixed{position: fixed;top: 50%;margin-top: -280px;width:420px;height: 430px}
+.lightFixed.leftOne{background: url("../images/lightleft.png") no-repeat top left;left:0;}
+.lightFixed.rightOne{background: url("../images/lightright.png") no-repeat top right;right: 0}
+.zaJinDan{width: 730px;margin: 0 auto}
+.zaJinDan .topText{margin-top: 78px;margin-left: 78px;height: 148px;position: relative;width: 450px}
+.zaJinDan .topText img{position: absolute}
+.zaJinDan .topText .zjdtext0{top: 0;left: 18px;}
+.zaJinDan .topText .zjdtext1{top: 78px;left: 80px;}
+.zaJinDan .starBtn{width: 198px;height:405px;position: relative}
+.zaJinDan .starBtn img{position: absolute}
+.zaJinDan .starBtn img.chui{top: 0;right: -55px;}
+.zaJinDan .starBtn img.dan{top: 80px;left: 0;z-index: 2}
+.zaJinDan .starBtn img.yy{top: 338px;left: 0px;z-index: 0}
+.zaJinDan .starBtn a{position: absolute;background: url("../images/zjdbtn.png") no-repeat top center;width: 184px;height: 64px;font-size: 28px;color: #fc297d;text-align: center;line-height: 60px;bottom: 88px;right: -390px}
+.jiuGongGe{}
+.jiuGongGe .topText{margin-top: 80px;height: 270px;position: relative;width: 355px;margin-left: 50px;margin-top: 65px}
+.jiuGongGe .topText img{position: absolute}
+.jiuGongGe .topText .jggtext0{top: 0;left:0}
+.jiuGongGe .topText .jggtext1{top: 69px;left: 25px;}
+.jiuGongGe .starBtn{    width: 448px;
+    height: 415px;position: relative;background: url("../images/jgg0.png") top center}
+.jiuGongGe .starBtn a{position: absolute;background: url("../images/jggbtn.png") no-repeat top center;width: 130px;height: 109px;font-size: 42px;bottom: 167px;right: 162px;line-height: 999999px;overflow: hidden}
+.shuiGuoJi .topText{height: 130px;width: 520px}
+.shuiGuoJi .topText img{position: absolute}
+.shuiGuoJi .topText .zptext0{top: 0;left: 0}
+.shuiGuoJi .topText .zptext1{top: 60px;right: 0}
+.shuiGuoJi .starBtn{    width: 500px;
+    height: 310px;background: url("../images/sgj0.png") no-repeat top center;margin: 0 auto;position: relative;overflow: hidden;}
+.shuiGuoJi .starBtn a{    display: block;
+    height: 98px;
+    position: absolute;
+    top: 203px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    line-height: 85px;
+    font-size: 30px;
+    color: #dd5b03;}
+.huaFixed{position: fixed;top: 50px;width:403px;height: 757px}
+.huaFixed.leftOne{background: url("../images/hualeft.png") no-repeat top left;left:0;}
+.huaFixed.rightOne{background: url("../images/huaright.png") no-repeat top right;right: 0}
+.guaGuaKa .starBtn{width: 629px;height:400px;background: url("../images/ggk0.png") no-repeat top center;margin: 0 auto;position: relative;overflow: hidden;}
+.guaGuaKa .starBtn a{display: block;
+    height: 56px;
+    position: absolute;
+    top: 215px;
+    left: 218px;
+    background: url("../images/ggkbtn.png") no-repeat top center;
+    width: 189px;
+    text-align: center;
+    line-height: 54px;
+    font-size: 25px;
+    color: #fff;}
+.footer{}
+.footer .floor0{position: relative}
+.footer .floor0 .btns{text-align: center}
+.footer .floor0 .btns a{display: inline-block;width: 35px;height: 35px;vertical-align: middle;background: url(../images/icons.png?v=14) no-repeat;margin-right: 10px;transition:all 0s ease;-webkit-transition:all 0s ease;-moz-transition:all 0s ease;-ms-transition:all 0s ease;}
+.footer .floor0 .btns a{*display: inline}
+.footer .floor0 .btns a.btn0{background-position: 0 0}
+.footer .floor0 .btns a.btn1{background-position: 0 -35px}
+.footer .floor0 .btns a.btn2{background-position: 0 -70px}
+.footer .floor0 .btns a.btn3{background-position: 0 -105px}
+.footer .floor0 .btns a.btn4{background-position: 0 -140px}
+.footer .floor0 .btns a.btn5{background-position: 0 -175px}
+.footer .floor0 .btns a.btn6{background-position: 0 -210px}
+.footer .floor0 .btns a.btn7{background-position: 0 -245px}
+.footer .floor0 .btns a.btn8{background-position: 0 -280px}
+.footer .floor0 .btns a.btn9{background-position: 0 -315px}
+.footer .floor0 .btns a.btn10{background-position: 0 -350px}
+.footer .floor0 .btns a.btn11{background-position: 0 -385px}
+.footer .floor0 .btns a.btn12{background-position: 0 -420px}
+.footer .floor0 .btns a.btn13{background-position: 0 -490px}
+.footer .floor0 .btns a.btn14{background-position: 0 -591px;width: 40px;height: 40px}
+.footer .floor0 .btns a.btn15{background-position: 0 -525px}
+.footer .floor0 .btns a.btn16{background-position: 0 -455px;}
+.footer .floor0 .btns a.fullscreen{background-position: 0 -560px;width: 30px;height: 30px}
+.footer .floor0 .btns a.btn0:hover{background-position: -35px 0}
+.footer .floor0 .btns a.btn1:hover{background-position: -35px -35px}
+.footer .floor0 .btns a.btn2:hover{background-position: -35px -70px}
+.footer .floor0 .btns a.btn3:hover{background-position: -35px -105px}
+.footer .floor0 .btns a.btn4:hover{background-position: -35px -140px}
+.footer .floor0 .btns a.btn5:hover{background-position: -35px -175px}
+.footer .floor0 .btns a.btn6:hover{background-position: -35px -210px}
+.footer .floor0 .btns a.btn7:hover{background-position: -35px -245px}
+.footer .floor0 .btns a.btn8:hover{background-position: -35px -280px}
+.footer .floor0 .btns a.btn9:hover{background-position: -35px -315px}
+.footer .floor0 .btns a.btn10:hover{background-position: -35px -350px}
+.footer .floor0 .btns a.btn11:hover{background-position: -35px -385px}
+.footer .floor0 .btns a.btn12:hover{background-position: -35px -420px}
+.footer .floor0 .btns a.btn13:hover{background-position: -35px -490px}
+.footer .floor0 .btns a.btn14:hover,.footer .floor0 .btns a.btn14.on{background-position: -40px -591px}
+.footer .floor0 .btns a.btn15:hover{background-position: -35px -525px}
+.footer .floor0 .btns a.btn16:hover{background-position: -35px -455px}
+.footer .floor0 .btns a.fullscreen:hover{background-position: -35px -560px}
+.footer .floor1{background: url("../images/ft_bg.png") no-repeat top center}
+.words-bottom{height: 57px;padding: 0 0 0 60px;width: 618px;color: #ffe362;background: url(../images/icon-notice.png) no-repeat 0 center;border-radius: 5px;overflow: hidden;margin: 0 auto;}
+.word-scroll2{overflow: hidden;width: 618px;}
+.wb-list li{height: 57px;line-height: 54px;float: left;letter-spacing: 2px;font-size: 20px;}
+/*钱包页面2*/.con-inner{}
+.con-inner .hd{text-align: center;width: 100%;top: -33px;left: 0;}
+.con-inner .hd li{display: inline-block;width: 250px;height: 66px;line-height: 58px;text-align: center;background: url("../images/icons1.png") 0 -66px no-repeat;font-size: 30px;color: #fff;margin: 0 10px;cursor: pointer}
+.con-inner .hd li{*display: inline}
+.con-inner .hd li.on{background-position: 0 0}
+.con-inner .bd .scrollBox{overflow: hidden;height: 362px;}
+.userWord .scrollBox{overflow: hidden;height: 420px;}
+.userWord .scrollBox li{background: url("../images/rgbabg.png") repeat;border-radius: 10px;padding: 10px 0;margin-top: 20px;}
+
+.userWord .scrollBox li:hover{background:#fff url("../images/libg.png") 843px center no-repeat}
+.userWord .scrollBox li{padding: 0;border-radius: 0;position: relative; width: 100%;   height: 128px;margin-top: 0;margin-bottom: 15px;    float: left;
+    display: inline;display: none}
+.userWord .scrollBox li em.fr{font-size: 30px;color: #eb3685;margin: 22px 30px 0 0;}
+.con-inner .bd .scrollBox li .fl,.userWord .scrollBox li .fl{float: none}
+.userWord .scrollBox li .fl .avatar{display: inline-block;width: 97px;height: 97px;margin:0 10px;border-radius: 100%}
+.con-inner .bd .scrollBox li .fl .avatar,.userWord .scrollBox li .fl .avatar{*display: inline}
+.con-inner .bd .scrollBox li .fl .avatar{width: 55px;height: 55px;display:block;margin: 0 auto}
+.con-inner .bd .scrollBox li .fl .avatar img,.userWord .scrollBox li .fl .avatar img{width: 97px;height: 97px;border-radius: 100%}
+.con-inner .bd .scrollBox li .fl .avatar img{width: 55px;height: 55px}
+.userWord .scrollBox li .fl .name{display: inline-block;vertical-align: middle;width: 590px;}
+.userWord .scrollBox li .fl .name{*display: inline}
+.userWord .scrollBox li .fl .name h3{font-size:18px;color:#080e2a;font-weight: normal}
+
+
+
+
+.userWord .scrollBox li .fl .name h2{width: 590px;color: #c47fbb;font-weight:normal;font-size: 20px;padding-bottom: 10px}
+.userWord .scrollBox li .fl .name h3{width: 760px;color: #c47fbb;font-weight:normal;font-size: 36px;overflow: hidden;height: 55px;overflow: hidden;}
+
+
+
+
+
+
+.con-inner .bd .scrollBox li .fl .name h3{font-size: 14px;font-weight: normal;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;text-align: center;padding: 5px 0}
+.con-inner .bd .scrollBox ul{    overflow: auto;
+    height: 362px;}
+.con-inner .bd .scrollBox li .fl{width: auto}
+.con-inner .bd .scrollBox li .fl .name{}
+.con-inner .bd .scrollBox li{display: none;height: auto;width: 125px}
+.con-inner .bd .scrollBox li{background: none;float: left;margin: 10px;}
+.con-inner .bd .scrollBox li em.fr{float: none;display: block;text-align: center;font-size: 14px;}
+
+
+
+
+
+
+.con-inner .bd .userList{background: url("../images/rgbabg.png") repeat;border-radius: 10px;padding-bottom: 20px;overflow: auto;    height: 292px;}
+.con-inner .bd .userList ul{margin: 0 30px;display: block;overflow: hidden}
+.con-inner .bd .userList li{float: left;width: 262px;margin: 20px 0px 0 0;}
+.con-inner .bd .userList li .avatar{display: inline-block;width:55px;height: 55px;margin:0 10px;border-radius: 100%}
+.con-inner .bd .userList li .avatar{*display: inline}
+.con-inner .bd .userList li .avatar img{width: 55px;height: 55px;border-radius: 100%}
+.con-inner .bd .userList li .name{display: inline-block;vertical-align: middle}
+.con-inner .bd .userList li .name{*display: inline}
+.con-inner .bd .userList li .name h2{font-size: 18px;color: #080e2a;font-weight: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width: 170px;overflow: hidden;}
+.userWord .scrollBox li .msgImage{position:absolute;top: 15px;right: 65px;max-height: 97px;}
+
+.userWord .scrollBox li .fl .avatar {
+    margin: 15px 15px 0 20px;
+}
+.userWord .scrollBox li .fl .name{width: 760px;}
+
+.paodao{background: #C60E0F;position: relative}
+.paodao .players{position: absolute;top: 0;left: 152px;width: 100%;overflow: hidden;height: 467px;}
+.paodao ul li{height: 65px;border-bottom: 2px solid #fff}
+.paodao ul li .position{width: 150px;text-align: center;border-right: 2px solid #fff;height: 65px;line-height: 65px;}
+.paodao ul li .position em{-webkit-transform: rotate(90deg);display: inline-block;font-size: 70px;}
+.paodao ul li .position em{*display: inline}
+.paodao ul li .fr{width: 100px;height: 65px;border-left: 2px solid #fff}
+.paodao ul li .road{height: 65px;overflow: hidden;position: relative}
+.paodao .player{width: 55px;height: 55px;display: inline-block;margin-top:5px;top: 0;left:0;position: absolute;border-radius: 100%;}
+.paodao .player img{width: 55px;height: 55px;border-radius: 100%}
+.paodao .player h2{    position: absolute;
+    left: 65px;
+    top: 16px;
+    font-weight: normal;
+    width: 200px;
+    font-size: 16px;}
+
+.paodao .player{
+    -webkit-animation:pulse 1s .2s ease both infinite;
+    -moz-animation:pulse 1s .2s ease both infinite;}
+@-webkit-keyframes pulse{
+    0%{-webkit-transform:scale(1)}
+    50%{-webkit-transform:scale(1.1)}
+    100%{-webkit-transform:scale(1)}
+}
+@-moz-keyframes pulse{
+    0%{-moz-transform:scale(1)}
+    50%{-moz-transform:scale(1.1)}
+    100%{-moz-transform:scale(1)}
+}
+
+.yaoyiyao{text-align: center;position: relative}
+.yaoyiyao .hand{margin-top: 20px;}
+.yaoyiyao .hand img{margin-left: -150px}
+.yaoyiyao  .starBtn{ position: absolute;right: 200px;bottom: 50px;}
+.yaoyiyao  .starBtn a{width: 186px;height: 61px;background: url("../images/yybtn.png") no-repeat;display: block;font-size: 24px;color: #fff;text-align: center;line-height: 60px}
+
+
+
+
+
+
+/*ie提示*/.iePrompt{width: 80px;background: #FCF7E3;width: 800px;height: 300px;margin-left: -400px;border: 6px solid #666;position: fixed;left: 50%;top: 50%;z-index: 999999999999;margin-top: -120px;display: none;_position: absolute;_left: auto;_top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,110)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));}
+.iePrompt_main{position: relative;padding: 50px 40px 40px 50px;}
+.iePrompt_main .close{cursor: pointer;width: 24px;height: 24px;background: #F60 url(../images/ie7-tips.png) no-repeat -77px -126px;text-indent: -999px;overflow: hidden;position: absolute;right: 0px;top: 0px;}
+.iePrompt_main .ico_tips{width: 110px;height: 110px;float: left;background: url(../images/ie7-tips.png) 0px 0px;}
+.iePrompt_main .iePrompt_text{float: left;padding-left: 40px;padding-top: 6px;text-align: left;width: 500px;font-size: 16px;line-height: 25px;color: #333;}
+.iePrompt .iePrompt_a{padding-left: 166px;}
+.iePrompt .iePrompt_a a{margin-left: 34px;float: left;padding: 6px 7px;background: #F60;display: block;text-align: center;width: 120px;font-size: 14px;color: #FFF;text-decoration: none;}
+.iePrompt .iePrompt_a .green{background: #227F2E;}
+.countdown{background: url("../images/lightbg.png") center center no-repeat;width: 100%;top: 0;left: 0;right: 0;bottom: 0;position: fixed;}
+.countdown .bigText{width: 200px;height: 400px;line-height: 400px;margin: 0 auto;display: block;}
+.countdown .bigText em{font-size: 325px;color: #ffd900}
+.messageDetailBox{width: 950px;top: 135px;left:0;height: 450px;overflow: hidden;z-index: 1000;background: #fff;background: rgba(255,255,255,0.8);color: #061d3d;display: block;overflow: hidden;display: none}
+.messageDetailBox .user-list{}
+.messageDetailBox .user-list li{float: left;width: 950px;/* height: 513px;*/height: 533px;border-radius: 3px;padding: 20px;cursor: pointer;}
+.messageDetailBox .user-list li{}
+.head img{width: 110px;height: 110px;border-radius: 110px;}
+.detail-box a{color: #061d3d;}
+.userimg{position: relative;margin: 35px 0 0 40px;}
+.detail-top .userimg{margin: 16px 0 0 20px;}
+.detail-top .userimg{margin-left: 0px;}
+.detail-info{margin-left: 130px;padding-top: 20px;font-size: 24px;}
+.detail-cont{padding-top: 15px;word-break: break-all;}
+.imgb-show{padding: 15px 0;width: 840px;height: 340px;/* height: 238px;*/text-align: center;display: table-cell;vertical-align: middle;}
+.user-name-detail{display: block;height: 65px;font-size: 48px;font-weight: 600;overflow: hidden;}
+.imgb-show{padding: 15px 0;width: 840px;height: 340px;/* height: 238px;*/text-align: center;display: table-cell;vertical-align: middle;text-align: left;}
+a.artZoom{position:relative;display:inline-block;/* color:#ccc;*/cursor: pointer;position:relative;max-height:340px;max-width:800px;overflow:hidden;}
+a.artZoom img{max-height:340px;max-width:800px;}
+.artZoomBox .maxImg{max-height:340px;max-width:800px;overflow:hidden;}
+.tipWindow{width: 340px;background: #e03d3e;border-radius: 10px;}
+.tipWindow .tipimg{position: absolute;top: -103px;left: 20px}
+.tipWindow .tipText{padding: 0 20px;text-align: center;margin: 40px 0;}
+.tipWindow .tipText .tipAvatar{border-radius: 100%;width: 58px;height: 58px;overflow: hidden;margin: 0 auto;margin-bottom: 10px;}
+.tipWindow .tipText .tipAvatar img{border-radius: 100%;width: 58px;height: 58px;}
+.tipWindow .tipText h3{font-size: 18px;color: #fff;line-height: 32px;font-weight: normal;padding-bottom: 6px;}
+.tipWindow .tipText p{font-size: 30px;color: #ffba27}
+.window .xClosed{display: none;width: 30px;height: 30px;background: url("../images/icons1.png") no-repeat 0 -135px;position: absolute;right: 20px;top: 20px;cursor: pointer}
+.window:hover .xClosed{display: block}
+
+
+.timeCount{color:#fff;font-size: 22px;position: absolute;right: 0;top: -5px;}
+.timeCount em{padding: 4px 0 4px 38px;;background: url("../images/time.png") no-repeat left center}
+.qrCodeWindow{width: 1024px;display: block;background: #fff}
+.qrCodeWindow .qrWarp{padding: 20px}
+.qrCodeWindow p{font-size: 26px;color: #333;padding:15px 0}
+.qrCodeWindow ul li{display: inline-block;vertical-align: bottom;margin-right: 10px}
+.qrCodeWindow ul li{*display:inline}
+
+
+.paopaoAll{background: #2c345b;border-radius: 10px;display: none;width: 900px;height: 650px;z-index:9999}
+.paopaoAll a.paoClosed{width: 55px;height: 55px;background: url("../images/icons1.png") no-repeat -32px -136px;position: absolute;right: -20px;top: -20px;}
+.paopaoAll .tit{background: url("../images/icons1.png") no-repeat 0 -198px;width:471px;height: 82px;margin: 40px auto;}
+.paopaoAll .hd{background: #f7c200;text-align: center}
+.paopaoAll .hd ul li{padding: 10px 20px;display: inline-block;cursor: pointer;font-size: 16px;}
+.paopaoAll .hd ul li{*display: inline}
+.paopaoAll .hd ul li:hover,.paopaoAll .hd ul li.on{background: #d5ab17 url(../images/navarrow.png) center bottom no-repeat}
+
+.paopaoAll .bd{padding: 0 50px}
+.paopaoAll .bd ul{margin-top:20px }
+.paopaoAll .bd ul{text-align: center;overflow: auto;    height: 360px;}
+.paopaoAll .bd ul li{width: 140px;display: inline-block;margin: 15px 0;float: left}
+.paopaoAll .bd ul li{*display: inline}
+.paopaoAll .bd ul li img{width: 90px;height: 90px;border-radius: 100%}
+.paopaoAll .bd ul li h2{font-size: 14px;font-weight: normal;padding: 5px 0;}
+.paopaoAll .bd ul li h3{font-size: 20px;color: #f7c200;font-weight: normal}
+
+
+.paopaoWin{width: 850px;height: 600px;display: block}
+.paopaoWin .paoClosed{width: 45px;height: 45px;background: url("../images/icons1.png") no-repeat -92px -136px;position: absolute;right: -20px;top: 50px;    z-index: 999;}
+.paopaoWin .paiMing{text-align: center}
+.paopaoWin .paiMing ul li{display: inline-block;text-align: center}
+.paopaoWin .paiMing ul li{*display: inline}
+.paopaoWin .paiMing ul li img{border-radius: 100%;width: 150px;height: 150px;border: 4px solid #000}
+.paopaoWin .paiMing ul li .someDesc h2{font-size: 14px;font-weight: normal;padding: 5px 0;}
+.paopaoWin .paiMing ul li .someDesc h3{font-size: 20px;color: #f7c200;font-weight: normal}
+.paopaoWin .paiMing ul li.second .someDesc{margin-bottom: -50px}
+.paopaoWin .paiMing ul li.third .someDesc{margin-bottom: -70px}
+.paopaoWin .paiMing ul li.second{width: 300px;}
+.paopaoWin .paiMing ul li.second .bottom{width:300px;height: 79px;background: url("../images/no2.png") no-repeat top center}
+.paopaoWin .paiMing ul li.first{margin-left: -35px;position: relative;z-index: 10;}
+.paopaoWin .paiMing ul li.first .bottom{width: 337px;height: 111px;background: url("../images/no1.png") no-repeat top center}
+.paopaoWin .paiMing ul li.third .bottom{width: 300px;height: 53px;background: url("../images/no3.png") no-repeat top center}
+.paopaoWin .paiMing ul li .who{height: 393px;    margin-bottom: -23px;
+    position: relative;
+    z-index: 9;}
+.paopaoWin .paiMing ul li .who img{position: absolute}
+.paopaoWin .paiMing ul li.second .who{background: url("../images/nos2.png") no-repeat bottom center;height: 465px}
+
+.paopaoWin .paiMing ul li.second .who img{left: 70px;bottom: 50px}
+
+.paopaoWin .paiMing ul li.first .who{height: 393px;background: url("../images/nos1.png") no-repeat bottom center}
+.paopaoWin .paiMing ul li.first .who img{    left: 87px;
+    bottom: 80px;}
+.paopaoWin .paiMing ul li.third{margin-left: -72px;}
+.paopaoWin .paiMing ul li.third .who{height: 505px;background: url("../images/nos3.png") no-repeat bottom center}
+.paopaoWin .paiMing ul li.third .who img{    left: 75px;
+    bottom: 68px;}
+.paopaoWin .btn{text-align: center;padding-top: 20px}
+.paopaoWin .btn a{display: inline-block;width: 170px;height: 59px;background: url("../images/icons1.png") no-repeat;color: #fff;text-align: center;line-height: 56px;font-size: 26px;margin: 0 20px}
+.paopaoWin .btn a{*display: inline}
+.paopaoWin .btn a.again{background-position: -254px 0}
+.paopaoWin .btn a.check{background-position: -254px -60px}
+
+
+.whole .ppHeader .paodaoBigText{visibility: hidden;position: absolute;top: 0;left: 0;width: 100%}
+.paodaoFtText{display: none}
+.paodaoBigText ul{    position: relative;width: 100%;height: 137px;text-align: center}
+.paodaoBigText ul li{text-align: center;font-size: 60px;color: #ffd900;font-weight: normal;padding: 28px 0;position: absolute;overflow: hidden;width: 100%}
+.paodaoFtText p{text-align: center;padding-top: 40px;}
+.paodaoFtText p em{color:#ffd900}
+
+.paodaoFtText a{float: right;background: url("../images/icons1.png") no-repeat -148px -148px;width: 26px;height: 25px;margin-top: 36px;}
+
+
+
+
+
+.mone{width:950px;height:450px;position:absolute;top:136px;left:116px;display:none; overflow:auto;-webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    -moz-box-shadow: 0px 0px 5px #575757;
+    -webkit-box-shadow: 0px 0px 5px #575757;
+    box-shadow: 0px 0px 5px #575757;z-index: 9999;color: #000}
+.part {
+    width: 108px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+.username {
+    font-size: 25px;
+    padding-top: 15px;
+    text-align: center;
+    text-shadow: 0 0 5px #000;
+}
+.msgcon {
+    font-size: 50px;
+    height: 375px;
+    overflow: auto;
+    text-align: left;
+    text-shadow: 1px 1px 2px #FFFFFF;
+    font-weight: bold;
+    float: left;
+    margin-top: 40px;
+}
+.msgcon  img{
+    max-height: 370px;
+    min-height: 200px;
+}
+.rightmain {
+    text-align: left;
+    padding: 0px 30px 0px 60px;
+    max-height: 550px;
+    clear: both;
+    top: 0px;
+    position: relative;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+
+.rconner {
+    position: absolute;
+    right: 0;
+    background-repeat: no-repeat;
+    display: block;
+    border-width: 20px 20px 20px 0;
+    border-color: transparent rgba(255,255,255,0.9) transparent transparent;
+    border-style: solid;
+    width: 0;
+    height: 0;
+    top: 80px;
+}
+
+.mone .pic {
+}
+.mone .pic img {
+     background:#E8E8E8;
+     border:#4E9B86 1px solid;
+     padding:3px;
+     font-size:0;
+     border-radius:50%;
+ }
+.messages {
+    color:#fff;
+    background:url(../images/top_line.png) left center no-repeat;
+    width:100px;
+    float:right;
+    margin-top:0px;
+    padding-top:18px;
+    padding-left:10px;
+}
+.messages span {
+    font-size:35px;
+    font-weight:bold;
+}
+.messages p {
+    font-size:20px;
+    padding:0px;
+    margin-top:5px;
+}
+.leftside {
+    width:200px;
+    float:left;
+    min-height:450px;
+    position: relative;
+    background: rgba(0,0,0,0.3);
+    -webkit-border-radius:5px 0 0 5px;
+    -moz-border-radius:5px 0 0 5px;
+    border-radius:5px 0 0 5px;
+}
+.rightside {
+    height:450px;
+    word-break:break-all;
+    background: url(../images/mark.png) no-repeat rgba(255,255,255,0.9) top right;
+    overflow: hidden;
+    -webkit-border-radius:0 5px 5px 0;
+    -moz-border-radius:0 5px 5px 0;
+    border-radius:0 5px 5px 0;
+}
+
+
+
+
+::-webkit-scrollbar-track-piece {
+    background-color:#f5f5f5;
+    border-left:1px solid #d2d2d2;
+}
+::-webkit-scrollbar {
+    width:6px;
+    height:6px;
+}
+::-webkit-scrollbar-thumb {
+    background-color:#c2c2c2;
+    background-clip:padding-box;
+    border:1px solid #979797;
+    min-height:28px;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    border:1px solid #636363;
+    background-color:#929292;
+}
+    /*鼠标悬浮提示插件*/
+html{-webkit-font-smoothing: antialiased;}
+/* This is the default Tooltipster theme (feel free to modify or duplicate and create multiple themes!):*/.tooltipster-default{border-radius: 5px;border: 2px solid #000;background: #4c4c4c;color: #fff;}
+/* Use this next selector to style things like font-size and line-height:*/.tooltipster-default .tooltipster-content{font-family: Arial, sans-serif;font-size: 14px;line-height: 16px;padding: 8px 10px;overflow: hidden;}
+/* This next selector defines the color of the border on the outside of the arrow. This will automatically match the color and size of the border set on the main tooltip styles. Set display: none;if you would like a border around the tooltip but no border around the arrow*/.tooltipster-default .tooltipster-arrow .tooltipster-arrow-border{/* border-color: ... !important;*/}
+/* If you're using the icon option, use this next selector to style them*/.tooltipster-icon{cursor: help;margin-left: 4px;}
+/* This is the base styling required to make all Tooltipsters work*/.tooltipster-base{padding: 0;font-size: 0;line-height: 0;position: absolute;z-index: 9999999;pointer-events: none;width: auto;overflow: visible;}
+.tooltipster-base .tooltipster-content{overflow: hidden;}
+/* These next classes handle the styles for the little arrow attached to the tooltip. By default, the arrow will inherit the same colors and border as what is set on the main tooltip itself.*/.tooltipster-arrow{display: block;text-align: center;width: 100%;height: 100%;position: absolute;top: 0;left: 0;z-index: -1;}
+.tooltipster-arrow span, .tooltipster-arrow-border{display: block;width: 0;height: 0;position: absolute;}
+.tooltipster-arrow-top span, .tooltipster-arrow-top-right span, .tooltipster-arrow-top-left span{border-left: 8px solid transparent !important;border-right: 8px solid transparent !important;border-top: 8px solid;bottom: -7px;}
+.tooltipster-arrow-top .tooltipster-arrow-border, .tooltipster-arrow-top-right .tooltipster-arrow-border, .tooltipster-arrow-top-left .tooltipster-arrow-border{border-left: 9px solid transparent !important;border-right: 9px solid transparent !important;border-top: 9px solid;bottom: -7px;}
+.tooltipster-arrow-bottom span, .tooltipster-arrow-bottom-right span, .tooltipster-arrow-bottom-left span{border-left: 8px solid transparent !important;border-right: 8px solid transparent !important;border-bottom: 8px solid;top: -7px;}
+.tooltipster-arrow-bottom .tooltipster-arrow-border, .tooltipster-arrow-bottom-right .tooltipster-arrow-border, .tooltipster-arrow-bottom-left .tooltipster-arrow-border{border-left: 9px solid transparent !important;border-right: 9px solid transparent !important;border-bottom: 9px solid;top: -7px;}
+.tooltipster-arrow-top span, .tooltipster-arrow-top .tooltipster-arrow-border, .tooltipster-arrow-bottom span, .tooltipster-arrow-bottom .tooltipster-arrow-border{left: 0;right: 0;margin: 0 auto;}
+.tooltipster-arrow-top-left span, .tooltipster-arrow-bottom-left span{left: 6px;}
+.tooltipster-arrow-top-left .tooltipster-arrow-border, .tooltipster-arrow-bottom-left .tooltipster-arrow-border{left: 5px;}
+.tooltipster-arrow-top-right span, .tooltipster-arrow-bottom-right span{right: 6px;}
+.tooltipster-arrow-top-right .tooltipster-arrow-border, .tooltipster-arrow-bottom-right .tooltipster-arrow-border{right: 5px;}
+.tooltipster-arrow-left span, .tooltipster-arrow-left .tooltipster-arrow-border{border-top: 8px solid transparent !important;border-bottom: 8px solid transparent !important;border-left: 8px solid;top: 50%;margin-top: -7px;right: -7px;}
+.tooltipster-arrow-left .tooltipster-arrow-border{border-top: 9px solid transparent !important;border-bottom: 9px solid transparent !important;border-left: 9px solid;margin-top: -8px;}
+.tooltipster-arrow-right span, .tooltipster-arrow-right .tooltipster-arrow-border{border-top: 8px solid transparent !important;border-bottom: 8px solid transparent !important;border-right: 8px solid;top: 50%;margin-top: -7px;left: -7px;}
+.tooltipster-arrow-right .tooltipster-arrow-border{border-top: 9px solid transparent !important;border-bottom: 9px solid transparent !important;border-right: 9px solid;margin-top: -8px;}
+/* Some CSS magic for the awesome animations - feel free to make your own custom animations and reference it in your Tooltipster settings!*/.tooltipster-fade{opacity: 0;-webkit-transition-property: opacity;-moz-transition-property: opacity;-o-transition-property: opacity;-ms-transition-property: opacity;transition-property: opacity;}
+.tooltipster-fade-show{opacity: 1;}
+.tooltipster-grow{-webkit-transform: scale(0,0);-moz-transform: scale(0,0);-o-transform: scale(0,0);-ms-transform: scale(0,0);transform: scale(0,0);-webkit-transition-property: -webkit-transform;-moz-transition-property: -moz-transform;-o-transition-property: -o-transform;-ms-transition-property: -ms-transform;transition-property: transform;-webkit-backface-visibility: hidden;}
+.tooltipster-grow-show{-webkit-transform: scale(1,1);-moz-transform: scale(1,1);-o-transform: scale(1,1);-ms-transform: scale(1,1);transform: scale(1,1);-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);-moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);-ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);-o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);}
+.tooltipster-swing{opacity: 0;-webkit-transform: rotateZ(4deg);-moz-transform: rotateZ(4deg);-o-transform: rotateZ(4deg);-ms-transform: rotateZ(4deg);transform: rotateZ(4deg);-webkit-transition-property: -webkit-transform, opacity;-moz-transition-property: -moz-transform;-o-transition-property: -o-transform;-ms-transition-property: -ms-transform;transition-property: transform;}
+.tooltipster-swing-show{opacity: 1;-webkit-transform: rotateZ(0deg);-moz-transform: rotateZ(0deg);-o-transform: rotateZ(0deg);-ms-transform: rotateZ(0deg);transform: rotateZ(0deg);-webkit-transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 1);-webkit-transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);-moz-transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);-ms-transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);-o-transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);transition-timing-function: cubic-bezier(0.230, 0.635, 0.495, 2.4);}
+.tooltipster-fall{top: 0;-webkit-transition-property: top;-moz-transition-property: top;-o-transition-property: top;-ms-transition-property: top;transition-property: top;-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);-moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);-ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);-o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);}
+.tooltipster-fall-show{}
+.tooltipster-fall.tooltipster-dying{-webkit-transition-property: all;-moz-transition-property: all;-o-transition-property: all;-ms-transition-property: all;transition-property: all;top: 0px !important;opacity: 0;}
+.tooltipster-slide{left: -40px;-webkit-transition-property: left;-moz-transition-property: left;-o-transition-property: left;-ms-transition-property: left;transition-property: left;-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);-webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);-moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);-ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);-o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.15);}
+.tooltipster-slide.tooltipster-slide-show{}
+.tooltipster-slide.tooltipster-dying{-webkit-transition-property: all;-moz-transition-property: all;-o-transition-property: all;-ms-transition-property: all;transition-property: all;left: 0px !important;opacity: 0;}
+/* CSS transition for when contenting is changing in a tooltip that is still open. The only properties that will NOT transition are: width, height, top, and left*/.tooltipster-content-changing{opacity: 0.5;-webkit-transform: scale(1.1, 1.1);-moz-transform: scale(1.1, 1.1);-o-transform: scale(1.1, 1.1);-ms-transform: scale(1.1, 1.1);transform: scale(1.1, 1.1);}
+.tooltipster-shadow{border-radius: 5px;background: #fff;box-shadow: 0px 0px 14px rgba(0,0,0,0.3);color: #2c2c2c;}
+.tooltipster-shadow .tooltipster-content{font-family: 'Arial', sans-serif;font-size: 14px;line-height: 16px;padding: 8px 10px;}
+

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>登陆与注册－{pigcms:$f_siteTitle}</title>
+
+<!-- 头部信息start -->
+<include file="Public:header22"/>
+<!-- 头部信息end -->
+
+<div class="main">
+    <div class="row lrForm">
+        <div class="w1000">
+            <div class="fl imageList mt50" style="height: 400px;">
+                <div class="row">
+                    <img class="l0" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l0.png" alt="l0">
+                    <img class="l1" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l1.png" alt="l1">
+                    <img class="l2" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l2.png" alt="l2">
+                    <img class="l3" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l3.png" alt="l3">
+                    <img class="l3-1" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l3.png" alt="l3">
+                    <img class="l3-2" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l3.png" alt="l3">
+                    <img class="l3-3" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l3.png" alt="l3">
+                    <img class="l4" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l4.png" alt="l4">
+                    <img class="l5" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l5.png" alt="l5">
+                    <img class="l6" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l6.png" alt="l6">
+                    <img class="l6-1" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l6.png" alt="l6">
+                    <img class="l7" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l7.png" alt="l7">
+                    <img class="l8" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l8.png" alt="l8">
+                    <img class="l9" src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/l9.png" alt="l8">
+                </div>
+            </div>
+            <form action="{pigcms::U('Users/checklogin')}" method="post" class="login">
+                <div class="formRow fl">
+                    <div class="row">
+                        <label>用户名</label>
+                        <span>
+                            <input type="text"  name="username"  placeholder="请输入用户名" />
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label>密码</label>
+                        <span>
+                            <input type="password" name="password" placeholder="请输入密码" />
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label>验证码</label>
+                        <span class="short">
+                            <input type="text" placeholder="请输入验证码" name="verifycode2"/>
+                        </span>
+                        <span class="shortCode"><img src="{pigcms::U('Index/verifyLogin')}" alt="1482" id="txtCheckCode2"></span><a class="changeA" href="javascript:refreshImg2();">点击换一张</a>
+                    </div>
+                    <div class="row">
+                        <label></label>
+                        <span class="noborder w242">
+                            <a href="{pigcms::U('Index/reg')}" class="fr c-090">免费注册</a>
+                            <!-- <a href="##" class="unl">忘记密码？</a> -->
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label></label>
+                        <span class="noborder lrBtn">
+                            <button class="loginBtn" type="submit">登　录</button>
+                            <!-- <a href="##" class="loginBtn">登录</a> -->
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //处理注册登录页面底部兼容效果
+    $(function(){
+        ftPosition();
+        $(window).resize(function(){
+            ftPosition();
+        });
+        function ftPosition(){
+            if($(window).height()>790){
+                $(".footer").css({
+                    "position":"absolute","bottom":"0"
+                })
+            }else{
+                $(".footer").css({
+                    "position":"static"
+                })
+            }
+        }       
+    });
+    function refreshImg2(){
+        document.getElementById("txtCheckCode2").src="/index.php?g=Home&m=Index&a=verifyLogin&s="+Math.random();
+    }    
+</script>
+
+
+<!-- foorter信息start -->
+<include file="Public:footer22"/>
+<!-- foorter信息end -->

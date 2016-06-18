@@ -1,0 +1,213 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>语音播放</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=0">
+<meta charset="utf-8">
+    <style type="text/css">
+        body {
+            background-color:#333;
+            color:#fff;
+            padding:0;
+            margin:0;
+            font-size:16px;
+        }
+        a {
+            text-decoration:none
+        }
+        a:hover {
+            color:#37a5be;
+        }
+        img {
+            padding:0;
+            margin:0;
+        }
+        .page-container {
+            max-width:500px;
+            margin:0 auto;
+        }
+        .title {
+            font-size:30px;
+            font-weight:bold;
+            padding:30px 0;
+            margin:0;
+            text-align:center
+        }
+        .tips, .bottomtext {
+            font-size: 16px;
+            margin:10px auto;
+            text-align: center;
+            color: #fff;
+        }
+        .tips span {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size:14px;
+        }
+        .icon {
+            width:140px;
+            height:160px;
+            margin:0 auto;
+            text-align:center;
+            overflow:hidden;
+        }
+        img.mouth {
+            height:128px;
+            width:128px;
+            margin:16px 0;
+        }
+        a.play {
+            margin:32px auto;
+            width:96px;
+            height:96px;
+            display:block;
+        }
+        a.play img {
+            height:96px;
+            width:96px;
+            margin:0;
+            padding:0;
+        }
+        img.playgif {
+            margin:36px auto;
+            width:86px;
+            height:86px;
+        }
+        .btn {
+            margin:0 auto;
+            padding:10px 0 0;
+            text-align:center;
+        }
+        .btn a.gray {
+            color: #727272;
+            background-color: #fff;
+        }
+        .btn a.green {
+            color: #FFF;
+            background-color: #45c01a;
+        }
+        .btn a.green, .btn a.gray {
+            border-color: #a4a4a4;
+            border-radius: 3px;
+            display: block;
+            font-size: 18px;
+            height: 40px;
+            line-height: 40px;
+            margin: auto;
+            text-align: center;
+            width: 150px;
+            margin-bottom:15px;
+        }
+        .bg { position:fixed; top:0; left:0; z-index:1987; width:100%; height:100%; background:#000; filter:alpha(opacity=85); opacity:0.85;}
+    </style>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/voteimg/js/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<div class="page-container">
+    <div class="title">语音播放</div>
+    <div class="icon">
+        <img src="{pigcms:$staticPath}/tpl/static/voteimg/img/play.png" class="mouth" id="img_mouth">
+    </div>
+    <div class="btn">
+        <a href="javascript:play();" class="green" id="div_start">开始播放</a>
+        <a class="gray" href="javascript:stop();" id="div_stop">停止播放</a>
+</div>
+</div>
+</body></html>
+<input type="hidden" id="localid" value="" />
+<script type="text/javascript">
+var record_time = "{pigcms:$voice['record_time']}";//录音时间
+var common_localid;
+function play(){
+	var upload_time = "{pigcms:$voice['upload_time']}";
+	var left_time = Math.ceil(((new Date()).getTime()/1000 - upload_time));//上传距离时间 
+	if(left_time > 24*3600){//如果上传时间超过1天，重新上传
+		var localId = $("#localid").val();
+		var item_id = "{pigcms:$voice['id']}";
+		var token = "{pigcms:$voice['token']}";
+		if(localId != ""){ //如果没刷新页面,防止重复上传
+			if(record_time > 0){
+				setTimeout(function () {
+					$("#img_mouth").attr('src','{pigcms:$staticPath}/tpl/static/voteimg/img/play.png');
+				}, record_time * 1000);
+			}
+			$("#img_mouth").attr('src','{pigcms:$staticPath}/tpl/static/voteimg/img/play.gif');
+			wx.playVoice({
+				localId: localId
+			});
+			return false;
+		}
+		$.ajax({
+			type: 'POST',
+			url: '/index.php?g=Wap&m=Voteimg&a=uploadVoice',//过期后重新上传
+			data : "item_id="+item_id+"&token="+token,
+			success:function(info){
+				var obj =  eval('('+info+')');
+				if(obj.status == 'done'){                          
+					wx.downloadVoice({
+						serverId: obj.msg, 
+						isShowProgressTips:0, 
+						success: function (res) {
+							var lid = res.localId;
+							$("#localid").val(lid);
+							//更新localid
+							$.post('/index.php?g=Wap&m=Voteimg&a=updateLocalId',{"item_id":item_id,"localid":lid},function(dd){
+								if(dd == 'yes'){
+									if(record_time > 0){
+										setTimeout(function () {
+											$("#img_mouth").attr('src','{pigcms:$staticPath}/tpl/static/voteimg/img/play.png');
+										}, record_time * 1000);
+									}
+									$("#img_mouth").attr('src','{pigcms:$staticPath}/tpl/static/voteimg/img/play.gif');
+									wx.playVoice({
+										localId: lid
+									});
+								}
+							});
+						}
+					});
+				}else{
+					alert(obj.msg);
+				}
+			}
+		});
+	}else{
+		//听别人的必须先下载
+		wx.downloadVoice({
+			serverId: '{pigcms:$voice.serverid}',
+			isShowProgressTips: 0, 
+			success: function (res) {
+			common_localid = res.localId;
+			if(record_time > 0){
+				setTimeout(function () {
+					$("#img_mouth").attr('src','{pigcms:$staticPath}/tpl/static/voteimg/img/play.png');
+				}, record_time * 1000);
+			}
+			$("#img_mouth").attr('src','{pigcms:$staticPath}/tpl/static/voteimg/img/play.gif');
+			wx.playVoice({
+				localId: res.localId
+			});
+			}
+		});
+	}
+}
+function stop(){
+	$("#img_mouth").attr('src','{pigcms:$staticPath}/tpl/static/voteimg/img/play.png');
+	var stop_localid = $("#localid").val() ? $("#localid").val() : common_localid;//如果没刷新页面
+	wx.stopVoice({
+		localId: stop_localid
+	});
+}
+</script>
+<script>
+window.shareData = {  
+	"moduleName":"Voteimg",
+	"moduleID":"{pigcms:$id}",
+	"imgUrl": "{pigcms:$action_info['reply_pic']}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/index',array('token'=>$token,'id'=>$id))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/index',array('token'=>$token,'id'=>$id))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/index',array('token'=>$token,'id'=>$id))}",
+	"tTitle": "{pigcms:$action_info['custom_sharetitle']|shareFilter}",
+	"tContent": "{pigcms:$action_info['custom_sharedsc']|shareFilter}",
+	"fTitle": "{pigcms:$action_info['custom_sharetitle']|shareFilter}",
+};
+</script>
+{pigcms:$shareScript}

@@ -1,0 +1,45 @@
+<include file="Public:head"/>
+<div class="msgWrap form">
+<div class="content">
+<div class="cLineC" style="line-height: 25px;">   
+<a href="{pigcms::U('Voteimg/fansPayLog',array('token'=>$token,'vote_id'=>$vote_id))}" class="btnGrayS vm">粉丝充值记录</a>  <a href="{pigcms::U('Voteimg/refundlog',array('token'=>$token,'vote_id'=>$vote_id))}" class="btnGrayS vm" style=" background-color: #e6e7ec !important;">粉丝退款记录</a>  
+<a href="{pigcms::U('Voteimg/index',array('token'=>$token))}" class="right btnGrayS vm" style="margin-top:-2px">返回投票列表</a>
+<div class="searchbar right">
+<form method="POST" action="">
+<input type="text" style="height:25px;" id="msgSearchInput" class="txt left" placeholder="请输入微信昵称" name="key_word" value="{pigcms:$key_word}">
+<input type="hidden" name="vote_id" value="{pigcms:$vote_id}" />
+<input type="hidden" name="token" value="{pigcms:$token}" />
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+</div>
+ <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;"></if>温馨提示：<span style="color:red;">活动结束后的第三天,粉丝可申请退款</span>
+</div>
+    <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+	<thead>
+	<tr>
+	<th style="width:30%;">微信昵称</th>
+	<th style="width:30%;">退款金额</th>
+	<th style="width:30%;">退款时间</th>
+	</tr>
+	</thead>
+	<pigcmsif where="$refundlog">
+	<volist name="refundlog" id="vo">
+	  <tbody><tr>
+	   <td>{pigcms:$vo.nick_name}</td>
+		  <td>￥{pigcms:$vo.money}</td>
+		  <td>{pigcms:$vo.refund_time|date='Y-m-d H:i:s',###}</td>
+		</tr>
+	  </tbody>
+	</volist> 
+	<else />
+	<tbody><tr><td colspan="7" align="center">暂无退款记录</td></tr>
+	  </tbody>
+	</pigcmsif>
+	</table>
+	<div class="footactions" style="padding-left:10px">
+	  <div class="pages" style="text-align:right;"> {pigcms:$page}</div>
+	</div>
+    </div>
+  </div>
+<include file="Public:footer"/>

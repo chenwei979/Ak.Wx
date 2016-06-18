@@ -1,0 +1,53 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js"></script>
+
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">【{pigcms:$donation['name']}】动态的设置</h4>
+		<div class="clr"></div>
+	</div>
+	<!--tab start-->
+	<div class="tab">
+		<ul>
+			<li class="current tabli" id="tab0"><a href="{pigcms::U('Donation/index')}">募捐活动</a></li>
+		</ul>
+	</div>
+	<div class="cLine">
+		<div class="clr"></div>
+	</div>
+	<!--tab end-->
+	<div class="msgWrap">
+		<form class="form" method="post" action="" target="_top" enctype="multipart/form-data">
+			<input type="hidden" name="did" value="{pigcms:$did}" />
+			<table class="userinfoArea" style="margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+				<tbody>
+					<tr>
+						<th width="120"><span class="red">*</span>动态标题：<input type="hidden" class="px" id="imgids" value="" name="image_id" style="width:300px" > </th>
+						<td><input type="text" name="title" value="" class="px" id="titledom"><a href="###" onclick="addImgMessage()" class="a_choose">添加图文消息</a></td>
+					</tr>
+					
+					<tr>
+						<th>&nbsp;</th>
+						<td>
+						<button type="submit" name="button" class="btnGreen sub">保存</button>
+						<a href="{pigcms::U('Donation/dynamic', array('did' => $did))}" class="btnGray vm">取消</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+
+<script>
+
+function addImgMessage(){
+	art.dialog.data('imgids', 'imgids');
+	art.dialog.data('titledom', 'titledom');
+	art.dialog.open('?g=User&m=Message&a=img&from=dynamic',{lock:true,title:'选择图文消息',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.45});
+}
+</script>
+<include file="Public:footer"/>

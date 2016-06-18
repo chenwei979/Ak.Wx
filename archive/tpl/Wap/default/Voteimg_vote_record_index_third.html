@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title><if condition="$action_info['action_name']">{pigcms:$action_info['action_name']}</if></title>
+<link rel="stylesheet" href="{pigcms:$staticPath}/tpl/static/voteimg/thirdvoteimg/css/touch.css">
+<link  rel="stylesheet" type="text/css" href="{pigcms:$staticPath}/tpl/static/voteimg/newvoteimg/css/layer.css">
+<link rel="stylesheet" type="text/css" href="{pigcms:$staticPath}/tpl/static/voteimg/css/swipe.css">
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/voteimg/js/jquery-1.7.2.min.js"></script>
+<script src="{pigcms:$staticPath}/tpl/static/voteimg/newvoteimg/js/layer.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{pigcms:$staticPath}/tpl/static/alert/alert.js"></script>
+</head>
+<body>
+<header>
+  <div class="m_head clearfix">
+	<div class="addWrap">
+	<div class="swipe" id="mySwipe">
+	<div class="swipe-wrap">
+	<if condition="$banner neq ''">
+	<volist name="banner" id="vo">
+	<if condition="$vo.external_links neq ''">
+	   <div style="height:150px;overflow:hidden;width:100%;" onclick="window.location.href='{pigcms:$vo.external_links}'"><img src="{pigcms:$vo.img_url}"/></div>
+	<else />
+		<div style="height:150px;overflow:hidden;width:100%;"><img src="{pigcms:$vo.img_url}"/></div>
+	</if>
+	</volist>
+	<else />
+	<div style="width:100%;height:130px;overflow:hidden;"><img src="{pigcms:$action_info.reply_pic}"/></div>
+	</if>
+	</div>
+	</div>
+	<ul id="position">
+	  <if condition="$banner neq ''">
+		<volist name="banner" id="vo">
+		<if condition="count($banner) gt 1">
+	  <li <if condition="$key eq 0">class="cur"</if>></li>
+	  </if>
+	  </volist>
+	  </if>
+	</ul>
+	<script src="{pigcms:$staticPath}/tpl/static/voteimg/js/swipe.js"></script> 
+	<script type="text/javascript"> 
+	  var bullets = document.getElementById('position').getElementsByTagName('li');
+	  var banner = Swipe(document.getElementById('mySwipe'), {
+		auto: 2000,
+		continuous: true,
+		disableScroll:false,
+		callback: function(pos) {
+		  var i = bullets.length;
+		  while (i--) {
+			bullets[i].className = ' ';
+		  }
+		  bullets[pos].className = 'cur';
+		}
+	  });
+	  </script>
+	</div>
+    <div class="search">
+      <form action="{pigcms::U('Voteimg/index',array('id'=>$id,'token'=>$token))}" id="search_form" method="post">
+	  <input type="hidden" name="id" value="{pigcms:$id}" />
+	  <input type="hidden" name="token" value="{pigcms:$token}" />
+        <div class="search_con">
+          <div class="btn">
+            <input type="submit" name="seachid" id="searchBtn" value="搜索">
+          </div>
+          <div class="text_box">
+            <input type="search" id="searchText" value="" name="key_word" placeholder="请输入选项标题或编号" autocomplete="off">
+          </div>
+        </div>
+      </form>
+    </div>
+<if condition="$hide neq 2"> 
+    <div class="num_box">
+      <ul class="num_box_ul">
+        <li> <span class="text">{pigcms:$name[0]}</span> <span id="main_a"></span> </li>
+        <li> <span class="text">{pigcms:$name[1]}</span> <span id="main_b"></span> </li>
+        <li> <span class="text">{pigcms:$name[2]}</span> <span id="main_c"></span> </li>
+      </ul>
+    </div>
+</if>
+  </div>
+</header>
+<section class="content" id="get_info">
+  <div class="text_a clearfix" id="sort"> <a href="javascript:;" onclick='window.location.href = "/index.php?g=Wap&m=Voteimg&a=index&id={pigcms:$id}&token={pigcms:$token}&type=new";'>最新参赛</a> <a href="javascript:;" onclick='window.location.href = "/index.php?g=Wap&m=Voteimg&a=index&id={pigcms:$id}&token={pigcms:$token}&type=all";'>全部参赛</a>  <a href="javascript:;" onclick='window.location.href = "/index.php?g=Wap&m=Voteimg&a=rules&id={pigcms:$id}&token={pigcms:$token}";'>活动规则</a> </div>
+    <div class="blank20"></div>
+  <div class="rank300" id="top300">
+    <ul>
+      <li class="rank-head"><span>排名</span><span>编号</span><span style="display:inline-block;width:40%">选项标题</span><span style="width:20%;color:#f67685">票数</span></li>
+	   <if condition="$vote_record neq ''">
+	     <volist name="vote_record" id="vo" key="k">
+      <li class="list"><span><php>echo ($k+$firstRow);</php></span><span>{pigcms:$vo.baby_id}</span><span style="display:inline-block;width:40%">{pigcms:$vo.vote_title}</span><span style="width:20%;color:#f67685">{pigcms:$vo.vote_count}</span></li>
+	  </volist>
+	  </if>
+    </ul>
+  </div>
+  <div class="pagination pagination-centered" style="margin-top:20px;">{pigcms:$page}</div>
+</section>
+
+<div style=" height:60px; width:100%; display:block;"></div>
+<link rel="stylesheet" type="text/css" href="{pigcms:$staticPath}/tpl/static/voteimg/thirdvoteimg/css/daohang.css">
+<div>
+  <ul style="width:100%; margin:0 auto;" class="bot_main" id="c_foot">
+  <volist name="custom_bottom" id="bo">
+      <li class="ico_1" id="foot_bu"><a href="{pigcms:$bo.bottom_link}"><span class="ico"><img src="{pigcms:$bo.bottom_icon}" width="20" height="20" /></span><span class="txt">{pigcms:$bo.bottom_name|mb_substr=0,5,'utf-8'}</span></a></li>
+  </volist>
+  <if condition="$bottom[0]['hide'] eq 1">
+    <li class="ico_1" id="foot_bu"><a href="tel:{pigcms:$action_info['phone']}"><span class="ico"><img src="{pigcms:$staticPath}{pigcms:$bottom[0]['bottom_icon']}" width="20" height="20" /></span><span class="txt">{pigcms:$bottom[0]['bottom_name']|mb_substr=0,5,'utf-8'}</span></a></li>
+	</if>
+	<if condition="$bottom[1]['hide'] eq 1">
+    <li class="ico_2" id="foot_bu"><span class="ico"><img src="{pigcms:$staticPath}{pigcms:$bottom[1]['bottom_icon']}" width="20" height="20" /></span><span class="txt">{pigcms:$bottom[1]['bottom_name']|mb_substr=0,5,'utf-8'}</a></li>
+	</if>
+	<if condition="$bottom[2]['hide'] eq 1">	
+    <li class="ico_3" id="foot_bu"><a href="javascript:;" onclick='window.location.href = "/index.php?g=Wap&m=Voteimg&a=vote_ranking&id={pigcms:$id}&token={pigcms:$token}";'><span class="ico"><img src="{pigcms:$staticPath}{pigcms:$bottom[2]['bottom_icon']}" width="20" height="20" /></span><span class="txt">{pigcms:$bottom[2]['bottom_name']|mb_substr=0,5,'utf-8'}</span></a></li>
+	</if>
+	<if condition="$bottom[3]['hide'] eq 1">
+    <li class="ico_4" id="foot_bu"><span class="ico"><img src="{pigcms:$staticPath}{pigcms:$bottom[3]['bottom_icon']}" width="20" height="20" /></span><span class="txt">{pigcms:$bottom[3]['bottom_name']|mb_substr=0,5,'utf-8'}</span></li>
+	</if>
+  </ul>
+</div>
+<!-- 拉票弹框内容-->
+<div class="search" id="lp_main" style="display:none;">
+  <form action="{pigcms::U('Voteimg/index',array('id'=>$id,'token'=>$token))}" id="search_form" method="post">
+  <input type="hidden" name="id" value="{pigcms:$id}" />
+  <input type="hidden" name="token" value="{pigcms:$token}" />
+	<div class="search_con">
+	  <div class="btn">
+		<input type="button" name="seachid" id="searchBtn" value="拉票" onclick="lpclick();">
+	  </div>
+	  <div class="text_box">
+		<input type="search" id="searchText" value="" name="lp" placeholder="请输入选项编号" autocomplete="off">
+	  </div>
+	</div>
+  </form>
+</div>
+<!-- 搜索弹框内容-->
+<div class="search" id="search_main" style="display:none;">
+  <form action="{pigcms::U('Voteimg/index',array('id'=>$id,'token'=>$token))}" id="search_form" method="post">
+  <input type="hidden" name="id" value="{pigcms:$id}" />
+  <input type="hidden" name="token" value="{pigcms:$token}" />
+	<div class="search_con">
+	  <div class="btn">
+		<input type="submit" name="seachid" id="searchBtn" value="搜索"/>
+	  </div>
+	  <div class="text_box">
+		<input type="search" id="searchText" value="{pigcms:$key_word}" name="key_word" placeholder="请输入选项标题或编号" autocomplete="off">
+	  </div>
+	</div>
+  </form>
+</div>
+  <if condition="$lottery_name neq '' && $lottery_link neq ''">
+  <if condition="$votenum gt 0">
+	<div class="header_but" onclick="window.location.href='{pigcms:$lottery_link}'">{pigcms:$html_tag}{pigcms:$lottery_name}</div>
+	<else />
+	 <div class="header_but" onclick="alert('投过一票后即可参加','#000','#ccc','#2dcc70','#fff')">{pigcms:$html_tag}{pigcms:$lottery_name}</div>
+	</if>
+	</if>
+<if condition="$menu[3]['hide'] eq 1">
+<div class="fixBar">
+	<a onclick="window.location.href='{pigcms::U('Voteimg/HomePage',array('user_id'=>$user_id,'id'=>$id,'token'=>$token))}'">个人中心</a>
+</div></if>
+<script type="text/javascript">
+function notice_check_pass(){
+	var check_pass = '{pigcms:$check_pass}';
+	var msg = '';
+	if(check_pass == 1){
+		msg = ' 您的报名资料已通过审核,快找好友帮您来投票吧';
+	}else if(check_pass == 2){
+		msg = ' 您的报名资料审核不通过,请重新报名';
+	}
+	if(msg != ""){
+		define_alert(msg);
+	}
+}
+//搜索弹框
+$('.ico_2').on('click', function(){
+  search_la = $.layer({
+    type: 1,
+    fadeIn: 400,
+	shift: 'top',
+		border: [0],
+	bgcolor: '',
+		offset: ['0px', ''],
+	title: false,
+		closeBtn: false,
+	maxmin: false,
+    shadeClose: true, 
+    page: {dom : "#search_main"},
+    area: ['100%' , '95px'],
+  });
+$('.xubox_layer').fadeIn(500);
+$('.xubox_shade').fadeIn(500);  
+});
+//拉票弹框
+$('.ico_4').on('click', function(){
+  search_la = $.layer({
+    type: 1,
+    fadeIn: 400,
+	shift: 'top',
+		border: [0],
+	bgcolor: '',
+		offset: ['0px', ''],
+	title: false,
+		closeBtn: false,
+	maxmin: false,
+    shadeClose: true, 
+    page: {dom : "#lp_main"},
+    area: ['100%' , '95px'],
+  });
+$('.xubox_layer').fadeIn(500);
+$('.xubox_shade').fadeIn(500);  
+});
+//拉票
+function lpclick(){
+	var lp = $("input[name=lp]").val();
+	lp = $.trim(lp);
+	if(lp == ""){ return false;}
+	var jump_url = '/index.php?g=Wap&m=Voteimg&a=popup_view&id={pigcms:$id}&token={pigcms:$token}&key_word='+lp;
+	window.location.href = jump_url;
+}
+//底部导航宽度自适应
+$(function(){
+	var foot_bu = $('#c_foot').children('#foot_bu');
+	var len   = foot_bu.length;
+	if(len == 1){
+		foot_bu.each(function(){
+			$(this).css("width","100%");
+		});
+	}else if(len == 2){
+		foot_bu.each(function(){
+			$(this).css("width","50%");
+		});
+	}else if(len == 3){
+		foot_bu.each(function(){
+			$(this).css("width","33%");
+		});
+	}else{
+		foot_bu.each(function(){
+			$(this).css("width","25%");
+		});
+	}
+	//异步请求统计信息
+	$.get("/index.php?g=Wap&m=Voteimg&a=stat_info&id={pigcms:$id}&token={pigcms:$token}",function(json_data){
+		obj = eval("("+json_data+")");
+		item_count = obj.item_count ? obj.item_count : 0;
+		voted_count = obj.voted_count ? obj.voted_count : 0;
+		visit_count = obj.visit_count ? obj.visit_count : 0;
+		$("#main_a").text(item_count);
+		$("#main_b").text(voted_count);
+		$("#main_c").text(visit_count);				
+
+	});
+	$.get("/index.php?g=Wap&m=Voteimg&a=ajax_get_checkstatus&id={pigcms:$id}&token={pigcms:$token}&item_id={pigcms:$item_id}",function(data){
+		var state = GetCookie('alert_state_{pigcms:$item_id}');//手机返回按钮，重新获取cookie的值
+		if(state == 0){
+			notice_check_pass();
+		}
+	});
+});
+</script>
+<script>
+window.shareData = {  
+	"moduleName":"Voteimg",
+	"moduleID":"{pigcms:$id}",
+	"imgUrl": "{pigcms:$imgUrl}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/index',array('token'=>$token,'id'=>$id))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/index',array('token'=>$token,'id'=>$id))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Voteimg/index',array('token'=>$token,'id'=>$id))}",
+	"tTitle": "{pigcms:$custom_sharetitle|shareFilter}",
+	"tContent": "{pigcms:$custom_sharedsc|shareFilter}",
+	"fTitle": "{pigcms:$custom_sharetitle|shareFilter}",
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

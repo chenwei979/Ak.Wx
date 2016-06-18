@@ -1,0 +1,48 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content">
+  <div class="cLineB">
+    <h4>渠道详细信息</h4>
+  </div>
+  <div class="ftip" style="margin:25px auto 5px auto;">
+  	{pigcms:$empid}-{pigcms:$empname}
+    <a href="{pigcms::U('QRCode/index')}" style="float:right;line-height:36px;margin-right:10px;margin-top:-5px;width:30px;text-align:center;" class="btnGrayS">返回</a>
+  </div>
+  <div class="msgWrap bgfc" style=" padding:5px 10px; margin:0">
+    <table class="ListProduct" border="" cellspacing="0" cellpadding="0" width="100%">
+      <thead>
+        <tr>
+          <th style="text-align:center;">关注日期</th>
+          <th style="text-align:center;">微信id</th>
+          <th style="text-align:center;">昵称</th>
+          <th style="text-align:center;">关注/取关</th>
+        </tr>
+      </thead>
+      <tbody>
+        <pigcmslist array="list" foreach="list">
+          <tr>
+            <td style="text-align:center;">{pigcms:$list['createtime']|date="Y-m-d",###}</td>
+            <td style="text-align:center;">{pigcms:$list.openid}</td>
+            <td style="text-align:center;">{pigcms:$list.wechaname}</td>
+            <td style="text-align:center;">
+            	<pigcmsif where="$list['subscribe'] eq 1">
+                	<font color="#FF0000">关注</font>
+                <else/>
+                	<font color="#0000FF">取关</font>
+                </pigcmsif>
+            </td>
+          </tr>
+        </pigcmslist>
+        <tr> </tr>
+      </tbody>
+    </table>
+    <div class="cLine">
+      <div class="pageNavigator right">
+        <div class="pages">{pigcms:$page}</div>
+      </div>
+      <div class="clr"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<include file="Public:footer"/>

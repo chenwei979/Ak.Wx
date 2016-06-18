@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>权限管理</title>
+<include file="common:public" />
+
+    <script src="{pigcms::STATICS}/artDialog/js/jquery-2.1.1.js"></script>
+ 
+    <script src="{pigcms::STATICS}/artDialog/js/jquery.slimscroll.min.js"></script>
+    <script src="{pigcms::STATICS}/artDialog/js/inspinia.js"></script>
+<div class="cr"></div>
+<volist name="info" id="vo">
+<div id="btl" style="width:30%;height:260px;margin:18px 1.5% 0 1.5%;float:left;">
+	<div id="b1t">
+		<b>首页幻灯片</b>
+	</div>
+	<hr style="background-color:#DDD;border:none;height:1px">
+	<div id="b2t">
+		<div id="mgxp" style="width:100%">
+			<img src="{pigcms:$vo.img}" style="max-width:90%">
+		</div>
+	</div>
+	<div style="height:25px">
+		<p style="border-bottom: 1px solid #E7E7E7;overflow: hidden;height:15px;margin-top:5px">链接地址：{pigcms:$vo.url}<p>
+	</div>
+	<div style="height:30px;">
+		<div id="b3t" style="margin-left:0px">
+			<a href="{pigcms::U('Banners/edit/',array('id'=>$vo['id'],'pid'=>$pid))}" style="color:#FFF;line-height:20px;overflow:hidden;">修    改</a>
+		</div>
+		<div id="b3t">
+			<a href="javascript:void(0)" onclick="return confirmurl('{pigcms::U('Banners/del/',array('id'=>$vo['id'],'pid'=>$pid))}','确定删除该幻灯片吗?')" style="color:#FFF;line-height:20px;overflow:hidden;">删除</a>
+		</div>
+	</div>
+</div>
+</volist>
+</body>
+</html>

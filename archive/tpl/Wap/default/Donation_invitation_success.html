@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+<link href="{pigcms:$staticPath}/tpl/static/donation/css/index.css" type="text/css" rel="stylesheet" />
+<script src="{pigcms:$staticPath}/tpl/static/donation/js/jquery-1.7.2.js"></script>
+<title>{pigcms:$donation['name']}</title>
+<style>
+.ctx_right{float: right; margin-top: -20px;}
+</style>
+</head>
+<body>
+<div id="pageContainer" style="padding-bottom:47px;">
+    <div class="create_share">
+        <div class="top"> <img src="{pigcms:$staticPath}/tpl/static/donation/images/create_share_top.jpg" /> </div>
+        <div class="content">
+            <div class="share_info">
+            	<a href="{pigcms::U('Donation/index', array('token' => $token, 'wecha_id' => $wecha_id, 'id' => $donation['id']))}" style="color:#fe5842;  text-decoration: inherit;">
+                <div class="img_info"> <img src="{pigcms:$donation['pic']}">
+                	<div class="ctx_con_t_l">{pigcms:$donation['name']}</div>
+                    <p class="pdesc">已捐赠: <span>{pigcms:$total}</span>元</p>
+                    <p class="pdesc ctx_right"> 截止: <span>{pigcms:$donation['day']}</span>天 </p>
+                </div>
+                </a>
+                <div class="word_info">
+                    <div>筹款口号：
+                        <p class="words">{pigcms:$share['content']}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer"><img src="{pigcms:$donation['logo']}" /></div>
+        </div>
+    </div>
+</div>
+<div class="mask_level"></div>
+</body>
+<script>
+window.shareData = {  
+	"moduleName":"Donation",
+	"moduleID":"{pigcms:$donation['id']}",
+	"imgUrl": "{pigcms:$donation['share_pic']}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/share', array('id' => $id, 'token' => $token, 'sid' => $share['id']))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/share', array('id' => $id, 'token' => $token, 'sid' => $share['id']))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/share', array('id' => $id, 'token' => $token, 'sid' => $share['id']))}",
+	"tTitle": "{pigcms:$donation['name']|shareFilter}",
+	"tContent": "{pigcms:$share['content']|shareFilter}",
+	"fTitle": "{pigcms:$donation['name']|shareFilter}",
+	"isShareNum":1,
+	"ShareNumData":"donation,id,{pigcms:$id},share_num"
+};
+</script>
+{pigcms:$shareScript}
+</html>

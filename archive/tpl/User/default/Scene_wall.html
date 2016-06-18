@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>{pigcms:$info.title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/base.css">
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/semantic.min.css">
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/style.css">
+<script src="{pigcms::STATICS}/scene/js/jquery-for-qiang.min.js"></script>
+<script src="{pigcms::STATICS}/scene/js/semantic.min.js"></script>
+<script src="{pigcms::STATICS}/scene/js/scroll-marquee.js"></script>
+<script src="{pigcms::STATICS}/scene/js/jquery.soChange.js"></script>
+<script src="{pigcms::STATICS}/scene/js/jquery.tooltipster.min.js"></script>
+<script src="{pigcms::STATICS}/scene/js/weixin.js"></script>
+<script type="text/javascript">
+$(function(){
+	//弹窗定位
+	setTopAndLeft(".flagPosition", ".mone");
+	$(window).resize(function() {
+		setTopAndLeft(".flagPosition", ".mone");
+	});
+	//scrollItem(".scrollBox","vertical",3);
+});
+//设置div的位置，a是目标div位置，b是需要设置的div
+function setTopAndLeft(a, b) {
+	var aOffset=$(a).offset();
+	var flagPositionX =aOffset.left;
+	var flagPositionY =aOffset.top;
+	$(b).css({
+		"top": flagPositionY,
+		"left": flagPositionX
+	});
+}
+</script>
+</head>
+<body style="background:#000 url({pigcms:$info.background});background-size: cover;">
+<div class="wrapbg content">
+	<div class="whole">
+	<!-- Header -->
+	<include file="Scene:header"/>
+	<div class="mian mt20 clearfix">
+		<div class="userWord flagPosition">
+			<div class="row scrollBox">
+				<ul id="list" class="user-list ui transition visible">
+					<!----------------------------------------------------------->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- Toolbar -->
+	<include file="Scene:toolbar"/>
+	</div>
+</div>
+<!-- Footer -->
+<include file="Scene:footer"/>
+<!--微博墙层-->
+<div class="mone" id="mone" onClick="viewOneHide();">
+	<div class="leftside">
+		<div class="part">
+			<div class="pic">
+				<img class="msgconimg" src="" width="100" height="100">
+			</div>
+			<div class="username" style="color: #fff">
+				<span style="color: #fff"></span>
+			</div>
+		</div>
+		<div class="rconner"></div>
+	</div>
+	<div class="rightside">
+		<div class="rightmain">
+			<span class="msgcon"> </span>
+		</div>
+	</div>
+</div>
+<script src="{pigcms::STATICS}/scene/js/common.js"></script>
+</body>
+</html>

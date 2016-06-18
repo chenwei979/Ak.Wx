@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* CSS Document */
+
+h1,h2,h3,h4,h5,h6,h7,h8{font-size:14px;color:black;font-weight:bold}					    
+h1 span,h2 span,h3 span,h4 span,h5 span,h6 span,h7 span,h8 span{margin-left:15px;font-size:14px;font-weight:bold;}			
+#chapter1 div,#chapter2 div,#chapter3 div,#chapter4 div,#chapter5 div,#chapter6 div,#chapter7 div{line-height:30px;margin: 5px auto;}				
+#gridSystem div .drw,#fluidGridSystem div .drw,#responsive div .drw,#firth div .drw,#firth div .drw,#six div .drw,#seven div .drw{color:green;font-style:normal;font-size:14px;font-weight:bold;}						
+.sjk{
+	text-indent:30px;
+	margin:10px auto;
+}			
+#gridSystem .far{margin-left:20px;}			
+#fluidGridSystem .hs{color:red;}			
+#responsive .less{background:yellow;padding:13px}			
+.bs-docs-sidebar ul li a{color:white;text-decoration:none;line-height:30px;}			
+.bs-docs-sidebar ul li{border-bottom:1px solid white;color:black;background:#63c30e;padding-left:10px}			
+ul{list-style:none;text-decoration:none;font-weight:bold;color:black}
+/* for ie8*/
+.fvn{
+	margin: 62px 0 0;color:black;width:200px;
+	z-index: 999; position: fixed; top: 0px;
+	display:none;
+
+}	
+
+@media all and (min-width: 1295px){			
+	.fvn{
+	margin: 62px 0 0;color:black;width:200px;
+	z-index: 999; position: fixed; top: 20px;
+	display:none;
+
+	}	
+}
+.fvn li{
+	display:list-item;
+
+	list-style:none;	
+}	
+@media all and (max-width: 1298px){			
+	.fvn1{
+		display: none;
+	}
+}
+@media all and (max-width: 900px){			
+		
+.bs-docs-sidebar ul li a:active{background:red}				
+}				
+#reps1,#reps2,#reps3,#reps4,#reps5,#reps6{display:none;}			
+#reps1 li,#reps2 li,#reps3 li,#reps4 li,#reps5 li,#reps6 li{border:0}		
+#ct1,#ct2,#ct3,#ct4,#ct5,#ct6,#ct7,#ct8,#ct9,#ct10,#ct11,#ct12,#ct13,#ct14,#ct15,#ct16,#ct17,#ct18,#ct99{padding-top:10px;}		
+.spar1{
+	/*background-color:#000000; */
+	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=80)'; 
+	width:30%;	
+}
+.spar2{
+	color:#666;
+	margin:5px;	
+}
+.span9{
+	margin-top:30px;
+}
+.span9 img{
+	height:100%;	
+}

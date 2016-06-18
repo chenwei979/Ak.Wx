@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title><if condition="$zdydh1['name'] eq ''">功能介绍<else/>{pigcms:$zdydh1['name']}</if>－{pigcms::C('site_title')}</title>
+
+<!-- 头部信息start -->
+<include file="Public:header22"/>
+<!-- 头部信息end -->
+
+<div class="banner" style="background-color: #75c58d">
+    <if condition="$images['fc'] eq null">
+        <img src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/banner1.png"/>
+    <else />
+        <img src="{pigcms:$images['fc']}"/>
+    </if>
+</div>
+
+<div class="main">
+    <div class="row mt40">
+        <div class="w1000">
+            <div class="headerInfo">
+                <h2>功能介绍</h2>
+                <p>{pigcms:$f_siteName}多用户微信营销系统系统内置100多项应用，涵盖近30个行业的垂直领域应用</p>
+            </div>
+        </div>
+        <div class="functionNav styleGrayBg mt40" id="funNav">
+            <div class="clearfix">
+                <ul>
+                <if condition="$funclass eq ''">
+                        <li><a href="javascript:;">最新功能类</a></li>
+                        <li><a href="javascript:;">宣传展示类</a></li>
+                        <li><a href="javascript:;">推广吸粉类</a></li>
+                        <li><a href="javascript:;">营销活动类</a></li>
+                        <li><a href="javascript:;">节日营销类</a></li>
+                        <li><a href="javascript:;">电商交易类</a></li>
+                        <li><a href="javascript:;">行业功能类</a></li>
+                        <li><a href="javascript:;">行业功能类</a></li>
+                        <li><a href="javascript:;">会员管理类</a></li>
+                        <li><a href="javascript:;">其他功能类</a></li>
+                <else/>
+                    <li zhu_id="is_new"><a href="javascript:;">最新功能</a></li>
+                    <volist name="funclass" id="vo" offset="0" length="9">
+                        <li zhu_id="{pigcms:$vo.id}">
+                            <a href="javascript:;">{pigcms:$vo.name}</a>
+                        </li>
+                    </volist>
+                </if>
+                </ul>
+            </div>
+        </div>
+        <div class="functionDesc">
+            <div class="w1000">
+                <div class="imgHolder fl">
+                    <div class="imgScroll">
+                        <div class="bd">
+                            <ul  class="img_style">
+                                <!-- <li><img src="{pigcms:$staticPath}/tpl/Home/pigcms/common/images/newIndex/wutu.png" alt=""/></li>                             -->
+                            <!-- 手机图片轮播 -->
+                            </ul>
+                        </div>
+                    </div>
+                    <img src="/tpl/Home/pigcms/common/images/newIndex/wutu3.png" class="img_none" style="display: none;" />
+                </div>
+                <div class="rightDesc">
+                    <div class="qrCode">
+                        <!-- 填充二维码 -->
+                    </div>
+                    <h3 class="title_zw">微网站</h3>
+                    <div class="textDesc">
+                        <p> <strong>功能介绍：</strong><span class="desc">
+                            <!-- 填充功能介绍 -->
+                        </span></p>
+                        <p class="app_sight">
+                            <!-- 填充应用场景 -->
+                        </p>
+                    </div>
+                    <div class="minNav clearfix">
+                        <div class="scrollBtn">
+                            <a href="javascript:;" class="prev"></a>
+                            <a href="javascript:;" class="next"></a>
+                        </div>
+                        <div class="scrollBox">
+                            <ul class="clearfix" id="tianchong">
+                                <!-- 子功能填充 -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- foorter信息start -->
+<include file="Public:footer22"/>
+<!-- foorter信息end -->

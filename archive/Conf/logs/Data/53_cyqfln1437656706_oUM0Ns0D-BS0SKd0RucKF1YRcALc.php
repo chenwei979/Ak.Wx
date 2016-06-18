@@ -1,0 +1,1 @@
+<?php	return array ( 'user_id' => '227', 'wecha_id' => 'oUM0Ns0D-BS0SKd0RucKF1YRcALc', ); ?>

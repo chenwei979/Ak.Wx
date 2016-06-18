@@ -1,0 +1,732 @@
+<include file="Public:head"/>
+<if condition="$usertplid neq 2">
+<script src="{pigcms:$staticPath}/tpl/static/new/js/jquery-2.1.1.js"></script>
+<link href="{pigcms:$staticPath}/tpl/static/new/css/bootstrap.css" rel="stylesheet">
+<link href="{pigcms:$staticPath}/tpl/static/new/css/style.css" rel="stylesheet">
+</if>
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{pigcms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{pigcms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{pigcms:$staticPath}/tpl/static/new/js/bootstrap.min.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+<script src="{pigcms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{pigcms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{pigcms::$staticPath}/tpl/static/jquery.qrcode.min.js" type="text/javascript"></script>
+<script src="{pigcms::$staticPath}/tpl/static/layer/layer.js" type="text/javascript"></script>
+<style>
+	.btn1{ width:191px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer;}
+</style>
+<script>
+var editor,editor1,editor2;
+KindEditor.ready(function(K) {
+editor = K.create('#info', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+						'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',  'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link', ]
+});
+editor1 = K.create('#rule', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+						'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',  'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link', ]
+});
+editor2 = K.create('#awards', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+						'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',  'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link', ]
+});
+});
+</script>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="tab">
+<ul>
+	<li class="current tabli" id="tab0"><a href="#" onclick="game0()">游戏设置</a></li>
+	<li class="tabli" id="tab1"><a href="#" onclick="game1()">游戏定制</a></li>
+</ul>
+</div>
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+	<div class="cLineB"><h4>{pigcms:$thisGame.title}游戏设置</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div>
+	<form method="post" enctype="multipart/form-data" onSubmit="return input_check();">
+		<div class="msgWrap form" style="border-top-width: 1px;border-top-style: solid;border-top-color: rgb(215, 221, 230);">
+			<TABLE class="userinfoArea" border="0" cellSpacing="0" cellPadding="0" width="100%">
+				<if condition="$Think.session.is_syn ELT 0">
+				<THEAD id="game0">
+					<TR>
+						<TH style="width:120px" valign="top"><label for="keyword">关键词：</label></TH>
+						<TD><input type="text" class="px" id="keyword" value="{pigcms:$info.keyword}"  name="keyword" style="width:580px;"></TD>
+					</TR>
+				</THEAD>
+				</if>
+				<TBODY id="game1">
+					<TR>
+						<TH><span class="red">*</span><label for="title">标题：</label></TH>
+						<TD><input type="text" class="px" id="title" value="{pigcms:$info.title}"    name="title" style="width:580px;"> </TD>
+					</TR>
+					<TR>
+						<TH valign="top"><label for="text">简介：</label></TH>
+						<TD><textarea  class="px" id="intro" name="intro" style="width:580px;  height:100px">{pigcms:$info.intro}</textarea><br />限制200字内</TD>
+					</TR>
+				<TR>
+					<TH valign="top"><label for="pic">封面图片地址：</label></TH>
+					<TD><input type="text" class="px" id="picurl"  name="picurl" value="{pigcms:$info.picurl}" style="width:580px;"  />  <script src="/tpl/static/upyun.js?{pigcms::date('YmdHis',time())}"></script><a href="###" onclick="upyunPicUpload('picurl',700,420,'{pigcms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('picurl')">预览</a></TD>
+				</TR>
+				<TR>
+					<TH valign="top"><label for="text">游戏规则：</label></TH>
+					<TD><textarea  class="px" id="rule" name="gameSet_rule" style="width:500px;  height:300px">{pigcms:$info.rule}</textarea><br /></TD>
+				</TR>
+				<TR>
+					<TH valign="top"><label for="text">游戏奖项：</label></TH>
+					<TD><textarea  class="px" id="awards" name="gameSet_awards" style="width:500px;  height:300px">{pigcms:$info.awards}</textarea><br /><font color="red">* 不填，则不显示奖项</font></TD>
+				</TR>
+				<tr>
+					<th>每人限玩次数：</th>
+					<td>
+							<input type="text" class="px" value="{pigcms:$info.limit_num}"  name="limit_num" style="width:130px;">&nbsp;&nbsp;&nbsp;次
+					</td>
+				</tr>
+				<tr>
+					<th>游戏时间限制：</th>
+					<td>
+							<input type="input" class="px" id="start_time" value="{pigcms:$info.start_time|default=time()|date='Y-m-d H:i',###}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="start_time">&nbsp;&nbsp;&nbsp;到&nbsp;&nbsp;&nbsp;
+							<input type="input" class="px" id="end_time" value="{pigcms:$info.end_time|default=strtotime('+1 month')|date="Y-m-d H:i",###}" name="end_time" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})">
+					</td>
+				</tr>
+				
+				<php>
+					$toggle = array(0=>'关闭',1=>'开启');
+				</php>
+				<tr id="is_share">
+					<th>开启游戏分享：</th>
+					<td><php>$is_here = isset($info['is_share']);</php>
+							<if condition="$is_here">
+							<volist name="toggle" id="tv">
+								<label><input type="radio" name="is_share" value="{pigcms:$key}" <if condition="$key==$info['is_share']">checked="true"</if> onchange="toggle(this)">{pigcms:$tv}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+							</volist>
+							<else/>
+							<volist name="toggle" id="tv">
+								<label><input type="radio" name="is_share" value="{pigcms:$key}" onchange="toggle(this)" <if condition="$key==0">checked="true"</if>>{pigcms:$tv}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+							</volist>
+							
+							</if>
+					</td>
+				</tr>
+
+				<if condition="$info['is_share']==1">
+				<tr id="gameShareType">
+					<th>游戏分享类型：</th>
+					<td>
+							<if condition="!$info['share_callback']">
+									<volist name="share_options" id="option">
+										<label><input type="radio" value="{pigcms:$key}" name="share_callback" <if condition="$key==1">checked="true"</if> onchange="shareTypeChange(this)">{pigcms:$option}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+									</volist>
+							<else/> 
+								<volist name="share_options" id="option">
+									<label><input type="radio" value="{pigcms:$key}" name="share_callback" <if condition="$info['share_callback']==$key">checked="true"</if> onchange="shareTypeChange(this)">{pigcms:$option}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+								</volist>
+							</if>
+					</td>
+				</tr>
+
+				<!--微信配置检测提示-->
+				<if condition="!$is_wxopen && ($info['share_callback']==1)">
+				<tr id="wxopen">
+					<th>&nbsp;</th>
+					<td style="color:#F33333;white-space:nowrap;">(请确认微信支付配置和微信支付证书上传完成)</td>
+				</tr>
+				</if>
+				</if>
+				</TBODY>
+
+				<php>if($is_wxopen==0)$disabled="disabled='true'";else $disabled='';</php>
+
+
+				<if condition="$info['is_share']==1">
+				<if condition="$info['share_callback']==1">
+				<TBODY id="newElement" class="yinc">
+					<tr>
+						<th>获取红包条件：</th>
+						<td>每成功邀请好友数达到<input  type="text" class="input60 sinput " name="share[people]" value="{pigcms:$info['share_value']['people']}" {pigcms:$disabled} > 人来玩</td>
+					</tr>
+					<tr>
+						<th>单个红包金额范围：</th>
+						<td><input type="text" class="sinput checkm minV" placeholder="最小金额" name="share[minmoney]" value="{pigcms:$info['share_value']['minmoney']}"  {pigcms:$disabled}>到<input type="text" class="sinput checkm maxV" placeholder="最大金额" name="share[maxmoney]" value="{pigcms:$info['share_value']['maxmoney']}" {pigcms:$disabled}>/元&nbsp;&nbsp;&nbsp;(随机最小金额到最大金额之间金额,最小金额下线为1.00元,最大金额上线为200.00元,金额保留2位小数)</td>
+					</tr>
+					<tr>
+						<th>每人限领红包个数：</th>
+						<td><input type="text" class="sinput checkm hbcount" name="share[money_number]" value="{pigcms:$info['share_value']['money_number']}"  {pigcms:$disabled}> 个</td>
+					</tr>
+					<tr>
+						<th>红包发放总金额：</th>
+						<td><input type="text" class="sinput checkm zongV" name="share[totalmoney]" value="{pigcms:$info['share_value']['totalmoney']}"  {pigcms:$disabled}> 元&nbsp;&nbsp;&nbsp;
+						<span style="color:red">(总金额不能小于 每人限领个数*单个红包最大金额)</span></td>
+					</tr>
+				</TBODY>
+				<elseif condition="$info['share_callback']==2"/>
+				<TBODY id="newElement" class="yinc">
+					<tr>
+						<th>选择卡券：</th><td>卡券名称：<span id="chosed_coupon" style="font-size:14px;">{pigcms:$info['share_value']['coupon_title']}</span>&nbsp;&nbsp;&nbsp;<a class="superlink" onclick="popShow()">点击选择</a></td>
+						<input type="hidden" id="coupon_id" name="share[coupon_id]" value="{pigcms:$info['share_value']['coupon_id']}">
+						<input type="hidden" id="coupon_title" name="share[coupon_title]" value="{pigcms:$info['share_value']['coupon_title']}">
+						<input type="hidden" id="coupon_people" name="share[coupon_people]" value="{pigcms:$info['share_value']['coupon_people']}">
+					</tr>
+					<tr>
+						<th>获得卡券条件：</th>
+						<td>每成功邀请好友数达到<input type="text" class="input60 sinput" name="share[people]" value="{pigcms:$info['share_value']['people']}"> 人来比赛,可领取1张,每人限领<span id="coupon_limit"></span></td>
+					</tr>
+				</TBODY>    
+				<elseif condition="$info['share_callback']==3"/>
+				<TBODY id="newElement" class="yinc">  
+					<tr>
+						<th>获取积分条件：</th>
+						<td>每成功邀请好友数达到<input type="text" class="input60 sinput" name="share[people]" value="{pigcms:$info['share_value']['people']}"> 人来玩</td>
+					</tr>
+					<tr>
+						<th>积分奖励：</th><td><input type="text" class="input60 sinput" name="share[points]" value="{pigcms:$info['share_value']['points']}"> 积分</td>
+					</tr>
+					<tr>
+						<th>每人最多奖励次数：</th><td><input type="text" class="input60 sinput" name="share[points_number]" value="{pigcms:$info['share_value']['points_number']}"> 次</td>
+					</tr>
+				</TBODY>   
+				<elseif condition="$info['share_callback']==4"/>
+				<TBODY id="newElement" class="yinc">
+					<tr>
+						<th>获得机会条件：</th>
+						<td>每成功邀请好友数达到<input type="text" class="input60 sinput" name="share[people]" value="{pigcms:$info['share_value']['people']}"> 人来玩
+					</tr>
+					<tr>
+						<th>奖励机会：</th><td><input type="text" class="input60 sinput" name="share[chance]" value="{pigcms:$info['share_value']['chance']}"> 次</td>
+					</tr>
+					<tr>
+						<th>每轮最多奖励轮数：</th><td><input type="text" class="input60 sinput" name="share[chance_number]" value="{pigcms:$info['share_value']['chance_number']}"> 轮</td>
+					</tr>
+				</TBODY>     
+				</if>
+				</if>
+
+				<TBODY class="yinc">
+				<php>if(session('is_syn') !== '2'){</php>
+				<tr>
+					<th>是否需要关注：</th>
+					<td>
+						<input type="radio" name="is_attention" <if condition="$info['is_attention']"><if condition="$info['is_attention'] eq 0">checked="checked"</if><else/>checked="checked"</if> value="0" checked="">否
+						&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="is_attention" <if condition="$info['is_attention'] eq 1">checked="checked"</if> value="1">是
+						<div style="color:red"> &nbsp;（该选项仅适用于认证服务号）</div>
+					</td>
+				</tr>
+				<php>}else{</php>
+				<tr hidden="hidden">
+					<th>是否需要关注：</th>
+					<td>
+						<input type="radio" name="is_attention" checked="checked" value="0" >
+					</td>
+				</tr>
+				<php>}</php>
+				<tr>
+					<th>是否需要填写手机号：</th>
+					<td>
+						<input type="radio" name="is_phone" <if condition="$info['is_phone']"><if condition="$info['is_phone'] eq 0">checked="checked"</if><else/>checked="checked"</if> value="0" checked="">否
+						&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="is_phone" <if condition="$info['is_phone'] eq 1">checked="checked"</if> value="1">是
+					</td>
+				</tr>
+				</TBODY>
+				<pigcmsif where="$selfs">
+						<div class="fh-column" style="width:193px;display:none;" id="game2">
+							<ul class="elements-list">
+								<volist name="selfs" id="item">
+									<li class="list-group-item" style="border-bottom:1px solid #d7dde6;">
+										<a data-toggle="tab" href="#tab-{pigcms:$item.id}">
+										<strong><font size="2">{pigcms:$item.name}：</font></strong></a>
+									</li>
+								</volist>
+								<li class="list-group-item" style="border-bottom:1px solid #d7dde6;">
+									<a data-toggle="tab" href="#taba">
+									<strong><font size="2">启动界面按钮：</font></strong></a>
+								</li>
+								<li class="list-group-item" style="border-bottom:1px solid #d7dde6;">
+									<a data-toggle="tab" href="#tabb">
+									<strong><font size="2">启动界面背景：</font></strong></a>
+								</li>
+									<script>
+									function qrcode(url){
+										url = url.replace('{changjingUrl}','http://game.bupu.net');
+										layer.open({
+											type: 1,
+											title: false,
+											closeBtn: false,
+											shadeClose: true,
+											skin: 'yourclass',
+											content: '<div id="qrcode"></div>'
+										});
+										$("#qrcode").qrcode({
+											render: "canvas",
+											width: 200,
+											height:200,
+											text: url
+										});
+										var dataString ={
+											<volist name="selfs" id="item">
+											"{pigcms:$item.id}":$("#self_{pigcms:$item.id}").val(),
+											</volist>
+										}
+										$.ajax({           
+											type: "POST", 
+											url: "/index.php?g=User&m=Game&a=gamearr&id={pigcms:$gameid}&token={pigcms:$token}",           
+											data: dataString,
+											cache:false,
+										});
+									}
+									</script>
+								</ul>
+						</div>
+						<div class="element-detail-box" style="width:75%;float:left;display:none;"  id="game3">
+							<div class="tab-content">
+								<volist name="selfs" id="item">
+									<div id="tab-{pigcms:$item.id}" class="tab-pane <if condition = '$i eq 1'>active</if>">
+										<div style="margin-left:20px;height: 100%;float:left;">
+										<if condition = "$item['infotype'] eq 'img'">
+											<img id="self_{pigcms:$item.id}_src" src="{pigcms:$item.defaultvalue}" width="330px" height="272px">
+										</if>
+										<br />
+										<input type="text" class='px <if condition = "$item['property'] eq 'logo'">star_logo</if>' id="self_{pigcms:$item.id}" value="{pigcms:$item.defaultvalue}" name="self_{pigcms:$item.id}" <if condition="$usertplid eq 2">style="width:305px;"<else />style="width:321px;"</if>>
+										<if condition = "$item['infotype'] eq 'img'">
+										<a href="###" onclick="upyunPicUpload('self_{pigcms:$item.id}',{pigcms:$item.width},{pigcms:$item.height},'{pigcms:$token}')" class="a_upload" onchange="previewImage(this)">替换图片</a>
+										</if>
+										<if condition = "$item['infotype'] eq img">
+												建议宽度：{pigcms:$item.width}px&nbsp;&nbsp;&nbsp;
+												建议高度：{pigcms:$item.height}px&nbsp;&nbsp;&nbsp;
+										</if>{pigcms:$item.info} <br><br>
+										<if condition = "$item['example']">
+											<input type='hidden' id='self_{pigcms:$item.id}_example' value='{pigcms:$item.example}' /><a href="###" onclick="viewImg('self_{pigcms:$item.id}_example')" class="a_upload">查看示例图片</a>
+										<if condition = "$item['infotype'] eq img">
+										<if condition = "$item['property'] neq logo">
+										<a onclick="qrcode('{changjingUrl}/index.php?m=Game&c=index&a=index&start=true&id={pigcms:$gameid}&uuu=1&token={pigcms:$token}&url={pigcms:$url}')" href="javascript:void(0)" class="a_upload" style="margin-left: 30px;">点击预览游戏</a>
+										</if>
+										</if>
+										</if>
+									</div>
+									</div>
+								</volist>
+								<div id="taba" class="tab-pane">
+										<div style="width:105px;height:230px;float:left;margin-left:50px;">
+										<img src="{pigcms:$staticPath}/tpl/static/game/1.png" alt="" style="width:100px;height:200px;" id="btn_img_1"><br>
+										<center><input type="radio" name="star_btn" value="1" <if condition="$info['star_btn'] eq '1' || $info['star_btn'] eq ''">checked</if>> 按钮1</center>
+										</div>
+										<div style="width:105px;height:230px;float:left;margin-left:50px;">
+										<img src="{pigcms:$staticPath}/tpl/static/game/2.png" alt="" style="width:100px;height:200px;" id="btn_img_2"><br>
+										<center><input type="radio" name="star_btn" value="2" <if condition="$info['star_btn'] eq '2'">checked</if>> 按钮2</center>
+										</div>
+										<div style="width:105px;height:230px;float:left;margin-left:50px;">
+										<img src="{pigcms:$staticPath}/tpl/static/game/3.png" alt="" style="width:100px;height:200px;" id="btn_img_3"><br>
+										<center><input type="radio" name="star_btn" value="3" <if condition="$info['star_btn'] eq '3'">checked</if>> 按钮3</center>
+										</div>
+										<div style="width:105px;height:230px;float:left;margin-left:50px;">
+										<img src="{pigcms:$staticPath}/tpl/static/game/4.png" alt="" style="width:100px;height:200px;" id="btn_img_4"><br>
+										<center><input type="radio" name="star_btn" value="4" <if condition="$info['star_btn'] eq '4'">checked</if>> 按钮4</center>
+										</div>
+										<div style="width:105px;height:230px;float:left;margin-left:50px;">
+										<img src="{pigcms:$staticPath}/tpl/static/game/5.png" alt="" style="width:100px;height:200px;" id="btn_img_5"><br>
+										<center><input type="radio" name="star_btn" value="5" <if condition="$info['star_btn'] eq '5'">checked</if>> 按钮5</center>
+										</div>
+										<div style="width:105px;height:230px;float:left;margin-left:50px;">
+										<img src="{pigcms:$staticPath}/tpl/static/game/6.png" alt="" style="width:100px;height:200px;" id="btn_img_6"><br>
+										<center><input type="radio" name="star_btn" value="6" <if condition="$info['star_btn'] eq '6'">checked</if>> 按钮6</center>
+										</div>
+										<div style="width:105px;height:230px;float:left;margin-left:50px;">
+										<img src="{pigcms:$staticPath}/tpl/static/game/7.png" alt="" style="width:100px;height:200px;" id="btn_img_7"><br>
+										<center><input type="radio" name="star_btn" value="7" <if condition="$info['star_btn'] eq '7'">checked</if>> 按钮7</center>
+										</div>
+										<div style="width:105px;height:230px;float:left;margin-left:50px;">
+										<img src="{pigcms:$staticPath}/tpl/static/game/8.png" alt="" style="width:100px;height:200px;" id="btn_img_8"><br>
+										<center><input type="radio" name="star_btn" value="8" <if condition="$info['star_btn'] eq '8'">checked</if>> 按钮8</center>
+										</div>
+								</div>
+								<div id="tabb" class="tab-pane">
+									<div style="margin-left:20px;height: 100%;float:left;">
+											<img id="star_bg_src" width="330px" height="272px" <if condition="$info['star_bg'] eq ''">src="{pigcms:$staticPath}/tpl/static/game/star_bg.jpg"<else />src="{pigcms:$info.star_bg}"</if>>
+										<br />
+										<input type="text" class="px" id="star_bg" <if condition="$info['star_bg'] eq ''">value="{pigcms:$staticPath}/tpl/static/game/star_bg.jpg"<else />value="{pigcms:$info.star_bg}"</if> name="star_bg" <if condition="$usertplid eq 2">style="width:305px;"<else />style="width:321px;"</if>>
+										<a href="###" onclick="upyunPicUpload('star_bg',720,1195,'{pigcms:$token}')" class="a_upload" onchange="previewImage(this)">替换图片</a>
+												建议宽度：720px&nbsp;&nbsp;&nbsp;
+												建议高度：1195px&nbsp;&nbsp;&nbsp;
+										<br><br>
+											<input type='hidden' id='star_bg_example' value='{pigcms:$staticPath}/tpl/static/game/star_bg.jpg' /><a href="###" onclick="viewImg('star_bg_example')" class="a_upload">查看示例图片</a>
+											<a href="###" id="lay" class="a_upload" style="margin-left: 30px;">在游戏中位置</a>
+									</div>
+									<div style="float:left;height:100%;margin-left:80px;margin-top:30px;">
+										<script type="text/javascript">
+											 $(document).ready(function(){
+													var bheight=document.body.clientHeight;
+											 $("#lay").click(function(){ 
+											 var img = $(".star_logo").val();
+											 $("#lgimg").attr("src",img);
+											 var sbtn =$(':radio[name="star_btn"]:checked').val();
+											 $("#star_img").attr("src","{pigcms:$staticPath}/tpl/static/game/"+sbtn+".png");
+											 var img = $("#star_bg").val();
+											 $("#testdiv").css("background-image","url("+img+")");
+											 $("#brg").css("display","block");
+											 $("#showdiv").css("display","block");
+											 });
+											 $("#close").click(function(){
+													$("#brg").css("display","none");
+											 $("#showdiv").css("display","none");
+											 });
+											 });
+										 </script>
+										 <style type="text/css">
+											 #brg{ width:100%; height:182%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+											 #showdiv{z-index:20; display:none;position:fixed; *position:absolute; width:100px; height:100px; top:20%; left:50%; margin:-50px 0 0 -50px;}
+											 #testdiv{ width:300px; height:500px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;background-size: cover;width:300px;}
+											 #close{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+										 </style>
+										 <div id="brg"></div>
+										 <div id="showdiv">
+											 <div id="close">您想关闭就点我吧</div>
+											 <div id="testdiv" style="background-image: url({pigcms:$staticPath}/tpl/static/game/star_bg.jpg);">
+												<img src="" id="lgimg" width="136px" height="124px" style="margin-top: 60px;margin-left:81px;">
+												<img src="{pigcms:$staticPath}/tpl/static/game/1.png" alt="" style="width: 130px;height: 280px;margin-top:20px;margin-left: 85px;" id="star_img">
+											 </div>
+										 </div>
+								</div>
+							</div>
+						</div>
+					</pigcmsif>
+					<TFOOT>
+						<TR>
+							<TH></TH>
+							<TD>
+							<pigcmsif where="$id">
+								<input type="hidden" value="{pigcms:$id}" name="id" />
+							</pigcmsif>
+							<input type="submit" value="保存" name="sbmt" class="btnGreen left">　</TD>
+						</TR>
+					</TFOOT>
+				</TABLE>
+			 </div>
+			</form>
+		 </div>     
+		 <div class="clr"></div>
+		 </div>
+		 </div>
+		 </div> 
+		 </div>
+<!--底部-->
+<!--弹出层-->
+		<div class="popWin">
+				<div class="pw-container">
+						<p class="p b">卡券列表 <span class="close" onclick="popHide();">X</span></p>
+						<div class="wrapper">
+							<volist name="coupon" id="cp">
+								<div class="p item">[{pigcms:$key+1}].{pigcms:$cp['title']}&nbsp;&nbsp;有效期:[{pigcms:$cp['statdate']|date="Y-m-d H:i:s",###}至{pigcms:$cp['enddate']|date="Y-m-d H:i:s",###}]<span class="chose" people="{pigcms:$cp['people']}" coupon="{pigcms:$cp['card_id']}" ctitle="{pigcms:$cp['title']}" onclick="chose_coupon(this)">选中</span></div>
+							</volist>  
+						</div>
+				</div>
+		</div>
+	 
+		<style type="text/css">
+				.red{color:#F33333;}
+				.superlink{padding:2px 7px;color:#FFFFFF;background:#44b549;border-radius:3px;text-decoration:none;font-size:13px !important;}
+				.superlink:hover{color:#FFFFFF;}
+				.sinput{height:20px;border:solid 1px #C2C2C2;border-radius:2px;}
+				.input60,.checkm{width:80px;text-align:center;}
+
+				b{color:#333333;font-size:16px;}
+				input[type='button']{width:70px;height:28px;line-height:28px;border:none;background:#44b549 !important;text-align:center;cursor:pointer;color:#F2F2F2;outline:none;}
+				.popWin{position:fixed;top:0;left:0;width:100%;height:100%;z-index:10;display:none;}
+				.popWin .pw-container{width:450px;height:440px;border:solid 6px #AAAAAA;margin:0 auto;padding:0 10px;background:#EEEEEE;position:relative;padding-bottom:10px;overflow:hidden;}
+				.popWin .p{width:100%;font-size:13px;white-space:nowrap;}
+				.popWin .wrapper{position:absolute;top:45px;left:-10px;bottom:10px;width:90%;overflow:auto;}
+				.popWin .b{border-bottom:solid 1px #AAAAAA;height:40px;line-height:40px;padding-bottom:5px;}
+				.popWin .item{height:32px;line-height:32px;margin:0;padding:0;font-size:12px !important;}
+				.popWin .close{display:inline-block;width:20px;height:20px;background:#888888;color:#EEEEEE;float:right;text-align:center;line-height:20px;font-size:13px;margin-top:10px;}
+				.popWin .close:hover{background:#333333;}
+				.popWin .chose{color: #FFFFFF;cursor:pointer;display:inline;padding:3px 8px;background:#44b549;font-size:12px !important;border-radius:3px;}
+				tbody{width:100%;}
+		</style>
+
+<!--JS模板 开始-->    
+<script type="text/template" id="tmpl_hongbao">
+	<tr class="yinc">
+		<th>获取红包条件：</th>
+		<td>每成功邀请好友数达到<input type="text" class="input60 sinput" name="share[people]"  {pigcms:$disabled}> 人来玩</td>
+ </tr>
+ 	<tr class="yinc">
+		<th>单个红包金额范围：</th>
+		<td><input type="text" class="sinput checkm minV"  {pigcms:$disabled} placeholder="最小金额" name="share[minmoney]">到<input type="text" class="sinput checkm maxV"  {pigcms:$disabled} placeholder="最大金额" name="share[maxmoney]">/元&nbsp;&nbsp;&nbsp;(随机最小金额到最大金额之间金额,最小金额下线为1.00元,最大金额上线为200.00元,金额保留2位小数)</td>
+	</tr>
+	<tr class="yinc">
+		<th>每人限领红包个数：</th>
+		<td><input type="text" class="sinput checkm hbcount"  {pigcms:$disabled} name="share[money_number]" placeholder="限领个数"> 个</td>
+	</tr>
+	<tr class="yinc">
+		<th>红包发放总金额：</th>
+		<td><input type="text" class="sinput checkm zongV"  {pigcms:$disabled} name="share[totalmoney]" placeholder="总金额"> 元&nbsp;&nbsp;&nbsp;
+						<span style="color:red">(总金额不能小于 每人限领个数*单个红包最大金额)</span></td>
+	</tr>
+</script>    
+<script type="text/template" id="tmpl_coupon">
+	<tr class="yinc">
+		<th>选择卡券：</th><td><span id="chosed_coupon" style="font-size:14px;"></span>&nbsp;&nbsp;&nbsp;<a class="superlink" onclick="popShow()">点击选择</a></td>
+		<input type="hidden"  name="share[coupon_title]" id="coupon_title">
+		<input type="hidden" name="share[coupon_id]" id="coupon_id">
+		<input type="hidden" name="share[coupon_people]" id="coupon_people" >
+	</tr class="yinc">
+	<tr id="coupon_condition" style="display:none;"  class="yinc">
+		<th>获得卡券条件：</th>
+		<td>每成功邀请好友数达到<input type="text" class="input60 sinput" name="share[people]"> 人来比赛,可领取一张,限领<span id="coupon_limit"></span>张</td>
+	</tr>
+</script>    
+<script type="text/template" id="tmpl_points">
+	<tr class="yinc">
+		<th>获取积分条件：</th>
+		<td>每成功邀请好友数达到<input type="text" class="input60 sinput" name="share[people]"> 人来玩</td>
+	</tr>
+	<tr class="yinc">
+		<th>积分奖励：</th><td><input type="text" class="input60 sinput" name="share[points]"> 积分</td>
+	</tr>
+	<tr class="yinc">
+	<th>每人最多奖励次数：</th><td><input type="text" class="input60 sinput" name="share[points_number]"> 次</td>
+	</tr>
+</script>    
+<script type="text/template" id="tmpl_chance">
+	<tr class="yinc">
+		<th>获得机会条件：</th>
+		<td>每成功邀请好友数达到<input type="text" class="input60 sinput" name="share[people]"> 人来比赛
+	</tr>
+	<tr class="yinc">
+		<th>奖励机会：</th><td><input type="text" class="input60 sinput" name="share[chance]"> 次</td>
+	</tr>
+	<tr class="yinc">
+	<th>每轮最多奖励次数：</th><td><input type="text" class="input60 sinput" name="share[chance_number]"> 次</td>
+	</tr>
+</script> 
+
+<script type="text/template" id="tmpl_radio">
+<php>if($is_wxopen)$is_wx = 1;else $is_wx = 3;</php>
+<th class="yinc">游戏分享类型：</th>
+	<td>
+		<volist name="share_options" id="option">
+			<label><input type="radio" value="{pigcms:$key}" name="share_callback" <if condition="$key==$is_wx">checked="true"</if> onchange="shareTypeChange(this)">{pigcms:$option}</label>&nbsp;&nbsp;&nbsp;&nbsp;
+		</volist>          
+	</td>
+</script>
+
+<script type="text/template" id="tmpl_wxopen">
+<th>&nbsp;</th>
+<td style="color:#F33333;white-space:nowrap;" class="yinc">(请确认微信支付配置和微信支付证书上传完成)</td>
+</script>
+<script type="text/template" id="tmpl_close">
+<input type="hidden" value="" name="share[people]">
+<input type="hidden" value="<php>if($is_wxopen)echo '1';else echo '3';</php>" name="share_callback">
+</script>   
+<!--JS模板 结束-->
+
+<script type="text/javascript">
+	window.wxopen = "{pigcms:$is_wxopen}";
+	!function(){
+		var h = (document.body.clientHeight - 450)/2;
+		document.querySelector('.popWin .pw-container').style.marginTop = h+'px';
+	}();
+	function popHide(){
+		with(document){
+			querySelector('.popWin').style.display="none";
+		}
+	}
+	function popShow(){
+		with(document){
+			querySelector('.popWin').style.display="block";
+		}
+	}
+	function shareTypeChange(o)
+	{
+		var val = (typeof(o)=="string")? o : o.value,tmplid,curr_tmpl,curr_node,target;
+
+		switch(val)
+		{
+			case '1':tmplid = "tmpl_hongbao";break;
+			case '2':tmplid = "tmpl_coupon";break;
+			case '3':tmplid = "tmpl_points";break;
+			case '4':tmplid = "tmpl_chance";break;
+		}
+		target = document.getElementById('gameShareType').parentNode;
+		//读取模板
+		curr_tmpl = document.getElementById(tmplid);
+		curr_node = document.createElement('TBODY');
+		curr_node.id = 'newElement';
+		curr_node.innerHTML = curr_tmpl.innerHTML;
+		with(document){
+			ele = getElementById('newElement');
+			if(ele) ele.parentNode.removeChild(ele);
+		}
+		insertAfter(curr_node, target);
+		if(document.getElementById('wxopen')){
+			if(val == '1'){
+				document.getElementById('wxopen').style.display = "";
+				document.querySelector("input[type='submit']").disabled=true;
+			}else{
+				document.getElementById('wxopen').style.display = "none";
+				document.querySelector("input[type='submit']").disabled=false;
+			}
+		}else if( (val == '1') && (window['wxopen']==0) ){
+			var tr = document.createElement('tr');
+			tr.id  = "wxopen";
+			tr.innerHTML = document.getElementById('tmpl_wxopen').innerHTML;
+			target.appendChild(tr);
+			document.querySelector("input[type='submit']").disabled=true;
+		}
+	}
+	function insertAfter(newElement,targetElement)
+	{
+		var parent = targetElement.parentNode;
+		if(parent.lastChild == newElement){
+			parent.appendChild(newElement);
+		}else{
+		    parent.insertBefore(newElement, targetElement.nextSibling);
+		}
+	}
+	function chose_coupon(obj)
+	{
+		var coupon_id = obj.getAttribute('coupon'),
+		coupon_title  = obj.getAttribute('ctitle'),
+		coupon_people = obj.getAttribute('people');
+		document.getElementById('chosed_coupon').innerHTML = '卡券名称：'+coupon_title;
+		document.getElementById('coupon_id').value     = coupon_id;
+		document.getElementById('coupon_title').value  = coupon_title;
+		document.getElementById('coupon_people').value = coupon_people;
+		document.getElementById('coupon_limit').innerHTML = coupon_people;
+		document.getElementById('coupon_condition').style.display="";
+		popHide();
+	}
+	function input_check()
+	{
+		var collect = '', is_ok = true, msg='';
+		if(document.querySelectorAll('.input60').length>0){
+			collect = document.querySelectorAll('.input60');
+			regexp  = /^[1-9][0-9]*$/;
+			msg     = '红色输入框是大于0的数字';   
+			if(!check())return false;
+		}
+		if(document.querySelectorAll('.checkm').length>0){
+			collect = document.querySelectorAll('.checkm');
+			regexp  = /^[1-9][0-9]*(\.\d{1,2})?$/;
+			msg     = '红色输入框填写金额最多两位小数点,如:1元、1.0元、1.00元';
+			if(!check())return false;
+			var minV = document.querySelector('.minV'), 
+				maxV = document.querySelector('.maxV');
+				maxV = document.querySelector('.maxV');
+				zongV = document.querySelector('.zongV');
+				hbcount = document.querySelector('.hbcount');
+				if(parseFloat(minV.value)>parseFloat(maxV.value)){
+					maxV.style.border = "solid 1px #F33333";
+					maxV.onfocus = function(event){ 
+						event.currentTarget.style.border = "solid 1px #AAAAAA"; 
+					}
+					alert("最大金额不能小于最小金额");
+					return false;
+				}
+			var Vs = (hbcount.value)*parseFloat(maxV.value);
+			if(parseFloat(zongV.value) < Vs){
+				zongV.style.border = "solid 1px #F33333";
+				zongV.onfocus = function(event){ 
+					event.currentTarget.style.border = "solid 1px #AAAAAA"; 
+				}
+				alert("总金额 不能小于 每人限领个数*单个红包最大金额");
+				return false;
+			}				
+		}
+		function check(){
+			for(i in collect){
+				if(!regexp.test(collect[i].value) && /^\d+$/.test(i)){  
+					is_ok = false;
+					collect[i].style.border = "solid 1px #F33333";
+					collect[i].onfocus = function(event){ 
+						event.currentTarget.style.border = "solid 1px #AAAAAA"; 
+					}
+				}
+			}
+			if(!is_ok){
+				alert(msg);
+				return is_ok;
+			}
+			return true;
+		}
+		
+		return is_ok;
+	}
+	function toggle(o)
+	{
+		var val = o.value;
+		if(val == 0){
+			var _a = document.getElementById('newElement'), 
+			_b = document.getElementById('gameShareType');
+			_a.parentNode.removeChild(_a);
+			_b.parentNode.removeChild(_b);
+			var curr_tmpl = document.getElementById("tmpl_close"),
+			span = document.createElement('span');
+			span.innerHTML = curr_tmpl.innerHTML;
+			span.id = "close_tr";
+			document.getElementById('is_share').appendChild(span);
+		}else if(val == 1){
+			if(document.getElementById('close_tr')){
+				document.getElementById('is_share').removeChild(document.getElementById('close_tr'));
+			}
+			var curr_tmpl = document.getElementById("tmpl_radio"),
+			tr = document.createElement('tr');
+			tr.innerHTML = curr_tmpl.innerHTML;
+			tr.id = "gameShareType";
+			document.getElementById('is_share').parentNode.appendChild(tr);
+			//判断
+			shareTypeChange("<php>if($is_wxopen)echo '1';else echo '3';</php>");
+			//红包条件提示
+			if(!window.wxopen){
+				var tr = document.createElement('tr');
+				tr.id  = "wxopen";
+				tr.innerHTML = document.getElementById('tmpl_wxopen').innerHTML;
+				document.getElementById('gameShareType').parentNode.appendChild(tr);
+			}
+		}
+	}
+</script>
+
+<script>
+$('.fh-column').css('min-height','400px');
+$('.fh-column').css('border-right','1px solid #d7dde6');
+function game0(){
+	$('#tab0').addClass('current');
+	$("#tab1").removeClass("current");
+	$('#game0').css('display','');
+	$('#game1').css('display','');
+	$('#game2').css('display','none');
+	$('#game3').css('display','none');
+	$('.yinc').css('display','');
+	$('#tmpl_points').css('display','');
+}
+function game1(){
+	$('#tab1').addClass('current');
+	$("#tab0").removeClass("current");
+	$('#game0').css('display','none');
+	$('#game1').css('display','none');
+	$('#game2').css('display','');
+	$('#game3').css('display','');
+	$('.yinc').css('display','none');
+	$('#tmpl_points').css('display','none');
+}
+</script>
+<include file="Public:footer"/>

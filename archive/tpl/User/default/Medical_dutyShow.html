@@ -1,0 +1,98 @@
+<include file="Public:head"/>
+<include file="Medical:menu"/>
+<div class="content">
+<div class="cLineB">
+<a href="{pigcms::U('Medical/dutyAdd',array('token'=>$token))}" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{pigcms::RES}/images/product/add.png" class="vm"></if>设置预约</a>
+ </div>
+      <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%" align="CENTER" >
+              <thead>
+                    <tr>
+					<th width="10%" style="text-align: center;">坐诊专家</th>
+					<th width="8%" style="text-align: center;">周一</th>
+					<th width="8%" style="text-align: center;">周二</th>
+					<th width="8%" style="text-align: center;">周三</th>
+					<th width="8%" style="text-align: center;">周四</th>
+					<th width="8%" style="text-align: center;">周五</th>
+					<th width="8%" style="text-align: center;">周六</th>
+					<th width="8%" style="text-align: center;">周日</th>
+					<th width="10%" style="text-align: center;">上午预约量</th>
+					<th width="10%" style="text-align: center;">下午预约量</th>
+					<th class="norightborder" style="text-align: center;">操作</th>
+                    </tr>
+                  </thead>
+              <tbody>
+                <pigcmsif where="$res">
+                <volist name="res" id="o">
+                    <tr>
+                    <td style="text-align: center;">{pigcms:$o.docter}</td>
+                    <td style="text-align: center;">
+                        <if condition="$o.week1 eq 11">上午
+                        <elseif condition="$o.week1 eq 12"/>下午
+                        <elseif condition="$o.week1 eq 13"/>全天
+                        <elseif condition="$o.week1 eq 14"/>休息
+                        </if>
+                    </td>
+                    <td style="text-align: center;">
+                        <if condition="$o.week2 eq 21">上午
+                        <elseif condition="$o.week2 eq 22"/>下午
+                        <elseif condition="$o.week2 eq 23"/>全天
+                        <elseif condition="$o.week2 eq 24"/>休息
+                        </if>
+                    </td>
+                    <td style="text-align: center;">
+                        <if condition="$o.week3 eq 31">上午
+                        <elseif condition="$o.week3 eq 32"/>下午
+                        <elseif condition="$o.week3 eq 33"/>全天
+                        <elseif condition="$o.week3 eq 34"/>休息
+                        </if>
+                    </td>
+                    <td style="text-align: center;">
+                        <if condition="$o.week4 eq 41">上午
+                        <elseif condition="$o.week4 eq 42"/>下午
+                        <elseif condition="$o.week4 eq 43"/>全天
+                        <elseif condition="$o.week4 eq 44"/>休息
+                        </if>
+                    </td>
+                    <td style="text-align: center;">
+                        <if condition="$o.week5 eq 51">上午
+                        <elseif condition="$o.week5 eq 52"/>下午
+                        <elseif condition="$o.week5 eq 53"/>全天
+                        <elseif condition="$o.week5 eq 54"/>休息
+                        </if>
+                    </td>
+                    <td style="text-align: center;">
+                        <if condition="$o.week6 eq 61">上午
+                        <elseif condition="$o.week6 eq 62"/>下午
+                        <elseif condition="$o.week6 eq 63"/>全天
+                        <elseif condition="$o.week6 eq 64"/>休息
+                        </if>
+                    </td>                                     
+                    <td style="text-align: center;">
+                        <if condition="$o.week7 eq 71">上午
+                        <elseif condition="$o.week7 eq 72"/>下午
+                        <elseif condition="$o.week7 eq 73"/>全天
+                        <elseif condition="$o.week7 eq 74"/>休息
+                        </if>
+                    </td>
+                    <td style="text-align: center;">{pigcms:$o.resernumber1}</td>
+                    <td style="text-align: center;">{pigcms:$o.resernumber2}</td>
+                    <td class="norightborder" style="text-align: center;">    
+                    <a class="btn" href="{pigcms::U('Medical/dutyAdd',array('id'=>$o['id'],'did'=>$o['did'],'token'=>$o['token']))}"  title="修改">修改</a>
+					<a class="btn" href="javascript:drop_confirm('确定删除吗？','index.php?g=User&m=Medical&a=dutydel&id={pigcms:$o.id}&token={pigcms:$token}')" title="删除">删除</a>
+                    </td>                               
+                    </tr>
+                </volist>
+				<else />
+				<tr><td colspan="11" style="text-align:center;">暂无记录</td></tr>
+				</pigcmsif>
+                </tbody>
+            </table>          
+ <script>
+ $("#check_form").validationEngine();
+ </script>
+<div class="pageNavigator right">
+    <div class="pages">{pigcms:$page}</div>
+</div>
+        </div>
+
+<include file="Public:footer"/>

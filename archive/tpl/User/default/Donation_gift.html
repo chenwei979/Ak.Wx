@@ -1,0 +1,56 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left"><span class="red">在赠送礼品时候按照设置的金额由大到小的顺序，查找给捐赠人符合条件的礼品</span></h4>
+		<div class="searchbar right">
+			<a href="{pigcms::U('Donation/index')}" class="btnGrayS vm bigbtn">返回</a>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<!--tab start-->
+	<div class="tab">
+		<ul>
+			<li class="tabli" id="tab0"><a href="{pigcms::U('Donation/set', array('did' => $did))}">募捐设置</a></li>
+			<li class="current tabli" id="tab0"><a href="{pigcms::U('Donation/gift', array('did' => $did))}">募捐礼品设置</a></li>
+			<li class="tabli" id="tab0"><a href="{pigcms::U('Donation/medal', array('did' => $did))}">奖牌设置</a></li>
+		</ul>
+	</div>
+	<!--tab end-->
+	<div class="msgWrap">
+		<div class="cLine">
+			<div class="pageNavigator left"> <a href="{pigcms::U('Donation/addgift',array('did' => $did))}" title="添加" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{pigcms::RES}/images/product/add.png" class="vm"></if> 新增募捐活动礼品</a></div>
+			<div class="clr"></div>
+		</div>
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="100">金额</th>
+					<th width="100">礼品</th>
+					<th width="100">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="gifts" id="gift"> 
+				<tr>
+					<td>大于{pigcms:$gift['money']}元</td> 
+					<td><img src="{pigcms:$gift['pic']}" style="width:60px;height:60px;"></td>
+					<td class="norightborder">
+						<a href="{pigcms::U('Donation/addgift', array('id' => $gift['id'], 'did' => $gift['did']))}">修改</a> 
+						<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Donation/delgift', array('id' => $gift['id'], 'did' => $gift['did']))}');">删除</a> 
+					</td>
+				</tr>
+				</volist>
+			</tbody>
+		</table>
+	</div>
+	<!--div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$page}</div>
+		</div>
+		<div class="clr"></div>
+	</div-->
+</div>
+<include file="Public:footer"/>

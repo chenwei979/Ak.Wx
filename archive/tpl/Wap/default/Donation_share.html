@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link href="{pigcms:$staticPath}/tpl/static/donation/css/juan.css" type="text/css"  rel="stylesheet" />
+<link href="{pigcms:$staticPath}/tpl/static/donation/css/index.css" type="text/css" rel="stylesheet" />
+<script src="{pigcms:$staticPath}/tpl/static/donation/js/jquery-1.7.2.js"></script>
+<script src="{pigcms:$staticPath}/tpl/static/donation/js/index.js"></script>
+<script src="/tpl/static/alert.js"></script>
+<title>{pigcms:$donation['name']}</title>
+</head>
+<body>
+	<div id="main_page">
+		<div id="charityWalkerNormal" class="charityWalkerNormal index index_2 wechat yxj_pro">
+			<div class="header yxj_donation"> 
+				<img src="{pigcms:$staticPath}/tpl/static/donation/images/yqj_top_bg_3.jpg" class="headerBg">
+				<div class="header_content">
+					<div class="avatarWrapper"><img src="{pigcms:$userinfo['portrait']}" class="avatar" /></div>
+					<p class="username">我是 <strong>{pigcms:$userinfo['wechaname']}</strong></p>
+					<p class="pro_description">{pigcms:$share['content']}</p>
+				</div>
+			</div>
+			<div class="yxj_pro_wrap">
+				<div class="yxj_pro_about">
+					<div class="conetnt_title clearfix">
+                		<div class="con_t_l">一起捐项目</div>
+						<div class="con_t_r">已有<span>{pigcms:$cont_order['cnt']}</span>人发起该项目一起捐 </div>
+					</div>
+					<div class="yxj_pro_area">
+						<a href="{pigcms::U('Donation/index', array('token' => $token, 'wecha_id' => $wecha_id, 'id' => $donation['id']))}" style="text-decoration:none;">
+						<div class="ctx">
+							<img src="{pigcms:$donation['pic']}" class="pimg">
+							<div class="ctx_con_t_l">{pigcms:$donation['name']}</div>
+							<p class="pdesc">已捐赠: <span>{pigcms:$cont_order['price']}</span>元</p>
+							<p class="pdesc ctx_right"> 截止: <span>{pigcms:$donation['day']}</span>天 </p>
+						</div>
+						</a>
+					</div>
+					<p class="bottom_text"><span>积极响应“{pigcms:$userinfo['wechaname']}”号召的小伙伴们</span></p>
+				</div>
+				<div class="yxj_pro_list">
+					<ul id="yqj_list">
+						<volist name="orders" id="order">
+						<li>
+							<div class="yxj_pro_avatar"> <img src="{pigcms:$order['portrait']}"> </div>
+							<div class="yxj_pro_user">
+								<h4>{pigcms:$order['wechaname']}</h4>
+								<p>{pigcms:$order['dateline']|date="Y-m-d H:i:s",###}</p>
+							</div>
+							<div class="yxj_pro_amount">
+								<p>捐助 <strong>{pigcms:$order['price']}</strong> 元</p>
+							</div>
+						</li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+			<div id="pay_area">
+				<div class="donations_area"><a href="javascript:void(0);" class="donations_btn" style="background:#d00100;" id="btn_getPay">我要捐款</a></div>
+				<div id="payTips" style="background:rgba(0,0,0,0.7);position:absolute;width:100%;height:100%;top:0;left:0;z-index:700;display:none;">
+					<div class="pay">
+						<div class="t">
+							<div class="close"><img src="{pigcms:$staticPath}/tpl/static/donation/images/icon_close.png"></div>
+							<span>请输入捐款金额</span> 
+						</div>
+						<div class="box">
+							<table class="tb">
+								<tbody>
+									<tr>
+										<td><div data="{pigcms:$donation['fixed_money1']}" class="sel l ed"><img src="{pigcms:$staticPath}/tpl/static/donation/images/yqj_selected.png"><span>{pigcms:$donation['fixed_money1']}</span>元</div></td>
+										<td><div data="{pigcms:$donation['fixed_money2']}" class="sel l"><img src="{pigcms:$staticPath}/tpl/static/donation/images/yqj_selected.png"><span>{pigcms:$donation['fixed_money2']}</span>元</div></td>
+										<td><div data="{pigcms:$donation['fixed_money3']}" class="sel l"><img src="{pigcms:$staticPath}/tpl/static/donation/images/yqj_selected.png"><span>{pigcms:$donation['fixed_money3']}</span>元</div></td>
+										<td><div data="{pigcms:$donation['fixed_money4']}" class="sel l"><img src="{pigcms:$staticPath}/tpl/static/donation/images/yqj_selected.png"><span>{pigcms:$donation['fixed_money4']}</span>元</div></td>
+									</tr>
+									<tr>
+										<td colspan="4"><div style="height:5px;"></div></td>
+									</tr>
+									<tr id="other_money">
+										<td colspan="4">
+											<div data="0" class="sel l">
+												<img src="{pigcms:$staticPath}/tpl/static/donation/images/yqj_selected.png">
+												<div class="fl" style="margin-left:8px">其他</div>
+												<div class="fr" style="margin-right:8px">元</div>
+												<div style="display:inline-block;"><input type="number" id="money" /></div>
+											</div>
+										</td>
+									</tr>
+									<!--tr>
+										<td colspan="4">
+											<div class="anonymous">
+												<img src="{pigcms:$staticPath}/tpl/static/donation/images/detail_icon_8.png" class="anonymouscheck inputcheck">
+												<label for="anonymous"><input type="checkbox" id="anonymous" name="anonymous" class="none">匿名捐款</label>
+											</div>
+										</td>
+									</tr-->
+								</tbody>
+							</table>
+							<a href="javascript:void();" class="btn_a" id="btn_submit"><div class="btn">立即捐款</div></a>
+							<div class="prot">
+								<label for="check"><img src="{pigcms:$staticPath}/tpl/static/donation/images/detail_icon_8_checked.png" class="check inputcheck" data-src="{pigcms:$staticPath}/tpl/static/donation/images/detail_icon_8.png">
+								<input type="checkbox" id="check" name="check" checked="checked" class="none">
+								同意并接受</label>
+								<span class="p" style="color: #860101; text-decoration: underline;">《募捐协议》 </span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="tips" style="background:rgba(0,0,0,0.7);position:absolute;width:100%;top:0;z-index:999;display:none;height: 100%;"></div>
+	<div class="xieyi" style="display:none"><span class="xieyi_ca"><img src="{pigcms:$staticPath}/tpl/static/donation/images/ca.png"></span>
+		<div class="about">
+		<img src="{pigcms:$donation['pic']}" class="top">
+		<div class="content"><div style="margin-left: 6px;">{pigcms:$set['agreement']|html_entity_decode}</div></div>
+		</div>
+	</div>
+<script>
+$(document).ready(function(){
+	$('#other_money').click(function(){
+		$('#money').focus();
+	});
+	$('#btn_submit').click(function(){
+		var price = 0, t = parseInt($(".tb").find('.ed').attr('data'));
+		if (t > 0) {
+			price = t;
+		} else {
+			price = $('#money').val();
+		}
+		if (price <= 0) {
+			alert('募捐金额应该大约0');
+			return false;
+		}
+		if (!$('#check').attr('checked')) {
+			alert('只有同意捐赠协议才能捐款');
+			return false;
+		}
+		var isanonymous = 0;
+		//if ($('#check').attr('checked')) {
+			//isanonymous = 1;
+		//}
+		location.href="{pigcms::U('Donation/to_pay', array('id' => $id, 'token' => $token, 'sid' => $share['id'], 'wecha_id' => $wecha_id))}&price=" + price + '&isanonymous=' + isanonymous;
+	});
+});
+
+window.shareData = {  
+	"moduleName":"Donation",
+	"moduleID":"{pigcms:$donation['id']}",
+	"imgUrl": "{pigcms:$donation['share_pic']}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"tTitle": "{pigcms:$donation['name']|shareFilter}",
+	"tContent": "{pigcms:$donation['note']|shareFilter}",
+	"fTitle": "{pigcms:$donation['name']|shareFilter}",
+	"isShareNum":1,
+	"ShareNumData":"donation,id,{pigcms:$id},share_num"
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

@@ -1,0 +1,29 @@
+		<div class="clearfix header">
+			<span class="logo-t fl">
+			<a href="##">
+				<img class="logoScreenLeft" src="{pigcms:$info.logo}">
+			</a>
+			</span>
+			<div class="word-scroll fl">
+		        <div class="clearfix">
+					<div class="scrollbox fl">
+			            <ul class="word-list wordList">
+							<li class="themeBox" style="display: none;">
+								微信号：{pigcms:$info.wxuser}<br>
+			               		 关注后回复“{pigcms:$info.keyword}”即可<?php if(ACTION_NAME == 'signin'){echo "签到";}else{?>参与<?php }?>
+							</li>
+							{pigcms:$info.header}
+						</ul>
+					</div>
+					<div class="num-t fl">
+		            	<p><em class="messageTotal">{pigcms:$join_count}</em><span class="totalname">{pigcms:$join_title}</span></p>
+					</div>
+				</div>
+			</div>
+			<span class="reserved fr showIntroBtn">          
+			    <if condition="$info.qrcode neq ''">
+					<img src="{pigcms:$info.qrcode}" style="max-width:100px;max-height:100px;">
+			    </if>
+			</span>
+		</div>
+

@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<link href="{pigcms:$staticPath}/tpl/static/donation/css/base.css" type="text/css" rel="stylesheet" />
+<link href="{pigcms:$staticPath}/tpl/static/donation/css/geren.css" type="text/css" rel="stylesheet" />
+<script src="{pigcms:$staticPath}/tpl/static/donation/js/jquery-1.7.2.js"></script>
+<title>募捐支付</title>
+<script language="javascript">
+<if condition="$issystem eq 0">
+	function callpay(){
+		WeixinJSBridge.invoke('getBrandWCPayRequest',{pigcms:$jsApiParameters},function(res){
+			WeixinJSBridge.log(res.err_msg);
+			if(res.err_msg=='get_brand_wcpay_request:ok'){
+			    document.getElementById('payDom').style.display='none';
+				document.getElementById('successDom').style.display='';
+				setTimeout("window.location.href = '{pigcms:$returnUrl}'",2000);
+			}else{
+				if(res.err_msg == 'get_brand_wcpay_request:cancel'){
+					var err_msg = '您取消了支付';
+				}else if(res.err_msg == 'get_brand_wcpay_request:fail'){
+					var err_msg = '支付失败<br/>错误信息：'+res.err_desc;
+				}else{
+					var err_msg = res.err_msg +'<br/>'+res.err_desc;
+				}
+				document.getElementById('payDom').style.display = 'none';
+				document.getElementById('failDom').style.display = '';
+				document.getElementById('failRt').innerHTML = err_msg;
+			}
+		});
+	}
+</if>
+
+$(document).ready(function(){
+	setInterval("check_pay()", 5000);
+});
+
+function check_pay()
+{
+	$.get("/index.php?g=Wap&m=Donation&a=check_pay&orderid={pigcms:$orderid}&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}", function(response){
+		if (response.status) {
+			location.href="/index.php?g=Wap&m=Donation&a=index&orderid={pigcms:$orderid}&token={pigcms:$token}&wecha_id={pigcms:$wecha_id}&id="+response.id;
+		}
+	}, 'json');
+	
+}
+</script>
+</head>
+<body>
+<div class="payment confirm">
+	<div style="text-align: center;color: rgb(235, 84, 5);  margin-bottom: 10px;  margin-top: 44%;">所有捐赠款项直接进入<br/>{pigcms:$donation['account']}</div>
+    <div class="payment_erwei"><img src="{pigcms::U('Weixin/qrcode', array('url' => $url))}" /></div>
+    <div class="long_but"><a href="javascript:void(0);">长按二维码&nbsp;&nbsp;&nbsp;&nbsp;确认支付</a></div>
+    <div class="t_logo"><img src="{pigcms:$donation['logo']}" /></div>
+</div>
+</body>
+</html>

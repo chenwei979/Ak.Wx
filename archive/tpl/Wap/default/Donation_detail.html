@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>{pigcms:$donation['name']}</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<link href="{pigcms:$staticPath}/tpl/static/donation/css/detail.css" type="text/css"  rel="stylesheet" />
+<script src="{pigcms:$staticPath}/tpl/static/donation/js/jquery-1.7.2.js"></script>
+</head>
+<body> 
+<div id="pageContainer">
+    <div class="detail">
+        <div class="top">
+            <div class="yqjrank">
+                <div class="tt">感谢<span>{pigcms:$count_share['share']}</span>位爱心传播者和<span>{pigcms:$count_share['people']}</span>位朋友</div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="box" style="margin:0;border:0;">
+                <div class="yqjrank" style="display: block;">
+                    <div class="desc" style="background:#ffffff;">
+                        <div style="border:1px solid #d7d7d6;margin:5px 0 10px;border-radius:5px;" id="ranklist"> 
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="footer"><img src="{pigcms:$donation['logo']}" class="and_img_detail and_logo_bottom" /></div>
+            </div>
+        </div>
+    </div>
+    <div id="loading2" class="cpm-dialog-mod" style="display: none;">
+        <div class="cpm-mask"><!-- 遮罩 --></div>
+        <div class="cpm-dialog cpm-dialog-load">
+            <div class="dialog-bd"> <i class="icon-load"></i>
+                <p>正在加载...</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mask_level"></div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	lists(1);
+	$('.more1').live('click', function(){
+		lists($(this).attr('data-page'));
+	});
+});
+
+function lists(page)
+{
+	var html = '';
+	$('#loading2').show();
+	$.get("{pigcms::U('Donation/ajax_order', array('token' => $token, 'id' => $id, 'wecha_id' => $wecha_id))}", {'page':page}, function(reponse){
+		var data = reponse.data;
+		$.each(data, function(i, dat){
+			html += '<div class="item" style="background:rgba(249,249,249,0.9);">'; 
+			html += '<img src="' + dat.portrait + '">'; 
+			html += '<div>'; 
+			html += '<div class="n">' + dat.wechaname + '/' + dat.city + '</div>'; 
+			html += '<div class="d" style="color:#5a5451;">和<span>' + dat.people + '</span>位伙伴筹得善款<span>' + dat.price + '</span>元</div>'; 
+			html += '<div style="font-size:13px;color:#b0a7a2;margin:5px 0;line-height:20px;">' + dat.share_content + '</div>'; 
+			html += '</div>'; 
+			html += '</div>'; 
+		});
+		if (reponse.page > 0) html += '<div class="more1" style="border: 0px; margin-right: 0px;" data-page="' + reponse.page + '">查看更多</div>';
+		$('#loading2').hide();
+		$('#ranklist').append(html);
+	}, 'json');
+}
+
+window.shareData = {  
+	"moduleName":"Donation",
+	"moduleID":"{pigcms:$donation['id']}",
+	"imgUrl": "{pigcms:$donation['share_pic']}", 
+	"timeLineLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"sendFriendLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"weiboLink": "{pigcms:$f_siteUrl}{pigcms::U('Donation/index',array('token' => $token, 'id' => $id))}",
+	"tTitle": "{pigcms:$donation['name']|shareFilter}",
+	"tContent": "{pigcms:$donation['note']|shareFilter}",
+	"fTitle": "{pigcms:$donation['name']|shareFilter}",
+	"isShareNum":1,
+	"ShareNumData":"donation,id,{pigcms:$id},share_num"
+};
+</script>
+{pigcms:$shareScript}
+</body>
+</html>

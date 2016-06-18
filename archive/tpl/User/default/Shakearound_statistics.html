@@ -1,0 +1,176 @@
+<include file="Public:head"/>
+<script src="{pigcms:$staticPath}/tpl/static/myChart/js/echarts-plain.js"></script>
+<div class="content">
+<div class="clr" style="height:30px;"></div>
+<div class="shuju">
+	<h2 style="font-size:20px;margin-bottom:10px;">数据统计<span style="font-size:12px;">(今日的操作,次日才会被统计,<span style="color:red;">只保留最近90天以内的数据</span>)</span></h2>
+<div class="clr"></div>
+<div style="float:right;margin-right:45px;margin-top:-40px;">
+选择年份:
+<select name="year" id="year">
+<option value="<?php echo date('Y')-1;?>"><?php echo date('Y')-1;?>年</option>
+<option value="<?php echo date('Y');?>" <if condition="$current_year eq date('Y')">selected="selected"</if>><?php echo date('Y');?>年</option>
+</select>	&nbsp;&nbsp;&nbsp;	
+选择月份:
+<select name="month" id="month">
+<for start="1" end="13">
+<option value="{pigcms:$i}" <if condition="$i eq $current_month"> selected = selected </if>>{pigcms:$i}月</option>
+</for>
+</select>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+选择设备：
+<select name="device_id" id="device_id">
+<if condition="$devices eq ''">
+<option value="0">---请先添加并激活设备--</option>
+<else />
+<option value="all">所有设备</option>
+<volist name="devices" id="vo">
+<option value="{pigcms:$vo.device_id}">{pigcms:$vo.device_comment}</option>
+</volist>
+</if>
+</select>
+</div>
+<div id="shakearound_index" style="height:400px;width:960px;text-align:center; margin-bottom: 50px;"></div>
+<div style="float:right;margin-right:45px;margin-top:-40px;">
+选择年份:
+<select name="pageyear" id="pageyear">
+<option value="<?php echo date('Y')-1;?>"><?php echo date('Y')-1;?>年</option>
+<option value="<?php echo date('Y');?>" <if condition="$current_year eq date('Y') or $year eq ''">selected="selected"</if>><?php echo date('Y');?>年</option>
+</select>	&nbsp;&nbsp;&nbsp;	
+选择月份:
+<select name="pagemonth" id="pagemonth">
+<for start="1" end="13">
+<option value="{pigcms:$i}" <if condition="$i eq $current_month"> selected = selected </if>>{pigcms:$i}月</option>
+</for>
+</select>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+选择页面：
+<select name="page_id" id="page_id">
+<if condition="$pages eq ''">
+<option value="0">---请先添加页面--</option>
+<else />
+<option value="all">所有页面</option>
+<volist name="pages" id="vo">
+<option value="{pigcms:$vo.page_id}">{pigcms:$vo.title}</option>
+</volist>
+</if>
+</select>
+</div>
+<div id="shakearound_page" style="height:400px;width:960px;text-align:center;"></div>
+</div>
+</div>
+	<div class="clr"></div>
+  </div>
+</div>
+</div>
+<!--底部-->
+</div>
+<script type="text/javascript">
+  $(function(){
+	var year = $("#year").val();
+	var month = $("#month").val();
+	var device_id = $("#device_id").val();
+	$("#shakearound_index").html("<img src='{pigcms:$staticPath}/tpl/static/seckill/images/loading.gif'/>");
+	if(device_id == 'all'){
+		$("#shakearound_index").load("/index.php?g=User&m=Shakearound&a=alldevice_statistics&token={pigcms:$token}&year="+year+"&month="+month);
+	}else{
+		$("#shakearound_index").load("/index.php?g=User&m=Shakearound&a=statistics_by_device&device_id="+device_id+"&token={pigcms:$token}&year="+year+"&month="+month);
+	}
+	var pageyear = $("#pageyear").val();
+	var pagemonth = $("#pagemonth").val();
+	var page_id = $("#page_id").val();
+	$("#shakearound_page").html("<img src='{pigcms:$staticPath}/tpl/static/seckill/images/loading.gif'/>");
+	if(page_id == 'all'){
+		$("#shakearound_page").load("/index.php?g=User&m=Shakearound&a=allpage_statistics&token={pigcms:$token}&pageyear="+pageyear+"&pagemonth="+pagemonth);
+	}else{
+		$("#shakearound_page").load("/index.php?g=User&m=Shakearound&a=statistics_by_page&page_id="+page_id+"&token={pigcms:$token}&pageyear="+pageyear+"&pagemonth="+pagemonth);
+	}
+	//设备变更年份
+	$("#year").change(function(){
+		var year = $("#year").val();
+		var month = $("#month").val();
+		var device_id = $("#device_id").val();
+		$("#shakearound_index").html("<img src='{pigcms:$staticPath}/tpl/static/seckill/images/loading.gif'/>");
+		if(device_id == 'all'){
+			$("#shakearound_index").load("/index.php?g=User&m=Shakearound&a=alldevice_statistics&token={pigcms:$token}&year="+year+"&month="+month);
+		}else{
+			$("#shakearound_index").load("/index.php?g=User&m=Shakearound&a=statistics_by_device&device_id="+device_id+"&token={pigcms:$token}&year="+year+"&month="+month);
+		}
+	});
+	//设备统计变更月份
+	$("#month").change(function(){
+		var year = $("#year").val();
+		var month = $("#month").val();
+		var device_id = $("#device_id").val();
+		$("#shakearound_index").html("<img src='{pigcms:$staticPath}/tpl/static/seckill/images/loading.gif'/>");
+		if(device_id == 'all'){
+			$("#shakearound_index").load("/index.php?g=User&m=Shakearound&a=alldevice_statistics&token={pigcms:$token}&year="+year+"&month="+month);
+		}else{
+			$("#shakearound_index").load("/index.php?g=User&m=Shakearound&a=statistics_by_device&device_id="+device_id+"&token={pigcms:$token}&year="+year+"&month="+month);
+		}
+	});
+	
+	//设备统计变更设备
+	$("#device_id").change(function(){
+		var year = $("#year").val();
+		var month = $("#month").val();
+		var device_id = $("#device_id").val();
+		$("#shakearound_index").html("<img src='{pigcms:$staticPath}/tpl/static/seckill/images/loading.gif'/>");
+		if(device_id == 'all'){
+			$("#shakearound_index").load("/index.php?g=User&m=Shakearound&a=alldevice_statistics&token={pigcms:$token}&year="+year+"&month="+month);
+		}else{
+			$("#shakearound_index").load("/index.php?g=User&m=Shakearound&a=statistics_by_device&device_id="+device_id+"&token={pigcms:$token}&year="+year+"&month="+month);
+		}
+	});
+	//页面统计变更年份
+	$("#pageyear").change(function(){
+		var pageyear = $("#pageyear").val();
+		var pagemonth = $("#pagemonth").val();
+		var page_id = $("#page_id").val();
+		$("#shakearound_page").html("<img src='{pigcms:$staticPath}/tpl/static/seckill/images/loading.gif'/>");
+		if(page_id == 'all'){
+			$("#shakearound_page").load("/index.php?g=User&m=Shakearound&a=allpage_statistics&token={pigcms:$token}&pageyear="+pageyear+"&pagemonth="+pagemonth);
+		}else{
+			$("#shakearound_page").load("/index.php?g=User&m=Shakearound&a=statistics_by_page&page_id="+page_id+"&token={pigcms:$token}&pageyear="+pageyear+"&pagemonth="+pagemonth);
+		}
+	});
+	//页面统计变更月份
+	$("#pagemonth").change(function(){
+		var pageyear = $("#pageyear").val();
+		var pagemonth = $("#pagemonth").val();
+		var page_id = $("#page_id").val();
+		$("#shakearound_page").html("<img src='{pigcms:$staticPath}/tpl/static/seckill/images/loading.gif'/>");
+		if(page_id == 'all'){
+			$("#shakearound_page").load("/index.php?g=User&m=Shakearound&a=allpage_statistics&token={pigcms:$token}&pageyear="+pageyear+"&pagemonth="+pagemonth);
+		}else{
+			$("#shakearound_page").load("/index.php?g=User&m=Shakearound&a=statistics_by_page&page_id="+page_id+"&token={pigcms:$token}&pageyear="+pageyear+"&pagemonth="+pagemonth);
+		}
+	});
+	//页面统计变更页面
+	$("#page_id").change(function(){
+		var pageyear = $("#pageyear").val();
+		var pagemonth = $("#pagemonth").val();
+		var page_id = $("#page_id").val();
+		$("#shakearound_page").html("<img src='{pigcms:$staticPath}/tpl/static/seckill/images/loading.gif'/>");
+		if(page_id == 'all'){
+			$("#shakearound_page").load("/index.php?g=User&m=Shakearound&a=allpage_statistics&token={pigcms:$token}&pageyear="+pageyear+"&pagemonth="+pagemonth);
+		}else{
+			$("#shakearound_page").load("/index.php?g=User&m=Shakearound&a=statistics_by_page&page_id="+page_id+"&token={pigcms:$token}&pageyear="+pageyear+"&pagemonth="+pagemonth);
+		}
+	});
+  });
+</script>
+<script>
+//左侧导航高亮 (因为在同一个model里面,暂时处理)
+$(function(){
+$(".ckit").find("li").each(function(){
+	if($.trim($(this).text()) == '统计信息'){
+		$(this).prev().removeClass('selected');
+		$(this).prev().prev().removeClass('selected');
+		$(this).removeClass('subCatalogList');
+		$(this).addClass('selected');
+	}
+});
+});
+</script>
+<include file="Public:footer"/> 

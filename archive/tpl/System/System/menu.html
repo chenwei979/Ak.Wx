@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>导航</title>
+<link href="{pigcms::STATICS}/artDialog/css/style.css" rel="stylesheet">
+    <link href="{pigcms::STATICS}/artDialog/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{pigcms::STATICS}/artDialog/css/font-awesome.css" rel="stylesheet">
+        <script src="{pigcms::STATICS}/artDialog/js/jquery-2.1.1.js"></script>
+    <script src="{pigcms::STATICS}/artDialog/js/bootstrap.min.js"></script>
+    <script src="{pigcms::STATICS}/artDialog/js/jquery.metisMenu.js"></script>
+    <script src="{pigcms::STATICS}/artDialog/js/jquery.slimscroll.min.js"></script>
+    <script src="{pigcms::STATICS}/artDialog/js/inspinia.js"></script>
+    <script type="text/javascript">
+        function setTab(m,n){
+            var tli=document.getElementById("side-menu").getElementsByTagName("li");
+            for(var i=0;i<tli.length;i++){
+                if(tli[i].id==n){
+                    tli[i].className="activem";
+                }else if(tli[i].id==m){
+                    tli[i].className="actives";
+                }else{
+                    tli[i].className="size";
+                }
+
+            }
+        }
+
+    </script>
+
+</head>
+
+<body style="background:none">
+				<ul class="nav metismenu" id="side-menu">
+                 	<volist name="navs" id="so">
+                    <li id="{pigcms:$so['id']}">
+                        <a href="#" onClick="JumpleftFrame('{pigcms::U('System/menu',array('pid'=>$so['id'],'level'=>2,'title'=>rawurlencode($so['title'])))}',{pigcms:$so['id']});"><i class="fa fa-th-large"></i> <span class="nav-label" style="font-size:15px">{pigcms:$so['title']}</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+							<volist name="nav" id="vo">
+								<if condition="$vo['pid'] eq $so['id']">
+                            		<li class="size" onClick="setTab({pigcms:$vo.pid},{pigcms:$vo.id})" id="{pigcms:$vo.id}"><a href="{pigcms::U($vo['name'].'/index',array('pid'=>$vo['id'],'level'=>3))}" style="margin-left:40px" target="main">{pigcms:$vo['title']}</a></li>
+                            	</if>
+                            </volist>
+                        </ul>
+                    </li>
+                    </volist>
+                </ul>
+
+<!--/mbox-->
+
+<!--/mbox-->
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">募捐活动列表</h4>
+		<div class="clr"></div>
+	</div>
+	 <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;">温馨提示：1.请确保“在线支付设置”中的<a href="{pigcms::U('Alipay_config/index',array('token'=>$token))}" target="_blank"><span style="color:green;">微信支付</span></a>配置正常。<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.当活动到了开始时间或活动已经产生了捐款时，该活动就不可以删除了。<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.本功能使用了模板消息中的“成功付款通知”模板消息，其模板编号:OPENTM207528726。<br />
+</div>
+	<!--tab start-->
+	<div class="tab">
+		<ul>
+			<li class="current tabli" id="tab0"><a href="{pigcms::U('Donation/index')}">募捐活动</a></li>
+		</ul>
+	</div>
+	<!--tab end-->
+	<div class="msgWrap">
+		<div class="cLine">
+			<div class="pageNavigator left"> <a href="{pigcms::U('Donation/creat',array('token' => $token))}" title="添加" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{pigcms::RES}/images/product/add.png" class="vm"></if> 新增募捐活动</a></div>
+			<div class="clr"></div>
+		</div>
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="80">募捐名称</th>
+					<th width="80">募捐接受机构</th>
+					<th width="80">关键字</th>
+					<th width="100" nowrap>开始/结束时间</th>
+					<th width="50" nowrap>状态</th>
+					<th width="300">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="donations" id="o"> 
+				<tr>
+					<td>{pigcms:$o.name}</td> 
+					<td>{pigcms:$o.company}</td> 
+					<td>{pigcms:$o.keyword}</td>
+					<td>{pigcms:$o.starttime|date="Y-m-d H:i",###}<br/>{pigcms:$o.endtime|date="Y-m-d H:i",###}</td>
+					<td>{pigcms:$o['status']}</td>
+					<td class="norightborder">
+						<a href="{pigcms::U('Donation/creat', array('id' => $o['id']))}">修改</a> 
+						<a href="{pigcms::U('Donation/dynamic', array('did' => $o['id']))}">动态列表</a> 
+						<a href="{pigcms::U('Donation/set', array('did' => $o['id']))}">活动设置</a> 
+						<a href="{pigcms::U('Donation/order', array('did' => $o['id']))}">捐款详情</a>
+						<if condition="empty($o['is_delete'])">
+						<a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Donation/deldonation', array('id' => $o['id']))}');">删除</a> 
+						</if>
+					</td>
+				</tr>
+				</volist>
+			</tbody>
+		</table>
+	</div>
+</div>
+<include file="Public:footer"/>

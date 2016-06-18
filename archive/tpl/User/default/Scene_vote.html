@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>{pigcms:$info.title}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/base.css">
+<link rel="stylesheet" href="{pigcms::STATICS}/scene/css/style.css">
+<link href="{pigcms::STATICS}/scene/css/index.css" type="text/css" rel="stylesheet" />
+</head>
+<body style=" background:#000 url(<?php echo $info['vote_background'] ? $info['vote_background'] : STATICS.'/scene/images/vote_background.png' ?>);background-size: cover;" >
+
+<div class="wrapbg content" style="height: auto">
+    <div class="whole">
+		<include file="Scene:header"/>
+        <div class="mian mt40 toupiao clearfix">
+        <!----中间部分------>
+            <div class="mian_con">
+                <div class="toupiao_content clearfix">
+                    <div class="tou_title clearfix">
+                        <div class="tou_ti_l">{pigcms:$vote.title}</div>
+                        <div class="tou_ti_r">共<span class="vote_count">{pigcms:$vote.count}</span>人参与</div>
+                    </div>
+                    <ul class="toupiao_show clearfix">
+                    	
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>        
+		<include file="Scene:toolbar"/>
+    </div>
+</div>
+
+<include file="Scene:footer"/>
+
+<param class="vote"
+url-ajax="{pigcms::U('Scene/show_vote', array('token'=>$token, 'id'=>$id))}"
+path="{pigcms::STATICS}"
+id = "{pigcms:$info.id}"
+vote_id="{pigcms:$vote.id}"
+/>
+<script src="{pigcms::STATICS}/scene/js/jquery-1.7.2.min.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/scroll-marquee.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/jquery.soChange.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/jquery.tooltipster.min.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/common.js"></script> 
+<script src="{pigcms::STATICS}/scene/js/index.js"></script>
+<script type="text/javascript">
+$(function() {
+	vote_ajax();//调用  
+})
+</script>
+</body>
+</html>

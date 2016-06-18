@@ -1,0 +1,23 @@
+
+	    <div class="hd">
+	        <ul>	        	
+				<volist id="vo" name="data" key="key">
+	            <li>第 {pigcms:$key-1} 轮</li>
+	            </volist>
+	        </ul>
+	    </div>
+	    <div class="bd">
+	    	<volist id="vo" name="data">
+	        <div class="row">
+	            <ul>
+	            	<volist id="voo" name="vo" key="k">
+	                <li>
+	                    <img src="{pigcms:$voo.head}" alt="{pigcms:$voo.name}"/>
+	                    <h2>{pigcms:$voo.name}</h2>
+	                    <h3>第{pigcms:$k}名</h3>
+	                </li>
+	                </volist>
+	            </ul>
+	        </div>
+	        </volist>	        
+	    </div>
